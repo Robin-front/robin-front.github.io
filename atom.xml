@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>三寸稚笔</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://robin-front.github.com/"/>
+  <updated>2016-03-04T14:47:41.000Z</updated>
+  <id>http://robin-front.github.com/</id>
+  
+  <author>
+    <name>robin</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何少埋坑-艾神分享会</title>
+    <link href="http://robin-front.github.com/2016/03/04/%E8%89%BE%E7%A5%9E%E5%88%86%E4%BA%AB%E4%BC%9A/"/>
+    <id>http://robin-front.github.com/2016/03/04/艾神分享会/</id>
+    <published>2016-03-04T14:47:41.000Z</published>
+    <updated>2016-03-04T14:47:41.000Z</updated>
+    
+    <content type="html">&lt;p&gt;又很久没有记录东西了，真是个不自律的人- -！&lt;/p&gt;
+&lt;p&gt;去年十月进入搜芽，感觉搜芽是一个共同成长的公司，有一种亲切感。这算是我第一次进一个前端团队比较大的公司，很多想法在分享与讨论中迸发。&lt;/p&gt;
+&lt;p&gt;最近产品在预热中，相对有空，我们前端也在尝试一些新技术的应用,用react-redux做一个简易的文档系统。除了家优对技术架构比较熟，我们几个都比较生疏。但是最重要是不要心浮气燥，虽然最近心情不是很好，但我还是尽量静下心来研读文档，在开发中一步一坑地走下去。&lt;/p&gt;
+&lt;p&gt;研发部也在组织分享会，今天是第一次分享会，艾神定的主题是http协议，主要和大家分享一个http请求从客户端到服务端处理返回的整个过程。&lt;/p&gt;
+&lt;p&gt;说到艾神，当初见到他的第一印象就是没什么印象，老实、普通，所以当时不是很明白为什么大家叫他艾神。不过后来发现，艾神确实是一个很踏实的人，他是写java的，功力很深，逻辑很严谨。和他一起吃饭的时候，很喜欢和我们‘讲课’。&lt;/p&gt;
+&lt;p&gt;当然，分享会其他讲http协议不是他的真正目的，他延伸出来的相关案例才是重点。艾神讲协议，是想让我们要注意分清什么是标准，什么是投机。工作中要知道错的为什么错，也要知道对的为什么对，要把程序的运行把控在自己手中，不能存在不确定性。否则埋了坑，一旦出现问题，就要花更多的时间去排查。&lt;/p&gt;
+&lt;p&gt;我也是见过太多程序员，对一些问题十分马虎，错了就不断推脱，有时候bug补上了却不知道为什么，殊不知可能埋了更大的坑。&lt;/p&gt;
+&lt;p&gt;艾神是个很靠谱的程序员&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;又很久没有记录东西了，真是个不自律的人- -！&lt;/p&gt;
+&lt;p&gt;去年十月进入搜芽，感觉搜芽是一个共同成长的公司，有一种亲切感。这算是我第一次进一个前端团队比较大的公司，很多想法在分享与讨论中迸发。&lt;/p&gt;
+&lt;p&gt;最近产品在预热中，相对有空，我们前端也在尝试一些新技术的应用,用
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>javascript获取本周和本月或任意月的时间段</title>
+    <link href="http://robin-front.github.com/2015/10/30/javascript%E5%8F%96%E6%9C%AC%E5%91%A8%E5%92%8C%E6%9C%AC%E6%9C%88%E6%88%96%E4%BB%BB%E6%84%8F%E6%9C%88%E7%9A%84%E6%97%B6%E9%97%B4%E6%AE%B5/"/>
+    <id>http://robin-front.github.com/2015/10/30/javascript取本周和本月或任意月的时间段/</id>
+    <published>2015-10-30T15:36:01.000Z</published>
+    <updated>2015-11-06T17:10:28.000Z</updated>
+    
+    <content type="html">&lt;p&gt;最近有功能从两个时间段变成单个select选择了，但后端不想改接口。只好适配一下，把今天、本周、本月及过去的月份转换一下。&lt;/p&gt;
+&lt;p&gt;首先，更改一下select菜单，动态取出过去的月份，添加options。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var SearchTimer = [&amp;apos;全部&amp;apos;, &amp;apos;今天&amp;apos;, &amp;apos;本周&amp;apos;, &amp;apos;本月&amp;apos;];
+(function(){
+    var Month = new Date().getMonth();
+    for(; Month &amp;gt; 0; Month--){
+        SearchTimer.push(Month + &amp;apos;月份&amp;apos;);
+    }
+})();
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;接下来就是要把各个options在选择的时候转换成startTime和endTime.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;switch(timer){
+    case &amp;apos;全部&amp;apos;: break;
+    case &amp;apos;今天&amp;apos;: break;
+    case &amp;apos;本周&amp;apos;: break;
+    case &amp;apos;本月&amp;apos;: break;
+    default:
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后是时间的处理，先需要格式化时间，注意补零，格式为yyyy-MM-dd HH:mm:ss。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function formatDate(date) { 
+    var myyear = date.getFullYear(); 
+    var mymonth = date.getMonth()+1; 
+    var myweekday = date.getDate(); 
+    var myhours = date.getHours(); 
+    var myminutes = date.getMinutes(); 
+    var myseconds = date.getSeconds(); 
+
+    if(mymonth &amp;lt; 10){mymonth = &amp;quot;0&amp;quot; + mymonth; }
+    if(myweekday &amp;lt; 10){myweekday = &amp;quot;0&amp;quot; + myweekday; }
+    if(myhours &amp;lt; 10){myhours = &amp;quot;0&amp;quot; + myhours; }
+    if(myminutes &amp;lt; 10){myminutes = &amp;quot;0&amp;quot; + myminutes; }
+    if(myseconds &amp;lt; 10){myseconds = &amp;quot;0&amp;quot; + myseconds; }
+    return (myyear+&amp;quot;-&amp;quot;+mymonth + &amp;quot;-&amp;quot; + myweekday+&amp;quot; &amp;quot;+myhours+&amp;quot;:&amp;quot;+myminutes+&amp;quot;:&amp;quot;+myseconds); 
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;今天的时间很好获取，然后是本周时间：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var now = new Date(); //当前日期 
+    var nowDayOfWeek = now.getDay(); //今天本周的第几天 
+    var nowDay = now.getDate(); //当前日 
+    var nowMonth = now.getMonth(); //当前月 
+    var nowYear = now.getFullYear(); //当前年 
+
+function getWeekStartDate() { //获得本周的开端日期
+    var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek); 
+    return formatDate(weekStartDate); //调用上面的时间格式化
+} 
+
+function getWeekEndDate() { //获得本周的停止日期
+    var weekEndDate = new Date(nowYear, nowMonth, nowDay + (6 - nowDayOfWeek)); 
+    return formatDate(weekEndDate); 
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后是本月时间，但首先需要知道本月有多少天：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function getMonthDays(myMonth){ //获得某月的天数 
+    myMonth = parseInt(myMonth); //这一步很重要，有时候传进来的可能是字符串，后面+1的时候会变成字符串相连
+    var monthStartDate = new Date(nowYear, myMonth, 1); //当月1号的时间戳
+    var monthEndDate = new Date(nowYear, myMonth + 1, 1);//下月1号的时间戳
+    var days = (monthEndDate - monthStartDate)/(1000 * 60 * 60 * 24);//求差即可取得某月天数
+    return days; 
+}
+
+function getMonthStartDate(){ //获得本月的开端日期 
+    var monthStartDate = new Date(nowYear, nowMonth, 1); 
+    return formatDate(monthStartDate); 
+} 
+
+function getMonthEndDate(){ //获得本月的停止日期
+    var monthEndDate = new Date(nowYear, nowMonth, getMonthDays(nowMonth)); 
+    return formatDate(monthEndDate); 
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后是过去任意月份的1号和最后一天：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var theMon = timer.replace(/(月份)$/, &amp;apos;&amp;apos;)-1; //先匹配出select的月份，如：‘9月份’，但getMonth()是从0天始的，所以需要减1，也正好可以转换成整型
+startTime = formatDate(new Date(nowYear, theMon, 1));
+endTime = formatDate(new Date(nowYear, theMon, getMonthDays(theMon)));//某月有几天，最后一天就是几天。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;所以最后返回时间段：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var startTime, endTime;
+endTime = formatDate(new Date());
+switch(timer){
+    case &amp;apos;全部&amp;apos;: 
+        startTime = undefined;
+        endTime = undefined;
+        break;
+    case &amp;apos;今天&amp;apos;: 
+        startTime = formatDate(new Date(nowYear, nowMonth, nowDay));
+        break;
+    case &amp;apos;本周&amp;apos;:
+        startTime = getWeekStartDate();
+        break;
+    case &amp;apos;本月&amp;apos;:
+        startTime = getMonthStartDate();
+        break;
+    default:
+        var theMon = timer.replace(/(月份)$/, &amp;apos;&amp;apos;)-1;
+        startTime = formatDate(new Date(nowYear, theMon, 1));
+        endTime = formatDate(new Date(nowYear, theMon, getMonthDays(theMon)));
+        break;
+}
+return {
+    startTime: startTime,
+    endTime: endTime
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;至此就转换完毕。&lt;/p&gt;
+&lt;p&gt;当然，如果有需要，还可能获取季度。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function getQuarterStartMonth(){ //获得本季度的开端月份
+    var quarterStartMonth = 0; 
+    if(nowMonth&amp;lt;3){quarterStartMonth = 0; }//判断属于第一季度
+    if(2&amp;lt;nowMonth &amp;amp;&amp;amp; nowMonth&amp;lt;6){quarterStartMonth = 3; }
+    if(5&amp;lt;nowMonth &amp;amp;&amp;amp; nowMonth&amp;lt;9){quarterStartMonth = 6; }
+    if(nowMonth&amp;gt;8){quarterStartMonth = 9; }
+    return quarterStartMonth; 
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;只要判断属于哪一季度，即可知道开端月份和结束月份。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近有功能从两个时间段变成单个select选择了，但后端不想改接口。只好适配一下，把今天、本周、本月及过去的月份转换一下。&lt;/p&gt;
+&lt;p&gt;首先，更改一下select菜单，动态取出过去的月份，添加options。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://robin-front.github.com/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://robin-front.github.com/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>angularJS自定义指令</title>
+    <link href="http://robin-front.github.com/2015/10/17/angular%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/"/>
+    <id>http://robin-front.github.com/2015/10/17/angular自定义指令/</id>
+    <published>2015-10-16T16:31:51.000Z</published>
+    <updated>2015-11-06T17:10:28.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;指令&quot;&gt;&lt;a href=&quot;#指令&quot; class=&quot;headerlink&quot; title=&quot;指令&quot;&gt;&lt;/a&gt;指令&lt;/h2&gt;&lt;p&gt;可以简单理解成特定DOM元素上执行的函数，它可以拓展元素的功能。&lt;/p&gt;
+&lt;p&gt;一个定义指令的基本格式如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;angular.module(&amp;apos;myApp&amp;apos;, [])
+    .direcitve(&amp;apos;myDirective&amp;apos;, function(){
+        return {
+        //指令的配置项
+        }
+    });
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;directive() 方法可以接受两个参数：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;name&quot;&gt;&lt;a href=&quot;#name&quot; class=&quot;headerlink&quot; title=&quot;name&quot;&gt;&lt;/a&gt;name&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;指令的名字，如： myDirective。在DOM中可以这样使用: `&amp;lt;my-directive&amp;gt;&amp;lt;/my-directive&amp;gt;`;或者 `&amp;lt;div my-directive&amp;gt;&amp;lt;/div&amp;gt;`; 
+定义指令时的名称用驼峰命名，使用时用中划线方式。
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;function&quot;&gt;&lt;a href=&quot;#function&quot; class=&quot;headerlink&quot; title=&quot;function&quot;&gt;&lt;/a&gt;function&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;这个函数可以返回一个对象，如上面；或者直接返回一个函数，它会被接收成 postLink 函数。
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;指令的返回函数的所有配置项&quot;&gt;&lt;a href=&quot;#指令的返回函数的所有配置项&quot; class=&quot;headerlink&quot; title=&quot;指令的返回函数的所有配置项&quot;&gt;&lt;/a&gt;指令的返回函数的所有配置项&lt;/h2&gt;&lt;p&gt;先看看指令的所有参数配置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;angular.module(&amp;apos;myApp&amp;apos;, [])
+    .directive(&amp;apos;myDirective&amp;apos;, function(){
+        return {
+            restrict: string,//指令在DOM中的声明形式字符串，默认值是‘A’
+            proiority: number,//优先级，默认值0
+            terminal: boolean,//是否停止运行当前元素比本指令优先级低的指令
+            template: string or function,//模板 或 返回模板的函数
+            templateUrl: string,//模板文件的链接
+            replace: boolean or string,//true为替换，默认值false为插入到指令元素内部
+            scope: boolean or object,//指令作用域
+            transclude: boolean,//嵌入
+            controller: string or function(scope, element, attrs, transcluude, otherInjectables){},
+            require: string,
+            link: function(scope, iElement, iAttrs){},
+            compile: function(tElement, tAttrs, transclude){
+                return {
+                    pre: function(scope, iElement, iAttrs, controller){},
+                    post: function(scope, iElement, iAttrs, controller){}
+                }
+
+                return function postLink(){}
+            }
+        }
+    });
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;1-restrict&quot;&gt;&lt;a href=&quot;#1-restrict&quot; class=&quot;headerlink&quot; title=&quot;1. restrict&quot;&gt;&lt;/a&gt;1. restrict&lt;/h3&gt;&lt;p&gt;可选值：&lt;br&gt;E(元素，用于独立的指令单元，意图表达更明确) &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;my-directive&amp;gt;&amp;lt;/my-directive&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;A(属性，默认值, 最常用，兼容性最好) &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div my-directive=&amp;apos;expression&amp;apos;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;C(类名) &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&amp;quot;my-directive: expression&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;M(注释，尽量避免使用) &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;-- directive: my-directive expression --&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;2-priority&quot;&gt;&lt;a href=&quot;#2-priority&quot; class=&quot;headerlink&quot; title=&quot;2. priority&quot;&gt;&lt;/a&gt;2. priority&lt;/h3&gt;&lt;p&gt;默认值是0；优先级高的指令总是优先执行。优先级相同的指令，先声明的先执行。&lt;/p&gt;
+&lt;h3 id=&quot;3-terminal&quot;&gt;&lt;a href=&quot;#3-terminal&quot; class=&quot;headerlink&quot; title=&quot;3. terminal&quot;&gt;&lt;/a&gt;3. terminal&lt;/h3&gt;&lt;p&gt;设置为true,则停止运行当前元素上比本指令优先级低的指令，但优先级相同的仍然会执行。&lt;/p&gt;
+&lt;h3 id=&quot;4-template&quot;&gt;&lt;a href=&quot;#4-template&quot; class=&quot;headerlink&quot; title=&quot;4. template&quot;&gt;&lt;/a&gt;4. template&lt;/h3&gt;&lt;p&gt;值可以是以下类型：&lt;/p&gt;
+&lt;p&gt;a. 模板字符串&lt;br&gt;b. 一个可以接受两个参数的函数，并返回一个代表模板的字符串&lt;/p&gt;
+&lt;h3 id=&quot;5-templateUrl&quot;&gt;&lt;a href=&quot;#5-templateUrl&quot; class=&quot;headerlink&quot; title=&quot;5. templateUrl&quot;&gt;&lt;/a&gt;5. templateUrl&lt;/h3&gt;&lt;p&gt;值可以是以下类型：&lt;/p&gt;
+&lt;p&gt;a. 外部html文件路径的字符串&lt;br&gt;b. 一个可以接受两个参数的函数，并返回一个外部HTML文件路径的字符串&lt;/p&gt;
+&lt;h3 id=&quot;6-replace&quot;&gt;&lt;a href=&quot;#6-replace&quot; class=&quot;headerlink&quot; title=&quot;6. replace&quot;&gt;&lt;/a&gt;6. replace&lt;/h3&gt;&lt;p&gt;默认值false. 值为 true 时，模板会被当作子元素插入到调用此指令的元素内部&lt;/p&gt;
+&lt;h3 id=&quot;7-scope&quot;&gt;&lt;a href=&quot;#7-scope&quot; class=&quot;headerlink&quot; title=&quot;7. scope&quot;&gt;&lt;/a&gt;7. scope&lt;/h3&gt;&lt;p&gt;可选值：&lt;br&gt;    false: 默认值，直接调用相同的作用域对象；&lt;br&gt;    true: 从当前作用域对象继承一个新的作用域对象；&lt;br&gt;    {}[object]: 创建一个同当前作用域相隔离的作用域对象。&lt;/p&gt;
+&lt;h4 id=&quot;隔离作用域&quot;&gt;&lt;a href=&quot;#隔离作用域&quot; class=&quot;headerlink&quot; title=&quot;隔离作用域&quot;&gt;&lt;/a&gt;隔离作用域&lt;/h4&gt;&lt;p&gt;具有隔离作用域的指令最主要的使用场景是创建可复用的组件，组件可以在未知上下文中使用，并且可以避免污染所处的外部作用域或不经意地污染内部作用域。&lt;/p&gt;
+&lt;h4 id=&quot;绑定策略&quot;&gt;&lt;a href=&quot;#绑定策略&quot; class=&quot;headerlink&quot; title=&quot;绑定策略&quot;&gt;&lt;/a&gt;绑定策略&lt;/h4&gt;&lt;p&gt;使用了隔离作用域后，指令的模板就无法访问外部作用域了。但使用无数据的隔离作用域并不常见。AngularJS 有三种方法可以将指令内部的隔离作用域同外部作用域进行数据绑定。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;本地作用域属性：&lt;code&gt;@ (or @attr)&lt;/code&gt; 使用@符号将本地作用域同DOM属性的值进行绑定。指令内部作用域可以使用外部作用域的变量。&lt;/p&gt;
+&lt;p&gt; js&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;myApp.controller(&amp;apos;myController&amp;apos;, [&amp;apos;$scope&amp;apos;, function($scope){
+    $scope.btnText = &amp;apos;按钮&amp;apos;;
+    $scope.validate= &amp;apos;1234&amp;apos;;
+    $scope.submit = function(err){
+        console.log(err);
+    }
+}]);
+
+myApp.directive(&amp;apos;my-btn&amp;apos;, function(){
+    return {
+        restrict: &amp;apos;EA&amp;apos;,
+        scope: {
+            text: &amp;apos;@btnText&amp;apos;//key是在template里使用的变量，val是在使用指令时所绑定的attr。若@符号后不指定名称，则默认绑定为键名&amp;apos;text&amp;apos;
+        },
+        replace: true,
+        template: &amp;apos;&amp;lt;button&amp;gt;{{text}}&amp;lt;/button&amp;gt;&amp;apos;//这里的{{text}}正是scope的text.
+    }
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; html&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;form action=&amp;quot;/&amp;quot;&amp;gt;
+    &amp;lt;input type=&amp;quot;text&amp;quot;&amp;gt;
+    &amp;lt;my-btn btn-text=&amp;quot;btnText&amp;quot;&amp;gt;&amp;lt;/my-btn&amp;gt;//这里的属性‘btn-text’正是指令的‘@btnText’,属性值‘btnText’正是父级作用域的‘$scope.btnText’
+&amp;lt;/form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;双向绑定： &lt;code&gt;= (or =attr)&lt;/code&gt; 可以将本地作用域上的属性同父级作用域上的属性进行双向的数据绑定。&lt;/p&gt;
+&lt;p&gt; 例：&lt;br&gt; js,controller同上一例子,如果理解上面的例子，这里也是很好理解的，只是绑定的不是字符串，而是双向数据绑定。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;myApp.directive(&amp;apos;myInput&amp;apos;, function(){
+    return {
+        restrict: &amp;apos;A&amp;apos;,
+        scope:{
+            val: &amp;apos;=value&amp;apos;//key为template里的数据模型，&amp;apos;value&amp;apos;是html里的attr.
+        },
+        template: &amp;apos;&amp;lt;input type=&amp;quot;text&amp;quot; ng-model=&amp;quot;val&amp;quot;&amp;gt;&amp;apos;
+    }
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; html&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;form action=&amp;quot;/&amp;quot;&amp;gt;
+    &amp;lt;div my-input value=&amp;quot;validate&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;//本地作用域的属性val与父级作用域的属性validate进行双向数据绑定
+&amp;lt;/form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;父级作用域绑定： &lt;code&gt;&amp;amp; (or &amp;amp;attr)&lt;/code&gt; 可以对父级作用域进行绑定，可以调用父方法。意味着对这个值进行设置时会生成一个指向父级作用域的包装函数。&lt;/p&gt;
+&lt;p&gt; js&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;myApp.directive(&amp;apos;myError&amp;apos;, function(){
+    return {
+        restrict: &amp;apos;A&amp;apos;,
+        scope: {
+            validate: &amp;apos;&amp;amp;check&amp;apos;
+        },
+        template: &amp;apos;&amp;lt;input type=&amp;quot;text&amp;quot; ng-model=&amp;quot;text&amp;quot;&amp;gt;&amp;apos;+
+                &amp;apos;&amp;lt;button ng-click=&amp;apos;validate({name: text})&amp;apos;&amp;gt;&amp;lt;/button&amp;gt;&amp;apos;//传递参数需要传递一个对象，name是参数名，text是参数值。
+    }
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; html&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div&amp;gt;
+    &amp;lt;div my-error check=&amp;quot;submit(name)&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+    &amp;lt;div my-error check=&amp;quot;submit(name)&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;//因为是隔离作用域，他们之间的值是不会互相影响的，只是共用父方法。
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 要调用一个带有参数的父方法，需要传递一个对象，这个对象的key是参数名称，val是要传递给参数的内容&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;8-transclude&quot;&gt;&lt;a href=&quot;#8-transclude&quot; class=&quot;headerlink&quot; title=&quot;8. transclude&quot;&gt;&lt;/a&gt;8. transclude&lt;/h3&gt;&lt;p&gt;transclude是一个可选参数，默认值是false, 当值为true时，angularJS会将从DOM元素中获取的内容放到它发现ng-transclude指令的地方，如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;ul sidebox&amp;gt;
+    &amp;lt;li&amp;gt;first&amp;lt;/li&amp;gt;
+    &amp;lt;li&amp;gt;second&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+
+angular.module(&amp;apos;myApp&amp;apos;, [])
+    .directive(&amp;apos;sidebox&amp;apos;, function(){
+        return {
+            scope: {
+                title: &amp;apos;@&amp;apos;
+            },
+            transclude: true,
+            template: &amp;apos;&amp;lt;div class=&amp;quot;sidebox&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;apos;+
+                    &amp;apos;&amp;lt;div class=&amp;quot;content&amp;quot; ng-tranclude&amp;gt;&amp;lt;/div&amp;gt;&amp;apos;
+        }
+    });
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;只有希望创建一个可以包含任意内容的指令时，才使用transclude: true。，典型的例子是模态框或导航栏。&lt;/p&gt;
+&lt;h3 id=&quot;9-controller&quot;&gt;&lt;a href=&quot;#9-controller&quot; class=&quot;headerlink&quot; title=&quot;9. controller&quot;&gt;&lt;/a&gt;9. controller&lt;/h3&gt;&lt;p&gt;值可以是一个字符串或一个函数。&lt;br&gt;string: 当设置为字符中时，指令会查找注册在应用中的同名控制器。&lt;br&gt;function: 直接通过匿名构造函数的方式来定义一个内联的控制器。&lt;/p&gt;
+&lt;p&gt;控制器主要是用来提供可以指令间复用的行为。可以的将当前指令的API暴露给其他的指令使用。如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;angular.modue(&amp;apos;myApp&amp;apos;, [])
+    .directive(&amp;apos;inputForm&amp;apos;, function(){
+        return {
+            restrict: &amp;apos;EA&amp;apos;,
+            controller: function($scope){
+                $scope.input = &amp;apos;手机号&amp;apos;;
+
+                this.submit = function(){//通过this暴露接口
+                    //do something...
+                }
+            }
+        }
+    });
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;任意的服务同样可以被传递给controller。其中有一些特殊的服务：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$scope 与指令元素相关联的当前作用域&lt;/li&gt;
+&lt;li&gt;$element 当前指令对应的元素&lt;/li&gt;
+&lt;li&gt;$attrs 当前元素的属性组成的对象&lt;/li&gt;
+&lt;li&gt;$transclude transclude链接函数是实际被执行用来克隆元素和操作DOM的函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;10-controllerAs&quot;&gt;&lt;a href=&quot;#10-controllerAs&quot; class=&quot;headerlink&quot; title=&quot;10. controllerAs&quot;&gt;&lt;/a&gt;10. controllerAs&lt;/h3&gt;&lt;p&gt;controllerAs用来设置控制器别名，以此为名发布控制器，并且作用域可以访问controllerAs。这样可以在视图中引用控制器，甚至无需注入$scope。例：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;angular.module(&amp;apos;myApp&amp;apos;, [])
+    .directive(&amp;apos;myDirective&amp;apos;, function(){
+        return {
+            restrict: &amp;apos;A&amp;apos;,
+            template: &amp;apos;&amp;lt;h4&amp;gt;{{myController.msg}}&amp;lt;/h4&amp;gt;&amp;apos;,//可以在tpl中直接访问controller
+            controllerAs: &amp;apos;myController&amp;apos;,
+            contrller: function(){
+                this.msg = &amp;apos;Hello&amp;apos;;
+            }
+        }
+    });
+&amp;lt;div my-directive&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;又例：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;angular.module(&amp;apos;myApp&amp;apos;, [])
+    .controller(&amp;apos;myController&amp;apos;, function(){
+        this.msg = &amp;apos;robin&amp;apos;;
+    });
+&amp;lt;div ng-controller=&amp;quot;myController as main&amp;quot;&amp;gt;{{main.robin}}&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;11-require&quot;&gt;&lt;a href=&quot;#11-require&quot; class=&quot;headerlink&quot; title=&quot;11. require&quot;&gt;&lt;/a&gt;11. require&lt;/h3&gt;&lt;p&gt;其值可以是字符串或数组，字符串或数组元素代表另个一个指令的名字。require 会将指令控制器注入到当前的指令中，并作为当前指令的链接函数的第四个参数。&lt;/p&gt;
+&lt;p&gt;结合9.controller的例子，可以这样使用&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;angular.module(&amp;apos;myApp&amp;apos;, [])
+    .directive(&amp;apos;otherForm&amp;apos;, function(){
+        return {
+            restrict: &amp;apos;A&amp;apos;,
+            require: &amp;apos;^?inputForm&amp;apos;,
+            link: function(scope, element, attrs, ctrl){
+                ctrl.submit();
+            }
+        }
+    });
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果是数组：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;angular.module(&amp;apos;myApp&amp;apos;, [])
+    .directive(&amp;apos;otherForm&amp;apos;, function(){
+        return {
+            restrict: &amp;apos;A&amp;apos;,
+            require: [?^inputForm, inputForm2],
+            link: function(scope, element, attrs, ctrl){
+                ctrl[0].submit();
+                ctrl[1].api();
+            }
+        }
+    });
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;require前缀：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;‘?’    如果在当前指令中没有找到所面要的控制器，会将null作为link的第四个参数；&lt;/li&gt;
+&lt;li&gt;‘^’    指令会在上游的指令链中查找require参数所指定的控制器；&lt;/li&gt;
+&lt;li&gt;‘?^’    前两个选项的组合；&lt;/li&gt;
+&lt;li&gt;没有前缀    指令将在同级作用域查找所需控制器，如果没有找到会抛出一个错误。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;12-compile&quot;&gt;&lt;a href=&quot;#12-compile&quot; class=&quot;headerlink&quot; title=&quot;12. compile&quot;&gt;&lt;/a&gt;12. compile&lt;/h3&gt;&lt;p&gt;compile选项可以返回一个对象或函数。&lt;/p&gt;
+&lt;p&gt;compile函数可以用来在指令和实时数据被放到DOM中之前进行DOM操作，在这里进行添加和删除节点等DOM操作是安全的。&lt;/p&gt;
+&lt;p&gt;compile与link函数是互斥的。如果同时设置，compile的返回函数会被当作链接函数，link函数会被忽略。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;compile: function(tEle, tAttrs, transcludeFn){
+    //...tEle代表未绑定事件的DOM元素
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;13-link&quot;&gt;&lt;a href=&quot;#13-link&quot; class=&quot;headerlink&quot; title=&quot;13. link&quot;&gt;&lt;/a&gt;13. link&lt;/h3&gt;&lt;p&gt;link函数会经常被使用。负责设置事件监听器、监听数据变化和实时的操作DOM。&lt;/p&gt;
+&lt;p&gt;如果指令很简单，可以直接从工厂函数返回一个函数来代替。如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;angular.module(&amp;apos;myApp&amp;apos;, [])
+    .directive(&amp;apos;myDirective&amp;apos;, function(){
+        return {
+            pre: function(tElement, tAttrs, transclude){},
+            post: function(scope, iElement, iAttrs, controller){}
+        }
+    });
+
+angular.module(&amp;apos;myApp&amp;apos;, [])
+    .directive(&amp;apos;myDirective&amp;apos;, function(){
+        return {
+            link: function(scope, ele, attrs){
+                return {
+                    pre: function(tElement, tAttrs, transclude){},
+                    post: function(scope, iElement, iAttrs, controller){}
+                }
+            }
+        }
+    });
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;指令&quot;&gt;&lt;a href=&quot;#指令&quot; class=&quot;headerlink&quot; title=&quot;指令&quot;&gt;&lt;/a&gt;指令&lt;/h2&gt;&lt;p&gt;可以简单理解成特定DOM元素上执行的函数，它可以拓展元素的功能。&lt;/p&gt;
+&lt;p&gt;一个定义指令的基本格式如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;angular.module(&amp;apos;myApp&amp;apos;, [])
+    .direcitve(&amp;apos;myDirective&amp;apos;, function(){
+        return {
+        //指令的配置项
+        }
+    });
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;directive() 方法可以接受两个参数：&lt;br&gt;
+    
+    </summary>
+    
+      <category term="angularJS" scheme="http://robin-front.github.com/categories/angularJS/"/>
+    
+    
+      <category term="angularJS" scheme="http://robin-front.github.com/tags/angularJS/"/>
+    
+      <category term="指令" scheme="http://robin-front.github.com/tags/%E6%8C%87%E4%BB%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git分支</title>
+    <link href="http://robin-front.github.com/2015/10/10/git%E5%88%86%E6%94%AF/"/>
+    <id>http://robin-front.github.com/2015/10/10/git分支/</id>
+    <published>2015-10-10T14:16:01.000Z</published>
+    <updated>2015-11-06T17:10:28.000Z</updated>
+    
+    <content type="html">&lt;p&gt;git分支对于我们平常开发新功能，修复bug等有很大的帮助。下面是git分支的常用命令：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;分支的新建与切换&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git checkout -b version2.0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  这相当于执行下面这两条命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git branch version2.0
+$ git checkout version2.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;分支的合并&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git checkout master
+$ git merge version2.0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  切换到主分支，把分去version2.0合并到主分支&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;分支的删除&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git branch -d verdion2.0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  如果分支功能已经合并到主分支，分支就没有用了，可以删除。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;合并分支的冲突&lt;/p&gt;
+&lt;p&gt;  合并并不总是顺利的，特别是多人合作的时候，很容易产生冲突。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD
+&amp;lt;div id=&amp;quot;footer&amp;quot;&amp;gt;copyright&amp;lt;/div&amp;gt;
+=======
+&amp;lt;div id=&amp;quot;footer&amp;quot;&amp;gt;
+  please contact us
+&amp;lt;/div&amp;gt;
+&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; version2.0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  ‘=======’把两个版本冲突的内容分隔开来，我们需要把这些标记都删掉，并留下合并后的代码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;合并GUI工具&lt;/p&gt;
+&lt;p&gt;  如果安装了可视化的合并工具，可以使用&lt;code&gt;$ git mergetool&lt;/code&gt;命令来调用。&lt;br&gt;  推荐的GUI合并工具有如：meld, kdiff3&lt;/p&gt;
+&lt;p&gt;  可以这样调用指定的工具：&lt;code&gt;$ git mergetool -t meld&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  也可以配置默认工具：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git config --global merge.tool kdiff3
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;git分支对于我们平常开发新功能，修复bug等有很大的帮助。下面是git分支的常用命令：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;分支的新建与切换&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git checkout -b version2.0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  这相当于执
+    
+    </summary>
+    
+      <category term="git" scheme="http://robin-front.github.com/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://robin-front.github.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>gulp 4.0的变化</title>
+    <link href="http://robin-front.github.com/2015/10/09/gulp-4.0/"/>
+    <id>http://robin-front.github.com/2015/10/09/gulp-4.0/</id>
+    <published>2015-10-09T07:23:51.000Z</published>
+    <updated>2015-11-06T17:10:28.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;升级日志&quot;&gt;&lt;a href=&quot;#升级日志&quot; class=&quot;headerlink&quot; title=&quot;升级日志&quot;&gt;&lt;/a&gt;升级日志&lt;/h3&gt;&lt;p&gt;先来看看新版有什么不同（&lt;a href=&quot;https://github.com/gulpjs/gulp/blob/4.0/CHANGELOG.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方升级日志&lt;/a&gt;）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;新的任务系统（基于 bach，替换掉了原先基于 orchestrator 的任务系统）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;移除 gulp.reset&lt;/li&gt;
+&lt;li&gt;gulp.task 不再支持三个参数的用法&lt;/li&gt;
+&lt;li&gt;gulp.task 用字符串注册的任务必须是直接在命令行中调用的任务&lt;/li&gt;
+&lt;li&gt;gulp.task 可以接受单参数语法，这个参数必须是一个命名函数，函数名会被作为任务名&lt;/li&gt;
+&lt;li&gt;添加了 gulp.series 和 gulp.parallel 方法用于组合任务&lt;/li&gt;
+&lt;li&gt;添加了 gulp.tree 方法用于获取任务树，传入 { deep: true } 参数可以得到一个 archy 兼容的节点列表&lt;/li&gt;
+&lt;li&gt;添加了 gulp.registry 方法以定制注册表。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;添加了 gulp.symlink 方法，功能和 gulp.dest 一致，不过是以软链接的方式&lt;/li&gt;
+&lt;li&gt;gulp.dest 和 gulp.symlink 方法添加了 dirMode 参数允许对目标目录更好地控制&lt;/li&gt;
+&lt;li&gt;gulp.src 接收的文件匹配字符串会顺序解释，所以你可以写成这样 gulp.src([‘&lt;em&gt;.js’, ‘!b&lt;/em&gt;.js’, ‘bad.js’])（排除所有以 b 开头的 JS 文件但是除了 bad.js）&lt;/li&gt;
+&lt;li&gt;gulp.src 方法添加了 since 选项，筛选在特定时间点之后修改过的文件（用于增量编译）&lt;/li&gt;
+&lt;li&gt;将命令行分离出来成为一个独立模块，以便节约带宽/空间。用 npm install gulp -g 或 npm install gulp-cli -g 都可以安装命令行，只是 gulp-cli 不包含模块代码所以比较小&lt;/li&gt;
+&lt;li&gt;命令行添加了 –tasks-json 参数，可以导出整个任务树以供他用&lt;/li&gt;
+&lt;li&gt;命令行添加了 –verify 参数用以检查 package.json 中是否包含黑名单插件（违背准则而被禁入官方插件列表的可怜娃们）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;安装gulp-4-0&quot;&gt;&lt;a href=&quot;#安装gulp-4-0&quot; class=&quot;headerlink&quot; title=&quot;安装gulp 4.0&quot;&gt;&lt;/a&gt;安装gulp 4.0&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;# 如果安装过全局的 gulp 的话先卸载之
+$ npm uninstall gulp -g
+
+# 安装全局的 gulp 4.0
+$ npm install &amp;quot;gulpjs/gulp#4.0&amp;quot; -g
+
+# 到项目目录里删掉本地的 gulp
+$ npm rm gulp --save-dev
+
+# 安装本地的 gulp 4.0
+$ npm install &amp;quot;gulpjs/gulp#4.0&amp;quot; --save-dev
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;gulp-task&quot;&gt;&lt;a href=&quot;#gulp-task&quot; class=&quot;headerlink&quot; title=&quot;gulp.task&quot;&gt;&lt;/a&gt;gulp.task&lt;/h3&gt;&lt;p&gt;1、移除了gulp.task传递三参数的用法&lt;br&gt;即这种用法将报错&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gulp.task(&amp;apos;watch&amp;apos;, [&amp;apos;default&amp;apos;], function() {
+    // TODO
+    // watch file
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在gulp4.0之前，这种用法将会保证default任务先执行完再执行watch任务，gulp的任务流程控制就是这么实现的，流程控制另外增加api实现，详看后面。&lt;/p&gt;
+&lt;p&gt;2、gulp.task又增加了一种用法，即传递一个具名函数作为参数，将自动注册以该函数名命名的任务&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function clean(){}
+function compile() {
+    // do something...
+}
+gulp.task(clean);
+gulp.task(compile);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;等同于&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;gulp.task(&amp;apos;clean&amp;apos;, function() {
+    // do something...
+});
+gulp.task(&amp;apos;compile&amp;apos;, function() {
+    // do something...
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;任务流程控制&quot;&gt;&lt;a href=&quot;#任务流程控制&quot; class=&quot;headerlink&quot; title=&quot;任务流程控制&quot;&gt;&lt;/a&gt;任务流程控制&lt;/h3&gt;&lt;p&gt;增加了&lt;code&gt;gulp.series&lt;/code&gt; 串行任务和&lt;code&gt;gulp.parallel&lt;/code&gt; 并行任务， 比原来的三参数写法要更加清晰。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function clean(){}
+function copy(){}
+function compile() {
+    // do something...
+}
+gulp.task(clean);
+gulp.task(copy);
+gulp.task(compile);
+gulp.task(&amp;apos;clean-build&amp;apos;, gulp.series(&amp;apos;clean&amp;apos;, &amp;apos;copy&amp;apos;, &amp;apos;compile&amp;apos;)); //任务将按顺序执行
+gulp.task(&amp;apos;build&amp;apos;, gulp.parallel(&amp;apos;copy&amp;apos;, &amp;apos;compile&amp;apos;)); //任务将并发执行
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;只要在gulpfile.js中没有使用gulp.task传三个参数的用法，gulp 4.0也是兼容老版本的gulpfile.js的。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;升级日志&quot;&gt;&lt;a href=&quot;#升级日志&quot; class=&quot;headerlink&quot; title=&quot;升级日志&quot;&gt;&lt;/a&gt;升级日志&lt;/h3&gt;&lt;p&gt;先来看看新版有什么不同（&lt;a href=&quot;https://github.com/gulpjs/gulp/blob/4.0/CHANGELOG.md&quot;&gt;官方升级日志&lt;/a&gt;）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;新的任务系统（基于 bach，替换掉了原先基于 orchestrator 的任务系统）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;移除 gulp.reset&lt;/li&gt;
+&lt;li&gt;gulp.task 不再支持三个参数的用法&lt;/li&gt;
+&lt;li&gt;gulp.task 用字符串注册的任务必须是直接在命令行中调用的任务&lt;/li&gt;
+&lt;li&gt;gulp.task 可以接受单参数语法，这个参数必须是一个命名函数，函数名会被作为任务名&lt;/li&gt;
+&lt;li&gt;添加了 gulp.series 和 gulp.parallel 方法用于组合任务&lt;/li&gt;
+&lt;li&gt;添加了 gulp.tree 方法用于获取任务树，传入 { deep: true } 参数可以得到一个 archy 兼容的节点列表&lt;/li&gt;
+&lt;li&gt;添加了 gulp.registry 方法以定制注册表。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="前端构建" scheme="http://robin-front.github.com/categories/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
+    
+    
+      <category term="前端构建" scheme="http://robin-front.github.com/tags/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
+    
+      <category term="gulp" scheme="http://robin-front.github.com/tags/gulp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端批量压缩图片</title>
+    <link href="http://robin-front.github.com/2015/10/08/%E5%89%8D%E7%AB%AF%E6%89%B9%E9%87%8F%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/"/>
+    <id>http://robin-front.github.com/2015/10/08/前端批量压缩图片/</id>
+    <published>2015-10-08T06:31:51.000Z</published>
+    <updated>2015-11-06T17:10:28.000Z</updated>
+    
+    <content type="html">&lt;p&gt;前端切图的时候，png 图片都比较大，一直使用的是 &lt;a href=&quot;https://tinypng.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Tinypng&lt;/a&gt; 来压缩 png 图片，小图标sprite之后，图片数量还是至少在 20 以上，操作甚是麻烦。后来在使用 gulp 的时候，发现了一个批量压缩图片的神器 —— &lt;a href=&quot;https://pngquant.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pngquant&lt;/a&gt; 。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;先来看看一个 gulp 插件 gulp-imagemin&lt;/p&gt;
+&lt;h1 id=&quot;Install&quot;&gt;&lt;a href=&quot;#Install&quot; class=&quot;headerlink&quot; title=&quot;Install &quot;&gt;&lt;/a&gt;Install &lt;/h1&gt;&lt;pre&gt;&lt;code&gt;$ npm install --save-dev gulp-imagemin
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Usage&quot;&gt;&lt;a href=&quot;#Usage&quot; class=&quot;headerlink&quot; title=&quot;Usage&quot;&gt;&lt;/a&gt;Usage&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;var gulp = require(&amp;apos;gulp&amp;apos;);
+var imagemin = require(&amp;apos;gulp-imagemin&amp;apos;);
+var pngquant = require(&amp;apos;imagemin-pngquant&amp;apos;);
+
+gulp.task(&amp;apos;default&amp;apos;, function () {
+    return gulp.src(&amp;apos;src/images/*&amp;apos;)
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()] //使用了 pngquant 压缩png图片
+        }))
+        .pipe(gulp.dest(&amp;apos;dist/images&amp;apos;));
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;gulp-imagemin&lt;/code&gt; 可以压缩几乎所有图片格式 PNG, JPEG, GIF and SVG，其中png压缩是使用了 &lt;a href=&quot;https://github.com/imagemin/imagemin-pngquant&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pngquant&lt;/a&gt; ,需要先另外安装：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ npm install --save imagemin-pngquant
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但是，图片其实并不需要每次构建都压缩，一般只需要在发布或测试的时候一次性压缩就可以了。 所以也可以不使用 gulp 工具进行图片压缩，直接使用 &lt;a href=&quot;https://pngquant.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pngquant&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;pngquant 使用起来也是很方便的，下载对应版本，windows下添加文件目录到系统环境变量，进入到相应目录，直接使用命令行&lt;br&gt;&lt;code&gt;pngquant *.png&lt;/code&gt; 即可完成压缩，可以看到目录下生成后缀名为 &lt;code&gt;-fs8.png&lt;/code&gt; 或 &lt;code&gt;-or8.png&lt;/code&gt;的图片。&lt;/p&gt;
+&lt;p&gt;查看 &lt;a href=&quot;https://github.com/pornel/pngquant&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Readme.md&lt;/a&gt; 配置相应参数&lt;/p&gt;
+&lt;h1 id=&quot;pngquant常用的主要参数&quot;&gt;&lt;a href=&quot;#pngquant常用的主要参数&quot; class=&quot;headerlink&quot; title=&quot;pngquant常用的主要参数&quot;&gt;&lt;/a&gt;pngquant常用的主要参数&lt;/h1&gt;&lt;p&gt;&lt;code&gt;--quality min-max&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;类似JPEG的质量，设置0 ~ 100 的图片压缩质量。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pngquant --quality=65-80 *.png
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;--ext new.png&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;设置输出压缩图片的文件名。如果不设置，则默认后缀为 &lt;code&gt;-fs8.png&lt;/code&gt; 或 &lt;code&gt;-or8.png&lt;/code&gt;。如果使用 &lt;code&gt;--ext=.png --force&lt;/code&gt;，将会使用原文件名输出并覆盖原文件。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;-o out.png or --output out.png&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;设置图片输出路径。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前端切图的时候，png 图片都比较大，一直使用的是 &lt;a href=&quot;https://tinypng.com/&quot;&gt;Tinypng&lt;/a&gt; 来压缩 png 图片，小图标sprite之后，图片数量还是至少在 20 以上，操作甚是麻烦。后来在使用 gulp 的时候，发现了一个批量压缩图片的神器 —— &lt;a href=&quot;https://pngquant.org/&quot;&gt;pngquant&lt;/a&gt; 。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="前端构建" scheme="http://robin-front.github.com/categories/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
+    
+    
+      <category term="前端构建" scheme="http://robin-front.github.com/tags/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
+    
+      <category term="图片压缩" scheme="http://robin-front.github.com/tags/%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git ssh-key及多帐户设置</title>
+    <link href="http://robin-front.github.com/2015/09/30/git%20ssh-key%E5%8F%8A%E5%A4%9A%E5%B8%90%E6%88%B7%E8%AE%BE%E7%BD%AE/"/>
+    <id>http://robin-front.github.com/2015/09/30/git ssh-key及多帐户设置/</id>
+    <published>2015-09-30T03:40:01.000Z</published>
+    <updated>2015-11-06T17:10:28.000Z</updated>
+    
+    <content type="html">&lt;p&gt;在使用git的时候，我们在管理远程分支之前需要在本机上创建ssh-key密钥对，并把其中的公钥添加到github中。&lt;/p&gt;
+&lt;h2 id=&quot;首个帐户&quot;&gt;&lt;a href=&quot;#首个帐户&quot; class=&quot;headerlink&quot; title=&quot;首个帐户&quot;&gt;&lt;/a&gt;首个帐户&lt;/h2&gt;&lt;p&gt;如果你只会在你的计算机使用一个远程的Git服务器，并且账号是一个，比较简单，生成key的时候也没有太大注意的地方，直接运行如下的第一步然后按回车就可以了&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 gitbash上运行  &lt;code&gt;ssh-keygen -t  rsa  -C  &amp;quot;Github账户邮箱&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;接下来会提示输入key的名字 默认名字为&lt;code&gt;id_rsa&lt;/code&gt; ,默认不改直接回车就行了&lt;/li&gt;
+&lt;li&gt;然后会提示输入口令，这里口令与Github中的密码无关，随便输入可以为空，为空直接回车。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果在第二步中的没有重新命名的话，则忽略此步骤，&lt;code&gt;ssh agent&lt;/code&gt;默认只读取&lt;code&gt;id_rsa&lt;/code&gt;，为了让SSH识别新的私钥，需将其添加到SSH agent中,如第二步改的名字为&lt;code&gt;robin&lt;/code&gt;, 则执行：&lt;code&gt;ssh-add id_rsa&lt;/code&gt;如果出现&lt;code&gt;Could not open a connection to your authentication agent&lt;/code&gt;的错误，就试着先用以下命令：&lt;/p&gt;
+ &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;pre&gt;&lt;code&gt;ssh-agent bash
+ssh-add robin
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 添加完之后 登陆Github,点击网页右上侧的 Settings 按钮 - 选择 ssh-keys  点击Add SSH Key  ，在title中输入名字，然后将公钥即id_rsa.pub添加到ssh-key处。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;执行 &lt;code&gt;ssh -T git@github.com&lt;/code&gt; 如果能正常访问即可&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ ssh -T git@github.com
+Hi robin! You&amp;apos;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;第二个帐户&quot;&gt;&lt;a href=&quot;#第二个帐户&quot; class=&quot;headerlink&quot; title=&quot;第二个帐户&quot;&gt;&lt;/a&gt;第二个帐户&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;h3 id=&quot;新建user2的SSH-Key&quot;&gt;&lt;a href=&quot;#新建user2的SSH-Key&quot; class=&quot;headerlink&quot; title=&quot;新建user2的SSH Key&quot;&gt;&lt;/a&gt;新建user2的SSH Key&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;$ cd ~/.ssh     #切换到C:\Users\Administrator\.ssh
+ssh-keygen -t rsa -C &amp;quot;user2的Github账户邮箱&amp;quot;  //新建工作的SSH key
+Enter file in which to save the key (/c/Users/Administrator/.ssh/id_rsa): user2 //设置名称为user2(后文的user2可以统一替换任何别名)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;h3 id=&quot;新密钥添加到SSH-agent中&quot;&gt;&lt;a href=&quot;#新密钥添加到SSH-agent中&quot; class=&quot;headerlink&quot; title=&quot;新密钥添加到SSH agent中&quot;&gt;&lt;/a&gt;新密钥添加到SSH agent中&lt;/h3&gt;&lt;p&gt; 因为默认只读取id_rsa，为了让SSH识别新的私钥，需将其添加到SSH agent中：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh-add ~/.ssh/user2 //注意路径，如果不在.ssh目录下则不能省略 &amp;apos;~/.ssh/&amp;apos;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 同样，如果出现&lt;code&gt;Could not open a connection to your authentication agent&lt;/code&gt;的错误，就试着用以下命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ssh-agent bash
+ssh-add ~/.ssh/user2
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;h3 id=&quot;添加user2的公钥&quot;&gt;&lt;a href=&quot;#添加user2的公钥&quot; class=&quot;headerlink&quot; title=&quot;添加user2的公钥&quot;&gt;&lt;/a&gt;添加user2的公钥&lt;/h3&gt;&lt;p&gt; 打开新生成的 &lt;code&gt;~/.ssh/uesr2.pub&lt;/code&gt;文件，将里面的内容添加到user2的github帐号下的SSH Key中。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;h3 id=&quot;修改config文件-重要的一步&quot;&gt;&lt;a href=&quot;#修改config文件-重要的一步&quot; class=&quot;headerlink&quot; title=&quot;修改config文件 (重要的一步)&quot;&gt;&lt;/a&gt;修改config文件 (重要的一步)&lt;/h3&gt;&lt;p&gt; 将账户以及git服务器与对应的密钥关联。在~/.ssh目录下找到config文件，如果没有就创建：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;touch config
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 然后修改如下： 我的config配置如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 该文件用于配置私钥对应的服务器
+# Default github user1
+Host github.com
+HostName github.com
+User git
+IdentityFile ~/.ssh/id_rsa
+
+# second user2
+# 建一个github别名，新建的帐号使用这个别名做克隆和更新
+Host user2
+HostName github.com
+User git
+IdentityFile ~/.ssh/user2
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;h3 id=&quot;帐号关联&quot;&gt;&lt;a href=&quot;#帐号关联&quot; class=&quot;headerlink&quot; title=&quot;帐号关联&quot;&gt;&lt;/a&gt;帐号关联&lt;/h3&gt;&lt;p&gt; 如果你只是文章中所述配置了Host，那么你多个账号下面的提交用户会是一个人，所以需要通过命令&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git config --global --unset user.email
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 删除全局用户账户设置，当然也可以不删除，如果每个git项目下没有单独设置用户帐户信息的话，会默认使用全局设置&lt;/p&gt;
+&lt;p&gt; 在每一个git项目下面使用命令&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git config --local user.name &amp;apos;该项目的github用户名&amp;apos; 
+git config --local user.email &amp;apos;该项目的github邮箱@mail.com&amp;apos; 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 单独设置用户账户信息，每个不同于全局用户帐户的git 项目都需要设置。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;h3 id=&quot;关于-clone&quot;&gt;&lt;a href=&quot;#关于-clone&quot; class=&quot;headerlink&quot; title=&quot;关于 clone&quot;&gt;&lt;/a&gt;关于 clone&lt;/h3&gt;&lt;p&gt; 使用 &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git clone user2:user2/test.git
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 而不是 &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git clone git@github.com:user2/test.git
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 否则无法分辨使用的是哪一个帐户。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;h3 id=&quot;关于-remote&quot;&gt;&lt;a href=&quot;#关于-remote&quot; class=&quot;headerlink&quot; title=&quot;关于 remote&quot;&gt;&lt;/a&gt;关于 remote&lt;/h3&gt;&lt;p&gt; 如果clone 项目时使用的是 &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git clone user2:user2/test.git
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 则remote url的Host 就是user2，可以跳过这一步，否则需要更改一下关联（包括git init新建），查看 remote&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git remote -v
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 如果user2的项目&lt;code&gt;remote.origin.url=git@github.com:user2/test.git&lt;/code&gt;则需要进行修改&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git remote rm origin
+git remote add origin user2:user2/test.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;h3 id=&quot;测试：&quot;&gt;&lt;a href=&quot;#测试：&quot; class=&quot;headerlink&quot; title=&quot;测试：&quot;&gt;&lt;/a&gt;测试：&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;$ ssh -T git@github.com
+Hi user1! You&amp;apos;ve successfully authenticated, but GitHub does not provide shell access.
+$ ssh -T user2 
+Hi user2! You&amp;apos;ve successfully authenticated, but GitHub does not provide shell access.
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在使用git的时候，我们在管理远程分支之前需要在本机上创建ssh-key密钥对，并把其中的公钥添加到github中。&lt;/p&gt;
+&lt;h2 id=&quot;首个帐户&quot;&gt;&lt;a href=&quot;#首个帐户&quot; class=&quot;headerlink&quot; title=&quot;首个帐户&quot;&gt;&lt;/a&gt;首个帐户&lt;/h2&gt;&lt;p&gt;如果你只会在你的计算机使用一个远程的Git服务器，并且账号是一个，比较简单，生成key的时候也没有太大注意的地方，直接运行如下的第一步然后按回车就可以了&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 gitbash上运行  &lt;code&gt;ssh-keygen -t  rsa  -C  &amp;quot;Github账户邮箱&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;接下来会提示输入key的名字 默认名字为&lt;code&gt;id_rsa&lt;/code&gt; ,默认不改直接回车就行了&lt;/li&gt;
+&lt;li&gt;然后会提示输入口令，这里口令与Github中的密码无关，随便输入可以为空，为空直接回车。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;如果在第二步中的没有重新命名的话，则忽略此步骤，&lt;code&gt;ssh agent&lt;/code&gt;默认只读取&lt;code&gt;id_rsa&lt;/code&gt;，为了让SSH识别新的私钥，需将其添加到SSH agent中,如第二步改的名字为&lt;code&gt;robin&lt;/code&gt;, 则执行：&lt;code&gt;ssh-add id_rsa&lt;/code&gt;如果出现&lt;code&gt;Could not open a connection to your authentication agent&lt;/code&gt;的错误，就试着先用以下命令：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="git" scheme="http://robin-front.github.com/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://robin-front.github.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>维护一个方便自己开发的Less库</title>
+    <link href="http://robin-front.github.com/2015/09/19/%E7%BB%B4%E6%8A%A4%E4%B8%80%E4%B8%AA%E6%96%B9%E4%BE%BF%E8%87%AA%E5%B7%B1%E5%BC%80%E5%8F%91%E7%9A%84Less%E5%BA%93/"/>
+    <id>http://robin-front.github.com/2015/09/19/维护一个方便自己开发的Less库/</id>
+    <published>2015-09-19T15:14:16.000Z</published>
+    <updated>2015-09-19T15:14:16.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;less&quot;&gt;&lt;a href=&quot;#less&quot; class=&quot;headerlink&quot; title=&quot;less&quot;&gt;&lt;/a&gt;less&lt;/h2&gt;&lt;p&gt;用less开发的时候，经常会用到一些重复使用的mixins，建个库记录维护起来，方便以后自己开发的时候快速引用。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;传送门：&lt;a href=&quot;https://github.com/Robin-front/less-lib&quot; title=&quot;less-lib&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;less-lib&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;主要分reset类和模块复用类&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;less&quot;&gt;&lt;a href=&quot;#less&quot; class=&quot;headerlink&quot; title=&quot;less&quot;&gt;&lt;/a&gt;less&lt;/h2&gt;&lt;p&gt;用less开发的时候，经常会用到一些重复使用的mixins，建个库记录维护起来，方便以后自己开发的时候快速引用。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="less" scheme="http://robin-front.github.com/categories/less/"/>
+    
+    
+      <category term="less" scheme="http://robin-front.github.com/tags/less/"/>
+    
+  </entry>
+  
+</feed>

@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next pisces use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -99,7 +99,7 @@ gulp.task 可以接受单参数语法，这个参数必须是一个命名函数�
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -167,6 +167,16 @@ gulp.task 可以接受单参数语法，这个参数必须是一个命名函数�
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -271,6 +281,13 @@ gulp.task 可以接受单参数语法，这个参数必须是一个命名函数�
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/10/09/gulp-4.0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/09/gulp-4.0/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -407,6 +424,25 @@ gulp.task(&apos;build&apos;, gulp.parallel(&apos;copy&apos;, &apos;compile&apos;
 
     <div class="post-spread">
       
+        <div class="ds-share flat" data-thread-key="2015/10/09/gulp-4.0/"
+     data-title="gulp 4.0的变化"
+     data-content=""
+     data-url="http://robin-front.github.com/2015/10/09/gulp-4.0/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
     </div>
   </div>
 
@@ -417,6 +453,10 @@ gulp.task(&apos;build&apos;, gulp.parallel(&apos;copy&apos;, &apos;compile&apos;
 
           
   <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/10/09/gulp-4.0/"
+           data-title="gulp 4.0的变化" data-url="http://robin-front.github.com/2015/10/09/gulp-4.0/">
+      </div>
     
   </div>
 
@@ -452,10 +492,10 @@ gulp.task(&apos;build&apos;, gulp.parallel(&apos;copy&apos;, &apos;compile&apos;
       <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/default_avatar.jpg"
+               src="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460"
                alt="robin" />
           <p class="site-author-name" itemprop="name">robin</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+          <p class="site-description motion-element" itemprop="description">红灯必须闯，马路要横穿！</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -467,10 +507,10 @@ gulp.task(&apos;build&apos;, gulp.parallel(&apos;copy&apos;, &apos;compile&apos;
           
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 
@@ -495,6 +535,16 @@ gulp.task(&apos;build&apos;, gulp.parallel(&apos;copy&apos;, &apos;compile&apos;
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Robin-front" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
           
         </div>
 
@@ -538,7 +588,7 @@ gulp.task(&apos;build&apos;, gulp.parallel(&apos;copy&apos;, &apos;compile&apos;
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2015 - 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -553,7 +603,7 @@ gulp.task(&apos;build&apos;, gulp.parallel(&apos;copy&apos;, &apos;compile&apos;
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -604,6 +654,13 @@ gulp.task(&apos;build&apos;, gulp.parallel(&apos;copy&apos;, &apos;compile&apos;
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
 
   
   
@@ -777,9 +834,31 @@ gulp.task(&apos;build&apos;, gulp.parallel(&apos;copy&apos;, &apos;compile&apos;
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"robin-front"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
+    
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
 
 
 

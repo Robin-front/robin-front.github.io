@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://robin-front.github.com/"/>
+  <link href="http://robin-front.github.io/"/>
   <updated>2016-03-05T02:18:26.000Z</updated>
-  <id>http://robin-front.github.com/</id>
+  <id>http://robin-front.github.io/</id>
   
   <author>
     <name>robin</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Fetch POST接收不到数据，注意content-type的设置</title>
-    <link href="http://robin-front.github.com/2016/03/05/Fetch%20POST%E6%8E%A5%E6%94%B6%E4%B8%8D%E5%88%B0%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%B3%A8%E6%84%8Fcontent-type%E7%9A%84%E8%AE%BE%E7%BD%AE/"/>
-    <id>http://robin-front.github.com/2016/03/05/Fetch POST接收不到数据，注意content-type的设置/</id>
+    <link href="http://robin-front.github.io/2016/03/05/Fetch%20POST%E6%8E%A5%E6%94%B6%E4%B8%8D%E5%88%B0%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%B3%A8%E6%84%8Fcontent-type%E7%9A%84%E8%AE%BE%E7%BD%AE/"/>
+    <id>http://robin-front.github.io/2016/03/05/Fetch POST接收不到数据，注意content-type的设置/</id>
     <published>2016-03-05T02:18:26.000Z</published>
     <updated>2016-03-05T02:18:26.000Z</updated>
     
@@ -65,21 +65,21 @@ PNG ... content of chrome.png ...
     
     </summary>
     
-      <category term="javascript" scheme="http://robin-front.github.com/categories/javascript/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
-      <category term="fetch" scheme="http://robin-front.github.com/tags/fetch/"/>
+      <category term="fetch" scheme="http://robin-front.github.io/tags/fetch/"/>
     
-      <category term="content-type" scheme="http://robin-front.github.com/tags/content-type/"/>
+      <category term="content-type" scheme="http://robin-front.github.io/tags/content-type/"/>
     
-      <category term="POST" scheme="http://robin-front.github.com/tags/POST/"/>
+      <category term="POST" scheme="http://robin-front.github.io/tags/POST/"/>
     
   </entry>
   
   <entry>
     <title>如何少埋坑-艾神分享会</title>
-    <link href="http://robin-front.github.com/2016/03/04/%E8%89%BE%E7%A5%9E%E5%88%86%E4%BA%AB%E4%BC%9A/"/>
-    <id>http://robin-front.github.com/2016/03/04/艾神分享会/</id>
+    <link href="http://robin-front.github.io/2016/03/04/%E8%89%BE%E7%A5%9E%E5%88%86%E4%BA%AB%E4%BC%9A/"/>
+    <id>http://robin-front.github.io/2016/03/04/艾神分享会/</id>
     <published>2016-03-04T14:47:41.000Z</published>
     <updated>2016-03-04T14:47:41.000Z</updated>
     
@@ -105,8 +105,8 @@ PNG ... content of chrome.png ...
   
   <entry>
     <title>javascript获取本周和本月或任意月的时间段</title>
-    <link href="http://robin-front.github.com/2015/10/30/javascript%E5%8F%96%E6%9C%AC%E5%91%A8%E5%92%8C%E6%9C%AC%E6%9C%88%E6%88%96%E4%BB%BB%E6%84%8F%E6%9C%88%E7%9A%84%E6%97%B6%E9%97%B4%E6%AE%B5/"/>
-    <id>http://robin-front.github.com/2015/10/30/javascript取本周和本月或任意月的时间段/</id>
+    <link href="http://robin-front.github.io/2015/10/30/javascript%E5%8F%96%E6%9C%AC%E5%91%A8%E5%92%8C%E6%9C%AC%E6%9C%88%E6%88%96%E4%BB%BB%E6%84%8F%E6%9C%88%E7%9A%84%E6%97%B6%E9%97%B4%E6%AE%B5/"/>
+    <id>http://robin-front.github.io/2015/10/30/javascript取本周和本月或任意月的时间段/</id>
     <published>2015-10-30T15:36:01.000Z</published>
     <updated>2015-11-06T17:10:28.000Z</updated>
     
@@ -228,17 +228,17 @@ return {
     
     </summary>
     
-      <category term="javascript" scheme="http://robin-front.github.com/categories/javascript/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
-      <category term="javascript" scheme="http://robin-front.github.com/tags/javascript/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>angularJS自定义指令</title>
-    <link href="http://robin-front.github.com/2015/10/17/angular%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/"/>
-    <id>http://robin-front.github.com/2015/10/17/angular自定义指令/</id>
+    <link href="http://robin-front.github.io/2015/10/17/angular%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/"/>
+    <id>http://robin-front.github.io/2015/10/17/angular自定义指令/</id>
     <published>2015-10-16T16:31:51.000Z</published>
     <updated>2015-11-06T17:10:28.000Z</updated>
     
@@ -493,19 +493,19 @@ angular.module(&amp;apos;myApp&amp;apos;, [])
     
     </summary>
     
-      <category term="angularJS" scheme="http://robin-front.github.com/categories/angularJS/"/>
+      <category term="angularJS" scheme="http://robin-front.github.io/categories/angularJS/"/>
     
     
-      <category term="angularJS" scheme="http://robin-front.github.com/tags/angularJS/"/>
+      <category term="angularJS" scheme="http://robin-front.github.io/tags/angularJS/"/>
     
-      <category term="指令" scheme="http://robin-front.github.com/tags/%E6%8C%87%E4%BB%A4/"/>
+      <category term="指令" scheme="http://robin-front.github.io/tags/%E6%8C%87%E4%BB%A4/"/>
     
   </entry>
   
   <entry>
     <title>git分支</title>
-    <link href="http://robin-front.github.com/2015/10/10/git%E5%88%86%E6%94%AF/"/>
-    <id>http://robin-front.github.com/2015/10/10/git分支/</id>
+    <link href="http://robin-front.github.io/2015/10/10/git%E5%88%86%E6%94%AF/"/>
+    <id>http://robin-front.github.io/2015/10/10/git分支/</id>
     <published>2015-10-10T14:16:01.000Z</published>
     <updated>2015-11-06T17:10:28.000Z</updated>
     
@@ -556,17 +556,17 @@ $ git merge version2.0
     
     </summary>
     
-      <category term="git" scheme="http://robin-front.github.com/categories/git/"/>
+      <category term="git" scheme="http://robin-front.github.io/categories/git/"/>
     
     
-      <category term="git" scheme="http://robin-front.github.com/tags/git/"/>
+      <category term="git" scheme="http://robin-front.github.io/tags/git/"/>
     
   </entry>
   
   <entry>
     <title>gulp 4.0的变化</title>
-    <link href="http://robin-front.github.com/2015/10/09/gulp-4.0/"/>
-    <id>http://robin-front.github.com/2015/10/09/gulp-4.0/</id>
+    <link href="http://robin-front.github.io/2015/10/09/gulp-4.0/"/>
+    <id>http://robin-front.github.io/2015/10/09/gulp-4.0/</id>
     <published>2015-10-09T07:23:51.000Z</published>
     <updated>2015-11-06T17:10:28.000Z</updated>
     
@@ -658,19 +658,19 @@ gulp.task(&amp;apos;build&amp;apos;, gulp.parallel(&amp;apos;copy&amp;apos;, &am
     
     </summary>
     
-      <category term="前端构建" scheme="http://robin-front.github.com/categories/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
+      <category term="前端构建" scheme="http://robin-front.github.io/categories/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
     
     
-      <category term="前端构建" scheme="http://robin-front.github.com/tags/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
+      <category term="前端构建" scheme="http://robin-front.github.io/tags/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
     
-      <category term="gulp" scheme="http://robin-front.github.com/tags/gulp/"/>
+      <category term="gulp" scheme="http://robin-front.github.io/tags/gulp/"/>
     
   </entry>
   
   <entry>
     <title>前端批量压缩图片</title>
-    <link href="http://robin-front.github.com/2015/10/08/%E5%89%8D%E7%AB%AF%E6%89%B9%E9%87%8F%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/"/>
-    <id>http://robin-front.github.com/2015/10/08/前端批量压缩图片/</id>
+    <link href="http://robin-front.github.io/2015/10/08/%E5%89%8D%E7%AB%AF%E6%89%B9%E9%87%8F%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/"/>
+    <id>http://robin-front.github.io/2015/10/08/前端批量压缩图片/</id>
     <published>2015-10-08T06:31:51.000Z</published>
     <updated>2015-11-06T17:10:28.000Z</updated>
     
@@ -711,19 +711,19 @@ gulp.task(&amp;apos;default&amp;apos;, function () {
     
     </summary>
     
-      <category term="前端构建" scheme="http://robin-front.github.com/categories/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
+      <category term="前端构建" scheme="http://robin-front.github.io/categories/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
     
     
-      <category term="前端构建" scheme="http://robin-front.github.com/tags/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
+      <category term="前端构建" scheme="http://robin-front.github.io/tags/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
     
-      <category term="图片压缩" scheme="http://robin-front.github.com/tags/%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/"/>
+      <category term="图片压缩" scheme="http://robin-front.github.io/tags/%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/"/>
     
   </entry>
   
   <entry>
     <title>git ssh-key及多帐户设置</title>
-    <link href="http://robin-front.github.com/2015/09/30/git%20ssh-key%E5%8F%8A%E5%A4%9A%E5%B8%90%E6%88%B7%E8%AE%BE%E7%BD%AE/"/>
-    <id>http://robin-front.github.com/2015/09/30/git ssh-key及多帐户设置/</id>
+    <link href="http://robin-front.github.io/2015/09/30/git%20ssh-key%E5%8F%8A%E5%A4%9A%E5%B8%90%E6%88%B7%E8%AE%BE%E7%BD%AE/"/>
+    <id>http://robin-front.github.io/2015/09/30/git ssh-key及多帐户设置/</id>
     <published>2015-09-30T03:40:01.000Z</published>
     <updated>2015-11-06T17:10:28.000Z</updated>
     
@@ -816,17 +816,17 @@ Hi user2! You&amp;apos;ve successfully authenticated, but GitHub does not provid
     
     </summary>
     
-      <category term="git" scheme="http://robin-front.github.com/categories/git/"/>
+      <category term="git" scheme="http://robin-front.github.io/categories/git/"/>
     
     
-      <category term="git" scheme="http://robin-front.github.com/tags/git/"/>
+      <category term="git" scheme="http://robin-front.github.io/tags/git/"/>
     
   </entry>
   
   <entry>
     <title>维护一个方便自己开发的Less库</title>
-    <link href="http://robin-front.github.com/2015/09/19/%E7%BB%B4%E6%8A%A4%E4%B8%80%E4%B8%AA%E6%96%B9%E4%BE%BF%E8%87%AA%E5%B7%B1%E5%BC%80%E5%8F%91%E7%9A%84Less%E5%BA%93/"/>
-    <id>http://robin-front.github.com/2015/09/19/维护一个方便自己开发的Less库/</id>
+    <link href="http://robin-front.github.io/2015/09/19/%E7%BB%B4%E6%8A%A4%E4%B8%80%E4%B8%AA%E6%96%B9%E4%BE%BF%E8%87%AA%E5%B7%B1%E5%BC%80%E5%8F%91%E7%9A%84Less%E5%BA%93/"/>
+    <id>http://robin-front.github.io/2015/09/19/维护一个方便自己开发的Less库/</id>
     <published>2015-09-19T15:14:16.000Z</published>
     <updated>2015-09-19T15:14:16.000Z</updated>
     
@@ -841,10 +841,10 @@ Hi user2! You&amp;apos;ve successfully authenticated, but GitHub does not provid
     
     </summary>
     
-      <category term="less" scheme="http://robin-front.github.com/categories/less/"/>
+      <category term="less" scheme="http://robin-front.github.io/categories/less/"/>
     
     
-      <category term="less" scheme="http://robin-front.github.com/tags/less/"/>
+      <category term="less" scheme="http://robin-front.github.io/tags/less/"/>
     
   </entry>
   

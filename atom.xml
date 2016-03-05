@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.com/"/>
-  <updated>2016-03-04T14:47:41.000Z</updated>
+  <updated>2016-03-05T02:18:26.000Z</updated>
   <id>http://robin-front.github.com/</id>
   
   <author>
@@ -16,6 +16,67 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Fetch POST接收不到数据，注意content-type的设置</title>
+    <link href="http://robin-front.github.com/2016/03/05/Fetch%20POST%E6%8E%A5%E6%94%B6%E4%B8%8D%E5%88%B0%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%B3%A8%E6%84%8Fcontent-type%E7%9A%84%E8%AE%BE%E7%BD%AE/"/>
+    <id>http://robin-front.github.com/2016/03/05/Fetch POST接收不到数据，注意content-type的设置/</id>
+    <published>2016-03-05T02:18:26.000Z</published>
+    <updated>2016-03-05T02:18:26.000Z</updated>
+    
+    <content type="html">&lt;p&gt;最近我们前端组在做一个简易的文档系统，使用redux+mongodb。其中抛弃了Ajax，起用了Fetch。&lt;/p&gt;
+&lt;p&gt;XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation of Concerns）的原则，配置和调用方式非常混乱，而且基于事件的异步模型写起来也没有现代的 Promise，generator/yield，async/await 友好。&lt;/p&gt;
+&lt;p&gt;Fetch 的出现就是为了解决 XHR 的问题，Fetch API 是基于 Promise 设计。&lt;/p&gt;
+&lt;p&gt;刚开始用的时候发现个问题，POST数据发现后端获取不到，GET方式是没有问题的。如：&lt;/p&gt;
+  &lt;figure class=&quot;highlight coffeescript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;fetch(&lt;span class=&quot;string&quot;&gt;&#39;/group/update&#39;&lt;/span&gt;, &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  method: &lt;span class=&quot;string&quot;&gt;&#39;post&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  body: JSON.stringify(params)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .&lt;span class=&quot;keyword&quot;&gt;then&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(response)&lt;/span&gt; =&amp;gt;&lt;/span&gt; response.json())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .&lt;span class=&quot;keyword&quot;&gt;then&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(json)&lt;/span&gt; =&amp;gt;&lt;/span&gt; dispatch(fetchUpdateGroupName(json, index)))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .&lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(err)&lt;/span&gt; =&amp;gt;&lt;/span&gt; (&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;err:&#39;&lt;/span&gt;, err)))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;以前一直用Jquery Ajax，很少情况需要设置Content-Type，而且看到有些博文介绍Fetch的时候说，Fetch()如果没有设置Content-Type，会自动获取。&lt;/p&gt;
+&lt;p&gt;后来还是被家优提醒，以下代码才是正确的设置：&lt;/p&gt;
+  &lt;figure class=&quot;highlight coffeescript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;fetch(&lt;span class=&quot;string&quot;&gt;&#39;/group/update&#39;&lt;/span&gt;, &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  method: &lt;span class=&quot;string&quot;&gt;&#39;post&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  headers: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;Content-Type&#39;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&#39;application/json&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  body: JSON.stringify(params)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .&lt;span class=&quot;keyword&quot;&gt;then&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(response)&lt;/span&gt; =&amp;gt;&lt;/span&gt; response.json())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .&lt;span class=&quot;keyword&quot;&gt;then&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(json)&lt;/span&gt; =&amp;gt;&lt;/span&gt; dispatch(fetchUpdateGroupName(json, index)))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .&lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(err)&lt;/span&gt; =&amp;gt;&lt;/span&gt; (&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;err:&#39;&lt;/span&gt;, err)))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt; 注意： Fetch 支持几种数据类型的传输，其中包含Blob, BLOB (binary large object)，表示二进制大对象。其中有个只读属性，Blob.type(),此时的 Content-Type 应设置为此值。 &lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这里顺便记录下POST常见的Content-Type:&lt;/p&gt;
+&lt;h3 id=&quot;application-x-www-form-urlencoded&quot;&gt;&lt;a href=&quot;#application-x-www-form-urlencoded&quot; class=&quot;headerlink&quot; title=&quot;application/x-www-form-urlencoded&quot;&gt;&lt;/a&gt;application/x-www-form-urlencoded&lt;/h3&gt;&lt;p&gt;浏览器的原生 form 表单，如果不设置 enctype 属性，那么最终就会以 application/x-www-form-urlencoded 方式提交数据。提交的数据按照 key1=val1&amp;amp;key2=val2 的方式进行编码，key 和 val 都进行了 URL 转码。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;POST http://www.123.com HTTP/1.1
+Content-Type: application/x-www-form-urlencoded;charset=utf-8
+
+title=test&amp;amp;sub%5B%5D=1&amp;amp;sub%5B%5D=2&amp;amp;sub%5B%5D=3
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;multipart-form-data&quot;&gt;&lt;a href=&quot;#multipart-form-data&quot; class=&quot;headerlink&quot; title=&quot;multipart/form-data&quot;&gt;&lt;/a&gt;multipart/form-data&lt;/h3&gt;&lt;p&gt;使用表单上传文件时，必须让 form 的 enctyped 等于这个值, 上传图片时，我们经常会看到下面这样&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;POST http://www.example.com HTTP/1.1
+Content-Type:multipart/form-data; boundary=----WebKitFormBoundaryrGKCBY7qhFd3TrwA
+
+------WebKitFormBoundaryrGKCBY7qhFd3TrwA
+Content-Disposition: form-data; name=&amp;quot;text&amp;quot;
+
+title
+------WebKitFormBoundaryrGKCBY7qhFd3TrwA
+Content-Disposition: form-data; name=&amp;quot;file&amp;quot;; filename=&amp;quot;chrome.png&amp;quot;
+Content-Type: image/png
+
+PNG ... content of chrome.png ...
+------WebKitFormBoundaryrGKCBY7qhFd3TrwA--
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果我们使用 new FormData()作为数据主体提交，也需要设置这种类型。&lt;/p&gt;
+&lt;h3 id=&quot;application-json&quot;&gt;&lt;a href=&quot;#application-json&quot; class=&quot;headerlink&quot; title=&quot;application/json&quot;&gt;&lt;/a&gt;application/json&lt;/h3&gt;&lt;p&gt;把它作为请求头，用来告诉服务端消息主体是序列化后的 JSON 字符串。但也有些服务端语言还没有支持这种方式，例如 php 就无法通过 $_POST 对象从上面的请求中获得内容。这时候，需要自己动手处理下：在请求头中 Content-Type 为 application/json 时，从 php://input 里获得原始输入流，再 json_decode 成对象。&lt;/p&gt;
+&lt;p&gt;参考：&lt;br&gt;&lt;a href=&quot;https://imququ.com/post/four-ways-to-post-data-in-http.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;四种常见的 POST 提交数据方式&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近我们前端组在做一个简易的文档系统，使用redux+mongodb。其中抛弃了Ajax，起用了Fetch。&lt;/p&gt;
+&lt;p&gt;XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation of Concerns）的原则，配置和调用方式非常混乱，
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://robin-front.github.com/categories/javascript/"/>
+    
+    
+      <category term="fetch" scheme="http://robin-front.github.com/tags/fetch/"/>
+    
+      <category term="content-type" scheme="http://robin-front.github.com/tags/content-type/"/>
+    
+      <category term="POST" scheme="http://robin-front.github.com/tags/POST/"/>
+    
+  </entry>
+  
+  <entry>
     <title>如何少埋坑-艾神分享会</title>
     <link href="http://robin-front.github.com/2016/03/04/%E8%89%BE%E7%A5%9E%E5%88%86%E4%BA%AB%E4%BC%9A/"/>
     <id>http://robin-front.github.com/2016/03/04/艾神分享会/</id>
@@ -23,7 +84,7 @@
     <updated>2016-03-04T14:47:41.000Z</updated>
     
     <content type="html">&lt;p&gt;又很久没有记录东西了，真是个不自律的人- -！&lt;/p&gt;
-&lt;p&gt;去年十月进入搜芽，感觉搜芽是一个共同成长的公司，有一种亲切感。这算是我第一次进一个前端团队比较大的公司，很多想法在分享与讨论中迸发。&lt;/p&gt;
+&lt;p&gt;去年十月进入搜芽，感觉搜芽是一个共同成长的公司，有一种亲切感。这算是我第一次进一个前端团队比较大的公司，很多想法在分享与讨论中迸发。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;最近产品在预热中，相对有空，我们前端也在尝试一些新技术的应用,用react-redux做一个简易的文档系统。除了家优对技术架构比较熟，我们几个都比较生疏。但是最重要是不要心浮气燥，虽然最近心情不是很好，但我还是尽量静下心来研读文档，在开发中一步一坑地走下去。&lt;/p&gt;
 &lt;p&gt;研发部也在组织分享会，今天是第一次分享会，艾神定的主题是http协议，主要和大家分享一个http请求从客户端到服务端处理返回的整个过程。&lt;/p&gt;
 &lt;p&gt;说到艾神，当初见到他的第一印象就是没什么印象，老实、普通，所以当时不是很明白为什么大家叫他艾神。不过后来发现，艾神确实是一个很踏实的人，他是写java的，功力很深，逻辑很严谨。和他一起吃饭的时候，很喜欢和我们‘讲课’。&lt;/p&gt;
@@ -35,8 +96,7 @@
     <summary type="html">
     
       &lt;p&gt;又很久没有记录东西了，真是个不自律的人- -！&lt;/p&gt;
-&lt;p&gt;去年十月进入搜芽，感觉搜芽是一个共同成长的公司，有一种亲切感。这算是我第一次进一个前端团队比较大的公司，很多想法在分享与讨论中迸发。&lt;/p&gt;
-&lt;p&gt;最近产品在预热中，相对有空，我们前端也在尝试一些新技术的应用,用
+&lt;p&gt;去年十月进入搜芽，感觉搜芽是一个共同成长的公司，有一种亲切感。这算是我第一次进一个前端团队比较大的公司，很多想法在分享与讨论中迸发。&lt;br&gt;
     
     </summary>
     

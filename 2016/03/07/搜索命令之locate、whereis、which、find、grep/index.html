@@ -343,6 +343,11 @@
 <p>find [搜索范围] [搜索条件]</p>
 </blockquote>
 <p>-name 按文件名搜索<br>-iname 不区分大小写搜索<br>-user 按照所有者搜索<br>-nouser 查找没有所有者的文件<br>-mtime 按修改文件的日期搜索，如：+10 查找10天前修改的文件， -10 查找10内修改的文件， 10 查找10天当天修改的文件<br>-atime 文件访问时间<br>-ctime 改变文件属性时间<br>-size 按照文件大小按索，如： find . -size 25k，注意 k 是小写， M是大写<br>-inum 按照i节点查找文件<br>-a 逻辑与 and,两个条件都满足，如： find /root -size +20k -a -size -1M 查找大于20k且小于1M的文件<br>-o 逻辑或 or,两个条件满足一个即可<br>-exec 命令 {} \; 对搜索结果执行操作，如： find /root -size 25k -exec rm -rf {} \; 查找/root目录下25k大小的文件之后删除</p>
+<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p>在文件中搜索符合条件的字符串</p>
+<p>选项：<br>-i 忽略大小写<br>-v 排除指定字符串</p>
+<blockquote>
+<p>grep 是包含匹配，只要含有匹配的字符串，一整行都会输出；find 是完全匹配，只输出文件名完全一样的文件</p>
+</blockquote>
 
       
     </div>
@@ -530,7 +535,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#whereis"><span class="nav-number">1.</span> <span class="nav-text">whereis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#which"><span class="nav-number">2.</span> <span class="nav-text">which</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#locate"><span class="nav-number">3.</span> <span class="nav-text">locate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">4.</span> <span class="nav-text">find</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#whereis"><span class="nav-number">1.</span> <span class="nav-text">whereis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#which"><span class="nav-number">2.</span> <span class="nav-text">which</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#locate"><span class="nav-number">3.</span> <span class="nav-text">locate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">4.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep"><span class="nav-number">5.</span> <span class="nav-text">grep</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

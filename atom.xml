@@ -38,6 +38,11 @@
 &lt;p&gt;find [搜索范围] [搜索条件]&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;-name 按文件名搜索&lt;br&gt;-iname 不区分大小写搜索&lt;br&gt;-user 按照所有者搜索&lt;br&gt;-nouser 查找没有所有者的文件&lt;br&gt;-mtime 按修改文件的日期搜索，如：+10 查找10天前修改的文件， -10 查找10内修改的文件， 10 查找10天当天修改的文件&lt;br&gt;-atime 文件访问时间&lt;br&gt;-ctime 改变文件属性时间&lt;br&gt;-size 按照文件大小按索，如： find . -size 25k，注意 k 是小写， M是大写&lt;br&gt;-inum 按照i节点查找文件&lt;br&gt;-a 逻辑与 and,两个条件都满足，如： find /root -size +20k -a -size -1M 查找大于20k且小于1M的文件&lt;br&gt;-o 逻辑或 or,两个条件满足一个即可&lt;br&gt;-exec 命令 {} \; 对搜索结果执行操作，如： find /root -size 25k -exec rm -rf {} \; 查找/root目录下25k大小的文件之后删除&lt;/p&gt;
+&lt;h3 id=&quot;grep&quot;&gt;&lt;a href=&quot;#grep&quot; class=&quot;headerlink&quot; title=&quot;grep&quot;&gt;&lt;/a&gt;grep&lt;/h3&gt;&lt;p&gt;在文件中搜索符合条件的字符串&lt;/p&gt;
+&lt;p&gt;选项：&lt;br&gt;-i 忽略大小写&lt;br&gt;-v 排除指定字符串&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;grep 是包含匹配，只要含有匹配的字符串，一整行都会输出；find 是完全匹配，只输出文件名完全一样的文件&lt;/p&gt;
+&lt;/blockquote&gt;
 </content>
     
     <summary type="html">

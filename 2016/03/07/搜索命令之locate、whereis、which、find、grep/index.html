@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="robin,blog,前端" />
+  <meta name="keywords" content="linux," />
 
 
 
@@ -61,19 +61,19 @@
 
 
 
-<meta name="description" content="又很久没有记录东西了，真是个不自律的人- -！
-去年十月进入搜芽，感觉搜芽是一个共同成长的公司，有一种亲切感。这算是我第一次进一个前端团队比较大的公司，很多想法在分享与讨论中迸发。">
+<meta name="description" content="whereis搜索命令所在路径及帮助文档所在位置
+选项：-b 只查找可执行文件-m 只查找帮助文件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何少埋坑-艾神分享会">
-<meta property="og:url" content="http://robin-front.github.io/2016/03/04/艾神分享会/index.html">
+<meta property="og:title" content="搜索命令之locate、whereis、which、find、grep">
+<meta property="og:url" content="http://robin-front.github.io/2016/03/07/搜索命令之locate、whereis、which、find、grep/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="又很久没有记录东西了，真是个不自律的人- -！
-去年十月进入搜芽，感觉搜芽是一个共同成长的公司，有一种亲切感。这算是我第一次进一个前端团队比较大的公司，很多想法在分享与讨论中迸发。">
-<meta property="og:updated_time" content="2016-03-04T14:47:41.000Z">
+<meta property="og:description" content="whereis搜索命令所在路径及帮助文档所在位置
+选项：-b 只查找可执行文件-m 只查找帮助文件">
+<meta property="og:updated_time" content="2016-03-06T16:58:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何少埋坑-艾神分享会">
-<meta name="twitter:description" content="又很久没有记录东西了，真是个不自律的人- -！
-去年十月进入搜芽，感觉搜芽是一个共同成长的公司，有一种亲切感。这算是我第一次进一个前端团队比较大的公司，很多想法在分享与讨论中迸发。">
+<meta name="twitter:title" content="搜索命令之locate、whereis、which、find、grep">
+<meta name="twitter:description" content="whereis搜索命令所在路径及帮助文档所在位置
+选项：-b 只查找可执行文件-m 只查找帮助文件">
 
 
 
@@ -91,7 +91,7 @@
   };
 </script>
 
-  <title> 如何少埋坑-艾神分享会 | 三寸稚笔 </title>
+  <title> 搜索命令之locate、whereis、which、find、grep | 三寸稚笔 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +262,7 @@
             
             
               
-                如何少埋坑-艾神分享会
+                搜索命令之locate、whereis、which、find、grep
               
             
           </h1>
@@ -274,19 +274,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-04T22:47:41+08:00" content="2016-03-04">
-              2016-03-04
+            <time itemprop="dateCreated" datetime="2016-03-07T00:58:03+08:00" content="2016-03-07">
+              2016-03-07
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/04/艾神分享会/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/04/艾神分享会/" itemprop="commentsCount"></span>
+                <a href="/2016/03/07/搜索命令之locate、whereis、which、find、grep/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/07/搜索命令之locate、whereis、which、find、grep/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -308,14 +327,22 @@
       
 
       
-        <p>又很久没有记录东西了，真是个不自律的人- -！</p>
-<p>去年十月进入搜芽，感觉搜芽是一个共同成长的公司，有一种亲切感。这算是我第一次进一个前端团队比较大的公司，很多想法在分享与讨论中迸发。<br><a id="more"></a></p>
-<p>最近产品在预热中，相对有空，我们前端也在尝试一些新技术的应用,用react-redux做一个简易的文档系统。除了家优对技术架构比较熟，我们几个都比较生疏。但是最重要是不要心浮气燥，虽然最近心情不是很好，但我还是尽量静下心来研读文档，在开发中一步一坑地走下去。</p>
-<p>研发部也在组织分享会，今天是第一次分享会，艾神定的主题是http协议，主要和大家分享一个http请求从客户端到服务端处理返回的整个过程。</p>
-<p>说到艾神，当初见到他的第一印象就是没什么印象，老实、普通，所以当时不是很明白为什么大家叫他艾神。不过后来发现，艾神确实是一个很踏实的人，他是写java的，功力很深，逻辑很严谨。和他一起吃饭的时候，很喜欢和我们‘讲课’。</p>
-<p>当然，分享会其他讲http协议不是他的真正目的，他延伸出来的相关案例才是重点。艾神讲协议，是想让我们要注意分清什么是标准，什么是投机。工作中要知道错的为什么错，也要知道对的为什么对，要把程序的运行把控在自己手中，不能存在不确定性。否则埋了坑，一旦出现问题，就要花更多的时间去排查。</p>
-<p>我也是见过太多程序员，对一些问题十分马虎，错了就不断推脱，有时候bug补上了却不知道为什么，殊不知可能埋了更大的坑。</p>
-<p>艾神是个很靠谱的程序员</p>
+        <h3 id="whereis"><a href="#whereis" class="headerlink" title="whereis"></a>whereis</h3><p>搜索命令所在路径及帮助文档所在位置</p>
+<p>选项：<br>-b 只查找可执行文件<br>-m 只查找帮助文件<br><a id="more"></a></p>
+<blockquote>
+<p>也可以通过 whereis 命令来判断是否是shell内部命令</p>
+</blockquote>
+<h3 id="which"><a href="#which" class="headerlink" title="which"></a>which</h3><p>搜索命令所在路么及别名</p>
+<blockquote>
+<p>与whereis的区别在于 which 不仅可以查看命令所在路径，还可以查看到命令的别名</p>
+</blockquote>
+<h3 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h3><p>搜索文件名最快的方式，根据后台数据库/var/lib/mlocate搜索</p>
+<p>updatedb 命令手动更新数据库，数据库更新不是即时的，一般需要一天<br>/etc/updatedb.conf 配置文件，用于配置搜索限制</p>
+<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>最强大的搜索命令，但同时带来性能问题</p>
+<blockquote>
+<p>find [搜索范围] [搜索条件]</p>
+</blockquote>
+<p>-name 按文件名搜索<br>-iname 不区分大小写搜索<br>-user 按照所有者搜索<br>-nouser 查找没有所有者的文件<br>-mtime 按修改文件的日期搜索，如：+10 查找10天前修改的文件， -10 查找10内修改的文件， 10 查找10天当天修改的文件<br>-atime 文件访问时间<br>-ctime 改变文件属性时间<br>-size 按照文件大小按索，如： find . -size 25k，注意 k 是小写， M是大写<br>-inum 按照i节点查找文件<br>-a 逻辑与 and,两个条件都满足，如： find /root -size +20k -a -size -1M 查找大于20k且小于1M的文件<br>-o 逻辑或 or,两个条件满足一个即可<br>-exec 命令 {} \; 对搜索结果执行操作，如： find /root -size 25k -exec rm -rf {} \; 查找/root目录下25k大小的文件之后删除</p>
 
       
     </div>
@@ -328,22 +355,24 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/30/javascript取本周和本月或任意月的时间段/" rel="next" title="javascript获取本周和本月或任意月的时间段">
-                <i class="fa fa-chevron-left"></i> javascript获取本周和本月或任意月的时间段
+              <a href="/2016/03/05/Fetch POST接收不到数据，注意content-type的设置/" rel="next" title="Fetch POST接收不到数据，注意content-type的设置">
+                <i class="fa fa-chevron-left"></i> Fetch POST接收不到数据，注意content-type的设置
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/05/Fetch POST接收不到数据，注意content-type的设置/" rel="prev" title="Fetch POST接收不到数据，注意content-type的设置">
-                Fetch POST接收不到数据，注意content-type的设置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -358,10 +387,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/03/04/艾神分享会/"
-     data-title="如何少埋坑-艾神分享会"
+        <div class="ds-share flat" data-thread-key="2016/03/07/搜索命令之locate、whereis、which、find、grep/"
+     data-title="搜索命令之locate、whereis、which、find、grep"
      data-content=""
-     data-url="http://robin-front.github.io/2016/03/04/艾神分享会/">
+     data-url="http://robin-front.github.io/2016/03/07/搜索命令之locate、whereis、which、find、grep/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -388,8 +417,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/04/艾神分享会/"
-           data-title="如何少埋坑-艾神分享会" data-url="http://robin-front.github.io/2016/03/04/艾神分享会/">
+      <div class="ds-thread" data-thread-key="2016/03/07/搜索命令之locate、whereis、which、find、grep/"
+           data-title="搜索命令之locate、whereis、which、find、grep" data-url="http://robin-front.github.io/2016/03/07/搜索命令之locate、whereis、which、find、grep/">
       </div>
     
   </div>
@@ -501,7 +530,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#whereis"><span class="nav-number">1.</span> <span class="nav-text">whereis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#which"><span class="nav-number">2.</span> <span class="nav-text">which</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#locate"><span class="nav-number">3.</span> <span class="nav-text">locate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">4.</span> <span class="nav-text">find</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

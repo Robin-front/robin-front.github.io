@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2016-03-05T02:18:26.000Z</updated>
+  <updated>2016-03-06T16:58:03.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>搜索命令之locate、whereis、which、find、grep</title>
+    <link href="http://robin-front.github.io/2016/03/07/%E6%90%9C%E7%B4%A2%E5%91%BD%E4%BB%A4%E4%B9%8Blocate%E3%80%81whereis%E3%80%81which%E3%80%81find%E3%80%81grep/"/>
+    <id>http://robin-front.github.io/2016/03/07/搜索命令之locate、whereis、which、find、grep/</id>
+    <published>2016-03-06T16:58:03.000Z</published>
+    <updated>2016-03-06T16:58:03.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;whereis&quot;&gt;&lt;a href=&quot;#whereis&quot; class=&quot;headerlink&quot; title=&quot;whereis&quot;&gt;&lt;/a&gt;whereis&lt;/h3&gt;&lt;p&gt;搜索命令所在路径及帮助文档所在位置&lt;/p&gt;
+&lt;p&gt;选项：&lt;br&gt;-b 只查找可执行文件&lt;br&gt;-m 只查找帮助文件&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;也可以通过 whereis 命令来判断是否是shell内部命令&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;which&quot;&gt;&lt;a href=&quot;#which&quot; class=&quot;headerlink&quot; title=&quot;which&quot;&gt;&lt;/a&gt;which&lt;/h3&gt;&lt;p&gt;搜索命令所在路么及别名&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;与whereis的区别在于 which 不仅可以查看命令所在路径，还可以查看到命令的别名&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;locate&quot;&gt;&lt;a href=&quot;#locate&quot; class=&quot;headerlink&quot; title=&quot;locate&quot;&gt;&lt;/a&gt;locate&lt;/h3&gt;&lt;p&gt;搜索文件名最快的方式，根据后台数据库/var/lib/mlocate搜索&lt;/p&gt;
+&lt;p&gt;updatedb 命令手动更新数据库，数据库更新不是即时的，一般需要一天&lt;br&gt;/etc/updatedb.conf 配置文件，用于配置搜索限制&lt;/p&gt;
+&lt;h3 id=&quot;find&quot;&gt;&lt;a href=&quot;#find&quot; class=&quot;headerlink&quot; title=&quot;find&quot;&gt;&lt;/a&gt;find&lt;/h3&gt;&lt;p&gt;最强大的搜索命令，但同时带来性能问题&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;find [搜索范围] [搜索条件]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;-name 按文件名搜索&lt;br&gt;-iname 不区分大小写搜索&lt;br&gt;-user 按照所有者搜索&lt;br&gt;-nouser 查找没有所有者的文件&lt;br&gt;-mtime 按修改文件的日期搜索，如：+10 查找10天前修改的文件， -10 查找10内修改的文件， 10 查找10天当天修改的文件&lt;br&gt;-atime 文件访问时间&lt;br&gt;-ctime 改变文件属性时间&lt;br&gt;-size 按照文件大小按索，如： find . -size 25k，注意 k 是小写， M是大写&lt;br&gt;-inum 按照i节点查找文件&lt;br&gt;-a 逻辑与 and,两个条件都满足，如： find /root -size +20k -a -size -1M 查找大于20k且小于1M的文件&lt;br&gt;-o 逻辑或 or,两个条件满足一个即可&lt;br&gt;-exec 命令 {} \; 对搜索结果执行操作，如： find /root -size 25k -exec rm -rf {} \; 查找/root目录下25k大小的文件之后删除&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;whereis&quot;&gt;&lt;a href=&quot;#whereis&quot; class=&quot;headerlink&quot; title=&quot;whereis&quot;&gt;&lt;/a&gt;whereis&lt;/h3&gt;&lt;p&gt;搜索命令所在路径及帮助文档所在位置&lt;/p&gt;
+&lt;p&gt;选项：&lt;br&gt;-b 只查找可执行文件&lt;br&gt;-m 只查找帮助文件&lt;br&gt;
+    
+    </summary>
+    
+      <category term="linux" scheme="http://robin-front.github.io/categories/linux/"/>
+    
+    
+      <category term="linux" scheme="http://robin-front.github.io/tags/linux/"/>
+    
+  </entry>
   
   <entry>
     <title>Fetch POST接收不到数据，注意content-type的设置</title>

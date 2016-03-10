@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="fetch,content-type,POST," />
+  <meta name="keywords" content="React," />
 
 
 
@@ -61,22 +61,22 @@
 
 
 
-<meta name="description" content="最近我们前端组在做一个简易的文档系统，使用redux+mongodb。其中抛弃了Ajax，起用了Fetch。
-XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation of Concerns）的原则，配置和调用方式非常混乱，而且基于事件的异步模型写起来也没有现代的 Promise，generator/yield，async/await 友好。
-Fetch 的出现">
+<meta name="description" content="虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。
+下面看看加速应用程序的两种简单的配置方法：
+shouldComponentUpdate设置新 props，调用 setState 方法或 forceUpdate 方法时，React 都会调用该组件所有子组件的 render 方法。但是在">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fetch POST接收不到数据，注意content-type的设置">
-<meta property="og:url" content="http://robin-front.github.io/2016/03/05/Fetch POST接收不到数据，注意content-type的设置/index.html">
+<meta property="og:title" content="React应用性能优化之shouldComponentUpdate与key">
+<meta property="og:url" content="http://robin-front.github.io/2016/03/10/React应用性能优化之shouldComponentUpdate与key/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="最近我们前端组在做一个简易的文档系统，使用redux+mongodb。其中抛弃了Ajax，起用了Fetch。
-XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation of Concerns）的原则，配置和调用方式非常混乱，而且基于事件的异步模型写起来也没有现代的 Promise，generator/yield，async/await 友好。
-Fetch 的出现">
-<meta property="og:updated_time" content="2016-03-05T02:18:26.000Z">
+<meta property="og:description" content="虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。
+下面看看加速应用程序的两种简单的配置方法：
+shouldComponentUpdate设置新 props，调用 setState 方法或 forceUpdate 方法时，React 都会调用该组件所有子组件的 render 方法。但是在">
+<meta property="og:updated_time" content="2016-03-10T14:32:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fetch POST接收不到数据，注意content-type的设置">
-<meta name="twitter:description" content="最近我们前端组在做一个简易的文档系统，使用redux+mongodb。其中抛弃了Ajax，起用了Fetch。
-XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation of Concerns）的原则，配置和调用方式非常混乱，而且基于事件的异步模型写起来也没有现代的 Promise，generator/yield，async/await 友好。
-Fetch 的出现">
+<meta name="twitter:title" content="React应用性能优化之shouldComponentUpdate与key">
+<meta name="twitter:description" content="虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。
+下面看看加速应用程序的两种简单的配置方法：
+shouldComponentUpdate设置新 props，调用 setState 方法或 forceUpdate 方法时，React 都会调用该组件所有子组件的 render 方法。但是在">
 
 
 
@@ -94,7 +94,7 @@ Fetch 的出现">
   };
 </script>
 
-  <title> Fetch POST接收不到数据，注意content-type的设置 | 三寸稚笔 </title>
+  <title> React应用性能优化之shouldComponentUpdate与key | 三寸稚笔 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -265,7 +265,7 @@ Fetch 的出现">
             
             
               
-                Fetch POST接收不到数据，注意content-type的设置
+                React应用性能优化之shouldComponentUpdate与key
               
             
           </h1>
@@ -277,8 +277,8 @@ Fetch 的出现">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-05T10:18:26+08:00" content="2016-03-05">
-              2016-03-05
+            <time itemprop="dateCreated" datetime="2016-03-10T22:32:13+08:00" content="2016-03-10">
+              2016-03-10
             </time>
           </span>
 
@@ -291,8 +291,8 @@ Fetch 的出现">
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
                   </a>
                 </span>
 
@@ -307,8 +307,8 @@ Fetch 的出现">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/05/Fetch POST接收不到数据，注意content-type的设置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/05/Fetch POST接收不到数据，注意content-type的设置/" itemprop="commentsCount"></span>
+                <a href="/2016/03/10/React应用性能优化之shouldComponentUpdate与key/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/React应用性能优化之shouldComponentUpdate与key/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -330,40 +330,26 @@ Fetch 的出现">
       
 
       
-        <p>最近我们前端组在做一个简易的文档系统，使用redux+mongodb。其中抛弃了Ajax，起用了Fetch。</p>
-<p>XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation of Concerns）的原则，配置和调用方式非常混乱，而且基于事件的异步模型写起来也没有现代的 Promise，generator/yield，async/await 友好。</p>
-<p>Fetch 的出现就是为了解决 XHR 的问题，Fetch API 是基于 Promise 设计。</p>
-<p>刚开始用的时候发现个问题，POST数据发现后端获取不到，GET方式是没有问题的。如：</p>
-  <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'/group/update'</span>, &#123;</span><br><span class="line">  method: <span class="string">'post'</span>,</span><br><span class="line">  body: JSON.stringify(params)</span><br><span class="line">&#125;)</span><br><span class="line">  .<span class="keyword">then</span>(<span class="function"><span class="params">(response)</span> =&gt;</span> response.json())</span><br><span class="line">  .<span class="keyword">then</span>(<span class="function"><span class="params">(json)</span> =&gt;</span> dispatch(fetchUpdateGroupName(json, index)))</span><br><span class="line">  .<span class="keyword">catch</span>(<span class="function"><span class="params">(err)</span> =&gt;</span> (<span class="built_in">console</span>.log(<span class="string">'err:'</span>, err)))</span><br></pre></td></tr></table></figure>
-<p>以前一直用Jquery Ajax，很少情况需要设置Content-Type，而且看到有些博文介绍Fetch的时候说，Fetch()如果没有设置Content-Type，会自动获取。</p>
-<p>后来还是被家优提醒，以下代码才是正确的设置：</p>
-  <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'/group/update'</span>, &#123;</span><br><span class="line">  method: <span class="string">'post'</span>,</span><br><span class="line">  headers: &#123;</span><br><span class="line">    <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  body: JSON.stringify(params)</span><br><span class="line">&#125;)</span><br><span class="line">  .<span class="keyword">then</span>(<span class="function"><span class="params">(response)</span> =&gt;</span> response.json())</span><br><span class="line">  .<span class="keyword">then</span>(<span class="function"><span class="params">(json)</span> =&gt;</span> dispatch(fetchUpdateGroupName(json, index)))</span><br><span class="line">  .<span class="keyword">catch</span>(<span class="function"><span class="params">(err)</span> =&gt;</span> (<span class="built_in">console</span>.log(<span class="string">'err:'</span>, err)))</span><br></pre></td></tr></table></figure>
+        <p>虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。</p>
+<p>下面看看加速应用程序的两种简单的配置方法：</p>
+<h3 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate"></a>shouldComponentUpdate</h3><p>设置新 props，调用 setState 方法或 forceUpdate 方法时，React 都会调用该组件所有子组件的 render 方法。但是在组件树深度嵌套或 render 方法十分复杂的时侯，页面就会有延迟。</p>
+<p>但此时，某些子组件并没有必要更新，或者永远都不需要更新，这时进行的计算过程是没有必要的。</p>
+<p>而 shouldComponentUpdate 方法正是用来判断是否需要调用指定组件的 render 方法。</p>
+<p>shouldComponentUpdate 方法返回一个布尔值。false 表示不要调用 render 方法；true 表示需要调用 render 方法计算出新的虚拟 DOM。</p>
 <blockquote>
-<p><strong> 注意： Fetch 支持几种数据类型的传输，其中包含Blob, BLOB (binary large object)，表示二进制大对象。其中有个只读属性，Blob.type(),此时的 Content-Type 应设置为此值。 </strong></p>
+<p>此方法的默认值是 true。<br>并且，组件首次渲染时，shouldComponentUpdate 方法不会被调用</p>
 </blockquote>
-<p>这里顺便记录下POST常见的Content-Type:</p>
-<h3 id="application-x-www-form-urlencoded"><a href="#application-x-www-form-urlencoded" class="headerlink" title="application/x-www-form-urlencoded"></a>application/x-www-form-urlencoded</h3><p>浏览器的原生 form 表单，如果不设置 enctype 属性，那么最终就会以 application/x-www-form-urlencoded 方式提交数据。提交的数据按照 key1=val1&amp;key2=val2 的方式进行编码，key 和 val 都进行了 URL 转码。</p>
-<pre><code>POST http://www.123.com HTTP/1.1
-Content-Type: application/x-www-form-urlencoded;charset=utf-8
-
-title=test&amp;sub%5B%5D=1&amp;sub%5B%5D=2&amp;sub%5B%5D=3
-</code></pre><h3 id="multipart-form-data"><a href="#multipart-form-data" class="headerlink" title="multipart/form-data"></a>multipart/form-data</h3><p>使用表单上传文件时，必须让 form 的 enctyped 等于这个值, 上传图片时，我们经常会看到下面这样</p>
-<pre><code>POST http://www.example.com HTTP/1.1
-Content-Type:multipart/form-data; boundary=----WebKitFormBoundaryrGKCBY7qhFd3TrwA
-
-------WebKitFormBoundaryrGKCBY7qhFd3TrwA
-Content-Disposition: form-data; name=&quot;text&quot;
-
-title
-------WebKitFormBoundaryrGKCBY7qhFd3TrwA
-Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;chrome.png&quot;
-Content-Type: image/png
-
-PNG ... content of chrome.png ...
-------WebKitFormBoundaryrGKCBY7qhFd3TrwA--
-</code></pre><p>如果我们使用 new FormData()作为数据主体提交，也需要设置这种类型。</p>
-<h3 id="application-json"><a href="#application-json" class="headerlink" title="application/json"></a>application/json</h3><p>把它作为请求头，用来告诉服务端消息主体是序列化后的 JSON 字符串。但也有些服务端语言还没有支持这种方式，例如 php 就无法通过 $_POST 对象从上面的请求中获得内容。这时候，需要自己动手处理下：在请求头中 Content-Type 为 application/json 时，从 php://input 里获得原始输入流，再 json_decode 成对象。</p>
-<p>参考：<br><a href="https://imququ.com/post/four-ways-to-post-data-in-http.html" target="_blank" rel="external">四种常见的 POST 提交数据方式</a></p>
+<p>shouldComponentUpdate 方法接受两个参数，新的 props 和新的 state：</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">React.creatClass(&#123;</span><br><span class="line">    <span class="attribute">shouldComponentUpdate</span>: <span class="function"><span class="keyword">function</span> (<span class="params">nextProps, nextState</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> nextProps.id !== <span class="keyword">this</span>.props.id</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<p>另外，我们也可以添加 React.addons.PureRenderMixin 插件来处理 shouldComponentUpdate。 这个插件会重写 shouldComponentUpdate 方法，并在该方法内对新老 props 及 state 进行对比， 如果发现它们完全一致则返回 false, 就像上面的例子一样。官方文档里也有介绍： <a href="https://facebook.github.io/react/docs/pure-render-mixin.html" target="_blank" rel="external">PureRenderMixin</a></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">PureRenderMixin</span> from <span class="symbol">'react</span>-addons-pure-render-mixin';</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.shouldComponentUpdate = <span class="type">PureRenderMixin</span>.shouldComponentUpdate.bind(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> &lt;div className=&#123;<span class="keyword">this</span>.props.className&#125;&gt;foo&lt;/div&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="key-键"><a href="#key-键" class="headerlink" title="key(键)"></a>key(键)</h3><p>在遍历列表的时候，没有组件添加 key 值会有 warnning 产生。那它是用来干嘛的呢？ 假设有一个 div 组件，它的 key 属性为 ‘foo’，之后又改为 ‘bar’， 那 React 就会跳过 DOM diff， 同时完会弃置 div 所有的子元素，并重新渲染。除了告诉 React 什么时候要抛弃一个节点之外，key 还可以在元素顺序改变时使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> items.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">'item.id'</span>&gt;</span>item.name<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果像上面这样，React 在li 列表顺序改变的时候就不会重新渲染，而是采用 insertBefore 操作，这也是最高效的方法。</p>
+<blockquote>
+<p>但是要注意，key 值必须是独一无二的，最好不要是数字，绝对不能是遍历中的index。这样可以保证从一个父组件移动到另一个父组件的情况是不会被处理的。</p>
+</blockquote>
+<p>key 值也是无法读取的。</p>
 
       
     </div>
@@ -378,11 +364,7 @@ PNG ... content of chrome.png ...
       
         <div class="post-tags">
           
-            <a href="/tags/fetch/" rel="tag">#fetch</a>
-          
-            <a href="/tags/content-type/" rel="tag">#content-type</a>
-          
-            <a href="/tags/POST/" rel="tag">#POST</a>
+            <a href="/tags/React/" rel="tag">#React</a>
           
         </div>
       
@@ -391,17 +373,13 @@ PNG ... content of chrome.png ...
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/04/艾神分享会/" rel="next" title="如何少埋坑-艾神分享会">
-                <i class="fa fa-chevron-left"></i> 如何少埋坑-艾神分享会
+              <a href="/2016/03/07/搜索命令之locate、whereis、which、find、grep/" rel="next" title="搜索命令之locate、whereis、which、find、grep">
+                <i class="fa fa-chevron-left"></i> 搜索命令之locate、whereis、which、find、grep
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/07/搜索命令之locate、whereis、which、find、grep/" rel="prev" title="搜索命令之locate、whereis、which、find、grep">
-                搜索命令之locate、whereis、which、find、grep <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -416,10 +394,10 @@ PNG ... content of chrome.png ...
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/03/05/Fetch POST接收不到数据，注意content-type的设置/"
-     data-title="Fetch POST接收不到数据，注意content-type的设置"
+        <div class="ds-share flat" data-thread-key="2016/03/10/React应用性能优化之shouldComponentUpdate与key/"
+     data-title="React应用性能优化之shouldComponentUpdate与key"
      data-content=""
-     data-url="http://robin-front.github.io/2016/03/05/Fetch POST接收不到数据，注意content-type的设置/">
+     data-url="http://robin-front.github.io/2016/03/10/React应用性能优化之shouldComponentUpdate与key/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -446,8 +424,8 @@ PNG ... content of chrome.png ...
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/05/Fetch POST接收不到数据，注意content-type的设置/"
-           data-title="Fetch POST接收不到数据，注意content-type的设置" data-url="http://robin-front.github.io/2016/03/05/Fetch POST接收不到数据，注意content-type的设置/">
+      <div class="ds-thread" data-thread-key="2016/03/10/React应用性能优化之shouldComponentUpdate与key/"
+           data-title="React应用性能优化之shouldComponentUpdate与key" data-url="http://robin-front.github.io/2016/03/10/React应用性能优化之shouldComponentUpdate与key/">
       </div>
     
   </div>
@@ -559,7 +537,7 @@ PNG ... content of chrome.png ...
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#application-x-www-form-urlencoded"><span class="nav-number">1.</span> <span class="nav-text">application/x-www-form-urlencoded</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#multipart-form-data"><span class="nav-number">2.</span> <span class="nav-text">multipart/form-data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#application-json"><span class="nav-number">3.</span> <span class="nav-text">application/json</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#shouldComponentUpdate"><span class="nav-number">1.</span> <span class="nav-text">shouldComponentUpdate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#key-键"><span class="nav-number">2.</span> <span class="nav-text">key(键)</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

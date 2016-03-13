@@ -62,21 +62,18 @@
 
 
 <meta name="description" content="前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。
-Immutable.jsImmutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。
-Javascript中对象都是参考类型，也就是a={a:1}; b=a; b.a=10;你发现a.a也变成10了。可变的好处是节省内存或是利用可变性">
+Immutable.jsImmutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React应用性能优化之IMMUTABLE.JS">
 <meta property="og:url" content="http://robin-front.github.io/2016/03/14/React应用性能优化之IMMUTABLE-JS/index.html">
 <meta property="og:site_name" content="三寸稚笔">
 <meta property="og:description" content="前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。
-Immutable.jsImmutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。
-Javascript中对象都是参考类型，也就是a={a:1}; b=a; b.a=10;你发现a.a也变成10了。可变的好处是节省内存或是利用可变性">
+Immutable.jsImmutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。">
 <meta property="og:updated_time" content="2016-03-13T16:15:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React应用性能优化之IMMUTABLE.JS">
 <meta name="twitter:description" content="前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。
-Immutable.jsImmutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。
-Javascript中对象都是参考类型，也就是a={a:1}; b=a; b.a=10;你发现a.a也变成10了。可变的好处是节省内存或是利用可变性">
+Immutable.jsImmutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。">
 
 
 
@@ -331,7 +328,7 @@ Javascript中对象都是参考类型，也就是a={a:1}; b=a; b.a=10;你发现a
 
       
         <p>前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。</p>
-<h3 id="Immutable-js"><a href="#Immutable-js" class="headerlink" title="Immutable.js"></a>Immutable.js</h3><p>Immutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。</p>
+<h3 id="Immutable-js"><a href="#Immutable-js" class="headerlink" title="Immutable.js"></a>Immutable.js</h3><p>Immutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。<br><a id="more"></a></p>
 <p>Javascript中对象都是参考类型，也就是a={a:1}; b=a; b.a=10;你发现a.a也变成10了。可变的好处是节省内存或是利用可变性做一些事情，但是，在复杂的开发中它的副作用远比好处大的多。于是才有了浅copy和深copy，就是为了解决这个问题。举个常见例子：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> defaultConfig</span> = &#123; <span class="comment">/* 默认值 */</span>&#125;;</span><br><span class="line"><span class="variable"><span class="keyword">var</span> config</span> = $.extend(&#123;&#125;, defaultConfig, initConfig); <span class="comment">// jQuery用法。initConfig是自定义值</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> config</span> = $.extend(<span class="literal">true</span>, &#123;&#125;, defaultConfig, initConfig); <span class="comment">// 如果对象是多层的，就用到deep-copy了</span></span><br></pre></td></tr></table></figure>
 <p>ES6出现原生的assign方法，但它相当于是浅copy。如果有了不可变的数据结构就省心了，ES5.1中对象有了freeze方法，也是浅copy，a=Object.freeze({a:1}); b=a; b.a=10; a.a还是1。在实际开发中浅copy通常不够。如果用immutableJS:</p>

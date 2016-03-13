@@ -23,7 +23,7 @@
     <updated>2016-03-13T16:15:07.000Z</updated>
     
     <content type="html">&lt;p&gt;前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。&lt;/p&gt;
-&lt;h3 id=&quot;Immutable-js&quot;&gt;&lt;a href=&quot;#Immutable-js&quot; class=&quot;headerlink&quot; title=&quot;Immutable.js&quot;&gt;&lt;/a&gt;Immutable.js&lt;/h3&gt;&lt;p&gt;Immutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。&lt;/p&gt;
+&lt;h3 id=&quot;Immutable-js&quot;&gt;&lt;a href=&quot;#Immutable-js&quot; class=&quot;headerlink&quot; title=&quot;Immutable.js&quot;&gt;&lt;/a&gt;Immutable.js&lt;/h3&gt;&lt;p&gt;Immutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Javascript中对象都是参考类型，也就是a={a:1}; b=a; b.a=10;你发现a.a也变成10了。可变的好处是节省内存或是利用可变性做一些事情，但是，在复杂的开发中它的副作用远比好处大的多。于是才有了浅copy和深copy，就是为了解决这个问题。举个常见例子：&lt;/p&gt;
 &lt;figure class=&quot;highlight kotlin&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; defaultConfig&lt;/span&gt; = &amp;#123; &lt;span class=&quot;comment&quot;&gt;/* 默认值 */&lt;/span&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; config&lt;/span&gt; = $.extend(&amp;#123;&amp;#125;, defaultConfig, initConfig); &lt;span class=&quot;comment&quot;&gt;// jQuery用法。initConfig是自定义值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; config&lt;/span&gt; = $.extend(&lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;, &amp;#123;&amp;#125;, defaultConfig, initConfig); &lt;span class=&quot;comment&quot;&gt;// 如果对象是多层的，就用到deep-copy了&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;ES6出现原生的assign方法，但它相当于是浅copy。如果有了不可变的数据结构就省心了，ES5.1中对象有了freeze方法，也是浅copy，a=Object.freeze({a:1}); b=a; b.a=10; a.a还是1。在实际开发中浅copy通常不够。如果用immutableJS:&lt;/p&gt;
@@ -42,7 +42,7 @@
     <summary type="html">
     
       &lt;p&gt;前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。&lt;/p&gt;
-&lt;h3 id=&quot;Immutable-js&quot;&gt;&lt;a href=&quot;#Immutable-js&quot; class=&quot;headerlink&quot; title=&quot;Immutable.js&quot;&gt;&lt;
+&lt;h3 id=&quot;Immutable-js&quot;&gt;&lt;a href=&quot;#Immutable-js&quot; class=&quot;headerlink&quot; title=&quot;Immutable.js&quot;&gt;&lt;/a&gt;Immutable.js&lt;/h3&gt;&lt;p&gt;Immutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。&lt;br&gt;
     
     </summary>
     

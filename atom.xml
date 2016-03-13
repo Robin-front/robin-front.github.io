@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2016-03-10T14:32:13.000Z</updated>
+  <updated>2016-03-13T16:15:07.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -16,6 +16,46 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>React应用性能优化之IMMUTABLE.JS</title>
+    <link href="http://robin-front.github.io/2016/03/14/React%E5%BA%94%E7%94%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8BIMMUTABLE-JS/"/>
+    <id>http://robin-front.github.io/2016/03/14/React应用性能优化之IMMUTABLE-JS/</id>
+    <published>2016-03-13T16:15:07.000Z</published>
+    <updated>2016-03-13T16:15:07.000Z</updated>
+    
+    <content type="html">&lt;p&gt;前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。&lt;/p&gt;
+&lt;h3 id=&quot;Immutable-js&quot;&gt;&lt;a href=&quot;#Immutable-js&quot; class=&quot;headerlink&quot; title=&quot;Immutable.js&quot;&gt;&lt;/a&gt;Immutable.js&lt;/h3&gt;&lt;p&gt;Immutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。&lt;/p&gt;
+&lt;p&gt;Javascript中对象都是参考类型，也就是a={a:1}; b=a; b.a=10;你发现a.a也变成10了。可变的好处是节省内存或是利用可变性做一些事情，但是，在复杂的开发中它的副作用远比好处大的多。于是才有了浅copy和深copy，就是为了解决这个问题。举个常见例子：&lt;/p&gt;
+&lt;figure class=&quot;highlight kotlin&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; defaultConfig&lt;/span&gt; = &amp;#123; &lt;span class=&quot;comment&quot;&gt;/* 默认值 */&lt;/span&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; config&lt;/span&gt; = $.extend(&amp;#123;&amp;#125;, defaultConfig, initConfig); &lt;span class=&quot;comment&quot;&gt;// jQuery用法。initConfig是自定义值&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; config&lt;/span&gt; = $.extend(&lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;, &amp;#123;&amp;#125;, defaultConfig, initConfig); &lt;span class=&quot;comment&quot;&gt;// 如果对象是多层的，就用到deep-copy了&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;ES6出现原生的assign方法，但它相当于是浅copy。如果有了不可变的数据结构就省心了，ES5.1中对象有了freeze方法，也是浅copy，a=Object.freeze({a:1}); b=a; b.a=10; a.a还是1。在实际开发中浅copy通常不够。如果用immutableJS:&lt;/p&gt;
+&lt;figure class=&quot;highlight kotlin&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; defaultConfig&lt;/span&gt; = Immutable.fromJS(&amp;#123; &lt;span class=&quot;comment&quot;&gt;/* 默认值 */&lt;/span&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; config&lt;/span&gt; = defaultConfig.merge(initConfig); &lt;span class=&quot;comment&quot;&gt;// defaultConfig不会改变，返回新值给config&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; config&lt;/span&gt; = defaultConfig.mergeDeep(initConfig); &lt;span class=&quot;comment&quot;&gt;// 深层merge&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上述用deep-copy也可以做到，差别在于性能。每次deep-copy都要把整个对象递归的复制一份。而Immutable的实现有些像链表，添加一个新结点把旧结点的父子关系转移到新结点上，性能提升很多。ImmutableJS给的远不止这些，它提供了7种不可变的数据结构：List, Stack, Map, OrderedMap, Set, OrderedSet, Record （详见文档&lt;a href=&quot;http://facebook.github.io/immutable-js/docs/#/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Immutable.js&lt;/a&gt;，文档很geek，打开console试吧）。immutableJS ＋ 原生Javascript等于真正的函数式编程。&lt;/p&gt;
+&lt;h3 id=&quot;为什么在React-js中使用Immutable-js&quot;&gt;&lt;a href=&quot;#为什么在React-js中使用Immutable-js&quot; class=&quot;headerlink&quot; title=&quot;为什么在React.js中使用Immutable.js&quot;&gt;&lt;/a&gt;为什么在React.js中使用Immutable.js&lt;/h3&gt;&lt;p&gt;熟悉React.js的都应该知道，React.js是一个UI = f(states)的框架，为了解决更新的问题，React.js使用了virtual dom，virtual dom通过diff修改dom，来实现高效的dom更新。&lt;br&gt;听起来很完美吧，但是有一个问题。当state更新时，如果数据没变，你也会去做virtual dom的diff，这就产生了浪费。这种情况其实很常见，如：&lt;/p&gt;
+&lt;p&gt;熟悉 React 组件生命周期的话都知道：调用 setState 方法总是会触发 render 方法从而进行 vdom re-render 相关逻辑，哪怕实际上你没有更改到 Component.state 。&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.state = &amp;#123;count: &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.setState(&amp;#123;count: &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&amp;#125;);&lt;span class=&quot;comment&quot;&gt;// 组件 state 并未被改变，但仍会触发 render 方法&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;为了避免这种性能上的浪费，React 提供了一个 shouldComponentUpdate 来控制触发 vdom re-render 逻辑的条件。于是 PureRenderMixin 作为一种优化技巧被使用。但PureRenderMixin只是简单的浅比较，不使用于多层比较。那怎么办？？自己去做复杂比较的话，性能又会非常差。&lt;/p&gt;
+&lt;p&gt;这时候 immutableJS 就派得上用场了：&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; map1 = Immutable.fromJS(&amp;#123;a:&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, b:&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, c:&amp;#123;b:&amp;#123;c:&amp;#123;d:&amp;#123;e:&lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; map2 = Immutable.fromJS(&amp;#123;a:&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, b:&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, c:&amp;#123;b:&amp;#123;c:&amp;#123;d:&amp;#123;e:&lt;span class=&quot;number&quot;&gt;7&lt;/span&gt;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Immutable.is(map1, map2); &lt;span class=&quot;comment&quot;&gt;// true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;每一次state更新只要有数据改变，那么PureRenderMixin可以立刻判断出数据改变，可以大大提升性能。&lt;/p&gt;
+&lt;p&gt;本文原文链接：&lt;a href=&quot;https://www.zhihu.com/question/28016223/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;facebook immutable.js 意义何在，使用场景？&lt;/a&gt; 基本没有改动。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。&lt;/p&gt;
+&lt;h3 id=&quot;Immutable-js&quot;&gt;&lt;a href=&quot;#Immutable-js&quot; class=&quot;headerlink&quot; title=&quot;Immutable.js&quot;&gt;&lt;
+    
+    </summary>
+    
+      <category term="React" scheme="http://robin-front.github.io/categories/React/"/>
+    
+    
+      <category term="React" scheme="http://robin-front.github.io/tags/React/"/>
+    
+      <category term="Immutable.js" scheme="http://robin-front.github.io/tags/Immutable-js/"/>
+    
+  </entry>
+  
+  <entry>
     <title>React应用性能优化之shouldComponentUpdate与key</title>
     <link href="http://robin-front.github.io/2016/03/10/React%E5%BA%94%E7%94%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8BshouldComponentUpdate%E4%B8%8Ekey/"/>
     <id>http://robin-front.github.io/2016/03/10/React应用性能优化之shouldComponentUpdate与key/</id>
@@ -23,7 +63,7 @@
     <updated>2016-03-10T14:32:13.000Z</updated>
     
     <content type="html">&lt;p&gt;虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。&lt;/p&gt;
-&lt;p&gt;下面看看加速应用程序的两种简单的配置方法：&lt;/p&gt;
+&lt;p&gt;下面看看加速应用程序的两种简单的配置方法：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;shouldComponentUpdate&quot;&gt;&lt;a href=&quot;#shouldComponentUpdate&quot; class=&quot;headerlink&quot; title=&quot;shouldComponentUpdate&quot;&gt;&lt;/a&gt;shouldComponentUpdate&lt;/h3&gt;&lt;p&gt;设置新 props，调用 setState 方法或 forceUpdate 方法时，React 都会调用该组件所有子组件的 render 方法。但是在组件树深度嵌套或 render 方法十分复杂的时侯，页面就会有延迟。&lt;/p&gt;
 &lt;p&gt;但此时，某些子组件并没有必要更新，或者永远都不需要更新，这时进行的计算过程是没有必要的。&lt;/p&gt;
 &lt;p&gt;而 shouldComponentUpdate 方法正是用来判断是否需要调用指定组件的 render 方法。&lt;/p&gt;
@@ -47,8 +87,7 @@
     <summary type="html">
     
       &lt;p&gt;虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。&lt;/p&gt;
-&lt;p&gt;下面看看加速应用程序的两种简单的配置方法：&lt;/p&gt;
-&lt;h3 id=&quot;shouldComponen
+&lt;p&gt;下面看看加速应用程序的两种简单的配置方法：&lt;br&gt;
     
     </summary>
     

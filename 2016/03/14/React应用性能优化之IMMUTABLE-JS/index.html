@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="git," />
+  <meta name="keywords" content="React,Immutable.js," />
 
 
 
@@ -61,25 +61,22 @@
 
 
 
-<meta name="description" content="在使用git的时候，我们在管理远程分支之前需要在本机上创建ssh-key密钥对，并把其中的公钥添加到github中。
-首个帐户如果你只会在你的计算机使用一个远程的Git服务器，并且账号是一个，比较简单，生成key的时候也没有太大注意的地方，直接运行如下的第一步然后按回车就可以了
-
-在 gitbash上运行  ssh-keygen -t  rsa  -C  &amp;quot;Github账户邮箱&amp;quot">
+<meta name="description" content="前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。
+Immutable.jsImmutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。
+Javascript中对象都是参考类型，也就是a={a:1}; b=a; b.a=10;你发现a.a也变成10了。可变的好处是节省内存或是利用可变性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git ssh-key及多帐户设置">
-<meta property="og:url" content="http://robin-front.github.io/2015/09/30/git ssh-key及多帐户设置/index.html">
+<meta property="og:title" content="React应用性能优化之IMMUTABLE.JS">
+<meta property="og:url" content="http://robin-front.github.io/2016/03/14/React应用性能优化之IMMUTABLE-JS/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="在使用git的时候，我们在管理远程分支之前需要在本机上创建ssh-key密钥对，并把其中的公钥添加到github中。
-首个帐户如果你只会在你的计算机使用一个远程的Git服务器，并且账号是一个，比较简单，生成key的时候也没有太大注意的地方，直接运行如下的第一步然后按回车就可以了
-
-在 gitbash上运行  ssh-keygen -t  rsa  -C  &amp;quot;Github账户邮箱&amp;quot">
-<meta property="og:updated_time" content="2015-11-06T17:10:28.000Z">
+<meta property="og:description" content="前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。
+Immutable.jsImmutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。
+Javascript中对象都是参考类型，也就是a={a:1}; b=a; b.a=10;你发现a.a也变成10了。可变的好处是节省内存或是利用可变性">
+<meta property="og:updated_time" content="2016-03-13T16:15:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git ssh-key及多帐户设置">
-<meta name="twitter:description" content="在使用git的时候，我们在管理远程分支之前需要在本机上创建ssh-key密钥对，并把其中的公钥添加到github中。
-首个帐户如果你只会在你的计算机使用一个远程的Git服务器，并且账号是一个，比较简单，生成key的时候也没有太大注意的地方，直接运行如下的第一步然后按回车就可以了
-
-在 gitbash上运行  ssh-keygen -t  rsa  -C  &amp;quot;Github账户邮箱&amp;quot">
+<meta name="twitter:title" content="React应用性能优化之IMMUTABLE.JS">
+<meta name="twitter:description" content="前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。
+Immutable.jsImmutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。
+Javascript中对象都是参考类型，也就是a={a:1}; b=a; b.a=10;你发现a.a也变成10了。可变的好处是节省内存或是利用可变性">
 
 
 
@@ -97,7 +94,7 @@
   };
 </script>
 
-  <title> git ssh-key及多帐户设置 | 三寸稚笔 </title>
+  <title> React应用性能优化之IMMUTABLE.JS | 三寸稚笔 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -268,7 +265,7 @@
             
             
               
-                git ssh-key及多帐户设置
+                React应用性能优化之IMMUTABLE.JS
               
             
           </h1>
@@ -280,8 +277,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-09-30T11:40:01+08:00" content="2015-09-30">
-              2015-09-30
+            <time itemprop="dateCreated" datetime="2016-03-14T00:15:07+08:00" content="2016-03-14">
+              2016-03-14
             </time>
           </span>
 
@@ -294,8 +291,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
                   </a>
                 </span>
 
@@ -310,8 +307,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/30/git ssh-key及多帐户设置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/30/git ssh-key及多帐户设置/" itemprop="commentsCount"></span>
+                <a href="/2016/03/14/React应用性能优化之IMMUTABLE-JS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/14/React应用性能优化之IMMUTABLE-JS/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -333,81 +330,21 @@
       
 
       
-        <p>在使用git的时候，我们在管理远程分支之前需要在本机上创建ssh-key密钥对，并把其中的公钥添加到github中。</p>
-<h2 id="首个帐户"><a href="#首个帐户" class="headerlink" title="首个帐户"></a>首个帐户</h2><p>如果你只会在你的计算机使用一个远程的Git服务器，并且账号是一个，比较简单，生成key的时候也没有太大注意的地方，直接运行如下的第一步然后按回车就可以了</p>
-<ol>
-<li>在 gitbash上运行  <code>ssh-keygen -t  rsa  -C  &quot;Github账户邮箱&quot;</code></li>
-<li>接下来会提示输入key的名字 默认名字为<code>id_rsa</code> ,默认不改直接回车就行了</li>
-<li>然后会提示输入口令，这里口令与Github中的密码无关，随便输入可以为空，为空直接回车。</li>
-<li><p>如果在第二步中的没有重新命名的话，则忽略此步骤，<code>ssh agent</code>默认只读取<code>id_rsa</code>，为了让SSH识别新的私钥，需将其添加到SSH agent中,如第二步改的名字为<code>robin</code>, 则执行：<code>ssh-add id_rsa</code>如果出现<code>Could not open a connection to your authentication agent</code>的错误，就试着先用以下命令：</p>
- <a id="more"></a>
-<pre><code>ssh-agent bash
-ssh-add robin
-</code></pre><p> 添加完之后 登陆Github,点击网页右上侧的 Settings 按钮 - 选择 ssh-keys  点击Add SSH Key  ，在title中输入名字，然后将公钥即id_rsa.pub添加到ssh-key处。</p>
-</li>
-<li><p>执行 <code>ssh -T git@github.com</code> 如果能正常访问即可</p>
-<pre><code>$ ssh -T git@github.com
-Hi robin! You&apos;ve successfully authenticated, but GitHub does not provide shell access.
-</code></pre></li>
-</ol>
-<h2 id="第二个帐户"><a href="#第二个帐户" class="headerlink" title="第二个帐户"></a>第二个帐户</h2><ol>
-<li><h3 id="新建user2的SSH-Key"><a href="#新建user2的SSH-Key" class="headerlink" title="新建user2的SSH Key"></a>新建user2的SSH Key</h3><pre><code>$ cd ~/.ssh     #切换到C:\Users\Administrator\.ssh
-ssh-keygen -t rsa -C &quot;user2的Github账户邮箱&quot;  //新建工作的SSH key
-Enter file in which to save the key (/c/Users/Administrator/.ssh/id_rsa): user2 //设置名称为user2(后文的user2可以统一替换任何别名)
-</code></pre></li>
-<li><h3 id="新密钥添加到SSH-agent中"><a href="#新密钥添加到SSH-agent中" class="headerlink" title="新密钥添加到SSH agent中"></a>新密钥添加到SSH agent中</h3><p> 因为默认只读取id_rsa，为了让SSH识别新的私钥，需将其添加到SSH agent中：</p>
-<pre><code>ssh-add ~/.ssh/user2 //注意路径，如果不在.ssh目录下则不能省略 &apos;~/.ssh/&apos;
-</code></pre><p> 同样，如果出现<code>Could not open a connection to your authentication agent</code>的错误，就试着用以下命令：</p>
-<pre><code>ssh-agent bash
-ssh-add ~/.ssh/user2
-</code></pre></li>
-<li><h3 id="添加user2的公钥"><a href="#添加user2的公钥" class="headerlink" title="添加user2的公钥"></a>添加user2的公钥</h3><p> 打开新生成的 <code>~/.ssh/uesr2.pub</code>文件，将里面的内容添加到user2的github帐号下的SSH Key中。</p>
-</li>
-<li><h3 id="修改config文件-重要的一步"><a href="#修改config文件-重要的一步" class="headerlink" title="修改config文件 (重要的一步)"></a>修改config文件 (重要的一步)</h3><p> 将账户以及git服务器与对应的密钥关联。在~/.ssh目录下找到config文件，如果没有就创建：</p>
-<pre><code>touch config
-</code></pre><p> 然后修改如下： 我的config配置如下：</p>
-<pre><code># 该文件用于配置私钥对应的服务器
-# Default github user1
-Host github.com
-HostName github.com
-User git
-IdentityFile ~/.ssh/id_rsa
-
-# second user2
-# 建一个github别名，新建的帐号使用这个别名做克隆和更新
-Host user2
-HostName github.com
-User git
-IdentityFile ~/.ssh/user2
-</code></pre></li>
-<li><h3 id="帐号关联"><a href="#帐号关联" class="headerlink" title="帐号关联"></a>帐号关联</h3><p> 如果你只是文章中所述配置了Host，那么你多个账号下面的提交用户会是一个人，所以需要通过命令</p>
-<pre><code>git config --global --unset user.email
-</code></pre><p> 删除全局用户账户设置，当然也可以不删除，如果每个git项目下没有单独设置用户帐户信息的话，会默认使用全局设置</p>
-<p> 在每一个git项目下面使用命令</p>
-<pre><code>git config --local user.name &apos;该项目的github用户名&apos; 
-git config --local user.email &apos;该项目的github邮箱@mail.com&apos; 
-</code></pre><p> 单独设置用户账户信息，每个不同于全局用户帐户的git 项目都需要设置。</p>
-</li>
-<li><h3 id="关于-clone"><a href="#关于-clone" class="headerlink" title="关于 clone"></a>关于 clone</h3><p> 使用 </p>
-<pre><code>git clone user2:user2/test.git
-</code></pre><p> 而不是 </p>
-<pre><code>git clone git@github.com:user2/test.git
-</code></pre><p> 否则无法分辨使用的是哪一个帐户。</p>
-</li>
-<li><h3 id="关于-remote"><a href="#关于-remote" class="headerlink" title="关于 remote"></a>关于 remote</h3><p> 如果clone 项目时使用的是 </p>
-<pre><code>git clone user2:user2/test.git
-</code></pre><p> 则remote url的Host 就是user2，可以跳过这一步，否则需要更改一下关联（包括git init新建），查看 remote</p>
-<pre><code>git remote -v
-</code></pre><p> 如果user2的项目<code>remote.origin.url=git@github.com:user2/test.git</code>则需要进行修改</p>
-<pre><code>git remote rm origin
-git remote add origin user2:user2/test.git
-</code></pre></li>
-<li><h3 id="测试："><a href="#测试：" class="headerlink" title="测试："></a>测试：</h3><pre><code>$ ssh -T git@github.com
-Hi user1! You&apos;ve successfully authenticated, but GitHub does not provide shell access.
-$ ssh -T user2 
-Hi user2! You&apos;ve successfully authenticated, but GitHub does not provide shell access.
-</code></pre></li>
-</ol>
+        <p>前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。</p>
+<h3 id="Immutable-js"><a href="#Immutable-js" class="headerlink" title="Immutable.js"></a>Immutable.js</h3><p>Immutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。</p>
+<p>Javascript中对象都是参考类型，也就是a={a:1}; b=a; b.a=10;你发现a.a也变成10了。可变的好处是节省内存或是利用可变性做一些事情，但是，在复杂的开发中它的副作用远比好处大的多。于是才有了浅copy和深copy，就是为了解决这个问题。举个常见例子：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> defaultConfig</span> = &#123; <span class="comment">/* 默认值 */</span>&#125;;</span><br><span class="line"><span class="variable"><span class="keyword">var</span> config</span> = $.extend(&#123;&#125;, defaultConfig, initConfig); <span class="comment">// jQuery用法。initConfig是自定义值</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> config</span> = $.extend(<span class="literal">true</span>, &#123;&#125;, defaultConfig, initConfig); <span class="comment">// 如果对象是多层的，就用到deep-copy了</span></span><br></pre></td></tr></table></figure>
+<p>ES6出现原生的assign方法，但它相当于是浅copy。如果有了不可变的数据结构就省心了，ES5.1中对象有了freeze方法，也是浅copy，a=Object.freeze({a:1}); b=a; b.a=10; a.a还是1。在实际开发中浅copy通常不够。如果用immutableJS:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> defaultConfig</span> = Immutable.fromJS(&#123; <span class="comment">/* 默认值 */</span>&#125;);</span><br><span class="line"><span class="variable"><span class="keyword">var</span> config</span> = defaultConfig.merge(initConfig); <span class="comment">// defaultConfig不会改变，返回新值给config</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> config</span> = defaultConfig.mergeDeep(initConfig); <span class="comment">// 深层merge</span></span><br></pre></td></tr></table></figure>
+<p>上述用deep-copy也可以做到，差别在于性能。每次deep-copy都要把整个对象递归的复制一份。而Immutable的实现有些像链表，添加一个新结点把旧结点的父子关系转移到新结点上，性能提升很多。ImmutableJS给的远不止这些，它提供了7种不可变的数据结构：List, Stack, Map, OrderedMap, Set, OrderedSet, Record （详见文档<a href="http://facebook.github.io/immutable-js/docs/#/" target="_blank" rel="external">Immutable.js</a>，文档很geek，打开console试吧）。immutableJS ＋ 原生Javascript等于真正的函数式编程。</p>
+<h3 id="为什么在React-js中使用Immutable-js"><a href="#为什么在React-js中使用Immutable-js" class="headerlink" title="为什么在React.js中使用Immutable.js"></a>为什么在React.js中使用Immutable.js</h3><p>熟悉React.js的都应该知道，React.js是一个UI = f(states)的框架，为了解决更新的问题，React.js使用了virtual dom，virtual dom通过diff修改dom，来实现高效的dom更新。<br>听起来很完美吧，但是有一个问题。当state更新时，如果数据没变，你也会去做virtual dom的diff，这就产生了浪费。这种情况其实很常见，如：</p>
+<p>熟悉 React 组件生命周期的话都知道：调用 setState 方法总是会触发 render 方法从而进行 vdom re-render 相关逻辑，哪怕实际上你没有更改到 Component.state 。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.state = &#123;count: <span class="number">0</span>&#125;</span><br><span class="line"><span class="keyword">this</span>.setState(&#123;count: <span class="number">0</span>&#125;);<span class="comment">// 组件 state 并未被改变，但仍会触发 render 方法</span></span><br></pre></td></tr></table></figure>
+<p>为了避免这种性能上的浪费，React 提供了一个 shouldComponentUpdate 来控制触发 vdom re-render 逻辑的条件。于是 PureRenderMixin 作为一种优化技巧被使用。但PureRenderMixin只是简单的浅比较，不使用于多层比较。那怎么办？？自己去做复杂比较的话，性能又会非常差。</p>
+<p>这时候 immutableJS 就派得上用场了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> map1 = Immutable.fromJS(&#123;a:<span class="number">1</span>, b:<span class="number">1</span>, c:&#123;b:&#123;c:&#123;d:&#123;e:<span class="number">7</span>&#125;&#125;&#125;&#125;&#125;);</span><br><span class="line"><span class="keyword">var</span> map2 = Immutable.fromJS(&#123;a:<span class="number">1</span>, b:<span class="number">1</span>, c:&#123;b:&#123;c:&#123;d:&#123;e:<span class="number">7</span>&#125;&#125;&#125;&#125;&#125;);</span><br><span class="line">Immutable.is(map1, map2); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>每一次state更新只要有数据改变，那么PureRenderMixin可以立刻判断出数据改变，可以大大提升性能。</p>
+<p>本文原文链接：<a href="https://www.zhihu.com/question/28016223/" target="_blank" rel="external">facebook immutable.js 意义何在，使用场景？</a> 基本没有改动。</p>
 
       
     </div>
@@ -422,7 +359,9 @@ Hi user2! You&apos;ve successfully authenticated, but GitHub does not provide sh
       
         <div class="post-tags">
           
-            <a href="/tags/git/" rel="tag">#git</a>
+            <a href="/tags/React/" rel="tag">#React</a>
+          
+            <a href="/tags/Immutable-js/" rel="tag">#Immutable.js</a>
           
         </div>
       
@@ -431,17 +370,13 @@ Hi user2! You&apos;ve successfully authenticated, but GitHub does not provide sh
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/09/19/维护一个方便自己开发的Less库/" rel="next" title="维护一个方便自己开发的Less库">
-                <i class="fa fa-chevron-left"></i> 维护一个方便自己开发的Less库
+              <a href="/2016/03/10/React应用性能优化之shouldComponentUpdate与key/" rel="next" title="React应用性能优化之shouldComponentUpdate与key">
+                <i class="fa fa-chevron-left"></i> React应用性能优化之shouldComponentUpdate与key
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/10/08/前端批量压缩图片/" rel="prev" title="前端批量压缩图片">
-                前端批量压缩图片 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -456,10 +391,10 @@ Hi user2! You&apos;ve successfully authenticated, but GitHub does not provide sh
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/09/30/git ssh-key及多帐户设置/"
-     data-title="git ssh-key及多帐户设置"
+        <div class="ds-share flat" data-thread-key="2016/03/14/React应用性能优化之IMMUTABLE-JS/"
+     data-title="React应用性能优化之IMMUTABLE.JS"
      data-content=""
-     data-url="http://robin-front.github.io/2015/09/30/git ssh-key及多帐户设置/">
+     data-url="http://robin-front.github.io/2016/03/14/React应用性能优化之IMMUTABLE-JS/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -486,8 +421,8 @@ Hi user2! You&apos;ve successfully authenticated, but GitHub does not provide sh
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/09/30/git ssh-key及多帐户设置/"
-           data-title="git ssh-key及多帐户设置" data-url="http://robin-front.github.io/2015/09/30/git ssh-key及多帐户设置/">
+      <div class="ds-thread" data-thread-key="2016/03/14/React应用性能优化之IMMUTABLE-JS/"
+           data-title="React应用性能优化之IMMUTABLE.JS" data-url="http://robin-front.github.io/2016/03/14/React应用性能优化之IMMUTABLE-JS/">
       </div>
     
   </div>
@@ -599,7 +534,7 @@ Hi user2! You&apos;ve successfully authenticated, but GitHub does not provide sh
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#首个帐户"><span class="nav-number">1.</span> <span class="nav-text">首个帐户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二个帐户"><span class="nav-number">2.</span> <span class="nav-text">第二个帐户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建user2的SSH-Key"><span class="nav-number">2.1.</span> <span class="nav-text">新建user2的SSH Key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新密钥添加到SSH-agent中"><span class="nav-number">2.2.</span> <span class="nav-text">新密钥添加到SSH agent中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加user2的公钥"><span class="nav-number">2.3.</span> <span class="nav-text">添加user2的公钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改config文件-重要的一步"><span class="nav-number">2.4.</span> <span class="nav-text">修改config文件 (重要的一步)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#帐号关联"><span class="nav-number">2.5.</span> <span class="nav-text">帐号关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-clone"><span class="nav-number">2.6.</span> <span class="nav-text">关于 clone</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-remote"><span class="nav-number">2.7.</span> <span class="nav-text">关于 remote</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试："><span class="nav-number">2.8.</span> <span class="nav-text">测试：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Immutable-js"><span class="nav-number">1.</span> <span class="nav-text">Immutable.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么在React-js中使用Immutable-js"><span class="nav-number">2.</span> <span class="nav-text">为什么在React.js中使用Immutable.js</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

@@ -267,6 +267,123 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/02/采用非直进式合并（git-merge-no-ff）/" itemprop="url">
+                  采用非直进式合并（git-merge-no-ff）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-02T15:44:00+08:00" content="2016-04-02">
+              2016-04-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/02/采用非直进式合并（git-merge-no-ff）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/02/采用非直进式合并（git-merge-no-ff）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>使用Git当合并一个分支是一个相当常见的操作。在某些情况下，Git会默认将尝试在快进模式合并一个分支。如果不使用快进合并有什么不同？<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/02/采用非直进式合并（git-merge-no-ff）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/16/快速上手Flow-静态类型检查器/" itemprop="url">
                   快速上手Flow-静态类型检查器
                 </a>
@@ -1310,136 +1427,6 @@ $ git checkout version2.0
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/09/gulp-4.0/" itemprop="url">
-                  gulp 4.0的变化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-09T15:23:51+08:00" content="2015-10-09">
-              2015-10-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/前端构建/" itemprop="url" rel="index">
-                    <span itemprop="name">前端构建</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/09/gulp-4.0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/09/gulp-4.0/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="升级日志"><a href="#升级日志" class="headerlink" title="升级日志"></a>升级日志</h3><p>先来看看新版有什么不同（<a href="https://github.com/gulpjs/gulp/blob/4.0/CHANGELOG.md">官方升级日志</a>）：</p>
-<ul>
-<li><p>新的任务系统（基于 bach，替换掉了原先基于 orchestrator 的任务系统）</p>
-<ul>
-<li>移除 gulp.reset</li>
-<li>gulp.task 不再支持三个参数的用法</li>
-<li>gulp.task 用字符串注册的任务必须是直接在命令行中调用的任务</li>
-<li>gulp.task 可以接受单参数语法，这个参数必须是一个命名函数，函数名会被作为任务名</li>
-<li>添加了 gulp.series 和 gulp.parallel 方法用于组合任务</li>
-<li>添加了 gulp.tree 方法用于获取任务树，传入 { deep: true } 参数可以得到一个 archy 兼容的节点列表</li>
-<li>添加了 gulp.registry 方法以定制注册表。</li>
-</ul>
-</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/09/gulp-4.0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1486,7 +1473,7 @@ $ git checkout version2.0
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

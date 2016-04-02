@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="React," />
+  <meta name="keywords" content="git," />
 
 
 
@@ -61,19 +61,19 @@
 
 
 
-<meta name="description" content="虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。
-下面看看加速应用程序的两种简单的配置方法：">
+<meta name="description" content="使用Git当合并一个分支是一个相当常见的操作。在某些情况下，Git会默认将尝试在快进模式合并一个分支。如果不使用快进合并有什么不同？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React应用性能优化之shouldComponentUpdate与key">
-<meta property="og:url" content="http://robin-front.github.io/2016/03/10/React应用性能优化之shouldComponentUpdate与key/index.html">
+<meta property="og:title" content="采用非直进式合并（git-merge-no-ff）">
+<meta property="og:url" content="http://robin-front.github.io/2016/04/02/采用非直进式合并（git-merge-no-ff）/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。
-下面看看加速应用程序的两种简单的配置方法：">
-<meta property="og:updated_time" content="2016-03-10T14:32:13.000Z">
+<meta property="og:description" content="使用Git当合并一个分支是一个相当常见的操作。在某些情况下，Git会默认将尝试在快进模式合并一个分支。如果不使用快进合并有什么不同？">
+<meta property="og:image" content="https://raw.githubusercontent.com/Robin-front/blog/master/source/images/20160402/gitbranch.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Robin-front/blog/master/source/images/20160402/merging.png">
+<meta property="og:updated_time" content="2016-04-02T07:44:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React应用性能优化之shouldComponentUpdate与key">
-<meta name="twitter:description" content="虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。
-下面看看加速应用程序的两种简单的配置方法：">
+<meta name="twitter:title" content="采用非直进式合并（git-merge-no-ff）">
+<meta name="twitter:description" content="使用Git当合并一个分支是一个相当常见的操作。在某些情况下，Git会默认将尝试在快进模式合并一个分支。如果不使用快进合并有什么不同？">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Robin-front/blog/master/source/images/20160402/gitbranch.png">
 
 
 
@@ -91,7 +91,7 @@
   };
 </script>
 
-  <title> React应用性能优化之shouldComponentUpdate与key | 三寸稚笔 </title>
+  <title> 采用非直进式合并（git-merge-no-ff） | 三寸稚笔 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +262,7 @@
             
             
               
-                React应用性能优化之shouldComponentUpdate与key
+                采用非直进式合并（git-merge-no-ff）
               
             
           </h1>
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-10T22:32:13+08:00" content="2016-03-10">
-              2016-03-10
+            <time itemprop="dateCreated" datetime="2016-04-02T15:44:00+08:00" content="2016-04-02">
+              2016-04-02
             </time>
           </span>
 
@@ -288,8 +288,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index">
-                    <span itemprop="name">React</span>
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
                   </a>
                 </span>
 
@@ -304,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/10/React应用性能优化之shouldComponentUpdate与key/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/React应用性能优化之shouldComponentUpdate与key/" itemprop="commentsCount"></span>
+                <a href="/2016/04/02/采用非直进式合并（git-merge-no-ff）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/02/采用非直进式合并（git-merge-no-ff）/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -327,26 +327,19 @@
       
 
       
-        <p>虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。</p>
-<p>下面看看加速应用程序的两种简单的配置方法：<br><a id="more"></a></p>
-<h3 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate"></a>shouldComponentUpdate</h3><p>设置新 props，调用 setState 方法或 forceUpdate 方法时，React 都会调用该组件所有子组件的 render 方法。但是在组件树深度嵌套或 render 方法十分复杂的时侯，页面就会有延迟。</p>
-<p>但此时，某些子组件并没有必要更新，或者永远都不需要更新，这时进行的计算过程是没有必要的。</p>
-<p>而 shouldComponentUpdate 方法正是用来判断是否需要调用指定组件的 render 方法。</p>
-<p>shouldComponentUpdate 方法返回一个布尔值。false 表示不要调用 render 方法；true 表示需要调用 render 方法计算出新的虚拟 DOM。</p>
+        <p>使用Git当合并一个分支是一个相当常见的操作。在某些情况下，Git会默认将尝试在快进模式合并一个分支。如果不使用快进合并有什么不同？<br><a id="more"></a></p>
+<p>假设我从<code>master</code>创建一个名为<code>speedup</code>分支。在这个分支上工作一段时间（三个提交，那些白色的圆圈）后，当我完成工作时，我把它<code>git push</code>推到我自己的远程分支。同时，主分支<code>master</code>什么都没发生，但仍处于相同的状态之前，我分出。这种情况在下面的图中描述。</p>
+<p><img src="https://raw.githubusercontent.com/Robin-front/blog/master/source/images/20160402/gitbranch.png" alt="git push"></p>
+<p>一旦该项目的维护者得到通知，我的分支已经准备好合并进<code>master</code>，她可能使用git的常规步骤<code>git fetch</code>操作后执行<code>git merge</code>来合并。因为主分支并没有新的提交（灰色圆圈），Git会用快进执行合并。整个系列的提交将是线性的。历史会像下图（左侧）。</p>
+<p><img src="https://raw.githubusercontent.com/Robin-front/blog/master/source/images/20160402/merging.png" alt="git merge"></p>
+<p>合并的另一个变型是使用 <code>-no-ff</code> 选项（它代表不快进）。在这种情况下，分支历史看上去稍有不同（右侧），有一个附加的提交（虚线圆）强调合并。这个提交告诉我们有关合并分支的备注信息。</p>
+<p>Git的默认行为是尽可能使用快进。这可以改变的，非快进模式可以很容易地<a href="http://stackoverflow.com/questions/2500296/can-i-make-fast-forwarding-be-off-by-default-in-git" target="_blank" rel="external">设定为默认合并模式</a>。</p>
 <blockquote>
-<p>此方法的默认值是 true。<br>并且，组件首次渲染时，shouldComponentUpdate 方法不会被调用</p>
+<p>设置非快进模式合并为默认合并方式<br>git config branch.master.mergeoptions  “–no-ff”</p>
 </blockquote>
-<p>shouldComponentUpdate 方法接受两个参数，新的 props 和新的 state：</p>
-<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">React.creatClass(&#123;</span><br><span class="line">    <span class="attribute">shouldComponentUpdate</span>: <span class="function"><span class="keyword">function</span> (<span class="params">nextProps, nextState</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> nextProps.id !== <span class="keyword">this</span>.props.id</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-<p>另外，我们也可以添加 React.addons.PureRenderMixin 插件来处理 shouldComponentUpdate。 这个插件会重写 shouldComponentUpdate 方法，并在该方法内对新老 props 及 state 进行对比， 如果发现它们完全一致则返回 false, 就像上面的例子一样。官方文档里也有介绍： <a href="https://facebook.github.io/react/docs/pure-render-mixin.html" target="_blank" rel="external">PureRenderMixin</a></p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">PureRenderMixin</span> from <span class="symbol">'react</span>-addons-pure-render-mixin';</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.shouldComponentUpdate = <span class="type">PureRenderMixin</span>.shouldComponentUpdate.bind(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> &lt;div className=&#123;<span class="keyword">this</span>.props.className&#125;&gt;foo&lt;/div&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="key-键"><a href="#key-键" class="headerlink" title="key(键)"></a>key(键)</h3><p>在遍历列表的时候，没有组件添加 key 值会有 warnning 产生。那它是用来干嘛的呢？ 假设有一个 div 组件，它的 key 属性为 ‘foo’，之后又改为 ‘bar’， 那 React 就会跳过 DOM diff， 同时完会弃置 div 所有的子元素，并重新渲染。除了告诉 React 什么时候要抛弃一个节点之外，key 还可以在元素顺序改变时使用。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> items.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">'item.id'</span>&gt;</span>item.name<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果像上面这样，React 在li 列表顺序改变的时候就不会重新渲染，而是采用 insertBefore 操作，这也是最高效的方法。</p>
-<blockquote>
-<p>但是要注意，key 值必须是独一无二的，最好不要是数字，绝对不能是遍历中的index。这样可以保证从一个父组件移动到另一个父组件的情况是不会被处理的。</p>
-</blockquote>
-<p>key 值也是无法读取的。</p>
+<p>总之，非快进合并保持明确分支的概念。它可在保留分支复杂的非线性提交历史。在另一方面，快进合并保持线性历史上的变更，使其更容易使用其他工具（log, blame, bisect）。每个分支的来源将变得很不明显，但如果该项目强制要求提交信息和问题跟踪器之间的严格的交叉引用，这也不是什么大不了的事。</p>
+<p>你喜欢哪一种呢，快进式或非快进式？</p>
+<p>翻译自：<br><a href="http://ariya.ofilabs.com/2013/09/fast-forward-git-merge.html" target="_blank" rel="external">Fast-Forward Git Merge</a></p>
 
       
     </div>
@@ -361,7 +354,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/React/" rel="tag">#React</a>
+            <a href="/tags/git/" rel="tag">#git</a>
           
         </div>
       
@@ -370,17 +363,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/07/搜索命令之locate、whereis、which、find、grep/" rel="next" title="搜索命令之locate、whereis、which、find、grep">
-                <i class="fa fa-chevron-left"></i> 搜索命令之locate、whereis、which、find、grep
+              <a href="/2016/03/16/快速上手Flow-静态类型检查器/" rel="next" title="快速上手Flow-静态类型检查器">
+                <i class="fa fa-chevron-left"></i> 快速上手Flow-静态类型检查器
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/14/React应用性能优化之IMMUTABLE-JS/" rel="prev" title="React应用性能优化之IMMUTABLE.JS">
-                React应用性能优化之IMMUTABLE.JS <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -395,10 +384,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/03/10/React应用性能优化之shouldComponentUpdate与key/"
-     data-title="React应用性能优化之shouldComponentUpdate与key"
+        <div class="ds-share flat" data-thread-key="2016/04/02/采用非直进式合并（git-merge-no-ff）/"
+     data-title="采用非直进式合并（git-merge-no-ff）"
      data-content=""
-     data-url="http://robin-front.github.io/2016/03/10/React应用性能优化之shouldComponentUpdate与key/">
+     data-url="http://robin-front.github.io/2016/04/02/采用非直进式合并（git-merge-no-ff）/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -425,8 +414,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/10/React应用性能优化之shouldComponentUpdate与key/"
-           data-title="React应用性能优化之shouldComponentUpdate与key" data-url="http://robin-front.github.io/2016/03/10/React应用性能优化之shouldComponentUpdate与key/">
+      <div class="ds-thread" data-thread-key="2016/04/02/采用非直进式合并（git-merge-no-ff）/"
+           data-title="采用非直进式合并（git-merge-no-ff）" data-url="http://robin-front.github.io/2016/04/02/采用非直进式合并（git-merge-no-ff）/">
       </div>
     
   </div>
@@ -538,7 +527,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#shouldComponentUpdate"><span class="nav-number">1.</span> <span class="nav-text">shouldComponentUpdate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#key-键"><span class="nav-number">2.</span> <span class="nav-text">key(键)</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

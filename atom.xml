@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2016-03-16T08:09:49.000Z</updated>
+  <updated>2016-04-02T07:44:00.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>采用非直进式合并（git-merge-no-ff）</title>
+    <link href="http://robin-front.github.io/2016/04/02/%E9%87%87%E7%94%A8%E9%9D%9E%E7%9B%B4%E8%BF%9B%E5%BC%8F%E5%90%88%E5%B9%B6%EF%BC%88git-merge-no-ff%EF%BC%89/"/>
+    <id>http://robin-front.github.io/2016/04/02/采用非直进式合并（git-merge-no-ff）/</id>
+    <published>2016-04-02T07:44:00.000Z</published>
+    <updated>2016-04-02T07:44:00.000Z</updated>
+    
+    <content type="html">&lt;p&gt;使用Git当合并一个分支是一个相当常见的操作。在某些情况下，Git会默认将尝试在快进模式合并一个分支。如果不使用快进合并有什么不同？&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;假设我从&lt;code&gt;master&lt;/code&gt;创建一个名为&lt;code&gt;speedup&lt;/code&gt;分支。在这个分支上工作一段时间（三个提交，那些白色的圆圈）后，当我完成工作时，我把它&lt;code&gt;git push&lt;/code&gt;推到我自己的远程分支。同时，主分支&lt;code&gt;master&lt;/code&gt;什么都没发生，但仍处于相同的状态之前，我分出。这种情况在下面的图中描述。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Robin-front/blog/master/source/images/20160402/gitbranch.png&quot; alt=&quot;git push&quot;&gt;&lt;/p&gt;
+&lt;p&gt;一旦该项目的维护者得到通知，我的分支已经准备好合并进&lt;code&gt;master&lt;/code&gt;，她可能使用git的常规步骤&lt;code&gt;git fetch&lt;/code&gt;操作后执行&lt;code&gt;git merge&lt;/code&gt;来合并。因为主分支并没有新的提交（灰色圆圈），Git会用快进执行合并。整个系列的提交将是线性的。历史会像下图（左侧）。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Robin-front/blog/master/source/images/20160402/merging.png&quot; alt=&quot;git merge&quot;&gt;&lt;/p&gt;
+&lt;p&gt;合并的另一个变型是使用 &lt;code&gt;-no-ff&lt;/code&gt; 选项（它代表不快进）。在这种情况下，分支历史看上去稍有不同（右侧），有一个附加的提交（虚线圆）强调合并。这个提交告诉我们有关合并分支的备注信息。&lt;/p&gt;
+&lt;p&gt;Git的默认行为是尽可能使用快进。这可以改变的，非快进模式可以很容易地&lt;a href=&quot;http://stackoverflow.com/questions/2500296/can-i-make-fast-forwarding-be-off-by-default-in-git&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;设定为默认合并模式&lt;/a&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;设置非快进模式合并为默认合并方式&lt;br&gt;git config branch.master.mergeoptions  “–no-ff”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;总之，非快进合并保持明确分支的概念。它可在保留分支复杂的非线性提交历史。在另一方面，快进合并保持线性历史上的变更，使其更容易使用其他工具（log, blame, bisect）。每个分支的来源将变得很不明显，但如果该项目强制要求提交信息和问题跟踪器之间的严格的交叉引用，这也不是什么大不了的事。&lt;/p&gt;
+&lt;p&gt;你喜欢哪一种呢，快进式或非快进式？&lt;/p&gt;
+&lt;p&gt;翻译自：&lt;br&gt;&lt;a href=&quot;http://ariya.ofilabs.com/2013/09/fast-forward-git-merge.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Fast-Forward Git Merge&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用Git当合并一个分支是一个相当常见的操作。在某些情况下，Git会默认将尝试在快进模式合并一个分支。如果不使用快进合并有什么不同？&lt;br&gt;
+    
+    </summary>
+    
+      <category term="git" scheme="http://robin-front.github.io/categories/git/"/>
+    
+    
+      <category term="git" scheme="http://robin-front.github.io/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>快速上手Flow-静态类型检查器</title>

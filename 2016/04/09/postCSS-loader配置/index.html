@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="React," />
+  <meta name="keywords" content="Webpack,loaders," />
 
 
 
@@ -61,19 +61,16 @@
 
 
 
-<meta name="description" content="虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。
-下面看看加速应用程序的两种简单的配置方法：">
+<meta name="description" content="组件必不可少的一部分就是 css，这里看下关于 css的一些 loaders。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React应用性能优化之shouldComponentUpdate与key">
-<meta property="og:url" content="http://robin-front.github.io/2016/03/10/React应用性能优化之shouldComponentUpdate与key/index.html">
+<meta property="og:title" content="postCSS-loader配置,让css随心所欲">
+<meta property="og:url" content="http://robin-front.github.io/2016/04/09/postCSS-loader配置/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。
-下面看看加速应用程序的两种简单的配置方法：">
-<meta property="og:updated_time" content="2016-03-10T14:32:13.000Z">
+<meta property="og:description" content="组件必不可少的一部分就是 css，这里看下关于 css的一些 loaders。">
+<meta property="og:updated_time" content="2016-04-09T14:47:09.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React应用性能优化之shouldComponentUpdate与key">
-<meta name="twitter:description" content="虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。
-下面看看加速应用程序的两种简单的配置方法：">
+<meta name="twitter:title" content="postCSS-loader配置,让css随心所欲">
+<meta name="twitter:description" content="组件必不可少的一部分就是 css，这里看下关于 css的一些 loaders。">
 
 
 
@@ -91,7 +88,7 @@
   };
 </script>
 
-  <title> React应用性能优化之shouldComponentUpdate与key | 三寸稚笔 </title>
+  <title> postCSS-loader配置,让css随心所欲 | 三寸稚笔 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +259,7 @@
             
             
               
-                React应用性能优化之shouldComponentUpdate与key
+                postCSS-loader配置,让css随心所欲
               
             
           </h1>
@@ -274,8 +271,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-10T22:32:13+08:00" content="2016-03-10">
-              2016-03-10
+            <time itemprop="dateCreated" datetime="2016-04-09T22:47:09+08:00" content="2016-04-09">
+              2016-04-09
             </time>
           </span>
 
@@ -288,8 +285,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index">
-                    <span itemprop="name">React</span>
+                  <a href="/categories/Webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">Webpack</span>
                   </a>
                 </span>
 
@@ -304,8 +301,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/10/React应用性能优化之shouldComponentUpdate与key/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/React应用性能优化之shouldComponentUpdate与key/" itemprop="commentsCount"></span>
+                <a href="/2016/04/09/postCSS-loader配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/09/postCSS-loader配置/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -327,26 +324,31 @@
       
 
       
-        <p>虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。</p>
-<p>下面看看加速应用程序的两种简单的配置方法：<br><a id="more"></a></p>
-<h3 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate"></a>shouldComponentUpdate</h3><p>设置新 props，调用 setState 方法或 forceUpdate 方法时，React 都会调用该组件所有子组件的 render 方法。但是在组件树深度嵌套或 render 方法十分复杂的时侯，页面就会有延迟。</p>
-<p>但此时，某些子组件并没有必要更新，或者永远都不需要更新，这时进行的计算过程是没有必要的。</p>
-<p>而 shouldComponentUpdate 方法正是用来判断是否需要调用指定组件的 render 方法。</p>
-<p>shouldComponentUpdate 方法返回一个布尔值。false 表示不要调用 render 方法；true 表示需要调用 render 方法计算出新的虚拟 DOM。</p>
+        <p>组件必不可少的一部分就是 <code>css</code>，这里看下关于 <code>css</code>的一些 <code>loaders</code>。<br><a id="more"></a></p>
+<h3 id="PostCSS"><a href="#PostCSS" class="headerlink" title="PostCSS"></a>PostCSS</h3><p><code>PostCSS</code> 官网是这么介绍自己的：</p>
 <blockquote>
-<p>此方法的默认值是 true。<br>并且，组件首次渲染时，shouldComponentUpdate 方法不会被调用</p>
+<p>PostCSS is a tool for transforming styles with JS plugins. These plugins can lint your CSS, support variables and mixins, transpile future CSS syntax, inline images, and more.</p>
 </blockquote>
-<p>shouldComponentUpdate 方法接受两个参数，新的 props 和新的 state：</p>
-<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">React.creatClass(&#123;</span><br><span class="line">    <span class="attribute">shouldComponentUpdate</span>: <span class="function"><span class="keyword">function</span> (<span class="params">nextProps, nextState</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> nextProps.id !== <span class="keyword">this</span>.props.id</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-<p>另外，我们也可以添加 React.addons.PureRenderMixin 插件来处理 shouldComponentUpdate。 这个插件会重写 shouldComponentUpdate 方法，并在该方法内对新老 props 及 state 进行对比， 如果发现它们完全一致则返回 false, 就像上面的例子一样。官方文档里也有介绍： <a href="https://facebook.github.io/react/docs/pure-render-mixin.html" target="_blank" rel="external">PureRenderMixin</a></p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">PureRenderMixin</span> from <span class="symbol">'react</span>-addons-pure-render-mixin';</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.shouldComponentUpdate = <span class="type">PureRenderMixin</span>.shouldComponentUpdate.bind(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> &lt;div className=&#123;<span class="keyword">this</span>.props.className&#125;&gt;foo&lt;/div&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="key-键"><a href="#key-键" class="headerlink" title="key(键)"></a>key(键)</h3><p>在遍历列表的时候，没有组件添加 key 值会有 warnning 产生。那它是用来干嘛的呢？ 假设有一个 div 组件，它的 key 属性为 ‘foo’，之后又改为 ‘bar’， 那 React 就会跳过 DOM diff， 同时完会弃置 div 所有的子元素，并重新渲染。除了告诉 React 什么时候要抛弃一个节点之外，key 还可以在元素顺序改变时使用。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> items.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">'item.id'</span>&gt;</span>item.name<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果像上面这样，React 在li 列表顺序改变的时候就不会重新渲染，而是采用 insertBefore 操作，这也是最高效的方法。</p>
+<p>他是一款通过 <code>JS</code> 插件转换 <code>styles</code> 样式的工具。</p>
+<p>在 <code>Webpack</code> 里面可以通过 <code>postCSS-loader</code> 来使用 <code>PostCSS</code>。</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>首先是安装 <code>postCSS-loader</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install postcss-loader --save-dev</span><br></pre></td></tr></table></figure>
+<p>下面是一个 <code>Webpack config</code> 的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> precss       = <span class="built_in">require</span>(<span class="string">'precss'</span>); <span class="comment">// 实现类Sass的功能，变量，嵌套，mixins</span></span><br><span class="line"><span class="keyword">var</span> autoprefixer = <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>); <span class="comment">// 自动添加浏览器前缀</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        loaders: [</span><br><span class="line">            &#123;</span><br><span class="line">                test:   <span class="regexp">/\.css$/</span>,</span><br><span class="line">                loader: <span class="string">"style-loader!css-loader!postcss-loader"</span> <span class="comment">//在使用 css-loader,style-loader之前处理</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    postcss: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">// postcss 插件</span></span><br><span class="line">        <span class="keyword">return</span> [precss, autoprefixer];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>但是要注意，key 值必须是独一无二的，最好不要是数字，绝对不能是遍历中的index。这样可以保证从一个父组件移动到另一个父组件的情况是不会被处理的。</p>
+<p>上面的例子使用了两个 <code>postcss</code> 插件，应该预先安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; npm install precss --save-dev</span><br><span class="line">&gt; npm install autoprefixer --save-dev</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>key 值也是无法读取的。</p>
+<p>在文件中引入的css将通过 <code>PostCSS</code> 插件的处理:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> css = <span class="built_in">require</span>(<span class="string">'./file.css'</span>);</span><br><span class="line">or</span><br><span class="line"><span class="keyword">import</span> <span class="string">'./file.css'</span></span><br><span class="line"><span class="comment">// =&gt; CSS after Autoprefixer and CSSWring</span></span><br></pre></td></tr></table></figure>
+<h4 id="插件组"><a href="#插件组" class="headerlink" title="插件组"></a>插件组</h4><p>如果你想对不同目录或类型的 <code>css</code>使用不同的 <code>PostCSS</code> 插件配置进行处理，可以使用 <code>?pack=name</code> 参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        loaders: [</span><br><span class="line">            &#123;</span><br><span class="line">                test:   <span class="regexp">/\.docs\.css$/</span>,</span><br><span class="line">                loader: <span class="string">"style-loader!css-loader!postcss-loader?pack=cleaner"</span> <span class="comment">// 对docs目录下的css使用 cleaner 的配置</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                test:   <span class="regexp">/\.css$/</span>,</span><br><span class="line">                loader: <span class="string">"style-loader!css-loader!postcss-loader"</span> <span class="comment">// 对其他目录下的css使用 defaults 的配置</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    postcss: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            defaults: [precss, autoprefixer],</span><br><span class="line">            cleaner:  [autoprefixer(&#123; browsers: [] &#125;)]</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="写在-js-中的样式"><a href="#写在-js-中的样式" class="headerlink" title="写在 js 中的样式"></a>写在 js 中的样式</h4><p>可以通过 <code>postcss-js</code> 插件处理写在 js 中的样式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test:   <span class="regexp">/\.style.js$/</span>,</span><br><span class="line">    loader: <span class="string">"style-loader!css-loader!postcss-loader?parser=postcss-js"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以通过 <code>babel</code> 结合 <code>postcss-js</code> 处理 <code>es6</code> 语法中的样式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test:   <span class="regexp">/\.style.js$/</span>,</span><br><span class="line">    loader: <span class="string">"style-loader!css-loader!postcss-loader?parser=postcss-js!babel"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你可以像下面这样写样式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> colors <span class="keyword">from</span> <span class="string">'../config/colors'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="string">'.menu'</span>: &#123;</span><br><span class="line">        color: colors.main,</span><br><span class="line">        height: <span class="number">25</span>,</span><br><span class="line">        <span class="string">'&amp;_link'</span>: &#123;</span><br><span class="line">            color: <span class="string">'white'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -361,7 +363,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/React/" rel="tag">#React</a>
+            <a href="/tags/Webpack/" rel="tag">#Webpack</a>
+          
+            <a href="/tags/loaders/" rel="tag">#loaders</a>
           
         </div>
       
@@ -370,17 +374,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/07/搜索命令之locate、whereis、which、find、grep/" rel="next" title="搜索命令之locate、whereis、which、find、grep">
-                <i class="fa fa-chevron-left"></i> 搜索命令之locate、whereis、which、find、grep
+              <a href="/2016/04/08/babel-loader配置/" rel="next" title="babel-loader配置">
+                <i class="fa fa-chevron-left"></i> babel-loader配置
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/14/React应用性能优化之IMMUTABLE-JS/" rel="prev" title="React应用性能优化之IMMUTABLE.JS">
-                React应用性能优化之IMMUTABLE.JS <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -395,10 +395,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/03/10/React应用性能优化之shouldComponentUpdate与key/"
-     data-title="React应用性能优化之shouldComponentUpdate与key"
+        <div class="ds-share flat" data-thread-key="2016/04/09/postCSS-loader配置/"
+     data-title="postCSS-loader配置,让css随心所欲"
      data-content=""
-     data-url="http://robin-front.github.io/2016/03/10/React应用性能优化之shouldComponentUpdate与key/">
+     data-url="http://robin-front.github.io/2016/04/09/postCSS-loader配置/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -425,8 +425,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/10/React应用性能优化之shouldComponentUpdate与key/"
-           data-title="React应用性能优化之shouldComponentUpdate与key" data-url="http://robin-front.github.io/2016/03/10/React应用性能优化之shouldComponentUpdate与key/">
+      <div class="ds-thread" data-thread-key="2016/04/09/postCSS-loader配置/"
+           data-title="postCSS-loader配置,让css随心所欲" data-url="http://robin-front.github.io/2016/04/09/postCSS-loader配置/">
       </div>
     
   </div>
@@ -538,7 +538,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#shouldComponentUpdate"><span class="nav-number">1.</span> <span class="nav-text">shouldComponentUpdate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#key-键"><span class="nav-number">2.</span> <span class="nav-text">key(键)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#PostCSS"><span class="nav-number">1.</span> <span class="nav-text">PostCSS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">1.1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插件组"><span class="nav-number">1.2.</span> <span class="nav-text">插件组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#写在-js-中的样式"><span class="nav-number">1.3.</span> <span class="nav-text">写在 js 中的样式</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

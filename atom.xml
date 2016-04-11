@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2016-04-09T14:47:09.000Z</updated>
+  <updated>2016-04-09T16:43:12.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>postCSS常用插件</title>
+    <link href="http://robin-front.github.io/2016/04/10/postCSS%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6/"/>
+    <id>http://robin-front.github.io/2016/04/10/postCSS常用插件/</id>
+    <published>2016-04-09T16:43:12.000Z</published>
+    <updated>2016-04-09T16:43:12.000Z</updated>
+    
+    <content type="html">&lt;p&gt;PostCSS拥有非常多的插件，诸如自动为CSS添加浏览器前缀的插件autoprefixer、当前移动端最常用的px转rem插件px2rem，还有支持尚未成为CSS标准但特定可用的插件cssnext，还有很多很多。就连著名的Bootstrap在下一个版本Bootstrap 5也将使用PostCSS作为样式的基础。&lt;/p&gt;
+&lt;p&gt;一句话来概括PostCSS：CSS编译器能够做到的事情，它也可以做到，而且能够做得更好&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;PostCSS性能&quot;&gt;&lt;a href=&quot;#PostCSS性能&quot; class=&quot;headerlink&quot; title=&quot;PostCSS性能&quot;&gt;&lt;/a&gt;PostCSS性能&lt;/h3&gt;&lt;p&gt;在PostCSS官方推特上看到，由JavaScript编写的PostCSS比C++编写的libsass还要快3倍.&lt;/p&gt;
+&lt;p&gt;如果你对上面的性能截图有疑问，可以亲自来&lt;a href=&quot;https://github.com/postcss/benchmark&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;测试看看。&lt;/p&gt;
+&lt;h3 id=&quot;常用的插件&quot;&gt;&lt;a href=&quot;#常用的插件&quot; class=&quot;headerlink&quot; title=&quot;常用的插件&quot;&gt;&lt;/a&gt;常用的插件&lt;/h3&gt;&lt;h4 id=&quot;autoprefixer&quot;&gt;&lt;a href=&quot;#autoprefixer&quot; class=&quot;headerlink&quot; title=&quot;autoprefixer&quot;&gt;&lt;/a&gt;autoprefixer&lt;/h4&gt;&lt;p&gt;首先是最火的官方插件 &lt;code&gt;autoprefixer&lt;/code&gt; 。&lt;code&gt;autoprefixer&lt;/code&gt; 是为我们的 &lt;code&gt;css&lt;/code&gt; 添加前缀的插件，它的数据来源于 &lt;a href=&quot;http://caniuse.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Can I use&lt;/a&gt;。目的是让我们写纯粹的 &lt;code&gt;css&lt;/code&gt;。例：&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;selector-tag&quot;&gt;a&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;display&lt;/span&gt;: flex;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;会编译成：&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;selector-tag&quot;&gt;a&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;display&lt;/span&gt;: -webkit-box;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;display&lt;/span&gt;: -webkit-flex;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;display&lt;/span&gt;: -ms-flexbox;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;display&lt;/span&gt;: flex&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h5 id=&quot;Options&quot;&gt;&lt;a href=&quot;#Options&quot; class=&quot;headerlink&quot; title=&quot;Options&quot;&gt;&lt;/a&gt;Options&lt;/h5&gt;&lt;p&gt;通过 &lt;code&gt;autoprefixer(options)&lt;/code&gt; 配置：&lt;br&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var plugin = autoprefixer(&amp;#123; browsers: [&#39;&amp;gt; 1%&#39;, &#39;IE 7&#39;], cascade: false &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;browsers (array): 指定你需要支持的浏览器列表。可以直接指定浏览器版本（如 IE 7）,也可以使用选项（如： last 2 version 或 &amp;gt; 5%）,具体选项可以查看 &lt;a href=&quot;https://github.com/ai/browserslist#queries&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Browserslist&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;cascade (boolean): should Autoprefixer use Visual Cascade, if CSS is uncompressed. Default: true&lt;/li&gt;
+&lt;li&gt;add (boolean): 是否添加浏览器兼容前缀. 默认值是true.&lt;/li&gt;
+&lt;li&gt;remove (boolean): 是否去除无用的浏览器兼容前缀. 默认值是true.&lt;/li&gt;
+&lt;li&gt;supports (boolean): should Autoprefixer add prefixes for @supports parameters. Default is true.&lt;br&gt;flexbox (boolean|string): should Autoprefixer add prefixes for flexbox properties. With “no-2009” value Autoprefixer will add prefixes only for final and IE versions of specification. Default is true.&lt;/li&gt;
+&lt;li&gt;grid (boolean): should Autoprefixer add IE prefixes for Grid Layout properties. Default is true.&lt;/li&gt;
+&lt;li&gt;stats (object): custom usage statistics for &amp;gt; 10% in my stats browsers query.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&quot;调试&quot;&gt;&lt;a href=&quot;#调试&quot; class=&quot;headerlink&quot; title=&quot;调试&quot;&gt;&lt;/a&gt;调试&lt;/h5&gt;&lt;p&gt;&lt;code&gt;info()&lt;/code&gt; 方法可用于查看调试信息.可以像下面这样查看哪些浏览器被选中以及哪些属性被添加兼容前缀：&lt;/p&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;var info = autoprefixer(&amp;#123; browsers: [&#39;last 1 version&#39;] &amp;#125;).info();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;console.log(info);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;postcss-safe-parser&quot;&gt;&lt;a href=&quot;#postcss-safe-parser&quot; class=&quot;headerlink&quot; title=&quot;postcss-safe-parser&quot;&gt;&lt;/a&gt;postcss-safe-parser&lt;/h4&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/postcss/postcss-safe-parser&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;code&gt;postcss-safe-parser&lt;/code&gt;&lt;/a&gt; 可以帮你查找并修补CSS语法错误。&lt;/p&gt;
+&lt;h4 id=&quot;cssnano&quot;&gt;&lt;a href=&quot;#cssnano&quot; class=&quot;headerlink&quot; title=&quot;cssnano&quot;&gt;&lt;/a&gt;cssnano&lt;/h4&gt;&lt;p&gt;&lt;a href=&quot;http://cssnano.co/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;code&gt;cssnano&lt;/code&gt;&lt;/a&gt; 是模块化的CSS压缩器。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;PostCSS拥有非常多的插件，诸如自动为CSS添加浏览器前缀的插件autoprefixer、当前移动端最常用的px转rem插件px2rem，还有支持尚未成为CSS标准但特定可用的插件cssnext，还有很多很多。就连著名的Bootstrap在下一个版本Bootstrap 5也将使用PostCSS作为样式的基础。&lt;/p&gt;
+&lt;p&gt;一句话来概括PostCSS：CSS编译器能够做到的事情，它也可以做到，而且能够做得更好&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>postCSS-loader配置,让css随心所欲</title>

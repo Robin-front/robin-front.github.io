@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="linux," />
+  <meta name="keywords" content="Node," />
 
 
 
@@ -61,19 +61,16 @@
 
 
 
-<meta name="description" content="whereis搜索命令所在路径及帮助文档所在位置
-选项：-b 只查找可执行文件-m 只查找帮助文件">
+<meta name="description" content="前言这几个月，搜芽前端团队搞了Reactjs+Redux项目，在很多时候，比如部署，都需要使用Node，苦于我的肤浅，于是决定补一下功课。最近都会记录一些 Node相关的笔记。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搜索命令之locate、whereis、which、find、grep">
-<meta property="og:url" content="http://robin-front.github.io/2016/03/07/搜索命令之locate、whereis、which、find、grep/index.html">
+<meta property="og:title" content="Node与REPL">
+<meta property="og:url" content="http://robin-front.github.io/2016/04/13/记node与REPL/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="whereis搜索命令所在路径及帮助文档所在位置
-选项：-b 只查找可执行文件-m 只查找帮助文件">
-<meta property="og:updated_time" content="2016-03-06T16:58:03.000Z">
+<meta property="og:description" content="前言这几个月，搜芽前端团队搞了Reactjs+Redux项目，在很多时候，比如部署，都需要使用Node，苦于我的肤浅，于是决定补一下功课。最近都会记录一些 Node相关的笔记。">
+<meta property="og:updated_time" content="2016-04-13T15:15:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搜索命令之locate、whereis、which、find、grep">
-<meta name="twitter:description" content="whereis搜索命令所在路径及帮助文档所在位置
-选项：-b 只查找可执行文件-m 只查找帮助文件">
+<meta name="twitter:title" content="Node与REPL">
+<meta name="twitter:description" content="前言这几个月，搜芽前端团队搞了Reactjs+Redux项目，在很多时候，比如部署，都需要使用Node，苦于我的肤浅，于是决定补一下功课。最近都会记录一些 Node相关的笔记。">
 
 
 
@@ -91,7 +88,7 @@
   };
 </script>
 
-  <title> 搜索命令之locate、whereis、which、find、grep | 三寸稚笔 </title>
+  <title> Node与REPL | 三寸稚笔 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +259,7 @@
             
             
               
-                搜索命令之locate、whereis、which、find、grep
+                Node与REPL
               
             
           </h1>
@@ -274,8 +271,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-07T00:58:03+08:00" content="2016-03-07">
-              2016-03-07
+            <time itemprop="dateCreated" datetime="2016-04-13T23:15:44+08:00" content="2016-04-13">
+              2016-04-13
             </time>
           </span>
 
@@ -288,8 +285,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/Node/" itemprop="url" rel="index">
+                    <span itemprop="name">Node</span>
                   </a>
                 </span>
 
@@ -304,8 +301,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/07/搜索命令之locate、whereis、which、find、grep/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/07/搜索命令之locate、whereis、which、find、grep/" itemprop="commentsCount"></span>
+                <a href="/2016/04/13/记node与REPL/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/13/记node与REPL/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -327,27 +324,62 @@
       
 
       
-        <h3 id="whereis"><a href="#whereis" class="headerlink" title="whereis"></a>whereis</h3><p>搜索命令所在路径及帮助文档所在位置</p>
-<p>选项：<br>-b 只查找可执行文件<br>-m 只查找帮助文件<br><a id="more"></a></p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这几个月，搜芽前端团队搞了<code>Reactjs+Redux</code>项目，在很多时候，比如部署，都需要使用<code>Node</code>，苦于我的肤浅，于是决定补一下功课。最近都会记录一些 <code>Node</code>相关的笔记。<br><a id="more"></a></p>
+<h3 id="Node-的优势"><a href="#Node-的优势" class="headerlink" title="Node 的优势"></a>Node 的优势</h3><ul>
+<li>应用程序可以很容易地扩展，因为执行一个单线程并不会有非常大的开销</li>
+<li>无需诉求于多线程开发，却达到了节约又能高效使用资源的目的。换句话说，你不必创建一个线程安全的应用程序。</li>
+</ul>
 <blockquote>
-<p>也可以通过 whereis 命令来判断是否是shell内部命令</p>
+<p>全局变量在 <code>Node</code> 中是非常危险的，特别是你忘记 <code>var</code>关键字的时候。</p>
 </blockquote>
-<h3 id="which"><a href="#which" class="headerlink" title="which"></a>which</h3><p>搜索命令所在路么及别名</p>
-<blockquote>
-<p>与whereis的区别在于 which 不仅可以查看命令所在路径，还可以查看到命令的别名</p>
-</blockquote>
-<h3 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h3><p>搜索文件名最快的方式，根据后台数据库/var/lib/mlocate搜索</p>
-<p>updatedb 命令手动更新数据库，数据库更新不是即时的，一般需要一天<br>/etc/updatedb.conf 配置文件，用于配置搜索限制</p>
-<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>最强大的搜索命令，但同时带来性能问题</p>
-<blockquote>
-<p>find [搜索范围] [搜索条件]</p>
-</blockquote>
-<p>-name 按文件名搜索<br>-iname 不区分大小写搜索<br>-user 按照所有者搜索<br>-nouser 查找没有所有者的文件<br>-mtime 按修改文件的日期搜索，如：+10 查找10天前修改的文件， -10 查找10内修改的文件， 10 查找10天当天修改的文件<br>-atime 文件访问时间<br>-ctime 改变文件属性时间<br>-size 按照文件大小按索，如： find . -size 25k，注意 k 是小写， M是大写<br>-inum 按照i节点查找文件<br>-a 逻辑与 and,两个条件都满足，如： find /root -size +20k -a -size -1M 查找大于20k且小于1M的文件<br>-o 逻辑或 or,两个条件满足一个即可<br>-exec 命令 {} \; 对搜索结果执行操作，如： find /root -size 25k -exec rm -rf {} \; 查找/root目录下25k大小的文件之后删除</p>
-<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p>在文件中搜索符合条件的字符串</p>
-<p>选项：<br>-i 忽略大小写<br>-v 排除指定字符串</p>
-<blockquote>
-<p>grep 是包含匹配，只要含有匹配的字符串，一整行都会输出；find 是完全匹配，只输出文件名完全一样的文件</p>
-</blockquote>
+<h3 id="REPL"><a href="#REPL" class="headerlink" title="REPL"></a>REPL</h3><p><code>REPL(read-eval-print-loop)</code> 是<code>Node</code>的一个交互式组件。在 <code>REPL</code>环境下输入的任何内容都由底层的 <code>V8 Javascript引擎</code>进行处理。</p>
+<h4 id="一些操作技巧"><a href="#一些操作技巧" class="headerlink" title="一些操作技巧"></a>一些操作技巧</h4><ul>
+<li><code>_(下划线)</code> 可以调用上一个表达式</li>
+<li>上下键仍然可以快捷输入历史命令, Tab 键自动补全</li>
+<li><p>可以使用重复的 <code>.(点)</code> 来处理多行表达式，如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">var</span> test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">...return val = x * y  </span><br><span class="line">...&#125;;</span><br><span class="line"><span class="literal">undefined</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>退出 <code>REPL</code>环境的方式有：</p>
+<ul>
+<li><code>Ctrl + C</code>两次</li>
+<li><code>Ctrl + D</code></li>
+<li><code>.exit</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="REPL-命令"><a href="#REPL-命令" class="headerlink" title="REPL 命令"></a>REPL 命令</h4><ul>
+<li><p><code>.break</code></p>
+<p>如果多行输入发生混乱不知道当前位置时，使用 <code>.break</code>会重新开始。不过会丢失之前输入的多行内容。</p>
+</li>
+<li><p><code>.clear</code></p>
+<p>重置语境并清空所有表达式。该命令可以使你重头再来。</p>
+</li>
+<li><p><code>.exit</code></p>
+<p>退出 <code>REPL</code></p>
+</li>
+<li><p><code>.help</code></p>
+<p>显示所有可用的<code>REPL</code>命令。</p>
+</li>
+<li><p><code>.save</code></p>
+<p>将当前<code>REPL</code>会话保存至文件</p>
+</li>
+<li><p><code>.load</code></p>
+<p>将文件加载到当前会话</p>
+</li>
+</ul>
+<h4 id="定制-REPL"><a href="#定制-REPL" class="headerlink" title="定制 REPL"></a>定制 REPL</h4><p>首先需要引入 <code>REPL</code> 模块：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> repl = <span class="built_in">require</span>(<span class="string">'repl'</span>);</span><br></pre></td></tr></table></figure>
+<p>通过在<code>repl</code>对象上调用 <code>start</code>方法创建新的 <code>REPL</code>：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repl.start([prompt], [stream], [<span class="built_in">eval</span>], [useGlobal], [ignoreUndefinded]);</span><br></pre></td></tr></table></figure></p>
+<p>所有参数都可选。</p>
+<ul>
+<li><code>prompt</code><br>Default is <code>&gt;</code> 默认值为 <code>&gt;</code></li>
+<li><code>stream</code><br>默认值为<code>process.stdin</code></li>
+<li><code>eval</code><br><code>eval</code>的默认值是 <code>async</code></li>
+<li><code>useGlobal</code><br>默认值为 false, 新建一个语境而不是使用全局对象。</li>
+<li><code>ignoreUndefinded</code><br>默认值为 false。 不要忽略<code>undefined</code>的返回值。</li>
+</ul>
+<p>所以让<code>REPL</code>在表达式无返回值时不输出<code>undefined</code>可以这样实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">repl = <span class="built_in">require</span>(<span class="string">'repl'</span>);</span><br><span class="line"><span class="comment">// 设置 `ignoreUndefinded` 为 `true` , 启动 `REPL`</span></span><br><span class="line">repl.start(<span class="string">'&gt;'</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -362,7 +394,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/linux/" rel="tag">#linux</a>
+            <a href="/tags/Node/" rel="tag">#Node</a>
           
         </div>
       
@@ -371,17 +403,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/05/Fetch POST接收不到数据，注意content-type的设置/" rel="next" title="Fetch POST接收不到数据，注意content-type的设置">
-                <i class="fa fa-chevron-left"></i> Fetch POST接收不到数据，注意content-type的设置
+              <a href="/2016/04/10/postCSS常用插件/" rel="next" title="postCSS常用插件">
+                <i class="fa fa-chevron-left"></i> postCSS常用插件
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/10/React应用性能优化之shouldComponentUpdate与key/" rel="prev" title="React应用性能优化之shouldComponentUpdate与key">
-                React应用性能优化之shouldComponentUpdate与key <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -396,10 +424,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/03/07/搜索命令之locate、whereis、which、find、grep/"
-     data-title="搜索命令之locate、whereis、which、find、grep"
+        <div class="ds-share flat" data-thread-key="2016/04/13/记node与REPL/"
+     data-title="Node与REPL"
      data-content=""
-     data-url="http://robin-front.github.io/2016/03/07/搜索命令之locate、whereis、which、find、grep/">
+     data-url="http://robin-front.github.io/2016/04/13/记node与REPL/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -426,8 +454,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/07/搜索命令之locate、whereis、which、find、grep/"
-           data-title="搜索命令之locate、whereis、which、find、grep" data-url="http://robin-front.github.io/2016/03/07/搜索命令之locate、whereis、which、find、grep/">
+      <div class="ds-thread" data-thread-key="2016/04/13/记node与REPL/"
+           data-title="Node与REPL" data-url="http://robin-front.github.io/2016/04/13/记node与REPL/">
       </div>
     
   </div>
@@ -539,7 +567,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#whereis"><span class="nav-number">1.</span> <span class="nav-text">whereis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#which"><span class="nav-number">2.</span> <span class="nav-text">which</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#locate"><span class="nav-number">3.</span> <span class="nav-text">locate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">4.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep"><span class="nav-number">5.</span> <span class="nav-text">grep</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-的优势"><span class="nav-number">2.</span> <span class="nav-text">Node 的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#REPL"><span class="nav-number">3.</span> <span class="nav-text">REPL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些操作技巧"><span class="nav-number">3.1.</span> <span class="nav-text">一些操作技巧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#REPL-命令"><span class="nav-number">3.2.</span> <span class="nav-text">REPL 命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定制-REPL"><span class="nav-number">3.3.</span> <span class="nav-text">定制 REPL</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

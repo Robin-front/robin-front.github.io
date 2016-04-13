@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2016-04-09T16:43:12.000Z</updated>
+  <updated>2016-04-13T15:15:44.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Node与REPL</title>
+    <link href="http://robin-front.github.io/2016/04/13/%E8%AE%B0node%E4%B8%8EREPL/"/>
+    <id>http://robin-front.github.io/2016/04/13/记node与REPL/</id>
+    <published>2016-04-13T15:15:44.000Z</published>
+    <updated>2016-04-13T15:15:44.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;这几个月，搜芽前端团队搞了&lt;code&gt;Reactjs+Redux&lt;/code&gt;项目，在很多时候，比如部署，都需要使用&lt;code&gt;Node&lt;/code&gt;，苦于我的肤浅，于是决定补一下功课。最近都会记录一些 &lt;code&gt;Node&lt;/code&gt;相关的笔记。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Node-的优势&quot;&gt;&lt;a href=&quot;#Node-的优势&quot; class=&quot;headerlink&quot; title=&quot;Node 的优势&quot;&gt;&lt;/a&gt;Node 的优势&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;应用程序可以很容易地扩展，因为执行一个单线程并不会有非常大的开销&lt;/li&gt;
+&lt;li&gt;无需诉求于多线程开发，却达到了节约又能高效使用资源的目的。换句话说，你不必创建一个线程安全的应用程序。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;全局变量在 &lt;code&gt;Node&lt;/code&gt; 中是非常危险的，特别是你忘记 &lt;code&gt;var&lt;/code&gt;关键字的时候。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;REPL&quot;&gt;&lt;a href=&quot;#REPL&quot; class=&quot;headerlink&quot; title=&quot;REPL&quot;&gt;&lt;/a&gt;REPL&lt;/h3&gt;&lt;p&gt;&lt;code&gt;REPL(read-eval-print-loop)&lt;/code&gt; 是&lt;code&gt;Node&lt;/code&gt;的一个交互式组件。在 &lt;code&gt;REPL&lt;/code&gt;环境下输入的任何内容都由底层的 &lt;code&gt;V8 Javascript引擎&lt;/code&gt;进行处理。&lt;/p&gt;
+&lt;h4 id=&quot;一些操作技巧&quot;&gt;&lt;a href=&quot;#一些操作技巧&quot; class=&quot;headerlink&quot; title=&quot;一些操作技巧&quot;&gt;&lt;/a&gt;一些操作技巧&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;_(下划线)&lt;/code&gt; 可以调用上一个表达式&lt;/li&gt;
+&lt;li&gt;上下键仍然可以快捷输入历史命令, Tab 键自动补全&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;可以使用重复的 &lt;code&gt;.(点)&lt;/code&gt; 来处理多行表达式，如：&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; test = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...return val = x * y  &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;literal&quot;&gt;undefined&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;退出 &lt;code&gt;REPL&lt;/code&gt;环境的方式有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + C&lt;/code&gt;两次&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Ctrl + D&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.exit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;REPL-命令&quot;&gt;&lt;a href=&quot;#REPL-命令&quot; class=&quot;headerlink&quot; title=&quot;REPL 命令&quot;&gt;&lt;/a&gt;REPL 命令&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;.break&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;如果多行输入发生混乱不知道当前位置时，使用 &lt;code&gt;.break&lt;/code&gt;会重新开始。不过会丢失之前输入的多行内容。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;.clear&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;重置语境并清空所有表达式。该命令可以使你重头再来。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;.exit&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;退出 &lt;code&gt;REPL&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;.help&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;显示所有可用的&lt;code&gt;REPL&lt;/code&gt;命令。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;.save&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;将当前&lt;code&gt;REPL&lt;/code&gt;会话保存至文件&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;.load&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;将文件加载到当前会话&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;定制-REPL&quot;&gt;&lt;a href=&quot;#定制-REPL&quot; class=&quot;headerlink&quot; title=&quot;定制 REPL&quot;&gt;&lt;/a&gt;定制 REPL&lt;/h4&gt;&lt;p&gt;首先需要引入 &lt;code&gt;REPL&lt;/code&gt; 模块：&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; repl = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;repl&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;通过在&lt;code&gt;repl&lt;/code&gt;对象上调用 &lt;code&gt;start&lt;/code&gt;方法创建新的 &lt;code&gt;REPL&lt;/code&gt;：&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;repl.start([prompt], [stream], [&lt;span class=&quot;built_in&quot;&gt;eval&lt;/span&gt;], [useGlobal], [ignoreUndefinded]);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;所有参数都可选。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;prompt&lt;/code&gt;&lt;br&gt;Default is &lt;code&gt;&amp;gt;&lt;/code&gt; 默认值为 &lt;code&gt;&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stream&lt;/code&gt;&lt;br&gt;默认值为&lt;code&gt;process.stdin&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;eval&lt;/code&gt;&lt;br&gt;&lt;code&gt;eval&lt;/code&gt;的默认值是 &lt;code&gt;async&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;useGlobal&lt;/code&gt;&lt;br&gt;默认值为 false, 新建一个语境而不是使用全局对象。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ignoreUndefinded&lt;/code&gt;&lt;br&gt;默认值为 false。 不要忽略&lt;code&gt;undefined&lt;/code&gt;的返回值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以让&lt;code&gt;REPL&lt;/code&gt;在表达式无返回值时不输出&lt;code&gt;undefined&lt;/code&gt;可以这样实现：&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;repl = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;repl&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 设置 `ignoreUndefinded` 为 `true` , 启动 `REPL`&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;repl.start(&lt;span class=&quot;string&quot;&gt;&#39;&amp;gt;&#39;&lt;/span&gt;, &lt;span class=&quot;literal&quot;&gt;null&lt;/span&gt;, &lt;span class=&quot;literal&quot;&gt;null&lt;/span&gt;, &lt;span class=&quot;literal&quot;&gt;null&lt;/span&gt;, &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;这几个月，搜芽前端团队搞了&lt;code&gt;Reactjs+Redux&lt;/code&gt;项目，在很多时候，比如部署，都需要使用&lt;code&gt;Node&lt;/code&gt;，苦于我的肤浅，于是决定补一下功课。最近都会记录一些 &lt;code&gt;Node&lt;/code&gt;相关的笔记。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Node" scheme="http://robin-front.github.io/categories/Node/"/>
+    
+    
+      <category term="Node" scheme="http://robin-front.github.io/tags/Node/"/>
+    
+  </entry>
   
   <entry>
     <title>postCSS常用插件</title>

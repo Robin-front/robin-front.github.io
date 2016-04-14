@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2016-04-13T15:15:44.000Z</updated>
+  <updated>2016-04-14T15:39:02.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,22 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Node全局对象：global、process和Buffer</title>
+    <link href="http://robin-front.github.io/2016/04/14/Node%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1%EF%BC%9Aglobal%E3%80%81process%E5%92%8CBuffer/"/>
+    <id>http://robin-front.github.io/2016/04/14/Node全局对象：global、process和Buffer/</id>
+    <published>2016-04-14T15:39:02.000Z</published>
+    <updated>2016-04-14T15:39:02.000Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Node与REPL</title>

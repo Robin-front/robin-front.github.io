@@ -22,12 +22,29 @@
     <published>2016-04-14T15:39:02.000Z</published>
     <updated>2016-04-14T15:39:02.000Z</updated>
     
-    <content type="html"></content>
+    <content type="html">&lt;p&gt;&lt;code&gt;global&lt;/code&gt;对象，也是&lt;code&gt;Node&lt;/code&gt;的全局命名空间；&lt;br&gt;&lt;code&gt;process&lt;/code&gt;对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；&lt;br&gt;&lt;code&gt;Buffer&lt;/code&gt;类，它提供了存储和操作原始数据的功能，同样它也是全局可见的&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;global&quot;&gt;&lt;a href=&quot;#global&quot; class=&quot;headerlink&quot; title=&quot;global&quot;&gt;&lt;/a&gt;global&lt;/h2&gt;&lt;p&gt;global与浏览器中的&lt;code&gt;window&lt;/code&gt;对象是相似的，它们的关健不同点是：&lt;/p&gt;
+&lt;p&gt;浏览器中的&lt;code&gt;window&lt;/code&gt;对象是一个真正全局的对象。如果在客户端 &lt;code&gt;JavaScript&lt;/code&gt;中定义一个全局变量，它将能够被Web页面以及每一个独立的库访问到。&lt;br&gt;而&lt;code&gt;Node&lt;/code&gt;模块中创建一个顶层变量（函数之外的变量），它仅仅在该模块中是全局的，而在其他模块中是不可见的。只有那些被模块显式导出的部分才能被引用该模块的应用程序所使用。&lt;/p&gt;
+&lt;p&gt;这意味着，由于不小心使用了重复的全局变量名称而引起的数据冲突问题将会大大减少。&lt;/p&gt;
+&lt;h2 id=&quot;process&quot;&gt;&lt;a href=&quot;#process&quot; class=&quot;headerlink&quot; title=&quot;process&quot;&gt;&lt;/a&gt;process&lt;/h2&gt;&lt;p&gt;每个&lt;code&gt;Node&lt;/code&gt;应用程序都是一个&lt;code&gt;process&lt;/code&gt;对象实例，所以，应用程序自然能直接使用某些内建于 &lt;code&gt;process&lt;/code&gt; 对象的功能。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;process.execPath&lt;/code&gt; 方法可以返回当前 &lt;code&gt;Node&lt;/code&gt; 应用程序的执行路径&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;process.version&lt;/code&gt; 提供了 &lt;code&gt;Node&lt;/code&gt; 版本信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;process.platform&lt;/code&gt; 提供服务器平台信息&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;process.memoryUsage&lt;/code&gt; 方法可以查询当前&lt;code&gt;Node&lt;/code&gt; 应用程序的内存使用量&lt;/li&gt;
+&lt;/ul&gt;
+</content>
     
     <summary type="html">
     
+      &lt;p&gt;&lt;code&gt;global&lt;/code&gt;对象，也是&lt;code&gt;Node&lt;/code&gt;的全局命名空间；&lt;br&gt;&lt;code&gt;process&lt;/code&gt;对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；&lt;br&gt;&lt;code&gt;Buffer&lt;/code&gt;类，它提供了存储和操作原始数据的功能，同样它也是全局可见的&lt;br&gt;
+    
     </summary>
     
+      <category term="Node" scheme="http://robin-front.github.io/categories/Node/"/>
+    
+    
+      <category term="Node" scheme="http://robin-front.github.io/tags/Node/"/>
     
   </entry>
   

@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="robin,blog,前端" />
+  <meta name="keywords" content="Node," />
 
 
 
@@ -61,16 +61,16 @@
 
 
 
-<meta name="description">
+<meta name="description" content="global对象，也是Node的全局命名空间；process对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；Buffer类，它提供了存储和操作原始数据的功能，同样它也是全局可见的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node全局对象：global、process和Buffer">
 <meta property="og:url" content="http://robin-front.github.io/2016/04/14/Node全局对象：global、process和Buffer/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description">
+<meta property="og:description" content="global对象，也是Node的全局命名空间；process对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；Buffer类，它提供了存储和操作原始数据的功能，同样它也是全局可见的">
 <meta property="og:updated_time" content="2016-04-14T15:39:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node全局对象：global、process和Buffer">
-<meta name="twitter:description">
+<meta name="twitter:description" content="global对象，也是Node的全局命名空间；process对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；Buffer类，它提供了存储和操作原始数据的功能，同样它也是全局可见的">
 
 
 
@@ -277,6 +277,25 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Node/" itemprop="url" rel="index">
+                    <span itemprop="name">Node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -305,7 +324,18 @@
       
 
       
-        
+        <p><code>global</code>对象，也是<code>Node</code>的全局命名空间；<br><code>process</code>对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；<br><code>Buffer</code>类，它提供了存储和操作原始数据的功能，同样它也是全局可见的<br><a id="more"></a></p>
+<h2 id="global"><a href="#global" class="headerlink" title="global"></a>global</h2><p>global与浏览器中的<code>window</code>对象是相似的，它们的关健不同点是：</p>
+<p>浏览器中的<code>window</code>对象是一个真正全局的对象。如果在客户端 <code>JavaScript</code>中定义一个全局变量，它将能够被Web页面以及每一个独立的库访问到。<br>而<code>Node</code>模块中创建一个顶层变量（函数之外的变量），它仅仅在该模块中是全局的，而在其他模块中是不可见的。只有那些被模块显式导出的部分才能被引用该模块的应用程序所使用。</p>
+<p>这意味着，由于不小心使用了重复的全局变量名称而引起的数据冲突问题将会大大减少。</p>
+<h2 id="process"><a href="#process" class="headerlink" title="process"></a>process</h2><p>每个<code>Node</code>应用程序都是一个<code>process</code>对象实例，所以，应用程序自然能直接使用某些内建于 <code>process</code> 对象的功能。</p>
+<ul>
+<li><code>process.execPath</code> 方法可以返回当前 <code>Node</code> 应用程序的执行路径</li>
+<li><code>process.version</code> 提供了 <code>Node</code> 版本信息</li>
+<li><code>process.platform</code> 提供服务器平台信息</li>
+<li><code>process.memoryUsage</code> 方法可以查询当前<code>Node</code> 应用程序的内存使用量</li>
+</ul>
+
       
     </div>
 
@@ -316,6 +346,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Node/" rel="tag">#Node</a>
+          
+        </div>
       
 
       
@@ -486,7 +522,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#global"><span class="nav-number">1.</span> <span class="nav-text">global</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#process"><span class="nav-number">2.</span> <span class="nav-text">process</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

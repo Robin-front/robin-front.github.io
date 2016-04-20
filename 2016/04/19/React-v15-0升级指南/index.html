@@ -61,16 +61,16 @@
 
 
 
-<meta name="description" content="主要变化加入document.createElement 并且废弃 data-reactid经过我们讨论，DOM 有很大的改变。其中最值得关注的一个变化就是，我们不再给每个 DOM设置data-reactid属性。虽然这更难看出一个网页是否使用了 React，但优势是DOM更轻量了。这一改变让我们使用 document.createElement来初始渲染成为可能。在此之前，我们会生成大量的HT">
+<meta name="description" content="React-v15.0升级指南">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React-v15.0升级指南">
 <meta property="og:url" content="http://robin-front.github.io/2016/04/19/React-v15-0升级指南/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="主要变化加入document.createElement 并且废弃 data-reactid经过我们讨论，DOM 有很大的改变。其中最值得关注的一个变化就是，我们不再给每个 DOM设置data-reactid属性。虽然这更难看出一个网页是否使用了 React，但优势是DOM更轻量了。这一改变让我们使用 document.createElement来初始渲染成为可能。在此之前，我们会生成大量的HT">
+<meta property="og:description" content="React-v15.0升级指南">
 <meta property="og:updated_time" content="2016-04-19T14:38:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React-v15.0升级指南">
-<meta name="twitter:description" content="主要变化加入document.createElement 并且废弃 data-reactid经过我们讨论，DOM 有很大的改变。其中最值得关注的一个变化就是，我们不再给每个 DOM设置data-reactid属性。虽然这更难看出一个网页是否使用了 React，但优势是DOM更轻量了。这一改变让我们使用 document.createElement来初始渲染成为可能。在此之前，我们会生成大量的HT">
+<meta name="twitter:description" content="React-v15.0升级指南">
 
 
 
@@ -324,13 +324,16 @@
       
 
       
-        <a id="more"></a>
+        <p>React-v15.0升级指南<br><a id="more"></a></p>
 <h3 id="主要变化"><a href="#主要变化" class="headerlink" title="主要变化"></a>主要变化</h3><h4 id="加入document-createElement-并且废弃-data-reactid"><a href="#加入document-createElement-并且废弃-data-reactid" class="headerlink" title="加入document.createElement 并且废弃 data-reactid"></a>加入<code>document.createElement</code> 并且废弃 <code>data-reactid</code></h4><p>经过我们讨论，<code>DOM</code> 有很大的改变。其中最值得关注的一个变化就是，我们不再给每个 <code>DOM</code>设置<code>data-reactid</code>属性。虽然这更难看出一个网页是否使用了 <code>React</code>，但优势是<code>DOM</code>更轻量了。这一改变让我们使用 <code>document.createElement</code>来初始渲染成为可能。在此之前，我们会生成大量的HTML字符串，然后使用 <code>node.innerHTML</code>来插入。当时，我们决定尽快在大部分案例和支持的浏览器中使用<code>document.createElement</code>。浏览器持续地改善，因此兼容所有浏览器不再是正确的。使用 <code>createElement</code>可以让<code>React</code>的其他功能运行得更快。原来的<code>ids</code>用来映射<code>React</code>组件的事件，这意味着，我们不得不对每一个事件做很多工作，即使我们尽可能地缓存这些数据。正如我们遇到过的，缓存和缓存失效很容易出错，我们发现许多问题都无法重现。现在我们在渲染的时候可以直接建立映射，因为我们有了节点的钩子。</p>
 <blockquote>
 <p><code>data-reactid</code>仍然存在于服务端渲染中。不管怎样，这已经比以前要小很多了，并且这只是一个简单的自增计数器。</p>
 </blockquote>
 <h4 id="不再有额外的-lt-span-gt-标签"><a href="#不再有额外的-lt-span-gt-标签" class="headerlink" title="不再有额外的 &lt;span&gt;标签"></a>不再有额外的 <code>&lt;span&gt;</code>标签</h4><p>另一个关于<code>DOM</code>讨论的重大变化是如何渲染文本块。之前你可能关注到<code>React</code>渲染了很多额外的<code>&lt;span&gt;</code>标签。举个例子，我们在主页渲染<code>&lt;div&gt;Hello {this.props.name}&lt;/div&gt;</code>，结果包含了两层<code>&lt;span&gt;</code>标签。现在我们渲染时使用注释节点穿插在普通文本外来划分。这让我们同样拥有更新部分文本的能力，而不用额外的标签。很少人会这些真实的额外标签有依赖，所以你很可以不会受到任何影响。但是如果你在样式文件中对<code>&lt;span&gt;</code>标签有定义，你可能需要作出相应的调整。你仍然可以在你的组件里显式地指定渲染这些标签。</p>
-<h4 id="现在使用注释节点渲染-null"><a href="#现在使用注释节点渲染-null" class="headerlink" title="现在使用注释节点渲染 null"></a>现在使用注释节点渲染 <code>null</code></h4><h4 id="组件现在也可以返回-null"><a href="#组件现在也可以返回-null" class="headerlink" title="组件现在也可以返回 null"></a>组件现在也可以返回 <code>null</code></h4><h4 id="增加SVG支持"><a href="#增加SVG支持" class="headerlink" title="增加SVG支持"></a>增加<code>SVG</code>支持</h4><p>本文翻译自 <a href="https://facebook.github.io/react/blog/2016/04/07/react-v15.html" target="_blank" rel="external">React v15.0</a></p>
+<h4 id="现在使用注释节点渲染-null"><a href="#现在使用注释节点渲染-null" class="headerlink" title="现在使用注释节点渲染 null"></a>现在使用注释节点渲染 <code>null</code></h4><p>我们还利用注释节点来渲染<code>null</code>。渲染<code>null</code>是我们在<code>React v0.11</code>版本添加的特性，并且通来渲染 <code>&lt;noscript&gt;</code>元素来应用。现在通过渲染注释节点，你的样式可能会有一些错乱，尤其是当你使用了<code>:nth-child</code>这样的选择器。<code>React</code>使用<code>&lt;noscript&gt;</code>标签，一直在考虑如何<code>React</code>命中<code>DOM</code>的实现细节。我们相信这些变化是安全的。另外，我们已经在许多典型的应用中看到这些变化在提升<code>React</code>的性能。</p>
+<h4 id="组件现在也可以返回-null"><a href="#组件现在也可以返回-null" class="headerlink" title="组件现在也可以返回 null"></a>组件现在也可以返回 <code>null</code></h4><p>我们在<code>React v0.14</code>添加了定义无状态组件的功能。不管怎样，<code>React 0.14</code>仍然允许你定义一个非继承<code>React.Component</code>或者使用 <code>React.createClass()</code>创建的组件。所以我们不能准确地判断你的组件是一个函数还是一个类，并且也不允许你从中返回一个<code>null</code>。这个问题在<code>React 15</code>中已经解决，你可以在你任何组件中返回<code>null</code>，不管是函数还是类。</p>
+<h4 id="增加SVG支持"><a href="#增加SVG支持" class="headerlink" title="增加SVG支持"></a>增加<code>SVG</code>支持</h4><p>所有的<code>SVG</code>标签现在都已完美支持。（极少的标签在<code>React.DOM</code>里不存在，但<code>JSX</code>和<code>React.createElement</code>支持所有标签名）。所有被浏览器支持的<code>SVG</code>属性也全部支持。如果你发现少了什么属性，请给我们提 <code>issue</code>。</p>
+<p>本文翻译自 <a href="https://facebook.github.io/react/blog/2016/04/07/react-v15.html" target="_blank" rel="external">React v15.0</a></p>
 
       
     </div>

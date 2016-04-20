@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2016-04-18T14:16:27.000Z</updated>
+  <updated>2016-04-19T14:38:50.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>React-v15.0升级指南</title>
+    <link href="http://robin-front.github.io/2016/04/19/React-v15-0%E5%8D%87%E7%BA%A7%E6%8C%87%E5%8D%97/"/>
+    <id>http://robin-front.github.io/2016/04/19/React-v15-0升级指南/</id>
+    <published>2016-04-19T14:38:50.000Z</published>
+    <updated>2016-04-19T14:38:50.000Z</updated>
+    
+    <content type="html">&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;主要变化&quot;&gt;&lt;a href=&quot;#主要变化&quot; class=&quot;headerlink&quot; title=&quot;主要变化&quot;&gt;&lt;/a&gt;主要变化&lt;/h3&gt;&lt;h4 id=&quot;加入document-createElement-并且废弃-data-reactid&quot;&gt;&lt;a href=&quot;#加入document-createElement-并且废弃-data-reactid&quot; class=&quot;headerlink&quot; title=&quot;加入document.createElement 并且废弃 data-reactid&quot;&gt;&lt;/a&gt;加入&lt;code&gt;document.createElement&lt;/code&gt; 并且废弃 &lt;code&gt;data-reactid&lt;/code&gt;&lt;/h4&gt;&lt;p&gt;经过我们讨论，&lt;code&gt;DOM&lt;/code&gt; 有很大的改变。其中最值得关注的一个变化就是，我们不再给每个 &lt;code&gt;DOM&lt;/code&gt;设置&lt;code&gt;data-reactid&lt;/code&gt;属性。虽然这更难看出一个网页是否使用了 &lt;code&gt;React&lt;/code&gt;，但优势是&lt;code&gt;DOM&lt;/code&gt;更轻量了。这一改变让我们使用 &lt;code&gt;document.createElement&lt;/code&gt;来初始渲染成为可能。在此之前，我们会生成大量的HTML字符串，然后使用 &lt;code&gt;node.innerHTML&lt;/code&gt;来插入。当时，我们决定尽快在大部分案例和支持的浏览器中使用&lt;code&gt;document.createElement&lt;/code&gt;。浏览器持续地改善，因此兼容所有浏览器不再是正确的。使用 &lt;code&gt;createElement&lt;/code&gt;可以让&lt;code&gt;React&lt;/code&gt;的其他功能运行得更快。原来的&lt;code&gt;ids&lt;/code&gt;用来映射&lt;code&gt;React&lt;/code&gt;组件的事件，这意味着，我们不得不对每一个事件做很多工作，即使我们尽可能地缓存这些数据。正如我们遇到过的，缓存和缓存失效很容易出错，我们发现许多问题都无法重现。现在我们在渲染的时候可以直接建立映射，因为我们有了节点的钩子。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;data-reactid&lt;/code&gt;仍然存在于服务端渲染中。不管怎样，这已经比以前要小很多了，并且这只是一个简单的自增计数器。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;不再有额外的-lt-span-gt-标签&quot;&gt;&lt;a href=&quot;#不再有额外的-lt-span-gt-标签&quot; class=&quot;headerlink&quot; title=&quot;不再有额外的 &amp;lt;span&amp;gt;标签&quot;&gt;&lt;/a&gt;不再有额外的 &lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;标签&lt;/h4&gt;&lt;p&gt;另一个关于&lt;code&gt;DOM&lt;/code&gt;讨论的重大变化是如何渲染文本块。之前你可能关注到&lt;code&gt;React&lt;/code&gt;渲染了很多额外的&lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;标签。举个例子，我们在主页渲染&lt;code&gt;&amp;lt;div&amp;gt;Hello {this.props.name}&amp;lt;/div&amp;gt;&lt;/code&gt;，结果包含了两层&lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;标签。现在我们渲染时使用注释节点穿插在普通文本外来划分。这让我们同样拥有更新部分文本的能力，而不用额外的标签。很少人会这些真实的额外标签有依赖，所以你很可以不会受到任何影响。但是如果你在样式文件中对&lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;标签有定义，你可能需要作出相应的调整。你仍然可以在你的组件里显式地指定渲染这些标签。&lt;/p&gt;
+&lt;h4 id=&quot;现在使用注释节点渲染-null&quot;&gt;&lt;a href=&quot;#现在使用注释节点渲染-null&quot; class=&quot;headerlink&quot; title=&quot;现在使用注释节点渲染 null&quot;&gt;&lt;/a&gt;现在使用注释节点渲染 &lt;code&gt;null&lt;/code&gt;&lt;/h4&gt;&lt;h4 id=&quot;组件现在也可以返回-null&quot;&gt;&lt;a href=&quot;#组件现在也可以返回-null&quot; class=&quot;headerlink&quot; title=&quot;组件现在也可以返回 null&quot;&gt;&lt;/a&gt;组件现在也可以返回 &lt;code&gt;null&lt;/code&gt;&lt;/h4&gt;&lt;h4 id=&quot;增加SVG支持&quot;&gt;&lt;a href=&quot;#增加SVG支持&quot; class=&quot;headerlink&quot; title=&quot;增加SVG支持&quot;&gt;&lt;/a&gt;增加&lt;code&gt;SVG&lt;/code&gt;支持&lt;/h4&gt;&lt;p&gt;本文翻译自 &lt;a href=&quot;https://facebook.github.io/react/blog/2016/04/07/react-v15.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;React v15.0&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;主要变化&quot;&gt;&lt;a href=&quot;#主要变化&quot; class=&quot;headerlink&quot; title=&quot;主要变化&quot;&gt;&lt;/a&gt;主要变化&lt;/h3&gt;&lt;h4 id=&quot;加入document-createElement-并且废弃-data-reac
+    
+    </summary>
+    
+      <category term="react" scheme="http://robin-front.github.io/categories/react/"/>
+    
+    
+      <category term="react" scheme="http://robin-front.github.io/tags/react/"/>
+    
+  </entry>
   
   <entry>
     <title>react-router动态路由与Webpack分片thunks</title>
@@ -80,9 +110,9 @@
       <category term="Webpack" scheme="http://robin-front.github.io/categories/react/Webpack/"/>
     
     
-      <category term="Webpack" scheme="http://robin-front.github.io/tags/Webpack/"/>
-    
       <category term="react" scheme="http://robin-front.github.io/tags/react/"/>
+    
+      <category term="Webpack" scheme="http://robin-front.github.io/tags/Webpack/"/>
     
       <category term="react-router" scheme="http://robin-front.github.io/tags/react-router/"/>
     
@@ -302,9 +332,9 @@
       <category term="Webpack" scheme="http://robin-front.github.io/categories/Webpack/"/>
     
     
-      <category term="Webpack" scheme="http://robin-front.github.io/tags/Webpack/"/>
-    
       <category term="loaders" scheme="http://robin-front.github.io/tags/loaders/"/>
+    
+      <category term="Webpack" scheme="http://robin-front.github.io/tags/Webpack/"/>
     
   </entry>
   
@@ -1364,109 +1394,6 @@ gulp.task(&amp;apos;default&amp;apos;, function () {
       <category term="前端构建" scheme="http://robin-front.github.io/tags/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
     
       <category term="图片压缩" scheme="http://robin-front.github.io/tags/%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git ssh-key及多帐户设置</title>
-    <link href="http://robin-front.github.io/2015/09/30/git%20ssh-key%E5%8F%8A%E5%A4%9A%E5%B8%90%E6%88%B7%E8%AE%BE%E7%BD%AE/"/>
-    <id>http://robin-front.github.io/2015/09/30/git ssh-key及多帐户设置/</id>
-    <published>2015-09-30T03:40:01.000Z</published>
-    <updated>2015-11-06T17:10:28.000Z</updated>
-    
-    <content type="html">&lt;p&gt;在使用git的时候，我们在管理远程分支之前需要在本机上创建ssh-key密钥对，并把其中的公钥添加到github中。&lt;/p&gt;
-&lt;h2 id=&quot;首个帐户&quot;&gt;&lt;a href=&quot;#首个帐户&quot; class=&quot;headerlink&quot; title=&quot;首个帐户&quot;&gt;&lt;/a&gt;首个帐户&lt;/h2&gt;&lt;p&gt;如果你只会在你的计算机使用一个远程的Git服务器，并且账号是一个，比较简单，生成key的时候也没有太大注意的地方，直接运行如下的第一步然后按回车就可以了&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;在 gitbash上运行  &lt;code&gt;ssh-keygen -t  rsa  -C  &amp;quot;Github账户邮箱&amp;quot;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;接下来会提示输入key的名字 默认名字为&lt;code&gt;id_rsa&lt;/code&gt; ,默认不改直接回车就行了&lt;/li&gt;
-&lt;li&gt;然后会提示输入口令，这里口令与Github中的密码无关，随便输入可以为空，为空直接回车。&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;如果在第二步中的没有重新命名的话，则忽略此步骤，&lt;code&gt;ssh agent&lt;/code&gt;默认只读取&lt;code&gt;id_rsa&lt;/code&gt;，为了让SSH识别新的私钥，需将其添加到SSH agent中,如第二步改的名字为&lt;code&gt;robin&lt;/code&gt;, 则执行：&lt;code&gt;ssh-add id_rsa&lt;/code&gt;如果出现&lt;code&gt;Could not open a connection to your authentication agent&lt;/code&gt;的错误，就试着先用以下命令：&lt;/p&gt;
- &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;pre&gt;&lt;code&gt;ssh-agent bash
-ssh-add robin
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 添加完之后 登陆Github,点击网页右上侧的 Settings 按钮 - 选择 ssh-keys  点击Add SSH Key  ，在title中输入名字，然后将公钥即id_rsa.pub添加到ssh-key处。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;执行 &lt;code&gt;ssh -T git@github.com&lt;/code&gt; 如果能正常访问即可&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ ssh -T git@github.com
-Hi robin! You&amp;apos;ve successfully authenticated, but GitHub does not provide shell access.
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&quot;第二个帐户&quot;&gt;&lt;a href=&quot;#第二个帐户&quot; class=&quot;headerlink&quot; title=&quot;第二个帐户&quot;&gt;&lt;/a&gt;第二个帐户&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;h3 id=&quot;新建user2的SSH-Key&quot;&gt;&lt;a href=&quot;#新建user2的SSH-Key&quot; class=&quot;headerlink&quot; title=&quot;新建user2的SSH Key&quot;&gt;&lt;/a&gt;新建user2的SSH Key&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;$ cd ~/.ssh     #切换到C:\Users\Administrator\.ssh
-ssh-keygen -t rsa -C &amp;quot;user2的Github账户邮箱&amp;quot;  //新建工作的SSH key
-Enter file in which to save the key (/c/Users/Administrator/.ssh/id_rsa): user2 //设置名称为user2(后文的user2可以统一替换任何别名)
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;h3 id=&quot;新密钥添加到SSH-agent中&quot;&gt;&lt;a href=&quot;#新密钥添加到SSH-agent中&quot; class=&quot;headerlink&quot; title=&quot;新密钥添加到SSH agent中&quot;&gt;&lt;/a&gt;新密钥添加到SSH agent中&lt;/h3&gt;&lt;p&gt; 因为默认只读取id_rsa，为了让SSH识别新的私钥，需将其添加到SSH agent中：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ssh-add ~/.ssh/user2 //注意路径，如果不在.ssh目录下则不能省略 &amp;apos;~/.ssh/&amp;apos;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 同样，如果出现&lt;code&gt;Could not open a connection to your authentication agent&lt;/code&gt;的错误，就试着用以下命令：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;ssh-agent bash
-ssh-add ~/.ssh/user2
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;h3 id=&quot;添加user2的公钥&quot;&gt;&lt;a href=&quot;#添加user2的公钥&quot; class=&quot;headerlink&quot; title=&quot;添加user2的公钥&quot;&gt;&lt;/a&gt;添加user2的公钥&lt;/h3&gt;&lt;p&gt; 打开新生成的 &lt;code&gt;~/.ssh/uesr2.pub&lt;/code&gt;文件，将里面的内容添加到user2的github帐号下的SSH Key中。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;h3 id=&quot;修改config文件-重要的一步&quot;&gt;&lt;a href=&quot;#修改config文件-重要的一步&quot; class=&quot;headerlink&quot; title=&quot;修改config文件 (重要的一步)&quot;&gt;&lt;/a&gt;修改config文件 (重要的一步)&lt;/h3&gt;&lt;p&gt; 将账户以及git服务器与对应的密钥关联。在~/.ssh目录下找到config文件，如果没有就创建：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;touch config
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 然后修改如下： 我的config配置如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# 该文件用于配置私钥对应的服务器
-# Default github user1
-Host github.com
-HostName github.com
-User git
-IdentityFile ~/.ssh/id_rsa
-
-# second user2
-# 建一个github别名，新建的帐号使用这个别名做克隆和更新
-Host user2
-HostName github.com
-User git
-IdentityFile ~/.ssh/user2
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;h3 id=&quot;帐号关联&quot;&gt;&lt;a href=&quot;#帐号关联&quot; class=&quot;headerlink&quot; title=&quot;帐号关联&quot;&gt;&lt;/a&gt;帐号关联&lt;/h3&gt;&lt;p&gt; 如果你只是文章中所述配置了Host，那么你多个账号下面的提交用户会是一个人，所以需要通过命令&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;git config --global --unset user.email
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 删除全局用户账户设置，当然也可以不删除，如果每个git项目下没有单独设置用户帐户信息的话，会默认使用全局设置&lt;/p&gt;
-&lt;p&gt; 在每一个git项目下面使用命令&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;git config --local user.name &amp;apos;该项目的github用户名&amp;apos; 
-git config --local user.email &amp;apos;该项目的github邮箱@mail.com&amp;apos; 
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 单独设置用户账户信息，每个不同于全局用户帐户的git 项目都需要设置。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;h3 id=&quot;关于-clone&quot;&gt;&lt;a href=&quot;#关于-clone&quot; class=&quot;headerlink&quot; title=&quot;关于 clone&quot;&gt;&lt;/a&gt;关于 clone&lt;/h3&gt;&lt;p&gt; 使用 &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;git clone user2:user2/test.git
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 而不是 &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;git clone git@github.com:user2/test.git
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 否则无法分辨使用的是哪一个帐户。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;h3 id=&quot;关于-remote&quot;&gt;&lt;a href=&quot;#关于-remote&quot; class=&quot;headerlink&quot; title=&quot;关于 remote&quot;&gt;&lt;/a&gt;关于 remote&lt;/h3&gt;&lt;p&gt; 如果clone 项目时使用的是 &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;git clone user2:user2/test.git
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 则remote url的Host 就是user2，可以跳过这一步，否则需要更改一下关联（包括git init新建），查看 remote&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;git remote -v
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 如果user2的项目&lt;code&gt;remote.origin.url=git@github.com:user2/test.git&lt;/code&gt;则需要进行修改&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;git remote rm origin
-git remote add origin user2:user2/test.git
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;h3 id=&quot;测试：&quot;&gt;&lt;a href=&quot;#测试：&quot; class=&quot;headerlink&quot; title=&quot;测试：&quot;&gt;&lt;/a&gt;测试：&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;$ ssh -T git@github.com
-Hi user1! You&amp;apos;ve successfully authenticated, but GitHub does not provide shell access.
-$ ssh -T user2 
-Hi user2! You&amp;apos;ve successfully authenticated, but GitHub does not provide shell access.
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在使用git的时候，我们在管理远程分支之前需要在本机上创建ssh-key密钥对，并把其中的公钥添加到github中。&lt;/p&gt;
-&lt;h2 id=&quot;首个帐户&quot;&gt;&lt;a href=&quot;#首个帐户&quot; class=&quot;headerlink&quot; title=&quot;首个帐户&quot;&gt;&lt;/a&gt;首个帐户&lt;/h2&gt;&lt;p&gt;如果你只会在你的计算机使用一个远程的Git服务器，并且账号是一个，比较简单，生成key的时候也没有太大注意的地方，直接运行如下的第一步然后按回车就可以了&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;在 gitbash上运行  &lt;code&gt;ssh-keygen -t  rsa  -C  &amp;quot;Github账户邮箱&amp;quot;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;接下来会提示输入key的名字 默认名字为&lt;code&gt;id_rsa&lt;/code&gt; ,默认不改直接回车就行了&lt;/li&gt;
-&lt;li&gt;然后会提示输入口令，这里口令与Github中的密码无关，随便输入可以为空，为空直接回车。&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;如果在第二步中的没有重新命名的话，则忽略此步骤，&lt;code&gt;ssh agent&lt;/code&gt;默认只读取&lt;code&gt;id_rsa&lt;/code&gt;，为了让SSH识别新的私钥，需将其添加到SSH agent中,如第二步改的名字为&lt;code&gt;robin&lt;/code&gt;, 则执行：&lt;code&gt;ssh-add id_rsa&lt;/code&gt;如果出现&lt;code&gt;Could not open a connection to your authentication agent&lt;/code&gt;的错误，就试着先用以下命令：&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="git" scheme="http://robin-front.github.io/categories/git/"/>
-    
-    
-      <category term="git" scheme="http://robin-front.github.io/tags/git/"/>
     
   </entry>
   

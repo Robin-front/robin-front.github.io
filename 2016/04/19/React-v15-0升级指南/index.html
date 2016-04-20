@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="React," />
+  <meta name="keywords" content="react," />
 
 
 
@@ -61,19 +61,16 @@
 
 
 
-<meta name="description" content="虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。
-下面看看加速应用程序的两种简单的配置方法：">
+<meta name="description" content="主要变化加入document.createElement 并且废弃 data-reactid经过我们讨论，DOM 有很大的改变。其中最值得关注的一个变化就是，我们不再给每个 DOM设置data-reactid属性。虽然这更难看出一个网页是否使用了 React，但优势是DOM更轻量了。这一改变让我们使用 document.createElement来初始渲染成为可能。在此之前，我们会生成大量的HT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React应用性能优化之shouldComponentUpdate与key">
-<meta property="og:url" content="http://robin-front.github.io/2016/03/10/React应用性能优化之shouldComponentUpdate与key/index.html">
+<meta property="og:title" content="React-v15.0升级指南">
+<meta property="og:url" content="http://robin-front.github.io/2016/04/19/React-v15-0升级指南/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。
-下面看看加速应用程序的两种简单的配置方法：">
-<meta property="og:updated_time" content="2016-03-10T14:32:13.000Z">
+<meta property="og:description" content="主要变化加入document.createElement 并且废弃 data-reactid经过我们讨论，DOM 有很大的改变。其中最值得关注的一个变化就是，我们不再给每个 DOM设置data-reactid属性。虽然这更难看出一个网页是否使用了 React，但优势是DOM更轻量了。这一改变让我们使用 document.createElement来初始渲染成为可能。在此之前，我们会生成大量的HT">
+<meta property="og:updated_time" content="2016-04-19T14:38:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React应用性能优化之shouldComponentUpdate与key">
-<meta name="twitter:description" content="虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。
-下面看看加速应用程序的两种简单的配置方法：">
+<meta name="twitter:title" content="React-v15.0升级指南">
+<meta name="twitter:description" content="主要变化加入document.createElement 并且废弃 data-reactid经过我们讨论，DOM 有很大的改变。其中最值得关注的一个变化就是，我们不再给每个 DOM设置data-reactid属性。虽然这更难看出一个网页是否使用了 React，但优势是DOM更轻量了。这一改变让我们使用 document.createElement来初始渲染成为可能。在此之前，我们会生成大量的HT">
 
 
 
@@ -91,7 +88,7 @@
   };
 </script>
 
-  <title> React应用性能优化之shouldComponentUpdate与key | 三寸稚笔 </title>
+  <title> React-v15.0升级指南 | 三寸稚笔 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +259,7 @@
             
             
               
-                React应用性能优化之shouldComponentUpdate与key
+                React-v15.0升级指南
               
             
           </h1>
@@ -274,8 +271,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-10T22:32:13+08:00" content="2016-03-10">
-              2016-03-10
+            <time itemprop="dateCreated" datetime="2016-04-19T22:38:50+08:00" content="2016-04-19">
+              2016-04-19
             </time>
           </span>
 
@@ -288,8 +285,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index">
-                    <span itemprop="name">React</span>
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
                   </a>
                 </span>
 
@@ -304,8 +301,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/10/React应用性能优化之shouldComponentUpdate与key/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/React应用性能优化之shouldComponentUpdate与key/" itemprop="commentsCount"></span>
+                <a href="/2016/04/19/React-v15-0升级指南/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/19/React-v15-0升级指南/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -327,26 +324,13 @@
       
 
       
-        <p>虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。</p>
-<p>下面看看加速应用程序的两种简单的配置方法：<br><a id="more"></a></p>
-<h3 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate"></a>shouldComponentUpdate</h3><p>设置新 props，调用 setState 方法或 forceUpdate 方法时，React 都会调用该组件所有子组件的 render 方法。但是在组件树深度嵌套或 render 方法十分复杂的时侯，页面就会有延迟。</p>
-<p>但此时，某些子组件并没有必要更新，或者永远都不需要更新，这时进行的计算过程是没有必要的。</p>
-<p>而 shouldComponentUpdate 方法正是用来判断是否需要调用指定组件的 render 方法。</p>
-<p>shouldComponentUpdate 方法返回一个布尔值。false 表示不要调用 render 方法；true 表示需要调用 render 方法计算出新的虚拟 DOM。</p>
+        <a id="more"></a>
+<h3 id="主要变化"><a href="#主要变化" class="headerlink" title="主要变化"></a>主要变化</h3><h4 id="加入document-createElement-并且废弃-data-reactid"><a href="#加入document-createElement-并且废弃-data-reactid" class="headerlink" title="加入document.createElement 并且废弃 data-reactid"></a>加入<code>document.createElement</code> 并且废弃 <code>data-reactid</code></h4><p>经过我们讨论，<code>DOM</code> 有很大的改变。其中最值得关注的一个变化就是，我们不再给每个 <code>DOM</code>设置<code>data-reactid</code>属性。虽然这更难看出一个网页是否使用了 <code>React</code>，但优势是<code>DOM</code>更轻量了。这一改变让我们使用 <code>document.createElement</code>来初始渲染成为可能。在此之前，我们会生成大量的HTML字符串，然后使用 <code>node.innerHTML</code>来插入。当时，我们决定尽快在大部分案例和支持的浏览器中使用<code>document.createElement</code>。浏览器持续地改善，因此兼容所有浏览器不再是正确的。使用 <code>createElement</code>可以让<code>React</code>的其他功能运行得更快。原来的<code>ids</code>用来映射<code>React</code>组件的事件，这意味着，我们不得不对每一个事件做很多工作，即使我们尽可能地缓存这些数据。正如我们遇到过的，缓存和缓存失效很容易出错，我们发现许多问题都无法重现。现在我们在渲染的时候可以直接建立映射，因为我们有了节点的钩子。</p>
 <blockquote>
-<p>此方法的默认值是 true。<br>并且，组件首次渲染时，shouldComponentUpdate 方法不会被调用</p>
+<p><code>data-reactid</code>仍然存在于服务端渲染中。不管怎样，这已经比以前要小很多了，并且这只是一个简单的自增计数器。</p>
 </blockquote>
-<p>shouldComponentUpdate 方法接受两个参数，新的 props 和新的 state：</p>
-<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">React.creatClass(&#123;</span><br><span class="line">    <span class="attribute">shouldComponentUpdate</span>: <span class="function"><span class="keyword">function</span> (<span class="params">nextProps, nextState</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> nextProps.id !== <span class="keyword">this</span>.props.id</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
-<p>另外，我们也可以添加 React.addons.PureRenderMixin 插件来处理 shouldComponentUpdate。 这个插件会重写 shouldComponentUpdate 方法，并在该方法内对新老 props 及 state 进行对比， 如果发现它们完全一致则返回 false, 就像上面的例子一样。官方文档里也有介绍： <a href="https://facebook.github.io/react/docs/pure-render-mixin.html" target="_blank" rel="external">PureRenderMixin</a></p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="type">PureRenderMixin</span> from <span class="symbol">'react</span>-addons-pure-render-mixin';</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.shouldComponentUpdate = <span class="type">PureRenderMixin</span>.shouldComponentUpdate.bind(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> &lt;div className=&#123;<span class="keyword">this</span>.props.className&#125;&gt;foo&lt;/div&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="key-键"><a href="#key-键" class="headerlink" title="key(键)"></a>key(键)</h3><p>在遍历列表的时候，没有组件添加 key 值会有 warnning 产生。那它是用来干嘛的呢？ 假设有一个 div 组件，它的 key 属性为 ‘foo’，之后又改为 ‘bar’， 那 React 就会跳过 DOM diff， 同时完会弃置 div 所有的子元素，并重新渲染。除了告诉 React 什么时候要抛弃一个节点之外，key 还可以在元素顺序改变时使用。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> items.map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">'item.id'</span>&gt;</span>item.name<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果像上面这样，React 在li 列表顺序改变的时候就不会重新渲染，而是采用 insertBefore 操作，这也是最高效的方法。</p>
-<blockquote>
-<p>但是要注意，key 值必须是独一无二的，最好不要是数字，绝对不能是遍历中的index。这样可以保证从一个父组件移动到另一个父组件的情况是不会被处理的。</p>
-</blockquote>
-<p>key 值也是无法读取的。</p>
+<h4 id="不再有额外的-lt-span-gt-标签"><a href="#不再有额外的-lt-span-gt-标签" class="headerlink" title="不再有额外的 &lt;span&gt;标签"></a>不再有额外的 <code>&lt;span&gt;</code>标签</h4><p>另一个关于<code>DOM</code>讨论的重大变化是如何渲染文本块。之前你可能关注到<code>React</code>渲染了很多额外的<code>&lt;span&gt;</code>标签。举个例子，我们在主页渲染<code>&lt;div&gt;Hello {this.props.name}&lt;/div&gt;</code>，结果包含了两层<code>&lt;span&gt;</code>标签。现在我们渲染时使用注释节点穿插在普通文本外来划分。这让我们同样拥有更新部分文本的能力，而不用额外的标签。很少人会这些真实的额外标签有依赖，所以你很可以不会受到任何影响。但是如果你在样式文件中对<code>&lt;span&gt;</code>标签有定义，你可能需要作出相应的调整。你仍然可以在你的组件里显式地指定渲染这些标签。</p>
+<h4 id="现在使用注释节点渲染-null"><a href="#现在使用注释节点渲染-null" class="headerlink" title="现在使用注释节点渲染 null"></a>现在使用注释节点渲染 <code>null</code></h4><h4 id="组件现在也可以返回-null"><a href="#组件现在也可以返回-null" class="headerlink" title="组件现在也可以返回 null"></a>组件现在也可以返回 <code>null</code></h4><h4 id="增加SVG支持"><a href="#增加SVG支持" class="headerlink" title="增加SVG支持"></a>增加<code>SVG</code>支持</h4><p>本文翻译自 <a href="https://facebook.github.io/react/blog/2016/04/07/react-v15.html" target="_blank" rel="external">React v15.0</a></p>
 
       
     </div>
@@ -361,7 +345,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/React/" rel="tag">#React</a>
+            <a href="/tags/react/" rel="tag">#react</a>
           
         </div>
       
@@ -370,17 +354,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/07/搜索命令之locate、whereis、which、find、grep/" rel="next" title="搜索命令之locate、whereis、which、find、grep">
-                <i class="fa fa-chevron-left"></i> 搜索命令之locate、whereis、which、find、grep
+              <a href="/2016/04/18/react-router动态路由与Webpack分片thunks/" rel="next" title="react-router动态路由与Webpack分片thunks">
+                <i class="fa fa-chevron-left"></i> react-router动态路由与Webpack分片thunks
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/14/React应用性能优化之IMMUTABLE-JS/" rel="prev" title="React应用性能优化之IMMUTABLE.JS">
-                React应用性能优化之IMMUTABLE.JS <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -395,10 +375,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/03/10/React应用性能优化之shouldComponentUpdate与key/"
-     data-title="React应用性能优化之shouldComponentUpdate与key"
+        <div class="ds-share flat" data-thread-key="2016/04/19/React-v15-0升级指南/"
+     data-title="React-v15.0升级指南"
      data-content=""
-     data-url="http://robin-front.github.io/2016/03/10/React应用性能优化之shouldComponentUpdate与key/">
+     data-url="http://robin-front.github.io/2016/04/19/React-v15-0升级指南/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -425,8 +405,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/10/React应用性能优化之shouldComponentUpdate与key/"
-           data-title="React应用性能优化之shouldComponentUpdate与key" data-url="http://robin-front.github.io/2016/03/10/React应用性能优化之shouldComponentUpdate与key/">
+      <div class="ds-thread" data-thread-key="2016/04/19/React-v15-0升级指南/"
+           data-title="React-v15.0升级指南" data-url="http://robin-front.github.io/2016/04/19/React-v15-0升级指南/">
       </div>
     
   </div>
@@ -538,7 +518,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#shouldComponentUpdate"><span class="nav-number">1.</span> <span class="nav-text">shouldComponentUpdate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#key-键"><span class="nav-number">2.</span> <span class="nav-text">key(键)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要变化"><span class="nav-number">1.</span> <span class="nav-text">主要变化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#加入document-createElement-并且废弃-data-reactid"><span class="nav-number">1.1.</span> <span class="nav-text">加入document.createElement 并且废弃 data-reactid</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不再有额外的-lt-span-gt-标签"><span class="nav-number">1.2.</span> <span class="nav-text">不再有额外的 <span>标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#现在使用注释节点渲染-null"><span class="nav-number">1.3.</span> <span class="nav-text">现在使用注释节点渲染 null</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件现在也可以返回-null"><span class="nav-number">1.4.</span> <span class="nav-text">组件现在也可以返回 null</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增加SVG支持"><span class="nav-number">1.5.</span> <span class="nav-text">增加SVG支持</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

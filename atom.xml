@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2016-04-19T14:38:50.000Z</updated>
+  <updated>2016-04-21T16:02:56.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>子进程child_process让Node.js具备命令行的功能</title>
+    <link href="http://robin-front.github.io/2016/04/22/%E5%AD%90%E8%BF%9B%E7%A8%8Bchild-process%E8%AE%A9Node-js%E5%85%B7%E5%A4%87%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E5%8A%9F%E8%83%BD/"/>
+    <id>http://robin-front.github.io/2016/04/22/子进程child-process让Node-js具备命令行的功能/</id>
+    <published>2016-04-21T16:02:56.000Z</published>
+    <updated>2016-04-21T16:02:56.000Z</updated>
+    
+    <content type="html">&lt;p&gt;在&lt;code&gt;Node&lt;/code&gt;中使用子进程的目的，正是希望从&lt;code&gt;Node&lt;/code&gt;应用程序中通过命令行的方式访问计算机资源。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;共有四种不同的技术来创建一个子进程&lt;/p&gt;
+&lt;h3 id=&quot;child-process-spawn&quot;&gt;&lt;a href=&quot;#child-process-spawn&quot; class=&quot;headerlink&quot; title=&quot;child_process.spawn&quot;&gt;&lt;/a&gt;child_process.spawn&lt;/h3&gt;&lt;p&gt;&lt;code&gt;spawn&lt;/code&gt;是创建子进程最常见的方法。例：&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; spawn = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;child_process&#39;&lt;/span&gt;).spawn,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pwd = spawn(&lt;span class=&quot;string&quot;&gt;&#39;pwd&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;pwd.stdout.on(&lt;span class=&quot;string&quot;&gt;&#39;data&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;data&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;stdout:&#39;&lt;/span&gt; + data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;pwd.stderr.on(&lt;span class=&quot;string&quot;&gt;&#39;data&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;data&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;stderr&#39;&lt;/span&gt; + data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;pwd.on(&lt;span class=&quot;string&quot;&gt;&#39;close&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;code&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;child process close with code&#39;&lt;/span&gt; + code);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;pwd.on(&lt;span class=&quot;string&quot;&gt;&#39;exit&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;code&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;child process exit with code&#39;&lt;/span&gt; + code);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;参数作为数组传入&lt;/li&gt;
+&lt;li&gt;子进程对 &lt;code&gt;stdout&lt;/code&gt; 和 &lt;code&gt;stderr&lt;/code&gt; 相关事件可以进行捕获&lt;/li&gt;
+&lt;li&gt;子进程退出代码为 1，表示发生了错误；没有错误时，退出代码为 0&lt;/li&gt;
+&lt;li&gt;尽量使用&lt;code&gt;close&lt;/code&gt;事件而不是&lt;code&gt;exit&lt;/code&gt;事件，在进程结束后访问其数据可能会导致应用程序崩溃&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如何使用 &lt;code&gt;stdin&lt;/code&gt; 标准输入对象呢：&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; spawn = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;child_process&#39;&lt;/span&gt;).spawn,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    find = spawn(&lt;span class=&quot;string&quot;&gt;&#39;find&#39;&lt;/span&gt;, [&lt;span class=&quot;string&quot;&gt;&#39;.&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;-ls&#39;&lt;/span&gt;]),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    grep = spawn(&lt;span class=&quot;string&quot;&gt;&#39;grep&#39;&lt;/span&gt;, [&lt;span class=&quot;string&quot;&gt;&#39;test&#39;&lt;/span&gt;]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;grep.stdout.setEncoding(&lt;span class=&quot;string&quot;&gt;&#39;utf8&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;find.stdout.on(&lt;span class=&quot;string&quot;&gt;&#39;data&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;data&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  grep.stdin.write(data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;grep.stdout.on(&lt;span class=&quot;string&quot;&gt;&#39;data&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;data&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;上面这段例子模拟了&lt;code&gt;Unix&lt;/code&gt;管道（|）功能，可以将一个命令的结果传递给另一个命令作为输入。&lt;/p&gt;
+&lt;h3 id=&quot;child-process-exec-和-child-process-execFile&quot;&gt;&lt;a href=&quot;#child-process-exec-和-child-process-execFile&quot; class=&quot;headerlink&quot; title=&quot;child_process.exec 和 child_process.execFile&quot;&gt;&lt;/a&gt;child_process.exec 和 child_process.execFile&lt;/h3&gt;&lt;p&gt;通过 &lt;code&gt;child_process.exec&lt;/code&gt; 和 &lt;code&gt;child_process.execFile&lt;/code&gt; 来启动 &lt;code&gt;shell&lt;/code&gt; 执行命令可以缓存命令执行的结果&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;child_process.execFile&lt;/code&gt; 的第一个参数是命令或执行文件路径， 第二个参数是可选参数列表， 第三个参数是回调函数，该回调函数有三个参数： error, stdout 和 stderr。如果没有发生错误，执行结果会保存到 stdout。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;child_process.exec&lt;/code&gt; 则没有可选参数列表，只有 &lt;code&gt;execFile&lt;/code&gt; 方法的第一个和第三个参数。&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; execFile = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;child_process&#39;&lt;/span&gt;).execFile,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    child;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;child = execFile(&lt;span class=&quot;string&quot;&gt;&#39;ls&#39;&lt;/span&gt;, [&lt;span class=&quot;string&quot;&gt;&#39;-l&#39;&lt;/span&gt;], &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;error, stdout, stderr&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (error == &lt;span class=&quot;literal&quot;&gt;null&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;stdout: &#39;&lt;/span&gt; + stdout);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;code&gt;execFile&lt;/code&gt; 方法会更安全，因为它的命令行参数作为数组传入。&lt;/p&gt;
+&lt;h3 id=&quot;child-process-fork&quot;&gt;&lt;a href=&quot;#child-process-fork&quot; class=&quot;headerlink&quot; title=&quot;child_process.fork&quot;&gt;&lt;/a&gt;child_process.fork&lt;/h3&gt;&lt;p&gt;&lt;code&gt;fork&lt;/code&gt; 其实是对 &lt;code&gt;spawn&lt;/code&gt;的封装，目的是为了启动子进程并运行 &lt;code&gt;Node.js&lt;/code&gt;模块。&lt;/p&gt;
+&lt;p&gt;例：&lt;br&gt;&lt;code&gt;fork(&amp;#39;./child.js&amp;#39;)&lt;/code&gt; 相当于 &lt;code&gt;spawn(&amp;#39;node&amp;#39;, [&amp;#39;./child.js&amp;#39;])&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;此方法会在父进程与子进程之间建立一个真实的通信管道，用于进程之间的通信。但通过&lt;code&gt;fork&lt;/code&gt;生成的每个子进程都需要一个全新的 V8 实例，这需要耗费更多时间和内存。&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; n = child_process.fork(&lt;span class=&quot;string&quot;&gt;&#39;./child.js&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;n.on(&lt;span class=&quot;string&quot;&gt;&#39;message&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;m&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;PARENT got message:&#39;&lt;/span&gt;, m);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;n.send(&amp;#123; hello: &lt;span class=&quot;string&quot;&gt;&#39;world&#39;&lt;/span&gt; &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;send&lt;/code&gt; 方法用于进程间通信， 通过监听&lt;code&gt;message&lt;/code&gt;事件来获取消息&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在&lt;code&gt;Node&lt;/code&gt;中使用子进程的目的，正是希望从&lt;code&gt;Node&lt;/code&gt;应用程序中通过命令行的方式访问计算机资源。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Node" scheme="http://robin-front.github.io/categories/Node/"/>
+    
+    
+      <category term="Node" scheme="http://robin-front.github.io/tags/Node/"/>
+    
+  </entry>
   
   <entry>
     <title>React-v15.0升级指南</title>
@@ -334,9 +380,9 @@
       <category term="Webpack" scheme="http://robin-front.github.io/categories/Webpack/"/>
     
     
-      <category term="Webpack" scheme="http://robin-front.github.io/tags/Webpack/"/>
-    
       <category term="loaders" scheme="http://robin-front.github.io/tags/loaders/"/>
+    
+      <category term="Webpack" scheme="http://robin-front.github.io/tags/Webpack/"/>
     
   </entry>
   
@@ -1343,59 +1389,6 @@ gulp.task(&amp;apos;build&amp;apos;, gulp.parallel(&amp;apos;copy&amp;apos;, &am
       <category term="前端构建" scheme="http://robin-front.github.io/tags/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
     
       <category term="gulp" scheme="http://robin-front.github.io/tags/gulp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端批量压缩图片</title>
-    <link href="http://robin-front.github.io/2015/10/08/%E5%89%8D%E7%AB%AF%E6%89%B9%E9%87%8F%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/"/>
-    <id>http://robin-front.github.io/2015/10/08/前端批量压缩图片/</id>
-    <published>2015-10-08T06:31:51.000Z</published>
-    <updated>2015-11-06T17:10:28.000Z</updated>
-    
-    <content type="html">&lt;p&gt;前端切图的时候，png 图片都比较大，一直使用的是 &lt;a href=&quot;https://tinypng.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Tinypng&lt;/a&gt; 来压缩 png 图片，小图标sprite之后，图片数量还是至少在 20 以上，操作甚是麻烦。后来在使用 gulp 的时候，发现了一个批量压缩图片的神器 —— &lt;a href=&quot;https://pngquant.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pngquant&lt;/a&gt; 。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;先来看看一个 gulp 插件 gulp-imagemin&lt;/p&gt;
-&lt;h1 id=&quot;Install&quot;&gt;&lt;a href=&quot;#Install&quot; class=&quot;headerlink&quot; title=&quot;Install &quot;&gt;&lt;/a&gt;Install &lt;/h1&gt;&lt;pre&gt;&lt;code&gt;$ npm install --save-dev gulp-imagemin
-&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&quot;Usage&quot;&gt;&lt;a href=&quot;#Usage&quot; class=&quot;headerlink&quot; title=&quot;Usage&quot;&gt;&lt;/a&gt;Usage&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;var gulp = require(&amp;apos;gulp&amp;apos;);
-var imagemin = require(&amp;apos;gulp-imagemin&amp;apos;);
-var pngquant = require(&amp;apos;imagemin-pngquant&amp;apos;);
-
-gulp.task(&amp;apos;default&amp;apos;, function () {
-    return gulp.src(&amp;apos;src/images/*&amp;apos;)
-        .pipe(imagemin({
-            progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant()] //使用了 pngquant 压缩png图片
-        }))
-        .pipe(gulp.dest(&amp;apos;dist/images&amp;apos;));
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;gulp-imagemin&lt;/code&gt; 可以压缩几乎所有图片格式 PNG, JPEG, GIF and SVG，其中png压缩是使用了 &lt;a href=&quot;https://github.com/imagemin/imagemin-pngquant&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pngquant&lt;/a&gt; ,需要先另外安装：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ npm install --save imagemin-pngquant
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但是，图片其实并不需要每次构建都压缩，一般只需要在发布或测试的时候一次性压缩就可以了。 所以也可以不使用 gulp 工具进行图片压缩，直接使用 &lt;a href=&quot;https://pngquant.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pngquant&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;pngquant 使用起来也是很方便的，下载对应版本，windows下添加文件目录到系统环境变量，进入到相应目录，直接使用命令行&lt;br&gt;&lt;code&gt;pngquant *.png&lt;/code&gt; 即可完成压缩，可以看到目录下生成后缀名为 &lt;code&gt;-fs8.png&lt;/code&gt; 或 &lt;code&gt;-or8.png&lt;/code&gt;的图片。&lt;/p&gt;
-&lt;p&gt;查看 &lt;a href=&quot;https://github.com/pornel/pngquant&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Readme.md&lt;/a&gt; 配置相应参数&lt;/p&gt;
-&lt;h1 id=&quot;pngquant常用的主要参数&quot;&gt;&lt;a href=&quot;#pngquant常用的主要参数&quot; class=&quot;headerlink&quot; title=&quot;pngquant常用的主要参数&quot;&gt;&lt;/a&gt;pngquant常用的主要参数&lt;/h1&gt;&lt;p&gt;&lt;code&gt;--quality min-max&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;类似JPEG的质量，设置0 ~ 100 的图片压缩质量。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;pngquant --quality=65-80 *.png
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;--ext new.png&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;设置输出压缩图片的文件名。如果不设置，则默认后缀为 &lt;code&gt;-fs8.png&lt;/code&gt; 或 &lt;code&gt;-or8.png&lt;/code&gt;。如果使用 &lt;code&gt;--ext=.png --force&lt;/code&gt;，将会使用原文件名输出并覆盖原文件。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;-o out.png or --output out.png&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;设置图片输出路径。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;前端切图的时候，png 图片都比较大，一直使用的是 &lt;a href=&quot;https://tinypng.com/&quot;&gt;Tinypng&lt;/a&gt; 来压缩 png 图片，小图标sprite之后，图片数量还是至少在 20 以上，操作甚是麻烦。后来在使用 gulp 的时候，发现了一个批量压缩图片的神器 —— &lt;a href=&quot;https://pngquant.org/&quot;&gt;pngquant&lt;/a&gt; 。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="前端构建" scheme="http://robin-front.github.io/categories/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
-    
-    
-      <category term="前端构建" scheme="http://robin-front.github.io/tags/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
-    
-      <category term="图片压缩" scheme="http://robin-front.github.io/tags/%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/"/>
     
   </entry>
   

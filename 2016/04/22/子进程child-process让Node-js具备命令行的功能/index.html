@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="linux," />
+  <meta name="keywords" content="Node," />
 
 
 
@@ -61,19 +61,16 @@
 
 
 
-<meta name="description" content="whereis搜索命令所在路径及帮助文档所在位置
-选项：-b 只查找可执行文件-m 只查找帮助文件">
+<meta name="description" content="在Node中使用子进程的目的，正是希望从Node应用程序中通过命令行的方式访问计算机资源。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搜索命令之locate、whereis、which、find、grep">
-<meta property="og:url" content="http://robin-front.github.io/2016/03/07/搜索命令之locate、whereis、which、find、grep/index.html">
+<meta property="og:title" content="子进程child_process让Node.js具备命令行的功能">
+<meta property="og:url" content="http://robin-front.github.io/2016/04/22/子进程child-process让Node-js具备命令行的功能/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="whereis搜索命令所在路径及帮助文档所在位置
-选项：-b 只查找可执行文件-m 只查找帮助文件">
-<meta property="og:updated_time" content="2016-03-06T16:58:03.000Z">
+<meta property="og:description" content="在Node中使用子进程的目的，正是希望从Node应用程序中通过命令行的方式访问计算机资源。">
+<meta property="og:updated_time" content="2016-04-21T16:02:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搜索命令之locate、whereis、which、find、grep">
-<meta name="twitter:description" content="whereis搜索命令所在路径及帮助文档所在位置
-选项：-b 只查找可执行文件-m 只查找帮助文件">
+<meta name="twitter:title" content="子进程child_process让Node.js具备命令行的功能">
+<meta name="twitter:description" content="在Node中使用子进程的目的，正是希望从Node应用程序中通过命令行的方式访问计算机资源。">
 
 
 
@@ -91,7 +88,7 @@
   };
 </script>
 
-  <title> 搜索命令之locate、whereis、which、find、grep | 三寸稚笔 </title>
+  <title> 子进程child_process让Node.js具备命令行的功能 | 三寸稚笔 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +259,7 @@
             
             
               
-                搜索命令之locate、whereis、which、find、grep
+                子进程child_process让Node.js具备命令行的功能
               
             
           </h1>
@@ -274,8 +271,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-07T00:58:03+08:00" content="2016-03-07">
-              2016-03-07
+            <time itemprop="dateCreated" datetime="2016-04-22T00:02:56+08:00" content="2016-04-22">
+              2016-04-22
             </time>
           </span>
 
@@ -288,8 +285,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/Node/" itemprop="url" rel="index">
+                    <span itemprop="name">Node</span>
                   </a>
                 </span>
 
@@ -304,8 +301,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/07/搜索命令之locate、whereis、which、find、grep/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/07/搜索命令之locate、whereis、which、find、grep/" itemprop="commentsCount"></span>
+                <a href="/2016/04/22/子进程child-process让Node-js具备命令行的功能/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/22/子进程child-process让Node-js具备命令行的功能/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -327,26 +324,29 @@
       
 
       
-        <h3 id="whereis"><a href="#whereis" class="headerlink" title="whereis"></a>whereis</h3><p>搜索命令所在路径及帮助文档所在位置</p>
-<p>选项：<br>-b 只查找可执行文件<br>-m 只查找帮助文件<br><a id="more"></a></p>
+        <p>在<code>Node</code>中使用子进程的目的，正是希望从<code>Node</code>应用程序中通过命令行的方式访问计算机资源。<br><a id="more"></a></p>
+<p>共有四种不同的技术来创建一个子进程</p>
+<h3 id="child-process-spawn"><a href="#child-process-spawn" class="headerlink" title="child_process.spawn"></a>child_process.spawn</h3><p><code>spawn</code>是创建子进程最常见的方法。例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).spawn,</span><br><span class="line">    pwd = spawn(<span class="string">'pwd'</span>);</span><br><span class="line"></span><br><span class="line">pwd.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'stdout:'</span> + data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">pwd.stderr.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'stderr'</span> + data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">pwd.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">code</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'child process close with code'</span> + code);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">pwd.on(<span class="string">'exit'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">code</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'child process exit with code'</span> + code);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数作为数组传入</li>
+<li>子进程对 <code>stdout</code> 和 <code>stderr</code> 相关事件可以进行捕获</li>
+<li>子进程退出代码为 1，表示发生了错误；没有错误时，退出代码为 0</li>
+<li>尽量使用<code>close</code>事件而不是<code>exit</code>事件，在进程结束后访问其数据可能会导致应用程序崩溃</li>
+</ul>
+<p>如何使用 <code>stdin</code> 标准输入对象呢：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).spawn,</span><br><span class="line">    find = spawn(<span class="string">'find'</span>, [<span class="string">'.'</span>, <span class="string">'-ls'</span>]),</span><br><span class="line">    grep = spawn(<span class="string">'grep'</span>, [<span class="string">'test'</span>]);</span><br><span class="line"></span><br><span class="line">grep.stdout.setEncoding(<span class="string">'utf8'</span>);</span><br><span class="line"></span><br><span class="line">find.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">  grep.stdin.write(data);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">grep.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>上面这段例子模拟了<code>Unix</code>管道（|）功能，可以将一个命令的结果传递给另一个命令作为输入。</p>
+<h3 id="child-process-exec-和-child-process-execFile"><a href="#child-process-exec-和-child-process-execFile" class="headerlink" title="child_process.exec 和 child_process.execFile"></a>child_process.exec 和 child_process.execFile</h3><p>通过 <code>child_process.exec</code> 和 <code>child_process.execFile</code> 来启动 <code>shell</code> 执行命令可以缓存命令执行的结果</p>
+<p><code>child_process.execFile</code> 的第一个参数是命令或执行文件路径， 第二个参数是可选参数列表， 第三个参数是回调函数，该回调函数有三个参数： error, stdout 和 stderr。如果没有发生错误，执行结果会保存到 stdout。</p>
+<p><code>child_process.exec</code> 则没有可选参数列表，只有 <code>execFile</code> 方法的第一个和第三个参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> execFile = <span class="built_in">require</span>(<span class="string">'child_process'</span>).execFile,</span><br><span class="line">    child;</span><br><span class="line"></span><br><span class="line">child = execFile(<span class="string">'ls'</span>, [<span class="string">'-l'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">error, stdout, stderr</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (error == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'stdout: '</span> + stdout);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>execFile</code> 方法会更安全，因为它的命令行参数作为数组传入。</p>
+<h3 id="child-process-fork"><a href="#child-process-fork" class="headerlink" title="child_process.fork"></a>child_process.fork</h3><p><code>fork</code> 其实是对 <code>spawn</code>的封装，目的是为了启动子进程并运行 <code>Node.js</code>模块。</p>
+<p>例：<br><code>fork(&#39;./child.js&#39;)</code> 相当于 <code>spawn(&#39;node&#39;, [&#39;./child.js&#39;])</code></p>
+<p>此方法会在父进程与子进程之间建立一个真实的通信管道，用于进程之间的通信。但通过<code>fork</code>生成的每个子进程都需要一个全新的 V8 实例，这需要耗费更多时间和内存。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n = child_process.fork(<span class="string">'./child.js'</span>);</span><br><span class="line">n.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">m</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'PARENT got message:'</span>, m);</span><br><span class="line">&#125;);</span><br><span class="line">n.send(&#123; hello: <span class="string">'world'</span> &#125;);</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>也可以通过 whereis 命令来判断是否是shell内部命令</p>
-</blockquote>
-<h3 id="which"><a href="#which" class="headerlink" title="which"></a>which</h3><p>搜索命令所在路么及别名</p>
-<blockquote>
-<p>与whereis的区别在于 which 不仅可以查看命令所在路径，还可以查看到命令的别名</p>
-</blockquote>
-<h3 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h3><p>搜索文件名最快的方式，根据后台数据库/var/lib/mlocate搜索</p>
-<p>updatedb 命令手动更新数据库，数据库更新不是即时的，一般需要一天<br>/etc/updatedb.conf 配置文件，用于配置搜索限制</p>
-<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>最强大的搜索命令，但同时带来性能问题</p>
-<blockquote>
-<p>find [搜索范围] [搜索条件]</p>
-</blockquote>
-<p>-name 按文件名搜索<br>-iname 不区分大小写搜索<br>-user 按照所有者搜索<br>-nouser 查找没有所有者的文件<br>-mtime 按修改文件的日期搜索，如：+10 查找10天前修改的文件， -10 查找10内修改的文件， 10 查找10天当天修改的文件<br>-atime 文件访问时间<br>-ctime 改变文件属性时间<br>-size 按照文件大小按索，如： find . -size 25k，注意 k 是小写， M是大写<br>-inum 按照i节点查找文件<br>-a 逻辑与 and,两个条件都满足，如： find /root -size +20k -a -size -1M 查找大于20k且小于1M的文件<br>-o 逻辑或 or,两个条件满足一个即可<br>-exec 命令 {} \; 对搜索结果执行操作，如： find /root -size 25k -exec rm -rf {} \; 查找/root目录下25k大小的文件之后删除</p>
-<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p>在文件中搜索符合条件的字符串</p>
-<p>选项：<br>-i 忽略大小写<br>-v 排除指定字符串</p>
-<blockquote>
-<p>grep 是包含匹配，只要含有匹配的字符串，一整行都会输出；find 是完全匹配，只输出文件名完全一样的文件</p>
+<p><code>send</code> 方法用于进程间通信， 通过监听<code>message</code>事件来获取消息</p>
 </blockquote>
 
       
@@ -362,7 +362,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/linux/" rel="tag">#linux</a>
+            <a href="/tags/Node/" rel="tag">#Node</a>
           
         </div>
       
@@ -371,17 +371,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/05/Fetch POST接收不到数据，注意content-type的设置/" rel="next" title="Fetch POST接收不到数据，注意content-type的设置">
-                <i class="fa fa-chevron-left"></i> Fetch POST接收不到数据，注意content-type的设置
+              <a href="/2016/04/19/React-v15-0升级指南/" rel="next" title="React-v15.0升级指南">
+                <i class="fa fa-chevron-left"></i> React-v15.0升级指南
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/10/React应用性能优化之shouldComponentUpdate与key/" rel="prev" title="React应用性能优化之shouldComponentUpdate与key">
-                React应用性能优化之shouldComponentUpdate与key <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -396,10 +392,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/03/07/搜索命令之locate、whereis、which、find、grep/"
-     data-title="搜索命令之locate、whereis、which、find、grep"
+        <div class="ds-share flat" data-thread-key="2016/04/22/子进程child-process让Node-js具备命令行的功能/"
+     data-title="子进程child_process让Node.js具备命令行的功能"
      data-content=""
-     data-url="http://robin-front.github.io/2016/03/07/搜索命令之locate、whereis、which、find、grep/">
+     data-url="http://robin-front.github.io/2016/04/22/子进程child-process让Node-js具备命令行的功能/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -426,8 +422,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/07/搜索命令之locate、whereis、which、find、grep/"
-           data-title="搜索命令之locate、whereis、which、find、grep" data-url="http://robin-front.github.io/2016/03/07/搜索命令之locate、whereis、which、find、grep/">
+      <div class="ds-thread" data-thread-key="2016/04/22/子进程child-process让Node-js具备命令行的功能/"
+           data-title="子进程child_process让Node.js具备命令行的功能" data-url="http://robin-front.github.io/2016/04/22/子进程child-process让Node-js具备命令行的功能/">
       </div>
     
   </div>
@@ -539,7 +535,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#whereis"><span class="nav-number">1.</span> <span class="nav-text">whereis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#which"><span class="nav-number">2.</span> <span class="nav-text">which</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#locate"><span class="nav-number">3.</span> <span class="nav-text">locate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">4.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep"><span class="nav-number">5.</span> <span class="nav-text">grep</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#child-process-spawn"><span class="nav-number">1.</span> <span class="nav-text">child_process.spawn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#child-process-exec-和-child-process-execFile"><span class="nav-number">2.</span> <span class="nav-text">child_process.exec 和 child_process.execFile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#child-process-fork"><span class="nav-number">3.</span> <span class="nav-text">child_process.fork</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

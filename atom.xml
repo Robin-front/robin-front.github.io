@@ -380,9 +380,9 @@
       <category term="Webpack" scheme="http://robin-front.github.io/categories/Webpack/"/>
     
     
-      <category term="loaders" scheme="http://robin-front.github.io/tags/loaders/"/>
-    
       <category term="Webpack" scheme="http://robin-front.github.io/tags/Webpack/"/>
+    
+      <category term="loaders" scheme="http://robin-front.github.io/tags/loaders/"/>
     
   </entry>
   

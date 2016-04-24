@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2016-04-21T16:02:56.000Z</updated>
+  <updated>2016-04-24T14:20:00.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Node.js的cluster模块发挥CPU的多核优势</title>
+    <link href="http://robin-front.github.io/2016/04/24/Node-js%E7%9A%84cluster%E6%A8%A1%E5%9D%97%E5%8F%91%E6%8C%A5CPU%E7%9A%84%E5%A4%9A%E6%A0%B8%E4%BC%98%E5%8A%BF/"/>
+    <id>http://robin-front.github.io/2016/04/24/Node-js的cluster模块发挥CPU的多核优势/</id>
+    <published>2016-04-24T14:20:00.000Z</published>
+    <updated>2016-04-24T14:20:00.000Z</updated>
+    
+    <content type="html">&lt;p&gt;一个Node.js应用程序只能使用在一个线程中。为了充分发挥多核CPU的优势，Node.js中提供了一个 &lt;code&gt;cluster&lt;/code&gt;模块，允许在多个子进程中运行不同的Node.js应用程序。&lt;code&gt;cluster&lt;/code&gt;模块是对 &lt;code&gt;child_process.fork()&lt;/code&gt;的一个封装。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一个Node.js应用程序只能使用在一个线程中。为了充分发挥多核CPU的优势，Node.js中提供了一个 &lt;code&gt;cluster&lt;/code&gt;模块，允许在多个子进程中运行不同的Node.js应用程序。&lt;code&gt;cluster&lt;/code&gt;模块是对 &lt;code&gt;child_process.fork()&lt;/code&gt;的一个封装。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Node" scheme="http://robin-front.github.io/categories/Node/"/>
+    
+    
+      <category term="Node" scheme="http://robin-front.github.io/tags/Node/"/>
+    
+  </entry>
   
   <entry>
     <title>子进程child_process让Node.js具备命令行的功能</title>
@@ -1285,110 +1308,6 @@ $ git merge version2.0
     
     
       <category term="git" scheme="http://robin-front.github.io/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>gulp 4.0的变化</title>
-    <link href="http://robin-front.github.io/2015/10/09/gulp-4.0/"/>
-    <id>http://robin-front.github.io/2015/10/09/gulp-4.0/</id>
-    <published>2015-10-09T07:23:51.000Z</published>
-    <updated>2015-11-06T17:10:28.000Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;升级日志&quot;&gt;&lt;a href=&quot;#升级日志&quot; class=&quot;headerlink&quot; title=&quot;升级日志&quot;&gt;&lt;/a&gt;升级日志&lt;/h3&gt;&lt;p&gt;先来看看新版有什么不同（&lt;a href=&quot;https://github.com/gulpjs/gulp/blob/4.0/CHANGELOG.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;官方升级日志&lt;/a&gt;）：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;新的任务系统（基于 bach，替换掉了原先基于 orchestrator 的任务系统）&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;移除 gulp.reset&lt;/li&gt;
-&lt;li&gt;gulp.task 不再支持三个参数的用法&lt;/li&gt;
-&lt;li&gt;gulp.task 用字符串注册的任务必须是直接在命令行中调用的任务&lt;/li&gt;
-&lt;li&gt;gulp.task 可以接受单参数语法，这个参数必须是一个命名函数，函数名会被作为任务名&lt;/li&gt;
-&lt;li&gt;添加了 gulp.series 和 gulp.parallel 方法用于组合任务&lt;/li&gt;
-&lt;li&gt;添加了 gulp.tree 方法用于获取任务树，传入 { deep: true } 参数可以得到一个 archy 兼容的节点列表&lt;/li&gt;
-&lt;li&gt;添加了 gulp.registry 方法以定制注册表。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;添加了 gulp.symlink 方法，功能和 gulp.dest 一致，不过是以软链接的方式&lt;/li&gt;
-&lt;li&gt;gulp.dest 和 gulp.symlink 方法添加了 dirMode 参数允许对目标目录更好地控制&lt;/li&gt;
-&lt;li&gt;gulp.src 接收的文件匹配字符串会顺序解释，所以你可以写成这样 gulp.src([‘&lt;em&gt;.js’, ‘!b&lt;/em&gt;.js’, ‘bad.js’])（排除所有以 b 开头的 JS 文件但是除了 bad.js）&lt;/li&gt;
-&lt;li&gt;gulp.src 方法添加了 since 选项，筛选在特定时间点之后修改过的文件（用于增量编译）&lt;/li&gt;
-&lt;li&gt;将命令行分离出来成为一个独立模块，以便节约带宽/空间。用 npm install gulp -g 或 npm install gulp-cli -g 都可以安装命令行，只是 gulp-cli 不包含模块代码所以比较小&lt;/li&gt;
-&lt;li&gt;命令行添加了 –tasks-json 参数，可以导出整个任务树以供他用&lt;/li&gt;
-&lt;li&gt;命令行添加了 –verify 参数用以检查 package.json 中是否包含黑名单插件（违背准则而被禁入官方插件列表的可怜娃们）。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;安装gulp-4-0&quot;&gt;&lt;a href=&quot;#安装gulp-4-0&quot; class=&quot;headerlink&quot; title=&quot;安装gulp 4.0&quot;&gt;&lt;/a&gt;安装gulp 4.0&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;# 如果安装过全局的 gulp 的话先卸载之
-$ npm uninstall gulp -g
-
-# 安装全局的 gulp 4.0
-$ npm install &amp;quot;gulpjs/gulp#4.0&amp;quot; -g
-
-# 到项目目录里删掉本地的 gulp
-$ npm rm gulp --save-dev
-
-# 安装本地的 gulp 4.0
-$ npm install &amp;quot;gulpjs/gulp#4.0&amp;quot; --save-dev
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;gulp-task&quot;&gt;&lt;a href=&quot;#gulp-task&quot; class=&quot;headerlink&quot; title=&quot;gulp.task&quot;&gt;&lt;/a&gt;gulp.task&lt;/h3&gt;&lt;p&gt;1、移除了gulp.task传递三参数的用法&lt;br&gt;即这种用法将报错&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;gulp.task(&amp;apos;watch&amp;apos;, [&amp;apos;default&amp;apos;], function() {
-    // TODO
-    // watch file
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在gulp4.0之前，这种用法将会保证default任务先执行完再执行watch任务，gulp的任务流程控制就是这么实现的，流程控制另外增加api实现，详看后面。&lt;/p&gt;
-&lt;p&gt;2、gulp.task又增加了一种用法，即传递一个具名函数作为参数，将自动注册以该函数名命名的任务&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function clean(){}
-function compile() {
-    // do something...
-}
-gulp.task(clean);
-gulp.task(compile);
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;等同于&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;gulp.task(&amp;apos;clean&amp;apos;, function() {
-    // do something...
-});
-gulp.task(&amp;apos;compile&amp;apos;, function() {
-    // do something...
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;任务流程控制&quot;&gt;&lt;a href=&quot;#任务流程控制&quot; class=&quot;headerlink&quot; title=&quot;任务流程控制&quot;&gt;&lt;/a&gt;任务流程控制&lt;/h3&gt;&lt;p&gt;增加了&lt;code&gt;gulp.series&lt;/code&gt; 串行任务和&lt;code&gt;gulp.parallel&lt;/code&gt; 并行任务， 比原来的三参数写法要更加清晰。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function clean(){}
-function copy(){}
-function compile() {
-    // do something...
-}
-gulp.task(clean);
-gulp.task(copy);
-gulp.task(compile);
-gulp.task(&amp;apos;clean-build&amp;apos;, gulp.series(&amp;apos;clean&amp;apos;, &amp;apos;copy&amp;apos;, &amp;apos;compile&amp;apos;)); //任务将按顺序执行
-gulp.task(&amp;apos;build&amp;apos;, gulp.parallel(&amp;apos;copy&amp;apos;, &amp;apos;compile&amp;apos;)); //任务将并发执行
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;只要在gulpfile.js中没有使用gulp.task传三个参数的用法，gulp 4.0也是兼容老版本的gulpfile.js的。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;升级日志&quot;&gt;&lt;a href=&quot;#升级日志&quot; class=&quot;headerlink&quot; title=&quot;升级日志&quot;&gt;&lt;/a&gt;升级日志&lt;/h3&gt;&lt;p&gt;先来看看新版有什么不同（&lt;a href=&quot;https://github.com/gulpjs/gulp/blob/4.0/CHANGELOG.md&quot;&gt;官方升级日志&lt;/a&gt;）：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;新的任务系统（基于 bach，替换掉了原先基于 orchestrator 的任务系统）&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;移除 gulp.reset&lt;/li&gt;
-&lt;li&gt;gulp.task 不再支持三个参数的用法&lt;/li&gt;
-&lt;li&gt;gulp.task 用字符串注册的任务必须是直接在命令行中调用的任务&lt;/li&gt;
-&lt;li&gt;gulp.task 可以接受单参数语法，这个参数必须是一个命名函数，函数名会被作为任务名&lt;/li&gt;
-&lt;li&gt;添加了 gulp.series 和 gulp.parallel 方法用于组合任务&lt;/li&gt;
-&lt;li&gt;添加了 gulp.tree 方法用于获取任务树，传入 { deep: true } 参数可以得到一个 archy 兼容的节点列表&lt;/li&gt;
-&lt;li&gt;添加了 gulp.registry 方法以定制注册表。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="前端构建" scheme="http://robin-front.github.io/categories/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
-    
-    
-      <category term="前端构建" scheme="http://robin-front.github.io/tags/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
-    
-      <category term="gulp" scheme="http://robin-front.github.io/tags/gulp/"/>
     
   </entry>
   

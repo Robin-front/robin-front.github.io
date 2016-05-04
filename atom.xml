@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2016-04-24T14:20:00.000Z</updated>
+  <updated>2016-05-04T14:04:27.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pm2一个带有负载均衡功能的Node应用的进程管理器</title>
+    <link href="http://robin-front.github.io/2016/05/04/pm2%E4%B8%80%E4%B8%AA%E5%B8%A6%E6%9C%89%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%8A%9F%E8%83%BD%E7%9A%84Node%E5%BA%94%E7%94%A8%E7%9A%84%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%E5%99%A8/"/>
+    <id>http://robin-front.github.io/2016/05/04/pm2一个带有负载均衡功能的Node应用的进程管理器/</id>
+    <published>2016-05-04T14:04:27.000Z</published>
+    <updated>2016-05-04T14:04:27.000Z</updated>
+    
+    <content type="html">&lt;p&gt;PM2是一个提供了内置的负载均衡的Node.js应用程序进程管理器。它可以让你保持应用程序永远在线，无需停机地重启应用，也有助于系统管理员工作。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;安装-PM2&quot;&gt;&lt;a href=&quot;#安装-PM2&quot; class=&quot;headerlink&quot; title=&quot;安装 PM2&quot;&gt;&lt;/a&gt;安装 PM2&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ npm install pm2 -g&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;启动应用&quot;&gt;&lt;a href=&quot;#启动应用&quot; class=&quot;headerlink&quot; title=&quot;启动应用&quot;&gt;&lt;/a&gt;启动应用&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 start app.js&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这样，应用就已经在后台启动，并被监测保持在线。&lt;/p&gt;
+&lt;h3 id=&quot;模块系统&quot;&gt;&lt;a href=&quot;#模块系统&quot; class=&quot;headerlink&quot; title=&quot;模块系统&quot;&gt;&lt;/a&gt;模块系统&lt;/h3&gt;&lt;p&gt;PM2 内嵌一个简单强大的模块系统，可以直接像下面这样安装模块&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 install &amp;lt;module_name&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/pm2-hive/pm2-logrotate&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pm2-logrotate&lt;/a&gt; 日志管理及分割模块&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/pm2-hive/pm2-webshell&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pm2-webshell&lt;/a&gt; 强大的浏览器模拟终端&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/pm2-hive/pm2-auto-pull&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pm2-auto-pull&lt;/a&gt; 持续集成，自动拉取代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;更新PM2&quot;&gt;&lt;a href=&quot;#更新PM2&quot; class=&quot;headerlink&quot; title=&quot;更新PM2&quot;&gt;&lt;/a&gt;更新PM2&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# Install latest pm2 version&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ npm install pm2 -g&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# Save process list, exit old PM2 &amp;amp; restore all processes&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 update&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;主要特性&quot;&gt;&lt;a href=&quot;#主要特性&quot; class=&quot;headerlink&quot; title=&quot;主要特性&quot;&gt;&lt;/a&gt;主要特性&lt;/h3&gt;&lt;h4 id=&quot;命令概览&quot;&gt;&lt;a href=&quot;#命令概览&quot; class=&quot;headerlink&quot; title=&quot;命令概览&quot;&gt;&lt;/a&gt;命令概览&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ npm install pm2 -g            &lt;span class=&quot;comment&quot;&gt;# Install PM2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 start app.js              &lt;span class=&quot;comment&quot;&gt;# Start, Daemonize and auto restart application&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 start app.js -i 4         &lt;span class=&quot;comment&quot;&gt;# Start 4 instances of application in cluster mode&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                &lt;span class=&quot;comment&quot;&gt;# it will load balance network queries to each app&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 start app.js --name=&lt;span class=&quot;string&quot;&gt;&quot;api&quot;&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;# Start application and name it &quot;api&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 start app.js --watch      &lt;span class=&quot;comment&quot;&gt;# Restart application on file change&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 start script.sh           &lt;span class=&quot;comment&quot;&gt;# Start bash script&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 list                      &lt;span class=&quot;comment&quot;&gt;# List all processes started with PM2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 monit                     &lt;span class=&quot;comment&quot;&gt;# Display memory and cpu usage of each app&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 show [app-name]           &lt;span class=&quot;comment&quot;&gt;# Show all informations about application&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 logs                      &lt;span class=&quot;comment&quot;&gt;# Display logs of all apps&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 logs [app-name]           &lt;span class=&quot;comment&quot;&gt;# Display logs for a specific app&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 flush&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 stop all                  &lt;span class=&quot;comment&quot;&gt;# Stop all apps&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 stop 0                    &lt;span class=&quot;comment&quot;&gt;# Stop process with id 0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 restart all               &lt;span class=&quot;comment&quot;&gt;# Restart all apps&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 reload all                &lt;span class=&quot;comment&quot;&gt;# Reload all apps in cluster mode&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 gracefulReload all        &lt;span class=&quot;comment&quot;&gt;# Graceful reload all apps in cluster mode&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 delete all                &lt;span class=&quot;comment&quot;&gt;# Kill and delete all apps&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 delete 0                  &lt;span class=&quot;comment&quot;&gt;# Delete app with id 0&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 scale api 10              &lt;span class=&quot;comment&quot;&gt;# Scale app with name api to 10 instances&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 reset [app-name]          &lt;span class=&quot;comment&quot;&gt;# Reset number of restart for [app-name]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 startup                   &lt;span class=&quot;comment&quot;&gt;# Generate a startup script to respawn PM2 on boot&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 save                      &lt;span class=&quot;comment&quot;&gt;# Save current process list&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 resurrect                 &lt;span class=&quot;comment&quot;&gt;# Restore previously save processes&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 update                    &lt;span class=&quot;comment&quot;&gt;# Save processes, kill PM2 and restore processes&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 generate                  &lt;span class=&quot;comment&quot;&gt;# Generate a sample json configuration file&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 deploy app.json prod setup    &lt;span class=&quot;comment&quot;&gt;# Setup &quot;prod&quot; remote server&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 deploy app.json prod          &lt;span class=&quot;comment&quot;&gt;# Update &quot;prod&quot; remote server&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 deploy app.json prod revert 2 &lt;span class=&quot;comment&quot;&gt;# Revert &quot;prod&quot; remote server by 2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 module:generate [name]    &lt;span class=&quot;comment&quot;&gt;# Generate sample module with name [name]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 install pm2-logrotate     &lt;span class=&quot;comment&quot;&gt;# Install module (here a log rotation system)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 uninstall pm2-logrotate   &lt;span class=&quot;comment&quot;&gt;# Uninstall module&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 publish                   &lt;span class=&quot;comment&quot;&gt;# Increment version, git push and npm publish&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;开启进程的多种方式&quot;&gt;&lt;a href=&quot;#开启进程的多种方式&quot; class=&quot;headerlink&quot; title=&quot;开启进程的多种方式&quot;&gt;&lt;/a&gt;开启进程的多种方式&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 start app.js --watch      &lt;span class=&quot;comment&quot;&gt;# Restart application on file change&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 start script.sh           &lt;span class=&quot;comment&quot;&gt;# Start bash script&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 start app.js -- &lt;span class=&quot;_&quot;&gt;-a&lt;/span&gt; 34     &lt;span class=&quot;comment&quot;&gt;# Start app and pass option -a 34&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 start app.json            &lt;span class=&quot;comment&quot;&gt;# Start all applications declared in app.json&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 start my-python-script.py --interpreter python&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;进程管理&quot;&gt;&lt;a href=&quot;#进程管理&quot; class=&quot;headerlink&quot; title=&quot;进程管理&quot;&gt;&lt;/a&gt;进程管理&lt;/h4&gt;&lt;p&gt;列出所有进程：&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 list&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;管理进程&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 stop     &amp;lt;app_name|id|&lt;span class=&quot;string&quot;&gt;&#39;all&#39;&lt;/span&gt;|json_conf&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 restart  &amp;lt;app_name|id|&lt;span class=&quot;string&quot;&gt;&#39;all&#39;&lt;/span&gt;|json_conf&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 delete   &amp;lt;app_name|id|&lt;span class=&quot;string&quot;&gt;&#39;all&#39;&lt;/span&gt;|json_conf&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;查看进程的详情&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 describe &amp;lt;id|app_name&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&quot;CPU-内存监测&quot;&gt;&lt;a href=&quot;#CPU-内存监测&quot; class=&quot;headerlink&quot; title=&quot;CPU / 内存监测&quot;&gt;&lt;/a&gt;CPU / 内存监测&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 monit&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;日志工具&quot;&gt;&lt;a href=&quot;#日志工具&quot; class=&quot;headerlink&quot; title=&quot;日志工具&quot;&gt;&lt;/a&gt;日志工具&lt;/h4&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;pm2 logs [&lt;span class=&quot;string&quot;&gt;&#39;all&#39;&lt;/span&gt;|&lt;span class=&quot;string&quot;&gt;&#39;PM2&#39;&lt;/span&gt;|app_name|app_id] [--err|--out] [--lines &amp;lt;n&amp;gt;] [--raw] [--timestamp [format]]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;例：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 logs&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 logs WEB-API --err&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 logs all --raw&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 logs --lines 5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 logs --timestamp &lt;span class=&quot;string&quot;&gt;&quot;HH:mm:ss&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 logs WEB-API --lines 0 --timestamp &lt;span class=&quot;string&quot;&gt;&quot;HH:mm&quot;&lt;/span&gt; --out&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 logs PM2 --timestamp&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 flush          // Clear all the logs&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;开机启动&quot;&gt;&lt;a href=&quot;#开机启动&quot; class=&quot;headerlink&quot; title=&quot;开机启动&quot;&gt;&lt;/a&gt;开机启动&lt;/h4&gt;&lt;p&gt;PM2可以自动生成并配置开机启动脚本，让服务器在重启的时候可以保持应用在线&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 startup&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# auto-detect platform&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ pm2 startup [platform]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# render startup-script for a specific platform, the [platform] could be one of:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#   ubuntu|centos|redhat|gentoo|systemd|darwin|amazon&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;a href=&quot;http://pm2.keymetrics.io/docs/usage/quick-start/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;更多查看&amp;gt;&amp;gt;&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;PM2是一个提供了内置的负载均衡的Node.js应用程序进程管理器。它可以让你保持应用程序永远在线，无需停机地重启应用，也有助于系统管理员工作。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Node" scheme="http://robin-front.github.io/categories/Node/"/>
+    
+    
+      <category term="Node" scheme="http://robin-front.github.io/tags/Node/"/>
+    
+  </entry>
   
   <entry>
     <title>Node.js的cluster模块发挥CPU的多核优势</title>
@@ -1247,67 +1292,6 @@ angular.module(&amp;apos;myApp&amp;apos;, [])
       <category term="angularJS" scheme="http://robin-front.github.io/tags/angularJS/"/>
     
       <category term="指令" scheme="http://robin-front.github.io/tags/%E6%8C%87%E4%BB%A4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git分支</title>
-    <link href="http://robin-front.github.io/2015/10/10/git%E5%88%86%E6%94%AF/"/>
-    <id>http://robin-front.github.io/2015/10/10/git分支/</id>
-    <published>2015-10-10T14:16:01.000Z</published>
-    <updated>2015-11-06T17:10:28.000Z</updated>
-    
-    <content type="html">&lt;p&gt;git分支对于我们平常开发新功能，修复bug等有很大的帮助。下面是git分支的常用命令：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;分支的新建与切换&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ git checkout -b version2.0
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  这相当于执行下面这两条命令：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ git branch version2.0
-$ git checkout version2.0
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;分支的合并&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ git checkout master
-$ git merge version2.0
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  切换到主分支，把分去version2.0合并到主分支&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;分支的删除&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ git branch -d verdion2.0
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  如果分支功能已经合并到主分支，分支就没有用了，可以删除。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;合并分支的冲突&lt;/p&gt;
-&lt;p&gt;  合并并不总是顺利的，特别是多人合作的时候，很容易产生冲突。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt; HEAD
-&amp;lt;div id=&amp;quot;footer&amp;quot;&amp;gt;copyright&amp;lt;/div&amp;gt;
-=======
-&amp;lt;div id=&amp;quot;footer&amp;quot;&amp;gt;
-  please contact us
-&amp;lt;/div&amp;gt;
-&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; version2.0
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  ‘=======’把两个版本冲突的内容分隔开来，我们需要把这些标记都删掉，并留下合并后的代码。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;合并GUI工具&lt;/p&gt;
-&lt;p&gt;  如果安装了可视化的合并工具，可以使用&lt;code&gt;$ git mergetool&lt;/code&gt;命令来调用。&lt;br&gt;  推荐的GUI合并工具有如：meld, kdiff3&lt;/p&gt;
-&lt;p&gt;  可以这样调用指定的工具：&lt;code&gt;$ git mergetool -t meld&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;  也可以配置默认工具：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ git config --global merge.tool kdiff3
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;git分支对于我们平常开发新功能，修复bug等有很大的帮助。下面是git分支的常用命令：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;分支的新建与切换&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$ git checkout -b version2.0
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  这相当于执
-    
-    </summary>
-    
-      <category term="git" scheme="http://robin-front.github.io/categories/git/"/>
-    
-    
-      <category term="git" scheme="http://robin-front.github.io/tags/git/"/>
     
   </entry>
   

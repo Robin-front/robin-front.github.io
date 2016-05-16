@@ -43,7 +43,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Node," />
+  <meta name="keywords" content="git," />
 
 
 
@@ -61,16 +61,16 @@
 
 
 
-<meta name="description" content="一个Node.js应用程序只能使用在一个线程中。为了充分发挥多核CPU的优势，Node.js中提供了一个 cluster模块，允许在多个子进程中运行不同的Node.js应用程序。cluster模块是对 child_process.fork()的一个封装。">
+<meta name="description" content="有一些不太常用的git命令记录下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node.js的cluster模块发挥CPU的多核优势">
-<meta property="og:url" content="http://robin-front.github.io/2016/04/24/Node-js的cluster模块发挥CPU的多核优势/index.html">
+<meta property="og:title" content="git小记">
+<meta property="og:url" content="http://robin-front.github.io/2016/05/16/git小记/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="一个Node.js应用程序只能使用在一个线程中。为了充分发挥多核CPU的优势，Node.js中提供了一个 cluster模块，允许在多个子进程中运行不同的Node.js应用程序。cluster模块是对 child_process.fork()的一个封装。">
-<meta property="og:updated_time" content="2016-04-24T14:20:00.000Z">
+<meta property="og:description" content="有一些不太常用的git命令记录下">
+<meta property="og:updated_time" content="2016-05-16T12:57:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Node.js的cluster模块发挥CPU的多核优势">
-<meta name="twitter:description" content="一个Node.js应用程序只能使用在一个线程中。为了充分发挥多核CPU的优势，Node.js中提供了一个 cluster模块，允许在多个子进程中运行不同的Node.js应用程序。cluster模块是对 child_process.fork()的一个封装。">
+<meta name="twitter:title" content="git小记">
+<meta name="twitter:description" content="有一些不太常用的git命令记录下">
 
 
 
@@ -88,7 +88,7 @@
   };
 </script>
 
-  <title> Node.js的cluster模块发挥CPU的多核优势 | 三寸稚笔 </title>
+  <title> git小记 | 三寸稚笔 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -259,7 +259,7 @@
             
             
               
-                Node.js的cluster模块发挥CPU的多核优势
+                git小记
               
             
           </h1>
@@ -271,8 +271,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-24T22:20:00+08:00" content="2016-04-24">
-              2016-04-24
+            <time itemprop="dateCreated" datetime="2016-05-16T20:57:45+08:00" content="2016-05-16">
+              2016-05-16
             </time>
           </span>
 
@@ -285,8 +285,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Node/" itemprop="url" rel="index">
-                    <span itemprop="name">Node</span>
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
                   </a>
                 </span>
 
@@ -301,8 +301,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/24/Node-js的cluster模块发挥CPU的多核优势/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/24/Node-js的cluster模块发挥CPU的多核优势/" itemprop="commentsCount"></span>
+                <a href="/2016/05/16/git小记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/16/git小记/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -324,7 +324,18 @@
       
 
       
-        <p>一个Node.js应用程序只能使用在一个线程中。为了充分发挥多核CPU的优势，Node.js中提供了一个 <code>cluster</code>模块，允许在多个子进程中运行不同的Node.js应用程序。<code>cluster</code>模块是对 <code>child_process.fork()</code>的一个封装。<br><a id="more"></a></p>
+        <p>有一些不太常用的git命令记录下<br><a id="more"></a></p>
+<h3 id="git-amend"><a href="#git-amend" class="headerlink" title="git amend"></a>git amend</h3><p>当一些更改已提交，却发现漏提交了一部分文件，这时就可以用这个命令，可以把漏的部分追加到上一次提交</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add forgotten_file.rb</span><br><span class="line">git commit ––amend</span><br></pre></td></tr></table></figure>
+<h3 id="reset-soft"><a href="#reset-soft" class="headerlink" title="reset soft"></a>reset soft</h3><p>刚刚提交，却又发现刚才的代码还有bug，想再次修改后再提交</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset ––soft HEAD^</span><br></pre></td></tr></table></figure>
+<p>注意与 <code>git reset --hard HEAD^</code> 不同的是，<code>--soft</code>并不同把上一次提交的代码删除，只是把它变成未提交的状态，而<code>--hard</code>却会完全撤消上一次提交的代码。</p>
+<h3 id="git-blame"><a href="#git-blame" class="headerlink" title="git blame"></a>git blame</h3><p>当你想查出，一个文件里，每一行代码是谁编辑的，可以使用这个命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git blame robin.md</span><br></pre></td></tr></table></figure>
+<h3 id="git-checkout-tags-v1-0"><a href="#git-checkout-tags-v1-0" class="headerlink" title="git checkout tags/v1.0"></a>git checkout tags/v1.0</h3><p>当分支名和标签名相同时，需要这样写</p>
+<h3 id="branch-at"><a href="#branch-at" class="headerlink" title="branch_at"></a>branch_at</h3><p>当你想从某一历史版本中开一个分支，而不是最新的版本中开分支，可以这样写：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch <span class="built_in">test</span>_branch eadnadk213dsafdsafkl234j32ll34l2l</span><br></pre></td></tr></table></figure></p>
+<h3 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h3><p>当远程mater分支已更改， 本地又基于旧版本的master进行的提交，可以重新指定基于远程master，之后再提交，避免冲突时把远程的代码merge 掉：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rebase origin/master master</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -339,7 +350,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Node/" rel="tag">#Node</a>
+            <a href="/tags/git/" rel="tag">#git</a>
           
         </div>
       
@@ -348,17 +359,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/22/子进程child-process让Node-js具备命令行的功能/" rel="next" title="子进程child_process让Node.js具备命令行的功能">
-                <i class="fa fa-chevron-left"></i> 子进程child_process让Node.js具备命令行的功能
+              <a href="/2016/05/04/pm2一个带有负载均衡功能的Node应用的进程管理器/" rel="next" title="pm2一个带有负载均衡功能的Node应用的进程管理器">
+                <i class="fa fa-chevron-left"></i> pm2一个带有负载均衡功能的Node应用的进程管理器
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/04/pm2一个带有负载均衡功能的Node应用的进程管理器/" rel="prev" title="pm2一个带有负载均衡功能的Node应用的进程管理器">
-                pm2一个带有负载均衡功能的Node应用的进程管理器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -373,10 +380,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/04/24/Node-js的cluster模块发挥CPU的多核优势/"
-     data-title="Node.js的cluster模块发挥CPU的多核优势"
+        <div class="ds-share flat" data-thread-key="2016/05/16/git小记/"
+     data-title="git小记"
      data-content=""
-     data-url="http://robin-front.github.io/2016/04/24/Node-js的cluster模块发挥CPU的多核优势/">
+     data-url="http://robin-front.github.io/2016/05/16/git小记/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -403,8 +410,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/24/Node-js的cluster模块发挥CPU的多核优势/"
-           data-title="Node.js的cluster模块发挥CPU的多核优势" data-url="http://robin-front.github.io/2016/04/24/Node-js的cluster模块发挥CPU的多核优势/">
+      <div class="ds-thread" data-thread-key="2016/05/16/git小记/"
+           data-title="git小记" data-url="http://robin-front.github.io/2016/05/16/git小记/">
       </div>
     
   </div>
@@ -516,7 +523,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-amend"><span class="nav-number">1.</span> <span class="nav-text">git amend</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reset-soft"><span class="nav-number">2.</span> <span class="nav-text">reset soft</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-blame"><span class="nav-number">3.</span> <span class="nav-text">git blame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-checkout-tags-v1-0"><span class="nav-number">4.</span> <span class="nav-text">git checkout tags/v1.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#branch-at"><span class="nav-number">5.</span> <span class="nav-text">branch_at</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rebase"><span class="nav-number">6.</span> <span class="nav-text">rebase</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

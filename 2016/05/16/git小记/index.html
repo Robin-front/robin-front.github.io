@@ -336,7 +336,9 @@
 <h3 id="branch-at"><a href="#branch-at" class="headerlink" title="branch_at"></a>branch_at</h3><p>当你想从某一历史版本中开一个分支，而不是最新的版本中开分支，可以这样写：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch <span class="built_in">test</span>_branch eadnadk213dsafdsafkl234j32ll34l2l</span><br></pre></td></tr></table></figure></p>
 <h3 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h3><p>当远程mater分支已更改， 本地又基于旧版本的master进行的提交，可以重新指定基于远程master，之后再提交，避免冲突时把远程的代码merge 掉：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rebase origin/master master</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
-
+<h3 id="git-reflog"><a href="#git-reflog" class="headerlink" title="git reflog"></a>git reflog</h3><p>reflog是git用来记录引用变化的一种机制，比如记录分支的变化或者是HEAD引用的变化。可以用来查找操作记录以及恢复数据</p>
+<h3 id="git-submodule-add"><a href="#git-submodule-add" class="headerlink" title="git submodule add"></a>git submodule add</h3><p>添加外部项目为子模块</p>
+<h3 id="git-rebase-i"><a href="#git-rebase-i" class="headerlink" title="git rebase -i"></a>git rebase -i</h3>
       
     </div>
 
@@ -366,6 +368,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/08/正确检测Javascript数据类型/" rel="prev" title="正确检测Javascript数据类型">
+                正确检测Javascript数据类型 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -456,7 +462,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-count">27</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -464,7 +470,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -473,7 +479,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -523,7 +529,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-amend"><span class="nav-number">1.</span> <span class="nav-text">git amend</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reset-soft"><span class="nav-number">2.</span> <span class="nav-text">reset soft</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-blame"><span class="nav-number">3.</span> <span class="nav-text">git blame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-checkout-tags-v1-0"><span class="nav-number">4.</span> <span class="nav-text">git checkout tags/v1.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#branch-at"><span class="nav-number">5.</span> <span class="nav-text">branch_at</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rebase"><span class="nav-number">6.</span> <span class="nav-text">rebase</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#git-amend"><span class="nav-number">1.</span> <span class="nav-text">git amend</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reset-soft"><span class="nav-number">2.</span> <span class="nav-text">reset soft</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-blame"><span class="nav-number">3.</span> <span class="nav-text">git blame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-checkout-tags-v1-0"><span class="nav-number">4.</span> <span class="nav-text">git checkout tags/v1.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#branch-at"><span class="nav-number">5.</span> <span class="nav-text">branch_at</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rebase"><span class="nav-number">6.</span> <span class="nav-text">rebase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-reflog"><span class="nav-number">7.</span> <span class="nav-text">git reflog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-submodule-add"><span class="nav-number">8.</span> <span class="nav-text">git submodule add</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-rebase-i"><span class="nav-number">9.</span> <span class="nav-text">git rebase -i</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

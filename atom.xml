@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2016-05-16T12:57:45.000Z</updated>
+  <updated>2016-06-08T15:53:10.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>正确检测Javascript数据类型</title>
+    <link href="http://robin-front.github.io/2016/06/08/%E6%AD%A3%E7%A1%AE%E6%A3%80%E6%B5%8BJavascript%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+    <id>http://robin-front.github.io/2016/06/08/正确检测Javascript数据类型/</id>
+    <published>2016-06-08T15:53:10.000Z</published>
+    <updated>2016-06-08T15:53:10.000Z</updated>
+    
+    <content type="html">&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;typeof&quot;&gt;&lt;a href=&quot;#typeof&quot; class=&quot;headerlink&quot; title=&quot;typeof&quot;&gt;&lt;/a&gt;typeof&lt;/h3&gt;&lt;p&gt;对于任何变量来说，使用typeof 总是以字符串形式返回以下6种类型之一：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;number&lt;/li&gt;
+&lt;li&gt;string&lt;/li&gt;
+&lt;li&gt;boolean&lt;/li&gt;
+&lt;li&gt;object&lt;/li&gt;
+&lt;li&gt;function&lt;/li&gt;
+&lt;li&gt;undefined&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;要注意 null 使用 typeof 检测时返回的是 ‘object’&lt;br&gt;对于 null 可以使用&lt;br&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;type&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;o&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; (o === &lt;span class=&quot;literal&quot;&gt;null&lt;/span&gt;) ? &lt;span class=&quot;string&quot;&gt;&#39;null&#39;&lt;/span&gt; : &lt;span class=&quot;keyword&quot;&gt;typeof&lt;/span&gt;(o)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;constructor-构造函数属性值&quot;&gt;&lt;a href=&quot;#constructor-构造函数属性值&quot; class=&quot;headerlink&quot; title=&quot;constructor(构造函数属性值)&quot;&gt;&lt;/a&gt;constructor(构造函数属性值)&lt;/h3&gt;&lt;p&gt;使用 constructor 属性可以判断绝大部分数据的类型。&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; a.constructor &lt;span class=&quot;comment&quot;&gt;// number&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a = &amp;#123;&amp;#125;; a.constructor &lt;span class=&quot;comment&quot;&gt;// object&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a = []; a.constructor &lt;span class=&quot;comment&quot;&gt;// array&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a = &lt;span class=&quot;literal&quot;&gt;true&lt;/span&gt;; a.constructor &lt;span class=&quot;comment&quot;&gt;// boolean&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a = &lt;span class=&quot;string&quot;&gt;&#39;true&#39;&lt;/span&gt;; a.constructor &lt;span class=&quot;comment&quot;&gt;// string&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;aaa&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&amp;#125;; a.constructor &lt;span class=&quot;comment&quot;&gt;// function&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;但是对于 &lt;code&gt;undefined&lt;/code&gt; 和 &lt;code&gt;null&lt;/code&gt; 特殊值，不能能使用 constructor,会直接抛出异常。可以先转换布尔值，如果为 true，则说明不是 undefined 和null , 再调用 constructor属性&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;type&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;o&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; !o ? o : (o).constructor&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;Object-prototype-toString&quot;&gt;&lt;a href=&quot;#Object-prototype-toString&quot; class=&quot;headerlink&quot; title=&quot;Object.prototype.toString&quot;&gt;&lt;/a&gt;Object.prototype.toString&lt;/h3&gt;&lt;p&gt;使用 toString() 方法检测对象类型是最安全、最准确的。它返回的字符串形式如下 [object class], 其中， object表示对象的通用类型，class表示对象的内部类型。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;但是，要获取对象class值的唯一方法是必须调用 Object 对象定义的默认 toString() 方法，因为不同对象都会预定义自己的 toString() 方法，所以不能直接调用对象的 toString() 方法。&lt;br&gt;var a = new Date()&lt;br&gt;a.toString() // 当前的UTC时间字符串&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;Date&lt;/span&gt;()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;Object&lt;/span&gt;.prototype.toString.apply(a)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;完善的检测方法&lt;br&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 返回值有： &#39;undefined&#39;, &#39;null&#39;, &#39;number&#39;, &#39;boolean&#39;, &#39;object&#39;, &#39;function&#39;, &#39;regexp&#39;, &#39;string&#39;, &#39;array&#39;, &#39;date&#39;, &#39;error&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;typeOf&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;o&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; _toString =  &lt;span class=&quot;built_in&quot;&gt;Object&lt;/span&gt;.prototype.toString;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; _type = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;undefined&#39;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&#39;undefined&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;number&#39;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&#39;number&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;boolean&#39;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&#39;boolean&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;string&#39;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&#39;string&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;[object Function]&#39;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&#39;function&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;[object RegExp]&#39;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&#39;regexp&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;[object Array]&#39;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&#39;array&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;[object Date]&#39;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&#39;date&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;[object Error]&#39;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&#39;error&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; _type[&lt;span class=&quot;keyword&quot;&gt;typeof&lt;/span&gt; o] || _type[_toString.call(o)] || (o ? &lt;span class=&quot;string&quot;&gt;&#39;object&#39;&lt;/span&gt; : &lt;span class=&quot;string&quot;&gt;&#39;null&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;typeof&quot;&gt;&lt;a href=&quot;#typeof&quot; class=&quot;headerlink&quot; title=&quot;typeof&quot;&gt;&lt;/a&gt;typeof&lt;/h3&gt;&lt;p&gt;对于任何变量来说，使用typeof 总是以字符串形式返回以下6种类型之一
+    
+    </summary>
+    
+      <category term="Javascript" scheme="http://robin-front.github.io/categories/Javascript/"/>
+    
+    
+      <category term="Javascript" scheme="http://robin-front.github.io/tags/Javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>git小记</title>
@@ -34,7 +82,9 @@
 &lt;h3 id=&quot;branch-at&quot;&gt;&lt;a href=&quot;#branch-at&quot; class=&quot;headerlink&quot; title=&quot;branch_at&quot;&gt;&lt;/a&gt;branch_at&lt;/h3&gt;&lt;p&gt;当你想从某一历史版本中开一个分支，而不是最新的版本中开分支，可以这样写：&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git branch &lt;span class=&quot;built_in&quot;&gt;test&lt;/span&gt;_branch eadnadk213dsafdsafkl234j32ll34l2l&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;h3 id=&quot;rebase&quot;&gt;&lt;a href=&quot;#rebase&quot; class=&quot;headerlink&quot; title=&quot;rebase&quot;&gt;&lt;/a&gt;rebase&lt;/h3&gt;&lt;p&gt;当远程mater分支已更改， 本地又基于旧版本的master进行的提交，可以重新指定基于远程master，之后再提交，避免冲突时把远程的代码merge 掉：&lt;/p&gt;
 &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;git rebase origin/master master&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git push origin master&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-</content>
+&lt;h3 id=&quot;git-reflog&quot;&gt;&lt;a href=&quot;#git-reflog&quot; class=&quot;headerlink&quot; title=&quot;git reflog&quot;&gt;&lt;/a&gt;git reflog&lt;/h3&gt;&lt;p&gt;reflog是git用来记录引用变化的一种机制，比如记录分支的变化或者是HEAD引用的变化。可以用来查找操作记录以及恢复数据&lt;/p&gt;
+&lt;h3 id=&quot;git-submodule-add&quot;&gt;&lt;a href=&quot;#git-submodule-add&quot; class=&quot;headerlink&quot; title=&quot;git submodule add&quot;&gt;&lt;/a&gt;git submodule add&lt;/h3&gt;&lt;p&gt;添加外部项目为子模块&lt;/p&gt;
+&lt;h3 id=&quot;git-rebase-i&quot;&gt;&lt;a href=&quot;#git-rebase-i&quot; class=&quot;headerlink&quot; title=&quot;git rebase -i&quot;&gt;&lt;/a&gt;git rebase -i&lt;/h3&gt;</content>
     
     <summary type="html">
     
@@ -927,138 +977,6 @@ PNG ... content of chrome.png ...
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>javascript获取本周和本月或任意月的时间段</title>
-    <link href="http://robin-front.github.io/2015/10/30/javascript%E5%8F%96%E6%9C%AC%E5%91%A8%E5%92%8C%E6%9C%AC%E6%9C%88%E6%88%96%E4%BB%BB%E6%84%8F%E6%9C%88%E7%9A%84%E6%97%B6%E9%97%B4%E6%AE%B5/"/>
-    <id>http://robin-front.github.io/2015/10/30/javascript取本周和本月或任意月的时间段/</id>
-    <published>2015-10-30T15:36:01.000Z</published>
-    <updated>2015-11-06T17:10:28.000Z</updated>
-    
-    <content type="html">&lt;p&gt;最近有功能从两个时间段变成单个select选择了，但后端不想改接口。只好适配一下，把今天、本周、本月及过去的月份转换一下。&lt;/p&gt;
-&lt;p&gt;首先，更改一下select菜单，动态取出过去的月份，添加options。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;var SearchTimer = [&amp;apos;全部&amp;apos;, &amp;apos;今天&amp;apos;, &amp;apos;本周&amp;apos;, &amp;apos;本月&amp;apos;];
-(function(){
-    var Month = new Date().getMonth();
-    for(; Month &amp;gt; 0; Month--){
-        SearchTimer.push(Month + &amp;apos;月份&amp;apos;);
-    }
-})();
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;接下来就是要把各个options在选择的时候转换成startTime和endTime.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;switch(timer){
-    case &amp;apos;全部&amp;apos;: break;
-    case &amp;apos;今天&amp;apos;: break;
-    case &amp;apos;本周&amp;apos;: break;
-    case &amp;apos;本月&amp;apos;: break;
-    default:
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后是时间的处理，先需要格式化时间，注意补零，格式为yyyy-MM-dd HH:mm:ss。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function formatDate(date) { 
-    var myyear = date.getFullYear(); 
-    var mymonth = date.getMonth()+1; 
-    var myweekday = date.getDate(); 
-    var myhours = date.getHours(); 
-    var myminutes = date.getMinutes(); 
-    var myseconds = date.getSeconds(); 
-
-    if(mymonth &amp;lt; 10){mymonth = &amp;quot;0&amp;quot; + mymonth; }
-    if(myweekday &amp;lt; 10){myweekday = &amp;quot;0&amp;quot; + myweekday; }
-    if(myhours &amp;lt; 10){myhours = &amp;quot;0&amp;quot; + myhours; }
-    if(myminutes &amp;lt; 10){myminutes = &amp;quot;0&amp;quot; + myminutes; }
-    if(myseconds &amp;lt; 10){myseconds = &amp;quot;0&amp;quot; + myseconds; }
-    return (myyear+&amp;quot;-&amp;quot;+mymonth + &amp;quot;-&amp;quot; + myweekday+&amp;quot; &amp;quot;+myhours+&amp;quot;:&amp;quot;+myminutes+&amp;quot;:&amp;quot;+myseconds); 
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;今天的时间很好获取，然后是本周时间：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;var now = new Date(); //当前日期 
-    var nowDayOfWeek = now.getDay(); //今天本周的第几天 
-    var nowDay = now.getDate(); //当前日 
-    var nowMonth = now.getMonth(); //当前月 
-    var nowYear = now.getFullYear(); //当前年 
-
-function getWeekStartDate() { //获得本周的开端日期
-    var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek); 
-    return formatDate(weekStartDate); //调用上面的时间格式化
-} 
-
-function getWeekEndDate() { //获得本周的停止日期
-    var weekEndDate = new Date(nowYear, nowMonth, nowDay + (6 - nowDayOfWeek)); 
-    return formatDate(weekEndDate); 
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后是本月时间，但首先需要知道本月有多少天：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function getMonthDays(myMonth){ //获得某月的天数 
-    myMonth = parseInt(myMonth); //这一步很重要，有时候传进来的可能是字符串，后面+1的时候会变成字符串相连
-    var monthStartDate = new Date(nowYear, myMonth, 1); //当月1号的时间戳
-    var monthEndDate = new Date(nowYear, myMonth + 1, 1);//下月1号的时间戳
-    var days = (monthEndDate - monthStartDate)/(1000 * 60 * 60 * 24);//求差即可取得某月天数
-    return days; 
-}
-
-function getMonthStartDate(){ //获得本月的开端日期 
-    var monthStartDate = new Date(nowYear, nowMonth, 1); 
-    return formatDate(monthStartDate); 
-} 
-
-function getMonthEndDate(){ //获得本月的停止日期
-    var monthEndDate = new Date(nowYear, nowMonth, getMonthDays(nowMonth)); 
-    return formatDate(monthEndDate); 
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后是过去任意月份的1号和最后一天：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;var theMon = timer.replace(/(月份)$/, &amp;apos;&amp;apos;)-1; //先匹配出select的月份，如：‘9月份’，但getMonth()是从0天始的，所以需要减1，也正好可以转换成整型
-startTime = formatDate(new Date(nowYear, theMon, 1));
-endTime = formatDate(new Date(nowYear, theMon, getMonthDays(theMon)));//某月有几天，最后一天就是几天。
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;所以最后返回时间段：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;var startTime, endTime;
-endTime = formatDate(new Date());
-switch(timer){
-    case &amp;apos;全部&amp;apos;: 
-        startTime = undefined;
-        endTime = undefined;
-        break;
-    case &amp;apos;今天&amp;apos;: 
-        startTime = formatDate(new Date(nowYear, nowMonth, nowDay));
-        break;
-    case &amp;apos;本周&amp;apos;:
-        startTime = getWeekStartDate();
-        break;
-    case &amp;apos;本月&amp;apos;:
-        startTime = getMonthStartDate();
-        break;
-    default:
-        var theMon = timer.replace(/(月份)$/, &amp;apos;&amp;apos;)-1;
-        startTime = formatDate(new Date(nowYear, theMon, 1));
-        endTime = formatDate(new Date(nowYear, theMon, getMonthDays(theMon)));
-        break;
-}
-return {
-    startTime: startTime,
-    endTime: endTime
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;至此就转换完毕。&lt;/p&gt;
-&lt;p&gt;当然，如果有需要，还可能获取季度。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function getQuarterStartMonth(){ //获得本季度的开端月份
-    var quarterStartMonth = 0; 
-    if(nowMonth&amp;lt;3){quarterStartMonth = 0; }//判断属于第一季度
-    if(2&amp;lt;nowMonth &amp;amp;&amp;amp; nowMonth&amp;lt;6){quarterStartMonth = 3; }
-    if(5&amp;lt;nowMonth &amp;amp;&amp;amp; nowMonth&amp;lt;9){quarterStartMonth = 6; }
-    if(nowMonth&amp;gt;8){quarterStartMonth = 9; }
-    return quarterStartMonth; 
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;只要判断属于哪一季度，即可知道开端月份和结束月份。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近有功能从两个时间段变成单个select选择了，但后端不想改接口。只好适配一下，把今天、本周、本月及过去的月份转换一下。&lt;/p&gt;
-&lt;p&gt;首先，更改一下select菜单，动态取出过去的月份，添加options。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
-    
-    
-      <category term="javascript" scheme="http://robin-front.github.io/tags/javascript/"/>
     
   </entry>
   

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2016-06-30T14:41:14.000Z</updated>
+  <updated>2016-08-08T09:08:53.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>webpack-sourcemap选项应该选哪个</title>
+    <link href="http://robin-front.github.io/2016/08/08/webpack-sourcemap%E9%80%89%E9%A1%B9%E5%BA%94%E8%AF%A5%E9%80%89%E5%93%AA%E4%B8%AA/"/>
+    <id>http://robin-front.github.io/2016/08/08/webpack-sourcemap选项应该选哪个/</id>
+    <published>2016-08-08T09:08:53.000Z</published>
+    <updated>2016-08-08T09:08:53.000Z</updated>
+    
+    <content type="html">&lt;p&gt;使用 webpack 也有一段时间了，但是每次看到别的项目配置，还是会去浏览一遍。这次刚好看到一个 &lt;code&gt;devtool: &amp;#39;#eval-source-map&amp;#39;&lt;/code&gt;，就有些好奇，之前都是默认使用 &lt;code&gt;#source-map&lt;/code&gt; 并没有过多去注意它。google一下，发现这个 devtool 选项还不少，那我们到底选哪个呢，它们有哪些区别。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;先来看看官方文档的相关描述：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Robin-front/blog/master/source/images/201608/webpack-sourcemap.png&quot; alt=&quot;devtool&quot;&gt;&lt;/p&gt;
+&lt;p&gt;有构建速度，重新构建速度，打包速度，来源 这几项的展示。&lt;/p&gt;
+&lt;p&gt;然后可以看看这一篇文章，对这几个选项描述得比较详细：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://chemzqm.me/webpack-sourcemap&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://chemzqm.me/webpack-sourcemap&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;摘出主要部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;eval&lt;/code&gt; 文档上解释的很明白，每个模块都封装到 &lt;code&gt;eval&lt;/code&gt; 包裹起来，并在后面添加 &lt;code&gt;//# sourceURL&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;source-map&lt;/code&gt; 这是最原始的 &lt;code&gt;source-map&lt;/code&gt; 实现方式，其实现是打包代码同时创建一个新的 &lt;code&gt;sourcemap&lt;/code&gt; 文件， 并在打包文件的末尾添加 &lt;code&gt;//# sourceURL&lt;/code&gt; 注释行告诉 JS 引擎文件在哪儿&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hidden-source-map&lt;/code&gt; 文档上也说了，就是 soucremap 但没注释，没注释怎么找文件呢？貌似只能靠后缀，譬如 &lt;code&gt;xxx/bundle.js&lt;/code&gt; 文件，某些引擎会尝试去找 &lt;code&gt;xxx/bundle.js.map&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;inline-source-map&lt;/code&gt; 为每一个文件添加 &lt;code&gt;sourcemap&lt;/code&gt; 的 DataUrl，注意这里的文件是打包前的每一个文件而不是最后打包出来的，同时这个 &lt;code&gt;DataUrl&lt;/code&gt; 是包含一个文件完整 &lt;code&gt;souremap&lt;/code&gt; 信息的 &lt;code&gt;Base64&lt;/code&gt; 格式化后的字符串，而不是一个 url。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;eval-source-map&lt;/code&gt; 这个就是把 &lt;code&gt;eval&lt;/code&gt; 的 &lt;code&gt;sourceURL&lt;/code&gt; 换成了完整 &lt;code&gt;souremap&lt;/code&gt; 信息的 DataUrl&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cheap-source-map&lt;/code&gt; 不包含列信息，不包含 &lt;code&gt;loader&lt;/code&gt; 的 &lt;code&gt;sourcemap&lt;/code&gt;，（譬如 &lt;code&gt;babel&lt;/code&gt; 的 sourcemap）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cheap-module-source-map&lt;/code&gt; 不包含列信息，同时 &lt;code&gt;loader&lt;/code&gt; 的 &lt;code&gt;sourcemap&lt;/code&gt; 也被简化为只包含对应行的。最终的 &lt;code&gt;sourcemap&lt;/code&gt; 只有一份，它是 &lt;code&gt;webpack&lt;/code&gt; 对 &lt;code&gt;loader&lt;/code&gt; 生成的 &lt;code&gt;sourcemap&lt;/code&gt; 进行简化，然后再次生成的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;webpack 不仅支持这 7 种，而且它们还是可以任意组合的，就如文档所说，你可以设置 souremap 选项为 &lt;code&gt;cheap-module-inline-source-map&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;结合官方的列表比较和引用的这篇文章的介绍，就比较容易选择合适的选项了。建议开发时使用 &lt;code&gt;#cheap-module-eval-source-map&lt;/code&gt;，测试环境或线上有需要的话使用 &lt;code&gt;#cheap-module-source-map&lt;/code&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用 webpack 也有一段时间了，但是每次看到别的项目配置，还是会去浏览一遍。这次刚好看到一个 &lt;code&gt;devtool: &amp;#39;#eval-source-map&amp;#39;&lt;/code&gt;，就有些好奇，之前都是默认使用 &lt;code&gt;#source-map&lt;/code&gt; 并没有过多去注意它。google一下，发现这个 devtool 选项还不少，那我们到底选哪个呢，它们有哪些区别。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>使用ApplicationCache离线缓存做一个h5离线应用</title>
@@ -960,67 +996,6 @@
     
     
       <category term="linux" scheme="http://robin-front.github.io/tags/linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Fetch POST接收不到数据，注意content-type的设置</title>
-    <link href="http://robin-front.github.io/2016/03/05/Fetch%20POST%E6%8E%A5%E6%94%B6%E4%B8%8D%E5%88%B0%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%B3%A8%E6%84%8Fcontent-type%E7%9A%84%E8%AE%BE%E7%BD%AE/"/>
-    <id>http://robin-front.github.io/2016/03/05/Fetch POST接收不到数据，注意content-type的设置/</id>
-    <published>2016-03-05T02:18:26.000Z</published>
-    <updated>2016-03-05T02:18:26.000Z</updated>
-    
-    <content type="html">&lt;p&gt;最近我们前端组在做一个简易的文档系统，使用redux+mongodb。其中抛弃了Ajax，起用了Fetch。&lt;/p&gt;
-&lt;p&gt;XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation of Concerns）的原则，配置和调用方式非常混乱，而且基于事件的异步模型写起来也没有现代的 Promise，generator/yield，async/await 友好。&lt;/p&gt;
-&lt;p&gt;Fetch 的出现就是为了解决 XHR 的问题，Fetch API 是基于 Promise 设计。&lt;/p&gt;
-&lt;p&gt;刚开始用的时候发现个问题，POST数据发现后端获取不到，GET方式是没有问题的。如：&lt;/p&gt;
-  &lt;figure class=&quot;highlight coffeescript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;fetch(&lt;span class=&quot;string&quot;&gt;&#39;/group/update&#39;&lt;/span&gt;, &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  method: &lt;span class=&quot;string&quot;&gt;&#39;post&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  body: JSON.stringify(params)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .&lt;span class=&quot;keyword&quot;&gt;then&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(response)&lt;/span&gt; =&amp;gt;&lt;/span&gt; response.json())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .&lt;span class=&quot;keyword&quot;&gt;then&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(json)&lt;/span&gt; =&amp;gt;&lt;/span&gt; dispatch(fetchUpdateGroupName(json, index)))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .&lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(err)&lt;/span&gt; =&amp;gt;&lt;/span&gt; (&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;err:&#39;&lt;/span&gt;, err)))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;以前一直用Jquery Ajax，很少情况需要设置Content-Type，而且看到有些博文介绍Fetch的时候说，Fetch()如果没有设置Content-Type，会自动获取。&lt;/p&gt;
-&lt;p&gt;后来还是被家优提醒，以下代码才是正确的设置：&lt;/p&gt;
-  &lt;figure class=&quot;highlight coffeescript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;fetch(&lt;span class=&quot;string&quot;&gt;&#39;/group/update&#39;&lt;/span&gt;, &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  method: &lt;span class=&quot;string&quot;&gt;&#39;post&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  headers: &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;Content-Type&#39;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&#39;application/json&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  body: JSON.stringify(params)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .&lt;span class=&quot;keyword&quot;&gt;then&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(response)&lt;/span&gt; =&amp;gt;&lt;/span&gt; response.json())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .&lt;span class=&quot;keyword&quot;&gt;then&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(json)&lt;/span&gt; =&amp;gt;&lt;/span&gt; dispatch(fetchUpdateGroupName(json, index)))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .&lt;span class=&quot;keyword&quot;&gt;catch&lt;/span&gt;(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;params&quot;&gt;(err)&lt;/span&gt; =&amp;gt;&lt;/span&gt; (&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;err:&#39;&lt;/span&gt;, err)))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt; 注意： Fetch 支持几种数据类型的传输，其中包含Blob, BLOB (binary large object)，表示二进制大对象。其中有个只读属性，Blob.type(),此时的 Content-Type 应设置为此值。 &lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;这里顺便记录下POST常见的Content-Type:&lt;/p&gt;
-&lt;h3 id=&quot;application-x-www-form-urlencoded&quot;&gt;&lt;a href=&quot;#application-x-www-form-urlencoded&quot; class=&quot;headerlink&quot; title=&quot;application/x-www-form-urlencoded&quot;&gt;&lt;/a&gt;application/x-www-form-urlencoded&lt;/h3&gt;&lt;p&gt;浏览器的原生 form 表单，如果不设置 enctype 属性，那么最终就会以 application/x-www-form-urlencoded 方式提交数据。提交的数据按照 key1=val1&amp;amp;key2=val2 的方式进行编码，key 和 val 都进行了 URL 转码。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;POST http://www.123.com HTTP/1.1
-Content-Type: application/x-www-form-urlencoded;charset=utf-8
-
-title=test&amp;amp;sub%5B%5D=1&amp;amp;sub%5B%5D=2&amp;amp;sub%5B%5D=3
-&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;multipart-form-data&quot;&gt;&lt;a href=&quot;#multipart-form-data&quot; class=&quot;headerlink&quot; title=&quot;multipart/form-data&quot;&gt;&lt;/a&gt;multipart/form-data&lt;/h3&gt;&lt;p&gt;使用表单上传文件时，必须让 form 的 enctyped 等于这个值, 上传图片时，我们经常会看到下面这样&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;POST http://www.example.com HTTP/1.1
-Content-Type:multipart/form-data; boundary=----WebKitFormBoundaryrGKCBY7qhFd3TrwA
-
-------WebKitFormBoundaryrGKCBY7qhFd3TrwA
-Content-Disposition: form-data; name=&amp;quot;text&amp;quot;
-
-title
-------WebKitFormBoundaryrGKCBY7qhFd3TrwA
-Content-Disposition: form-data; name=&amp;quot;file&amp;quot;; filename=&amp;quot;chrome.png&amp;quot;
-Content-Type: image/png
-
-PNG ... content of chrome.png ...
-------WebKitFormBoundaryrGKCBY7qhFd3TrwA--
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果我们使用 new FormData()作为数据主体提交，也需要设置这种类型。&lt;/p&gt;
-&lt;h3 id=&quot;application-json&quot;&gt;&lt;a href=&quot;#application-json&quot; class=&quot;headerlink&quot; title=&quot;application/json&quot;&gt;&lt;/a&gt;application/json&lt;/h3&gt;&lt;p&gt;把它作为请求头，用来告诉服务端消息主体是序列化后的 JSON 字符串。但也有些服务端语言还没有支持这种方式，例如 php 就无法通过 $_POST 对象从上面的请求中获得内容。这时候，需要自己动手处理下：在请求头中 Content-Type 为 application/json 时，从 php://input 里获得原始输入流，再 json_decode 成对象。&lt;/p&gt;
-&lt;p&gt;参考：&lt;br&gt;&lt;a href=&quot;https://imququ.com/post/four-ways-to-post-data-in-http.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;四种常见的 POST 提交数据方式&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近我们前端组在做一个简易的文档系统，使用redux+mongodb。其中抛弃了Ajax，起用了Fetch。&lt;/p&gt;
-&lt;p&gt;XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation of Concerns）的原则，配置和调用方式非常混乱，
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
-    
-    
-      <category term="fetch" scheme="http://robin-front.github.io/tags/fetch/"/>
-    
-      <category term="content-type" scheme="http://robin-front.github.io/tags/content-type/"/>
-    
-      <category term="POST" scheme="http://robin-front.github.io/tags/POST/"/>
     
   </entry>
   

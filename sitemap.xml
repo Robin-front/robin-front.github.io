@@ -9,7 +9,14 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2015/10/17/angular%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/</loc>
+    <loc>http://robin-front.github.io/tags/index.html</loc>
+    
+    <lastmod>2016-10-20T08:02:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2015/10/08/%E5%89%8D%E7%AB%AF%E6%89%B9%E9%87%8F%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     
@@ -37,14 +44,14 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/tags/index.html</loc>
+    <loc>http://robin-front.github.io/2015/10/17/angular%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4/</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/categories/index.html</loc>
+    <loc>http://robin-front.github.io/2015/10/09/gulp-4.0/</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     
@@ -65,14 +72,7 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2015/10/09/gulp-4.0/</loc>
-    
-    <lastmod>2016-10-20T08:02:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://robin-front.github.io/2015/10/08/%E5%89%8D%E7%AB%AF%E6%89%B9%E9%87%8F%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/</loc>
+    <loc>http://robin-front.github.io/categories/index.html</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     

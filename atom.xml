@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2016-10-20T09:35:22.000Z</updated>
+  <updated>2016-11-17T02:22:22.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,72 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Debounce-and-Throttle-的可視化解釋</title>
+    <link href="http://robin-front.github.io/2016/11/17/Debounce-and-Throttle-%E7%9A%84%E5%8F%AF%E8%A6%96%E5%8C%96%E8%A7%A3%E9%87%8B/"/>
+    <id>http://robin-front.github.io/2016/11/17/Debounce-and-Throttle-的可視化解釋/</id>
+    <published>2016-11-17T02:22:22.000Z</published>
+    <updated>2016-11-17T02:22:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Debounce 和 Throttle是两个概念，我们可以在JavaScript中使用，以提高我们对执行功能的控制，在事件处理的时候特别有用。</p>
+<a id="more"></a>
+<h3 id="比喻"><a href="#比喻" class="headerlink" title="比喻"></a>比喻</h3><p>这两种技术都回答同样的问题“一个功能可以随着时间被推移多久？”</p>
+<ul>
+<li>Debounce：把它看成是“多个分组事件之一”。试想一下，你回家，再进入电梯，门正在关闭……，突然你的邻居出现在大厅，并试图跳上电梯。要有礼貌！并打开大门，他说：你等等，让我一起上。相同的情况下，可以与第三人再次发生，等等…这可能会延缓出发几分钟。</li>
+<li>Throttle：把它看成是一个阀，它规定了执行的流程。我们可以判断函数可以在一定时间内被调用的最大次数。因此，再用电梯比喻..你有足够的礼貌，持续10秒等人，但一旦时间到了，你一定要走！</li>
+</ul>
+<p>无 Debounce 或 Throttle 事件处理程序就像一次只能一个人用的电梯：没有那么高效。</p>
+<p>我希望这个坏比喻对你有所帮助，但有时言语并不会对掌握这些概念有多大的帮助，所以我创建了一个演示去理解 Debounce 和 Throttle 概念，并把它们应用到mousemove事件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">elevator_departure</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">  alert(name + <span class="string">" was the last one. Nobody else? Let's go then"</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> debounced_elevator_departure = $.debounce(<span class="number">200</span>, <span class="literal">false</span>, elevator_departure);</div><div class="line"></div><div class="line">debounced_elevator_departure(<span class="string">'John'</span>);</div><div class="line">debounced_elevator_departure(<span class="string">'Mike'</span>);</div><div class="line">debounced_elevator_departure(<span class="string">'Peter'</span>);</div><div class="line"><span class="comment">// You will see *only* one message, "Peter was the last one. Nobody else? Let's go then";</span></div></pre></td></tr></table></figure>
+<p>我发现这3个人在JavaScript中都通过debounce和throttle执行了。我真的建议你先读一下 <a href="http://benalman.com/projects/jquery-throttle-debounce-plugin/" target="_blank" rel="external"><code>Ben Alman&#39;s</code></a> 的文章，以便更好地理解  debounce 和 throttle. <code>underscore</code> 和 <code>lodash</code> 有不同的实现方式，但参数都是一样的（除了 <code>throttle</code>没有 <code>trailing</code>）.</p>
+<ul>
+<li><a href="http://underscorejs.org/" target="_blank" rel="external">Underscore.js</a> by Jeremy Ashkenas *</li>
+<li><a href="http://lodash.com/" target="_blank" rel="external">Lodash.js</a> by John-David Dalton *</li>
+<li><a href="http://benalman.com/projects/jquery-throttle-debounce-plugin/" target="_blank" rel="external">jQuery Plugin</a> by Ben Alman.</li>
+</ul>
+<h3 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h3><p>这里是视觉演示:</p>
+<iframe src="http://drupalmotion.com/sites/default/files/demos/debounce-throttle/index.html" height="350px" width="1000px"></iframe>
+
+<p>这是截图：<br><img src="http://drupalmotion.com/sites/default/files/pics/screenshot.png" alt="debounce-throttle"></p>
+<p>注意：</p>
+<ul>
+<li>这个的源代码演示在<a href="https://github.com/dcorb/debounce-throttle" target="_blank" rel="external">GitHub上托管</a>。</li>
+<li>如果你看到动画在浏览器中并不流畅，请在一个单独的页面打开演示，或者尝试在Chrome中。</li>
+<li>我通过在鼠标区域 <code>tapping</code>来去在<code>Android</code>环境下演示它</li>
+<li>每个单元代表约30毫秒，但JS是单线程的，所以浏览器是不是准确。这个演示并不是想成为一个最佳实践，只是为了更好地去理解概念。</li>
+<li>当你做了<code>setTimeout</code>，时间间隔可能不同，在每个浏览器在4ms和15ms的之间（<a href="http://www.nczonline.net/blog/2011/12/14/timer-resolution-in-browsers/" target="_blank" rel="external">尼古拉斯Zakas的文章</a>），甚至是<code>setTimeout(fn,0)</code>至少需要4毫秒。在另一方面，时间为1毫秒为最小单位的。</li>
+<li>在<code>mousemove</code>第一行中的事件也有做节流（80毫秒）。这对理解演示有所帮助。</li>
+<li>要获得 <code>trailing</code>选项<code>$.throttle</code>，你需要传递<code>false</code>。</li>
+<li>不要忘了，这一切都是builder，他们返回一个函数，所以你只需要执行一次。</li>
+</ul>
+<h3 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h3><h4 id="debounce-案例"><a href="#debounce-案例" class="headerlink" title="debounce 案例"></a>debounce 案例</h4><p>用它减少执行频繁的事件。例子：</p>
+<ul>
+<li>当将要处理的textarea的快速打字：你不想执行处理函数，直到用户停止输入再来处理文本。</li>
+<li>当数据保存到通过AJAX服务器：你不想每秒调用非常缓慢的邮件服务器</li>
+</ul>
+<h4 id="throttle-案例"><a href="#throttle-案例" class="headerlink" title="throttle 案例"></a>throttle 案例</h4><p>和<code>debounce</code> 一样，但如果想每隔一段时间必须执行事件，可以使用它：</p>
+<ul>
+<li>假设用户不停地快速输入30秒，可能你会想每5秒执行一次函数；</li>
+<li>一些对性能有影响的事件但又必须处理：scroll, mouseweel, mousemove。一个简单的鼠标滚轮运动可以在一秒钟内触发几十个事件。</li>
+</ul>
+<p>本文翻译自 <a href="http://drupalmotion.com/article/debounce-and-throttle-visual-explanation" target="_blank" rel="external">Debounce and Throttle: a visual explanation</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Debounce 和 Throttle是两个概念，我们可以在JavaScript中使用，以提高我们对执行功能的控制，在事件处理的时候特别有用。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="函数节流" scheme="http://robin-front.github.io/categories/%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81/"/>
+    
+    
+      <category term="debounce" scheme="http://robin-front.github.io/tags/debounce/"/>
+    
+      <category term="throttle" scheme="http://robin-front.github.io/tags/throttle/"/>
+    
+  </entry>
   
   <entry>
     <title>使用 npm shrinkwrap 来管理项目依赖</title>
@@ -967,62 +1033,6 @@
     
     
       <category term="Flow" scheme="http://robin-front.github.io/tags/Flow/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>React应用性能优化之IMMUTABLE.JS</title>
-    <link href="http://robin-front.github.io/2016/03/14/React%E5%BA%94%E7%94%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B9%8BIMMUTABLE-JS/"/>
-    <id>http://robin-front.github.io/2016/03/14/React应用性能优化之IMMUTABLE-JS/</id>
-    <published>2016-03-13T16:15:07.000Z</published>
-    <updated>2016-03-13T16:15:07.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。</p>
-<h3 id="Immutable-js"><a href="#Immutable-js" class="headerlink" title="Immutable.js"></a>Immutable.js</h3><p>Immutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。<br><a id="more"></a></p>
-<p>Javascript中对象都是参考类型，也就是a={a:1}; b=a; b.a=10;你发现a.a也变成10了。可变的好处是节省内存或是利用可变性做一些事情，但是，在复杂的开发中它的副作用远比好处大的多。于是才有了浅copy和深copy，就是为了解决这个问题。举个常见例子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> defaultConfig = &#123; <span class="comment">/* 默认值 */</span>&#125;;</div><div class="line"><span class="keyword">var</span> config = $.extend(&#123;&#125;, defaultConfig, initConfig); <span class="comment">// jQuery用法。initConfig是自定义值</span></div><div class="line"><span class="keyword">var</span> config = $.extend(<span class="literal">true</span>, &#123;&#125;, defaultConfig, initConfig); <span class="comment">// 如果对象是多层的，就用到deep-copy了</span></div></pre></td></tr></table></figure>
-<p>ES6出现原生的assign方法，但它相当于是浅copy。如果有了不可变的数据结构就省心了，ES5.1中对象有了freeze方法，也是浅copy，a=Object.freeze({a:1}); b=a; b.a=10; a.a还是1。在实际开发中浅copy通常不够。如果用immutableJS:</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> defaultConfig = Immutable<span class="variable">.fromJS</span>(&#123; <span class="comment">/* 默认值 */</span>&#125;);</div><div class="line"><span class="keyword">var</span> <span class="keyword">config</span> = defaultConfig<span class="variable">.merge</span>(initConfig); <span class="comment">// defaultConfig不会改变，返回新值给config</span></div><div class="line"><span class="keyword">var</span> <span class="keyword">config</span> = defaultConfig<span class="variable">.mergeDeep</span>(initConfig); <span class="comment">// 深层merge</span></div></pre></td></tr></table></figure>
-<p>上述用deep-copy也可以做到，差别在于性能。每次deep-copy都要把整个对象递归的复制一份。而Immutable的实现有些像链表，添加一个新结点把旧结点的父子关系转移到新结点上，性能提升很多。ImmutableJS给的远不止这些，它提供了7种不可变的数据结构：List, Stack, Map, OrderedMap, Set, OrderedSet, Record （详见文档<a href="http://facebook.github.io/immutable-js/docs/#/" target="_blank" rel="external">Immutable.js</a>，文档很geek，打开console试吧）。immutableJS ＋ 原生Javascript等于真正的函数式编程。</p>
-<p><img src="https://camo.githubusercontent.com/9e129aaf95d2a645a860dc26532796817e8085c0/687474703a2f2f696d672e616c6963646e2e636f6d2f7470732f69322f5442317a7a695f4b5858585858637458465858627262384f5658582d3631332d3537352e676966" alt="immutable.js"></p>
-<h3 id="Immutable-优点"><a href="#Immutable-优点" class="headerlink" title="Immutable 优点"></a>Immutable 优点</h3><h4 id="1-Immutable-降低了-Mutable-带来的复杂度"><a href="#1-Immutable-降低了-Mutable-带来的复杂度" class="headerlink" title="1. Immutable 降低了 Mutable 带来的复杂度"></a>1. Immutable 降低了 Mutable 带来的复杂度</h4><p>可变（Mutable）数据耦合了 Time 和 Value 的概念，造成了数据很难被回溯。</p>
-<p>比如下面一段代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">touchAndLog</span>(<span class="params">touchFn</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> data = &#123; <span class="attr">key</span>: <span class="string">'value'</span> &#125;;</div><div class="line">  touchFn(data);</div><div class="line">  <span class="built_in">console</span>.log(data.key); <span class="comment">// 猜猜会打印什么？</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在不查看 touchFn 的代码的情况下，因为不确定它对 data 做了什么，你是不可能知道会打印什么（这不是废话吗）。但如果 data 是 Immutable 的呢，你可以很肯定的知道打印的是 value。</p>
-<h4 id="2-节省内存"><a href="#2-节省内存" class="headerlink" title="2. 节省内存"></a>2. 节省内存</h4><p><code>Immutable.js</code> 使用了 Structure Sharing 会尽量复用内存，甚至以前使用的对象也可以再次被复用。没有被引用的对象会被垃圾回收。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; <span class="built_in">Map</span>&#125; <span class="keyword">from</span> <span class="string">'immutable'</span>;</div><div class="line"><span class="keyword">let</span> a = <span class="built_in">Map</span>(&#123;</div><div class="line">  <span class="attr">select</span>: <span class="string">'users'</span>,</div><div class="line">  <span class="attr">filter</span>: <span class="built_in">Map</span>(&#123; <span class="attr">name</span>: <span class="string">'Cam'</span> &#125;)</div><div class="line">&#125;)</div><div class="line"><span class="keyword">let</span> b = a.set(<span class="string">'select'</span>, <span class="string">'people'</span>);</div><div class="line"></div><div class="line">a === b; <span class="comment">// false</span></div><div class="line">a.get(<span class="string">'filter'</span>) === b.get(<span class="string">'filter'</span>); <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<p>上面 a 和 b 共享了没有变化的 <code>filter</code> 节点。</p>
-<h4 id="3-Undo-Redo，Copy-Paste，甚至时间旅行这些功能做起来小菜一碟"><a href="#3-Undo-Redo，Copy-Paste，甚至时间旅行这些功能做起来小菜一碟" class="headerlink" title="3. Undo/Redo，Copy/Paste，甚至时间旅行这些功能做起来小菜一碟"></a>3. Undo/Redo，Copy/Paste，甚至时间旅行这些功能做起来小菜一碟</h4><p>因为每次数据都是不一样的，只要把这些数据放到一个数组里储存起来，想回退到哪里就拿出对应数据即可，很容易开发出撤销重做这种功能。</p>
-<h3 id="为什么在React-js中使用Immutable-js"><a href="#为什么在React-js中使用Immutable-js" class="headerlink" title="为什么在React.js中使用Immutable.js"></a>为什么在React.js中使用Immutable.js</h3><p>熟悉React.js的都应该知道，React.js是一个UI = f(states)的框架，为了解决更新的问题，React.js使用了virtual dom，virtual dom通过diff修改dom，来实现高效的dom更新。<br>听起来很完美吧，但是有一个问题。当state更新时，如果数据没变，你也会去做virtual dom的diff，这就产生了浪费。这种情况其实很常见，如：</p>
-<p>熟悉 React 组件生命周期的话都知道：调用 setState 方法总是会触发 render 方法从而进行 vdom re-render 相关逻辑，哪怕实际上你没有更改到 Component.state 。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.state = &#123;<span class="attr">count</span>: <span class="number">0</span>&#125;</div><div class="line"><span class="keyword">this</span>.setState(&#123;<span class="attr">count</span>: <span class="number">0</span>&#125;);<span class="comment">// 组件 state 并未被改变，但仍会触发 render 方法</span></div></pre></td></tr></table></figure>
-<p>为了避免这种性能上的浪费，React 提供了一个 shouldComponentUpdate 来控制触发 vdom re-render 逻辑的条件。于是 PureRenderMixin 作为一种优化技巧被使用。但PureRenderMixin只是简单的浅比较，不使用于多层比较。那怎么办？？自己去做复杂比较的话，性能又会非常差。</p>
-<p>这时候 immutableJS 就派得上用场了：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> map1 = Immutable.fromJS(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">1</span>, <span class="attr">c</span>:&#123;<span class="attr">b</span>:&#123;<span class="attr">c</span>:&#123;<span class="attr">d</span>:&#123;<span class="attr">e</span>:<span class="number">7</span>&#125;&#125;&#125;&#125;&#125;);</div><div class="line"><span class="keyword">var</span> map2 = Immutable.fromJS(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">1</span>, <span class="attr">c</span>:&#123;<span class="attr">b</span>:&#123;<span class="attr">c</span>:&#123;<span class="attr">d</span>:&#123;<span class="attr">e</span>:<span class="number">7</span>&#125;&#125;&#125;&#125;&#125;);</div><div class="line">Immutable.is(map1, map2); <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<p>每一次state更新只要有数据改变，那么PureRenderMixin可以立刻判断出数据改变，可以大大提升性能。</p>
-<h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><h4 id="与-React-搭配使用，Pure-Render"><a href="#与-React-搭配使用，Pure-Render" class="headerlink" title="与 React 搭配使用，Pure Render"></a>与 React 搭配使用，Pure Render</h4><p>可以使用 <a href="https://github.com/jurassix/react-immutable-render-mixin" target="_blank" rel="external">react-immutable-render-mixin</a><br>通过es6的修饰器 @decorator 来使用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; immutableRenderDecorator &#125; <span class="keyword">from</span> <span class="string">'react-immutable-render-mixin'</span>;</div><div class="line"></div><div class="line">@immutableRenderDecorator</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>或者直接</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> immutableRenderMixin <span class="keyword">from</span> <span class="string">'react-immutable-render-mixin'</span>;</div><div class="line"></div><div class="line">React.createClass(&#123;</div><div class="line">  <span class="attr">mixins</span>: [immutableRenderMixin],</div><div class="line"></div><div class="line">  <span class="attr">render</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;this.props.className&#125;</span>&gt;</span>foo<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h3 id="与-Redux-搭配使用"><a href="#与-Redux-搭配使用" class="headerlink" title="与 Redux 搭配使用"></a>与 Redux 搭配使用</h3><p>Redux 是目前流行的 Flux 衍生库。它简化了 Flux 中多个 Store 的概念，只有一个 Store，数据操作通过 Reducer 中实现；同时它提供更简洁和清晰的单向数据流（View -&gt; Action -&gt; Middleware -&gt; Reducer），也更易于开发同构应用。目前已经在我们项目中大规模使用。</p>
-<p>由于 Redux 中内置的 combineReducers 和 reducer 中的 initialState 都为原生的 Object 对象，所以不能和 Immutable 原生搭配使用。</p>
-<p>幸运的是，Redux 并不排斥使用 Immutable，可以自己重写 combineReducers 或使用 redux-immutablejs 来提供支持。</p>
-<p>本文原文链接：<br><a href="https://www.zhihu.com/question/28016223/" target="_blank" rel="external">facebook immutable.js 意义何在，使用场景？</a><br><a href="https://github.com/camsong/blog/issues/3" target="_blank" rel="external">Immutable 详解及 React 中实践</a>基本没有改动。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。&lt;/p&gt;
-&lt;h3 id=&quot;Immutable-js&quot;&gt;&lt;a href=&quot;#Immutable-js&quot; class=&quot;headerlink&quot; title=&quot;Immutable.js&quot;&gt;&lt;/a&gt;Immutable.js&lt;/h3&gt;&lt;p&gt;Immutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="React" scheme="http://robin-front.github.io/categories/React/"/>
-    
-    
-      <category term="React" scheme="http://robin-front.github.io/tags/React/"/>
-    
-      <category term="Immutable.js" scheme="http://robin-front.github.io/tags/Immutable-js/"/>
     
   </entry>
   

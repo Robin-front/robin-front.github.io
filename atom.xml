@@ -39,7 +39,7 @@
 <li><a href="http://benalman.com/projects/jquery-throttle-debounce-plugin/" target="_blank" rel="external">jQuery Plugin</a> by Ben Alman.</li>
 </ul>
 <h3 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h3><p>这里是视觉演示:</p>
-<iframe src="http://drupalmotion.com/sites/default/files/demos/debounce-throttle/index.html" height="350px" width="1000px"></iframe>
+<iframe src="http://drupalmotion.com/sites/default/files/demos/debounce-throttle/index.html" height="350px" width="900px"></iframe>
 
 <p>这是截图：<br><img src="http://drupalmotion.com/sites/default/files/pics/screenshot.png" alt="debounce-throttle"></p>
 <p>注意：</p>

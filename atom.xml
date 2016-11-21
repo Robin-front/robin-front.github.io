@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2016-11-17T02:22:22.000Z</updated>
+  <updated>2016-11-21T03:19:22.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://robin-front.github.io/2016/11/17/Debounce-and-Throttle-%E7%9A%84%E5%8F%AF%E8%A6%96%E5%8C%96%E8%A7%A3%E9%87%8B/"/>
     <id>http://robin-front.github.io/2016/11/17/Debounce-and-Throttle-的可視化解釋/</id>
     <published>2016-11-17T02:22:22.000Z</published>
-    <updated>2016-11-17T02:22:22.000Z</updated>
+    <updated>2016-11-21T03:19:22.000Z</updated>
     
     <content type="html"><![CDATA[<p>Debounce 和 Throttle是两个概念，我们可以在JavaScript中使用，以提高我们对执行功能的控制，在事件处理的时候特别有用。</p>
 <a id="more"></a>

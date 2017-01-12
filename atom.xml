@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-01-11T01:13:00.000Z</updated>
+  <updated>2017-01-12T09:49:14.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>比较instanceof与isPrototypeOf</title>
+    <link href="http://robin-front.github.io/2017/01/12/%E6%AF%94%E8%BE%83instanceof%E4%B8%8EisPrototypeof/"/>
+    <id>http://robin-front.github.io/2017/01/12/比较instanceof与isPrototypeof/</id>
+    <published>2017-01-12T09:49:14.000Z</published>
+    <updated>2017-01-12T09:49:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在javascript中，instanceof 和 isPrototypeOf 都可以判断一个原型是否在另一个实例的原型链中，那他们有什么区别呢，为什么说 isPrototypeOf 可以替代 instanceof 。<br><a id="more"></a></p>
+<h3 id="instanceof-用法"><a href="#instanceof-用法" class="headerlink" title="instanceof 用法"></a>instanceof 用法</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="comment">// init code</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span><span class="params">()</span> </span>&#123;</div><div class="line">      Super.call(<span class="keyword">this</span>);</div><div class="line">      <span class="comment">// other init code</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">Sub.prototype = <span class="keyword">new</span> Super();</div><div class="line"></div><div class="line"><span class="keyword">var</span> sub = <span class="keyword">new</span> Sub();</div></pre></td></tr></table></figure>
+<p>对于上面的代码，用 instanceof 可以像这样确定他们的关系：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">sub</span> <span class="title">instanceof</span> <span class="title">Super</span></span>; // true</div></pre></td></tr></table></figure>
+<h3 id="isPrototypeOf-用法"><a href="#isPrototypeOf-用法" class="headerlink" title="isPrototypeOf 用法"></a>isPrototypeOf 用法</h3><p>复用上面的代码，用 isPrototypeOf 可以这样写：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Super.prototype.isPrototypeOf(<span class="function"><span class="keyword">sub</span>)</span>; // true</div></pre></td></tr></table></figure>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>乍一看，都可以用，但某种情况下是有区别的，例如：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var super = &#123;</div><div class="line">    <span class="regexp">//</span> some super properties</div><div class="line">&#125;</div><div class="line"></div><div class="line">var <span class="function"><span class="keyword">sub</span> = <span class="title">Object</span>.<span class="title">create</span></span>(super);</div><div class="line"><span class="function"><span class="keyword">sub</span>.<span class="title">someProp</span> = 5</span>;</div><div class="line"></div><div class="line">var <span class="function"><span class="keyword">sub</span> = <span class="title">Object</span>.<span class="title">create</span></span>(sub);</div><div class="line"></div><div class="line">console.log(super.isPrototypeOf(<span class="function"><span class="keyword">sub</span>))</span>;  // true</div><div class="line">console.log(<span class="function"><span class="keyword">sub</span> <span class="title">instanceof</span> <span class="title">super</span>)</span>;      // TypeError</div></pre></td></tr></table></figure>
+<p>这时候 super 并不是构造函数，无法使用 instanceof, 只能使用 isPrototypeOf.</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>结论就是 isPrototypeOf 能使用的场景更广，完全可以替代 instanceof， 只是写起来没那么简洁。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在javascript中，instanceof 和 isPrototypeOf 都可以判断一个原型是否在另一个实例的原型链中，那他们有什么区别呢，为什么说 isPrototypeOf 可以替代 instanceof 。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
+    
+    
+      <category term="instanceof" scheme="http://robin-front.github.io/tags/instanceof/"/>
+    
+      <category term="isPrototypeOf" scheme="http://robin-front.github.io/tags/isPrototypeOf/"/>
+    
+  </entry>
   
   <entry>
     <title>javascript通过Vibration API实现手机振动反馈提高用户体验</title>
@@ -33,7 +67,7 @@
 <p>您可以根据需要设定多个振动/暂停对，数组的值可以是偶数或奇数个； 值得注意的是，由于振动在每个振动周期结束时自动停止，因此您不必提供最后一个值去暂停，换句话说，数组长度只需要设置奇数个。</p>
 <h3 id="停止振动"><a href="#停止振动" class="headerlink" title="停止振动"></a>停止振动</h3><p>当调用 window.navigator.vibrate() 的参数为「0」、空白数组，或数组全为「0」时，即可取消目前进行中的振动。</p>
 <h3 id="持续振动"><a href="#持续振动" class="headerlink" title="持续振动"></a>持续振动</h3><p>一些基于setInterval和clearInterval操作将允许您创建持续的振动：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vibrateInterval;</div><div class="line"></div><div class="line"><span class="comment">// Starts vibration at passed in level</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">startVibrate</span>(<span class="params">duration</span>) </span>&#123;</div><div class="line">    navigator.vibrate(duration);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Stops vibration</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopVibrate</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// Clear interval and stop persistent vibrating</span></div><div class="line">    <span class="keyword">if</span>(vibrateInterval) clearInterval(vibrateInterval);</div><div class="line">    navigator.vibrate(<span class="number">0</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Start persistent vibration at given duration and interval</span></div><div class="line"><span class="comment">// Assumes a number value is given</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">startPeristentVibrate</span>(<span class="params">duration, interval</span>) </span>&#123;</div><div class="line">    vibrateInterval = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        startVibrate(duration);</div><div class="line">    &#125;, interval);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vibrateInterval;</div><div class="line"></div><div class="line"><span class="comment">// Starts vibration at passed in level</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">startVibrate</span><span class="params">(duration)</span> </span>&#123;</div><div class="line">    navigator.vibrate(duration);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Stops vibration</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopVibrate</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// Clear interval and stop persistent vibrating</span></div><div class="line">    <span class="keyword">if</span>(vibrateInterval) clearInterval(vibrateInterval);</div><div class="line">    navigator.vibrate(<span class="number">0</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Start persistent vibration at given duration and interval</span></div><div class="line"><span class="comment">// Assumes a number value is given</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">startPeristentVibrate</span><span class="params">(duration, interval)</span> </span>&#123;</div><div class="line">    vibrateInterval = setInterval(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</div><div class="line">        startVibrate(duration);</div><div class="line">    &#125;, interval);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>当然上面的代码片段没有考虑到振动参数为数组情况; 基于阵列的持久性振动将需要计算数组项的和，并基于该数量创建周期（可能具有额外的延迟）。</p>
 <h3 id="生成振动节奏"><a href="#生成振动节奏" class="headerlink" title="生成振动节奏"></a>生成振动节奏</h3><p>可以通过<a href="https://naschq.github.io/vibe.js/" target="_blank" rel="external">vibe.js tool</a>这个工具来生成你需要的振动频率，然后复制它到你的代码里。</p>
 <h3 id="lib"><a href="#lib" class="headerlink" title="lib"></a>lib</h3><p>我写了一个小lib，方便使用<a href="https://github.com/Robin-front/vibrate.js" target="_blank" rel="external">vibrate.js</a></p>
@@ -963,80 +997,6 @@
       <category term="loader" scheme="http://robin-front.github.io/tags/loader/"/>
     
       <category term="babel-loader" scheme="http://robin-front.github.io/tags/babel-loader/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Webpack-config</title>
-    <link href="http://robin-front.github.io/2016/04/07/Webpack-config/"/>
-    <id>http://robin-front.github.io/2016/04/07/Webpack-config/</id>
-    <published>2016-04-06T17:03:50.000Z</published>
-    <updated>2016-04-06T17:03:50.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>不得不说，<code>Webpack</code> 配置确实烦琐了一些，很多人都使用<code>gulp</code>的插件<code>gulp-webpack</code>来做其他事情。<br><a id="more"></a></p>
-<h3 id="配置Webpack"><a href="#配置Webpack" class="headerlink" title="配置Webpack"></a>配置Webpack</h3><p>Webpack的构建过程需要一个配置文件，一个典型的配置文件<code>webpack.config.js</code>大概就是这样</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="comment">// 配置项</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h3 id="基本配置项"><a href="#基本配置项" class="headerlink" title="基本配置项"></a>基本配置项</h3><h4 id="entry"><a href="#entry" class="headerlink" title="entry"></a>entry</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="attr">entry</span>:<span class="string">'./example1.1'</span>,</div><div class="line">    <span class="attr">output</span>:&#123;</div><div class="line">        <span class="attr">filename</span>:<span class="string">'bundle1.1.js'</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>我们也会碰到支持多个入口文件（entry）的情况，每一个入口都需要有自己的名字，具体对应entry的写法而言，有如下几种情况：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">entry:<span class="string">'./example2.1'</span></div><div class="line"><span class="comment">// 或者</span></div><div class="line">entry:[<span class="string">'./example2.1'</span>,<span class="string">'./example2.2'</span>]</div><div class="line"><span class="comment">//或者</span></div><div class="line">entry:&#123;</div><div class="line">    <span class="string">'example2.1'</span>:<span class="string">'example2.1.js'</span>,</div><div class="line">    <span class="string">'example2.2'</span>:<span class="string">'example2.2.js'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>第三种是比较推荐的写法，这种写法中，名字和模块文件名一一对应，每个模块都有独立的名字。也就是<code>output.filename</code>中的[name]</p>
-<h4 id="output"><a href="#output" class="headerlink" title="output"></a>output</h4><h5 id="output-filename"><a href="#output-filename" class="headerlink" title="output.filename"></a>output.filename</h5><p><code>output.filename</code>除了可以指定具体的文件名以外，还可以使用一些占位符，包括：</p>
-<ul>
-<li>name 模块名称</li>
-<li>hash 模块编译后的（整体）Hash值</li>
-<li>chunkhash 分片的Hash值</li>
-</ul>
-<p>[name]</p>
-<p>在上面的<code>entry</code>中，前两种写法，模块是没有名字的，webpack会使用main作为模块名字，因此用数组来指定入口的情况，模块名会重复，而此时webpack会将它们的代码合并打包！而第三种写法，这里的[name]可以理解成模块名字。</p>
-<p>[hash]与[chunkhash]</p>
-<p>事实上，在webpack的文档中，这个name是指“chunk name”，即分片的名字，这里需要先剧透一下后面要说的“分片”的概念。所谓分片就是指一个入口模块的代码有可能会被分成多个文件，还有一些文件可能是来自模块的公共代码，而不是入口模块。因此这里的[name]并非严格与入口模块一一对应。</p>
-<p>了解了这些情况之后，[hash]和[chunkhash]就自然好理解了，一个是指本次打包相关的整体的hash，一个是指分片的hash。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="attr">entry</span>:&#123;</div><div class="line">        <span class="string">'example3.1'</span>:<span class="string">'./example3.1'</span>,</div><div class="line">        <span class="string">'example3.2'</span>:<span class="string">'./example3.2'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">output</span>:&#123;</div><div class="line">        <span class="comment">//这里分别用hash和chunkhash，结果不一样</span></div><div class="line">        filename:<span class="string">'[name]-[hash].js'</span></div><div class="line">        <span class="comment">//filename:'[name]-[chunkhash].js'</span></div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h5 id="output-path"><a href="#output-path" class="headerlink" title="output.path"></a>output.path</h5><p><code>output.path</code>来指定输出路径</p>
-<blockquote>
-<p><code>output.path</code>也可以使用占位符。</p>
-</blockquote>
-<p>如果想保持打包前源文件的目录结构，需要把目录写到模块名上，如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">entry:&#123;</div><div class="line">    <span class="string">'example4.1'</span>:<span class="string">'./src/example4.1'</span>,</div><div class="line">    <span class="string">'hello/example4.2'</span>:<span class="string">'./src/hello/example4.2'</span></div><div class="line">&#125;,</div><div class="line"><span class="attr">output</span>:&#123;</div><div class="line">    <span class="attr">filename</span>:<span class="string">'[name].js'</span>,</div><div class="line">    <span class="attr">path</span>:<span class="string">'./dist'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>注意这里的<code>filename</code>一定要包含<code>[name]</code>才行，因为路径信息是带在模块名上的。</p>
-<h3 id="CommonChunks插件"><a href="#CommonChunks插件" class="headerlink" title="CommonChunks插件"></a>CommonChunks插件</h3><p><code>Common Chunks</code> 插件的作用就是提取代码中的公共模块，然后将公共模块打包到一个独立的文件中去，以便在其它的入口和模块中使用。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="attr">entry</span>:&#123;</div><div class="line">        <span class="attr">main1</span>:<span class="string">'./main'</span>,</div><div class="line">        <span class="attr">main2</span>:<span class="string">'./main.2'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">output</span>:&#123;</div><div class="line">        <span class="attr">filename</span>:<span class="string">'bundle.[name].js'</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">plugins</span>: [</div><div class="line">        <span class="keyword">new</span>  webpack.optimize.CommonsChunkPlugin(<span class="string">'common.js'</span>, [<span class="string">'main1'</span>, <span class="string">'main2'</span>])</div><div class="line">    ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>参数<code>common.js</code>表示公共模块的文件名，后面的数组元素与<code>entry</code>一一对应，表示要提取这些模块中的公共模块。</p>
-<p>但是，要记得在HTML中加入公共部分common.js</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./common.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./bundle.main1.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>但模块化不应该有多个入口文件，入口文件不应时时改变，应在内部处理</p>
-</blockquote>
-<h3 id="使用loader"><a href="#使用loader" class="headerlink" title="使用loader"></a>使用loader</h3><p>loader是webpack中一个重要的概念，它是指用来将一段代码转换成另一段代码的webpack插件</p>
-<blockquote>
-<p>虽然本质上说，loader也是插件，但因为webpack的体系中还有一个专门的名词就叫插件（plguin），为避免混淆，后面不再将loader与插件混淆说，后文中这将是两个相互独立的概念。</p>
-</blockquote>
-<p>loader的使用有三种方法，分别是：</p>
-<ul>
-<li>在require中显式指定</li>
-<li>在配置项（webpack.config.js）中指定</li>
-<li>在命令行中指定</li>
-</ul>
-<p>第二种，在配置项中指定是最灵活的方式，它的指定方式是这样：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>: &#123;</div><div class="line">    <span class="comment">// loaders是一个数组，每个元素都用来指定loader</span></div><div class="line">    loaders: [&#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.jade$/</span>,    <span class="comment">//test值为正则表达式，当文件路径匹配时启用</span></div><div class="line">        loader: <span class="string">'jade'</span>,    <span class="comment">//指定使用什么loader，可以用字符串，也可以用数组</span></div><div class="line">        exclude: <span class="regexp">/node_modules/</span>, <span class="comment">//可以使用exclude来排除一部分文件</span></div><div class="line">        <span class="comment">// exclude: /regexp/</span></div><div class="line">        include: <span class="string">'dist'</span>, <span class="comment">// 用来指定包含的文件</span></div><div class="line">        <span class="comment">//可以使用query来指定参数，也可以在loader中用和require一样的用法指定参数，如`jade?p1=1`</span></div><div class="line">        query: &#123;</div><div class="line">            <span class="attr">p1</span>:<span class="string">'1'</span></div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</div><div class="line">        <span class="attr">loader</span>: <span class="string">'style!css'</span>    <span class="comment">//loader可以和require用法一样串联</span></div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</div><div class="line">        <span class="attr">loaders</span>: [<span class="string">'style'</span>, <span class="string">'css'</span>]    <span class="comment">//也可以用数组指定loader</span></div><div class="line">    &#125;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="串联"><a href="#串联" class="headerlink" title="串联"></a>串联</h4><p>loader是可以串联使用的，也就是说，一个文件可以先经过A-loader再经过B-loader最后再经过C-loader处理。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">'style!css!./style.css'</span>);</div></pre></td></tr></table></figure>
-<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><p>loader还可以接受参数，不同的参数可以让loader有不同的行为（前提是loader确实支持不同的行为），具体每个loader支持什么样的参数可以参考loader的文档。</p>
-<p>参数的指定方式和<code>url</code>很像，要通过<code>?</code>来指定，例如指定<code>literate</code>参数需要这样写：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">'coffee?literate=1!./a.coffee'</span>);</div></pre></td></tr></table></figure>
-<p>具体的可以对照<a href="https://webpack.github.io/docs/list-of-loaders.html" target="_blank" rel="external">官方的loader列表</a>一一查看。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;不得不说，&lt;code&gt;Webpack&lt;/code&gt; 配置确实烦琐了一些，很多人都使用&lt;code&gt;gulp&lt;/code&gt;的插件&lt;code&gt;gulp-webpack&lt;/code&gt;来做其他事情。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="webpack" scheme="http://robin-front.github.io/categories/webpack/"/>
-    
-    
-      <category term="webpack" scheme="http://robin-front.github.io/tags/webpack/"/>
     
   </entry>
   

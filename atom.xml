@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-01-13T02:19:27.000Z</updated>
+  <updated>2017-03-13T03:31:42.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,98 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>通过动图简单通俗地了解Flexbox的工作原理</title>
+    <link href="http://robin-front.github.io/2017/03/13/%E9%80%9A%E8%BF%87%E5%8A%A8%E5%9B%BE%E7%AE%80%E5%8D%95%E9%80%9A%E4%BF%97%E5%9C%B0%E4%BA%86%E8%A7%A3Flexbox%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/"/>
+    <id>http://robin-front.github.io/2017/03/13/通过动图简单通俗地了解Flexbox的工作原理/</id>
+    <published>2017-03-13T03:31:42.000Z</published>
+    <updated>2017-03-13T03:31:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文译自 <a href="https://medium.freecodecamp.com/even-more-about-how-flexbox-works-explained-in-big-colorful-animated-gifs-a5a74812b053#.iwqlenuqq" target="_blank" rel="external">Scott Domes</a></p>
+<p>Flex属性是一个复合属性，而大部分教程中都只设置一个值，但其实它包含了 <code>flex-basis</code>、<code>flex-grow</code>、<code>flex-shrink</code>.<br>让我们深入了解Flexbox - 以及如何利用它来构建适应性强和漂亮的布局.<br><a id="more"></a></p>
+<h3 id="属性一：-Flex-Basis"><a href="#属性一：-Flex-Basis" class="headerlink" title="属性一： Flex-Basis"></a>属性一： Flex-Basis</h3><p>在<a href="https://medium.freecodecamp.com/an-animated-guide-to-flexbox-d280cf6afc35#.s7qtdlnbf" target="_blank" rel="external">上一篇文章</a>中，我们主要把它用于外部容器中。这一次，我们试着把它用在容器内的子元素中。</p>
+<p>这是一个很不起眼的属性，但也很直接。</p>
+<p><code>Flex-basis</code> 控制着一个元素的默认大小，在其他 flex 属性应用之前。</p>
+<p>在下面的 GIF 看来，它的作用和 <code>width</code> 的作用一样：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*S3LKFr_BICUtAWA5LOFxVw.gif" alt="flex-basis"></p>
+<p>是什么让 <code>flex-basis</code> 表现得和 <code>width</code> 一样？事实上，它对应着 flex 的坐标轴。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*_Ruy6jFG7gUpSf76IUcJTQ.png" alt="flex axes"></p>
+<blockquote>
+<p>flex-basis 影响无素在主轴上的大小</p>
+</blockquote>
+<p>让我们看看保持 <code>flex-basis</code> 的值不变，但是改变主轴方向会有什么变化：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*W4QU1Fw9kDLEH2m-J9VGyw.gif" alt="flex direction"></p>
+<p>注意到，我从手动设置高度变成手动设置宽度。 <code>Flex-basis</code> 影响宽度还是高度取决于 <code>flex-direction</code> 的值。</p>
+<h3 id="属性二：Flex-Grow"><a href="#属性二：Flex-Grow" class="headerlink" title="属性二：Flex Grow"></a>属性二：Flex Grow</h3><p>现在，我们来点更复杂的。</p>
+<p>首先，让我们设置给所有方块设置相同的宽度，120px:</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*dON3-0RooiPyfDr0DBEOmA.png" alt="same width"></p>
+<p>现在，当它加上属性 <code>flex-grow</code>（默认值为0）.这意味着，不允许方块自动充满容器。</p>
+<p>没理解？现在给每个方块的 <code>flex-grow</code> 属性设置为 <code>1</code>：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*cK-yB4z_L6bmEqoG5qDoRA.png" alt="flex-grow"></p>
+<p>所有方块共同充满了容器的整个宽度，并且是平均分。 <code>flex-grow</code> 属性覆盖了 <code>width</code> 属性。</p>
+<p>让人困惑的是 <code>flex-grow</code> 的值到底是什么意思？ <code>flex-grow: 1</code> 意味着什么？</p>
+<p>好吧，下图是给每个方块设置 <code>flex-grow</code> 值为 <code>999</code> 的表现：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*p2fLcy13xFU9GjtM4cbHEw.png" alt="flex-grow:999"></p>
+<p>这真是。。完全一样。</p>
+<p>那是因为 <code>flex-grow</code> 不是一个绝对的值，而是一个相对的值。</p>
+<p>重要的不是一个方块 <code>flex-grow</code> 值的本身，而是这个值和其他方块的值的关系。</p>
+<p>如果给每个方块设置 <code>flex-grow: 1</code>， 然后调整第3个方块的 <code>flex-grow</code> 属性，可以看到如下变化：</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*gHyLHG52cySgLmy0x-edZA.gif" alt="flex-grow change"></p>
+<p>想要真正明白这里发生了什么，让我们快速略过一个简单的数学计算。</p>
+<p>每个正方形都以flex-grow为1开始。如果我们将每个正方形的flex-grow相加，则总和为6。因此，容器被分成6个单独的部分。<em>每个正方形增长到可用空间的1/6以填满容器。</em></p>
+<p>当设置第3个方块的<code>flex-grow</code> 为 2， 现在容器被分成7份，因为 <code>flex-grow</code> 属性的值的总和为 <code>1+1+2+1+1+1</code>.</p>
+<p>方块3获得 2/7 的宽度，剩下的获得 1/7。</p>
+<p>当设置第3个方块为 <code>flex-grow: 3</code>， 容器被分成8份（1+1+3+1+1+1）, 方块3占 3/8, 剩下的占 1/8.</p>
+<p>以此类推。</p>
+<p><code>flex-grow</code>是占所有值总和的比例。如果给所有方块设置<code>flex-grow: 4</code>, 方块3设置 <code>flex-grow: 12</code>, 效果和给它们分别设置 1 和 3 是一样的。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*JnjR4ULs8de0so1bdUPogw.png" alt="flex-grow"></p>
+<p>最后一点，<code>flex-grow</code> 和 <code>flex-basis</code> 都和主轴对应。我们的方块只会增长宽度，除非设置 <code>flex-direction</code> 为 <code>column</code>.</p>
+<h3 id="属性三：-Flex-Shrink"><a href="#属性三：-Flex-Shrink" class="headerlink" title="属性三： Flex Shrink"></a>属性三： Flex Shrink</h3><p><code>flex-shrink</code> 和 <code>flex-grow</code>正好相反，决定每个方块可以收缩多少。</p>
+<p>它只有在元素必须收缩以适应其容器时才起作用 - 即当容器太小时。</p>
+<p>它的主要用途是指定哪些元素要缩小，哪些元素不用缩小。默认情况下，每个方块的 <code>flex-shrink</code> 值为1 - 这意味着它会随着容器的收缩而收缩。</p>
+<p>让我们看看它的表现。在下面的GIFS中，正方形的<code>flex-grow</code>为1，因此它们填充了容器，并且<code>flex-shrink</code>为1，因此它们被允许收缩.</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*FVO9kX3wwqakhcT9JWS2Ww.gif" alt="flex-shrink"></p>
+<p>现在让我们将方块3的<code>flex-shrink</code>设置为0.它禁止收缩，所以它会增长以适应容器，但它拒绝收缩到其设置的120px宽度以下。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*GrLzJ4jH3v2Z5Va_TMOXkQ.gif" alt="flex-shrink"></p>
+<p><code>flex-shrink</code>的默认值是1 - 这意味着你的元素会收缩，除非设置为0去禁止它。</p>
+<p>同样，<code>flex-shrink</code> 是按比例的。如果一个盒子的<code>flex-shrink</code>为6，其余的<code>flex-shrink</code>为2，一个盒子将以3倍的速度缩减，当空间被压缩。</p>
+<p>注意这里说的是：具有3x弹性收缩的方块将比其他方块缩短3倍。<em>这并不意味着它将收缩1/3的宽度。</em></p>
+<p>稍后，我们会深入了解这到底会收缩或增长多少，在此之前，先来看一下最后一个属性，并把所有混在一起。</p>
+<h3 id="属性四：-Flex"><a href="#属性四：-Flex" class="headerlink" title="属性四： Flex"></a>属性四： Flex</h3><p>flex 是 grow, shrink 以及 basis 的缩写，复合属性。</p>
+<p>它的默认值是 0(grow) 1（shrink）auto(basis).</p>
+<p>最后一个例子，让我们简化到两个 boxs</p>
+<p>这是它们的属性：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.square</span><span class="selector-id">#one</span> &#123;</div><div class="line">  <span class="attribute">flex</span>: <span class="number">2</span> <span class="number">1</span> <span class="number">300px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.square</span><span class="selector-id">#two</span> &#123;</div><div class="line">  <span class="attribute">flex</span>: <span class="number">1</span> <span class="number">2</span> <span class="number">300px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>两者都有相同的 <code>flex-basis</code>属性。这意味着如果它们都有足够的空间（容器是600px加上边距和填充空间），它们都将是300px宽度。</p>
+<p>但随着容器的增长，Square 1（具有更高的flex-grow）将增长两倍。随着盒子的收缩，Square 2（具有更高的flex-shrink）将缩短两倍。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*BKZt7AT5eFee4KRhe82gew.gif" alt="all together"></p>
+<h4 id="它是如何增长和收缩的"><a href="#它是如何增长和收缩的" class="headerlink" title="它是如何增长和收缩的"></a>它是如何增长和收缩的</h4><p>这里有可能会混淆：当Square 1增长时，它不会增长到Square 2的两倍。同样，当Square 2缩小时，它不会缩小到Square 1的一半大小 - 即使比率的收缩率为2比1。</p>
+<blockquote>
+<p>这不是他们的大小 2比1或1比2.这是他们的收缩和增长的速度的比例。</p>
+</blockquote>
+<h4 id="一点数学计算"><a href="#一点数学计算" class="headerlink" title="一点数学计算"></a>一点数学计算</h4><p>容器的起始大小为640像素。在容器的每一边占用20px的填充后，这留下了足够的空间，两个方块恢复到它们的<code>flex-basis</code>的300px.</p>
+<p>当容器设置为430px时，我们丢失了210px的空间。正方形1，flex-shrink:1，失去70px。方形2，flex-shrink: 2，失去140px。</p>
+<p>当容器缩小到340px时，我们现在已经失去了300像素的空间。方块1损失100像素，方块2损失200像素.</p>
+<p>损失的空间根据它们各自的收缩率（2:1）的比率来分割。</p>
+<p><code>flex-grow</code>同样。当容器增长到940px，我们获得了300px的空间，Square 1获得了额外的200px，Square 2获得了额外的100px。</p>
+<p><img src="https://cdn-images-1.medium.com/max/1000/1*70-KTWYpA2LnLjqi0xDrJA.gif" alt="grow and shrink"></p>
+<p>在上面的GIF中，您可以看到宽度如何根据比率进行调整，增量（Δ）显示与基于<code>flex-basis</code>的差异。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文译自 &lt;a href=&quot;https://medium.freecodecamp.com/even-more-about-how-flexbox-works-explained-in-big-colorful-animated-gifs-a5a74812b053#.iwqlenuqq&quot;&gt;Scott Domes&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Flex属性是一个复合属性，而大部分教程中都只设置一个值，但其实它包含了 &lt;code&gt;flex-basis&lt;/code&gt;、&lt;code&gt;flex-grow&lt;/code&gt;、&lt;code&gt;flex-shrink&lt;/code&gt;.&lt;br&gt;让我们深入了解Flexbox - 以及如何利用它来构建适应性强和漂亮的布局.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Flexbox" scheme="http://robin-front.github.io/categories/Flexbox/"/>
+    
+    
+      <category term="Flexbox" scheme="http://robin-front.github.io/tags/Flexbox/"/>
+    
+  </entry>
   
   <entry>
     <title>js遍历Object对象可枚举属性、不可枚举属性、原型链属性和自身属性</title>
@@ -32,7 +124,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 父类构造函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ParentClass</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">ParentClass.prototype.inheritedMethod = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 继承</span></div><div class="line"><span class="keyword">var</span> ChildClass = <span class="built_in">Object</span>.create(ParentClass.prototype, &#123;</div><div class="line">  <span class="comment">// 不可枚举属性</span></div><div class="line">  getFoo: &#123;</div><div class="line">    <span class="attr">value</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.foo; &#125;,</div><div class="line">    <span class="attr">enumerable</span>: <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 自身可枚举属性</span></div><div class="line">ChildClass.foo = <span class="number">1</span>;</div><div class="line"><span class="comment">// 再定义一个原型链属性</span></div><div class="line">ChildClass.prototype.prototypeMethod = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyNames(my_obj).sort()); <span class="comment">// ["foo", "getFoo"]</span></div></pre></td></tr></table></figure>
 <p>兼容性到 IE9, es 5标准。</p>
 <h3 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys()"></a>Object.keys()</h3><p>返回该对象的所有可枚举自身属性的属性名。</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">//</span>具有随机键排序的数组类对象</div><div class="line">var an_obj = &#123; <span class="number">100</span>: <span class="string">'a'</span>, <span class="number">2</span>: <span class="string">'b'</span>, <span class="number">7</span>: <span class="string">'c'</span> &#125;;</div><div class="line">console.log(Object.keys(an_obj)); <span class="regexp">//</span> console: [<span class="string">'2'</span>, <span class="string">'7'</span>, <span class="string">'100'</span>]</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//具有随机键排序的数组类对象</span></div><div class="line"><span class="keyword">var</span> an_obj = &#123; <span class="number">100</span>: <span class="string">'a'</span>, <span class="number">2</span>: <span class="string">'b'</span>, <span class="number">7</span>: <span class="string">'c'</span> &#125;;</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(an_obj)); <span class="comment">// console: ['2', '7', '100']</span></div></pre></td></tr></table></figure>
 <p>这些属性的顺序与手动遍历（如for..in）该对象属性时的一致。</p>
 <blockquote>
 <p>注意：Object.keys 和 getOwnPropertyNames ，在ES5，如果此方法的参数不是一个对象（原始的），那么它会造成 TypeError。在ES6，非对象的参数将被强制转换为一个对象。</p>
@@ -56,7 +148,7 @@
 <h3 id="只获取原型链上的可枚举属性"><a href="#只获取原型链上的可枚举属性" class="headerlink" title="只获取原型链上的可枚举属性"></a>只获取原型链上的可枚举属性</h3><ul>
 <li>直接用 for..in</li>
 </ul>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o = <span class="built_in">Object</span>.getPrototypeOf(targetObj); <span class="comment">// 跳过遍历自身属性，直接从原型上开始</span></div><div class="line"><span class="keyword">var</span> k=[],p;</div><div class="line"><span class="keyword">for</span> (p <span class="keyword">in</span> o) <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.hasOwnProperty.call(o,p)) k.push(p);</div><div class="line"><span class="keyword">return</span> k;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o = <span class="built_in">Object</span>.getPrototypeOf(targetObj); <span class="comment">// 跳过遍历自身属性，直接从原型上开始</span></div><div class="line"><span class="keyword">var</span> k=[],p;</div><div class="line"><span class="keyword">for</span> (p <span class="keyword">in</span> o) <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.hasOwnProperty.call(o,p)) k.push(p);</div><div class="line"><span class="keyword">return</span> k;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>注意，这样遍历出来的属性也不一定能访问， 因为自身属性可能会屏蔽掉原型上的属性。</p>
 </blockquote>
@@ -88,7 +180,7 @@
     <updated>2017-01-12T09:49:14.000Z</updated>
     
     <content type="html"><![CDATA[<p>在javascript中，instanceof 和 isPrototypeOf 都可以判断一个原型是否在另一个实例的原型链中，那他们有什么区别呢，为什么说 isPrototypeOf 可以替代 instanceof 。<br><a id="more"></a></p>
-<h3 id="instanceof-用法"><a href="#instanceof-用法" class="headerlink" title="instanceof 用法"></a>instanceof 用法</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="comment">// init code</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span><span class="params">()</span> </span>&#123;</div><div class="line">      Super.call(<span class="keyword">this</span>);</div><div class="line">      <span class="comment">// other init code</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">Sub.prototype = <span class="keyword">new</span> Super();</div><div class="line"></div><div class="line"><span class="keyword">var</span> sub = <span class="keyword">new</span> Sub();</div></pre></td></tr></table></figure>
+<h3 id="instanceof-用法"><a href="#instanceof-用法" class="headerlink" title="instanceof 用法"></a>instanceof 用法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// init code</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      Super.call(<span class="keyword">this</span>);</div><div class="line">      <span class="comment">// other init code</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">Sub.prototype = <span class="keyword">new</span> Super();</div><div class="line"></div><div class="line"><span class="keyword">var</span> sub = <span class="keyword">new</span> Sub();</div></pre></td></tr></table></figure>
 <p>对于上面的代码，用 instanceof 可以像这样确定他们的关系：</p>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">sub</span> <span class="title">instanceof</span> <span class="title">Super</span></span>; // true</div></pre></td></tr></table></figure>
 <h3 id="isPrototypeOf-用法"><a href="#isPrototypeOf-用法" class="headerlink" title="isPrototypeOf 用法"></a>isPrototypeOf 用法</h3><p>复用上面的代码，用 isPrototypeOf 可以这样写：</p>
@@ -132,7 +224,7 @@
 <p>您可以根据需要设定多个振动/暂停对，数组的值可以是偶数或奇数个； 值得注意的是，由于振动在每个振动周期结束时自动停止，因此您不必提供最后一个值去暂停，换句话说，数组长度只需要设置奇数个。</p>
 <h3 id="停止振动"><a href="#停止振动" class="headerlink" title="停止振动"></a>停止振动</h3><p>当调用 window.navigator.vibrate() 的参数为「0」、空白数组，或数组全为「0」时，即可取消目前进行中的振动。</p>
 <h3 id="持续振动"><a href="#持续振动" class="headerlink" title="持续振动"></a>持续振动</h3><p>一些基于setInterval和clearInterval操作将允许您创建持续的振动：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vibrateInterval;</div><div class="line"></div><div class="line"><span class="comment">// Starts vibration at passed in level</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">startVibrate</span><span class="params">(duration)</span> </span>&#123;</div><div class="line">    navigator.vibrate(duration);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Stops vibration</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopVibrate</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// Clear interval and stop persistent vibrating</span></div><div class="line">    <span class="keyword">if</span>(vibrateInterval) clearInterval(vibrateInterval);</div><div class="line">    navigator.vibrate(<span class="number">0</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Start persistent vibration at given duration and interval</span></div><div class="line"><span class="comment">// Assumes a number value is given</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">startPeristentVibrate</span><span class="params">(duration, interval)</span> </span>&#123;</div><div class="line">    vibrateInterval = setInterval(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</div><div class="line">        startVibrate(duration);</div><div class="line">    &#125;, interval);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vibrateInterval;</div><div class="line"></div><div class="line"><span class="comment">// Starts vibration at passed in level</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">startVibrate</span>(<span class="params">duration</span>) </span>&#123;</div><div class="line">    navigator.vibrate(duration);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Stops vibration</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopVibrate</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// Clear interval and stop persistent vibrating</span></div><div class="line">    <span class="keyword">if</span>(vibrateInterval) clearInterval(vibrateInterval);</div><div class="line">    navigator.vibrate(<span class="number">0</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Start persistent vibration at given duration and interval</span></div><div class="line"><span class="comment">// Assumes a number value is given</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">startPeristentVibrate</span>(<span class="params">duration, interval</span>) </span>&#123;</div><div class="line">    vibrateInterval = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        startVibrate(duration);</div><div class="line">    &#125;, interval);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>当然上面的代码片段没有考虑到振动参数为数组情况; 基于阵列的持久性振动将需要计算数组项的和，并基于该数量创建周期（可能具有额外的延迟）。</p>
 <h3 id="生成振动节奏"><a href="#生成振动节奏" class="headerlink" title="生成振动节奏"></a>生成振动节奏</h3><p>可以通过<a href="https://naschq.github.io/vibe.js/" target="_blank" rel="external">vibe.js tool</a>这个工具来生成你需要的振动频率，然后复制它到你的代码里。</p>
 <h3 id="lib"><a href="#lib" class="headerlink" title="lib"></a>lib</h3><p>我写了一个小lib，方便使用<a href="https://github.com/Robin-front/vibrate.js" target="_blank" rel="external">vibrate.js</a></p>
@@ -967,55 +1059,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>postCSS-loader配置,让css随心所欲</title>
-    <link href="http://robin-front.github.io/2016/04/09/postCSS-loader%E9%85%8D%E7%BD%AE/"/>
-    <id>http://robin-front.github.io/2016/04/09/postCSS-loader配置/</id>
-    <published>2016-04-09T14:47:09.000Z</published>
-    <updated>2016-04-09T14:47:09.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>组件必不可少的一部分就是 <code>css</code>，这里看下关于 <code>css</code>的一些 <code>loaders</code>。<br><a id="more"></a></p>
-<h3 id="PostCSS"><a href="#PostCSS" class="headerlink" title="PostCSS"></a>PostCSS</h3><p><code>PostCSS</code> 官网是这么介绍自己的：</p>
-<blockquote>
-<p>PostCSS is a tool for transforming styles with JS plugins. These plugins can lint your CSS, support variables and mixins, transpile future CSS syntax, inline images, and more.</p>
-</blockquote>
-<p>他是一款通过 <code>JS</code> 插件转换 <code>styles</code> 样式的工具。</p>
-<p>在 <code>Webpack</code> 里面可以通过 <code>postCSS-loader</code> 来使用 <code>PostCSS</code>。</p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>首先是安装 <code>postCSS-loader</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install postcss-loader --save-dev</div></pre></td></tr></table></figure>
-<p>下面是一个 <code>Webpack config</code> 的例子：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> precss       = <span class="built_in">require</span>(<span class="string">'precss'</span>); <span class="comment">// 实现类Sass的功能，变量，嵌套，mixins</span></div><div class="line"><span class="keyword">var</span> autoprefixer = <span class="built_in">require</span>(<span class="string">'autoprefixer'</span>); <span class="comment">// 自动添加浏览器前缀</span></div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="attr">module</span>: &#123;</div><div class="line">        <span class="attr">loaders</span>: [</div><div class="line">            &#123;</div><div class="line">                <span class="attr">test</span>:   <span class="regexp">/\.css$/</span>,</div><div class="line">                <span class="attr">loader</span>: <span class="string">"style-loader!css-loader!postcss-loader"</span> <span class="comment">//在使用 css-loader,style-loader之前处理</span></div><div class="line">            &#125;</div><div class="line">        ]</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">postcss</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">// postcss 插件</span></div><div class="line">        <span class="keyword">return</span> [precss, autoprefixer];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>上面的例子使用了两个 <code>postcss</code> 插件，应该预先安装：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; npm install precss --save-dev</div><div class="line">&gt; npm install autoprefixer --save-dev</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<p>在文件中引入的css将通过 <code>PostCSS</code> 插件的处理:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> css = <span class="built_in">require</span>(<span class="string">'./file.css'</span>);</div><div class="line">or</div><div class="line"><span class="keyword">import</span> <span class="string">'./file.css'</span></div><div class="line"><span class="comment">// =&gt; CSS after Autoprefixer and CSSWring</span></div></pre></td></tr></table></figure>
-<h4 id="插件组"><a href="#插件组" class="headerlink" title="插件组"></a>插件组</h4><p>如果你想对不同目录或类型的 <code>css</code>使用不同的 <code>PostCSS</code> 插件配置进行处理，可以使用 <code>?pack=name</code> 参数</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="attr">module</span>: &#123;</div><div class="line">        <span class="attr">loaders</span>: [</div><div class="line">            &#123;</div><div class="line">                <span class="attr">test</span>:   <span class="regexp">/\.docs\.css$/</span>,</div><div class="line">                <span class="attr">loader</span>: <span class="string">"style-loader!css-loader!postcss-loader?pack=cleaner"</span> <span class="comment">// 对docs目录下的css使用 cleaner 的配置</span></div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                <span class="attr">test</span>:   <span class="regexp">/\.css$/</span>,</div><div class="line">                <span class="attr">loader</span>: <span class="string">"style-loader!css-loader!postcss-loader"</span> <span class="comment">// 对其他目录下的css使用 defaults 的配置</span></div><div class="line">            &#125;</div><div class="line">        ]</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">postcss</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            <span class="attr">defaults</span>: [precss, autoprefixer],</div><div class="line">            <span class="attr">cleaner</span>:  [autoprefixer(&#123; <span class="attr">browsers</span>: [] &#125;)]</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="写在-js-中的样式"><a href="#写在-js-中的样式" class="headerlink" title="写在 js 中的样式"></a>写在 js 中的样式</h4><p>可以通过 <code>postcss-js</code> 插件处理写在 js 中的样式</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">test</span>:   <span class="regexp">/\.style.js$/</span>,</div><div class="line">    <span class="attr">loader</span>: <span class="string">"style-loader!css-loader!postcss-loader?parser=postcss-js"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>也可以通过 <code>babel</code> 结合 <code>postcss-js</code> 处理 <code>es6</code> 语法中的样式</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">test</span>:   <span class="regexp">/\.style.js$/</span>,</div><div class="line">    <span class="attr">loader</span>: <span class="string">"style-loader!css-loader!postcss-loader?parser=postcss-js!babel"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>你可以像下面这样写样式</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> colors <span class="keyword">from</span> <span class="string">'../config/colors'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    <span class="string">'.menu'</span>: &#123;</div><div class="line">        <span class="attr">color</span>: colors.main,</div><div class="line">        <span class="attr">height</span>: <span class="number">25</span>,</div><div class="line">        <span class="string">'&amp;_link'</span>: &#123;</div><div class="line">            <span class="attr">color</span>: <span class="string">'white'</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;组件必不可少的一部分就是 &lt;code&gt;css&lt;/code&gt;，这里看下关于 &lt;code&gt;css&lt;/code&gt;的一些 &lt;code&gt;loaders&lt;/code&gt;。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Webpack" scheme="http://robin-front.github.io/categories/Webpack/"/>
-    
-    
-      <category term="loaders" scheme="http://robin-front.github.io/tags/loaders/"/>
-    
-      <category term="Webpack" scheme="http://robin-front.github.io/tags/Webpack/"/>
     
   </entry>
   

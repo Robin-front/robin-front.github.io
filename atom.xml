@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-03-13T03:31:42.000Z</updated>
+  <updated>2017-03-19T06:40:21.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,109 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RxJS的动画简介</title>
+    <link href="http://robin-front.github.io/2017/03/19/RxJS%E7%9A%84%E5%8A%A8%E7%94%BB%E7%AE%80%E4%BB%8B/"/>
+    <id>http://robin-front.github.io/2017/03/19/RxJS的动画简介/</id>
+    <published>2017-03-19T06:40:21.000Z</published>
+    <updated>2017-03-19T06:40:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文译自 <a href="https://css-tricks.com/animated-intro-rxjs/" target="_blank" rel="external">An Animated Intro to RxJS</a></p>
+<p>你可能听说过RxJS，ReactiveX，或反应式编程，或者甚至只听过函数式编程。这些术语在谈论最新和最前沿的前端技术时变得越来越突出。如果你像我一样，当你第一次尝试学习它时，你感到很困惑。<br><a id="more"></a></p>
+<p>根据<a href="http://reactivex.io/" target="_blank" rel="external">ReactiveX.io</a>：</p>
+<blockquote>
+<p>ReactiveX是一个库，用于通过使用可观察序列来组成异步和基于事件的程序。</p>
+</blockquote>
+<p>这句话包含了很多要消化的内容。在本文中，我们将采用一种不同的方法来学习RxJS（ReactiveX的JavaScript实现）和<code>Observables</code>，通过创建反应式动画。</p>
+<h1 id="理解Observable"><a href="#理解Observable" class="headerlink" title="理解Observable"></a>理解Observable</h1><p>数组是元素的集合，例如[1, 2, 3, 4, 5]。你可以立即得到所有的元素，你可以做的事情像<code>map</code>，<code>filter</code>和映射他们。这允许你以任何你想要的方式转换元素的集合。</p>
+<p>现在假设阵列中的每个元素随时间发生; 也就是说，你不是立即得到所有的元素，而是一次一个。你可能得到第一个元素在第1秒，下一个在第3秒，依此类推。以下是如何表示：</p>
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2017/02/rx-article-1.svg" alt="a steam of values"></p>
+<p>这可以被描述为值的流，或事件序列，或更确切地，称为<code>observable</code>。</p>
+<blockquote>
+<p><code>observable</code>是随时间的值的集合。</p>
+</blockquote>
+<p>就像使用数组一样，您可以对这些值进行映射，过滤等操作，以创建和组合新的<code>observable</code>。最后，你可以订阅这些<code>observable</code>，并在<code>steam</code>的值之后执行你想要做的事。这是RxJS的源。</p>
+<h1 id="RxJS起步"><a href="#RxJS起步" class="headerlink" title="RxJS起步"></a>RxJS起步</h1><p>开始使用RxJS的最简单的方法是使用CDN，虽然有<a href="http://reactivex.io/rxjs/manual/installation.html" target="_blank" rel="external">很多方法可以安装</a>，这取决于项目的需要。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- the latest, minified version of RxJS --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/@reactivex/rxjs@latest/dist/global/Rx.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>一旦你的项目中有RxJS，你可以从任何东西中创建一个observable ：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> aboutAnything = <span class="number">42</span>;</div><div class="line"></div><div class="line"><span class="comment">// 从变量创建</span></div><div class="line"><span class="comment">// The observable emits that value, then completes.</span></div><div class="line"><span class="keyword">const</span> meaningOfLife$ = Rx.Observable.just(aboutAnything);</div><div class="line"></div><div class="line"><span class="comment">// 从数组或可遍历的结构中创建</span></div><div class="line"><span class="comment">// The observable emits each item from the array, then completes.</span></div><div class="line"><span class="keyword">const</span> myNumber$ = Rx.Observable.from([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]);</div><div class="line"></div><div class="line"><span class="comment">// From a promise.</span></div><div class="line"><span class="comment">// The observable emits the result eventually, then completes (or errors).</span></div><div class="line"><span class="keyword">const</span> myData$ = Rx.Observable.fromPromise(fetch(<span class="string">'http://example.com/users'</span>));</div><div class="line"></div><div class="line"><span class="comment">// 从事件中创建</span></div><div class="line"><span class="comment">// The observable continuously emits events from the event listener.</span></div><div class="line"><span class="keyword">const</span> mouseMove$ = Rx.Observable</div><div class="line">  .fromEvent(<span class="built_in">document</span>.documentElement, <span class="string">'mousemove'</span>);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：变量末尾的美元符号<code>$</code>是一个约定，表示该变量是一个可观察者。<code>Observable</code>可以用来对任何可以表示为随时间变化的值的流进行建模，例如事件，Promises，计时器，间隔和动画。</p>
+</blockquote>
+<p>因为，这些可观察的东西不做任何事情，至少直到你实际观察他们。一个简单的订阅将做到这一点，使用创建<code>.subscribe()</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">myNumber$.subscribe(<span class="function"><span class="params">number</span> =&gt;</span> <span class="built_in">console</span>.log(number));</div><div class="line"></div><div class="line"><span class="comment">// Result:</span></div><div class="line"><span class="comment">// &gt; 1</span></div><div class="line"><span class="comment">// &gt; 2</span></div><div class="line"><span class="comment">// &gt; 3</span></div><div class="line"><span class="comment">// &gt; 4</span></div><div class="line"><span class="comment">// &gt; 5</span></div></pre></td></tr></table></figure>
+<p>让我们实践看看：</p>
+<iframe height="400" width="100%" src="//codepen.io/davidkpiano/embed/d6f5fa72a9b7b6c2c9141de6fa1ab93f?height=400&theme-id=1&slug-hash=d6f5fa72a9b7b6c2c9141de6fa1ab93f&default-tab=js%2Cresult&user=davidkpiano&embed-version=2&pen-title="></iframe>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> docElm = <span class="built_in">document</span>.documentElement;</div><div class="line"><span class="keyword">const</span> cardElm = <span class="built_in">document</span>.querySelector(<span class="string">'#card'</span>);</div><div class="line"><span class="keyword">const</span> titleElm = <span class="built_in">document</span>.querySelector(<span class="string">'#title'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> mouseMove$ = Rx.Observable</div><div class="line">  .fromEvent(docElm, <span class="string">'mousemove'</span>);</div><div class="line"></div><div class="line">mouseMove$.subscribe(<span class="function"><span class="params">event</span> =&gt;</span> &#123;</div><div class="line">  titleElm.innerHTML = <span class="string">`<span class="subst">$&#123;event.clientX&#125;</span>, <span class="subst">$&#123;event.clientY&#125;</span>`</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>从<code>mouseMove$</code>观察到的，每次<code>mousemove</code>事件发生时，订阅改变<code>titleElm</code>的<code>.innerHTML</code>的鼠标的位置。该<a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-map" target="_blank" rel="external"><code>.map</code></a>操作（据工作原理类似<code>Array.prototype.map</code>方法）可帮助简化事情：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Produces e.g., &#123;x: 42, y: 100&#125; instead of the entire event</span></div><div class="line"><span class="keyword">const</span> mouseMove$ = Rx.Observable</div><div class="line">  .fromEvent(docElm, <span class="string">'mousemove'</span>)</div><div class="line">  .map(<span class="function"><span class="params">event</span> =&gt;</span> (&#123; <span class="attr">x</span>: event.clientX, <span class="attr">y</span>: event.clientY &#125;));</div></pre></td></tr></table></figure>
+<p>使用一些数学和内联样式，您可以使卡片朝向鼠标旋转。<code>pos.y / clientHeight</code>和<code>pos.x / clientWidth</code>计算为0和1之间的值，所以乘以由50减去一半（25）产生的值从-25到25，这正是我们需要为我们的旋转值：</p>
+<iframe width="100%" height="500" src="//codepen.io/davidkpiano/embed/55cb38a26b9166c41017c6512ea00209?height=500&theme-id=1&slug-hash=55cb38a26b9166c41017c6512ea00209&default-tab=js%2Cresult&user=davidkpiano&embed-version=2&pen-title="></iframe>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> docElm = <span class="built_in">document</span>.documentElement;</div><div class="line"><span class="keyword">const</span> cardElm = <span class="built_in">document</span>.querySelector(<span class="string">'#card'</span>);</div><div class="line"><span class="keyword">const</span> titleElm = <span class="built_in">document</span>.querySelector(<span class="string">'#title'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> &#123; clientWidth, clientHeight &#125; = docElm;</div><div class="line"></div><div class="line"><span class="keyword">const</span> mouseMove$ = Rx.Observable</div><div class="line">  .fromEvent(docElm, <span class="string">'mousemove'</span>)</div><div class="line">  .map(<span class="function"><span class="params">event</span> =&gt;</span> (&#123; <span class="attr">x</span>: event.clientX, <span class="attr">y</span>: event.clientY &#125;))</div><div class="line"></div><div class="line">mouseMove$.subscribe(<span class="function"><span class="params">pos</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> rotX = (pos.y / clientHeight * <span class="number">-50</span>) - <span class="number">25</span>;</div><div class="line">  <span class="keyword">const</span> rotY = (pos.x / clientWidth * <span class="number">50</span>) - <span class="number">25</span>;</div><div class="line"></div><div class="line">  cardElm.style = <span class="string">`</span></div><div class="line">    transform: rotateX(<span class="subst">$&#123;rotX&#125;</span>deg) rotateY(<span class="subst">$&#123;rotY&#125;</span>deg);</div><div class="line">  `;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="使用-merge-合并"><a href="#使用-merge-合并" class="headerlink" title="使用 .merge 合并"></a>使用 <code>.merge</code> 合并</h1><p>现在让我们假设你想让这个适应触摸设备，不管是鼠标事件或是触摸动作。没有任何混乱的回调，你可以通过RxJS使用很多方法来结合<code>Observable</code>。在这个例子中，可以使用<code>.merge</code>实现。就像交通多条车道合并成一个单一的车道，这将返回一个包含所有数据的<code>Observable</code>通过合并多个<code>Observable</code>.</p>
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2017/02/merge.png" alt="来源：http://rxmarbles.com/#merge"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> touchMove$ = Rx.Observable</div><div class="line">  .fromEvent(docElm, <span class="string">'touchmove'</span>)</div><div class="line">  .map(<span class="function"><span class="params">event</span> =&gt;</span> (&#123;</div><div class="line">    <span class="attr">x</span>: event.touches[<span class="number">0</span>].clientX,</div><div class="line">    <span class="attr">y</span>: event.touches[<span class="number">0</span>].clientY</div><div class="line">  &#125;));</div><div class="line"></div><div class="line"><span class="keyword">const</span> move$ = Rx.Observable.merge(mouseMove$, touchMove$);</div><div class="line"></div><div class="line">move$.subscribe(<span class="function"><span class="params">pos</span> =&gt;</span> &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>继续，尝试在触摸屏设备上平移左右：</p>
+<iframe height="500" src="//codepen.io/davidkpiano/embed/4a430c13f4faae099e5a34cb2a82ce6d?height=500&theme-id=1&slug-hash=4a430c13f4faae099e5a34cb2a82ce6d&default-tab=js%2Cresult&user=davidkpiano&embed-version=2&pen-title="></iframe>
+
+<p>还有很多其他有用的<code>Observable</code><a href="http://reactivex.io/documentation/operators.html#combining" target="_blank" rel="external">合并方法</a>，如<code>.switch()</code>，<code>.combineLatest()</code>和<code>.withLatestFrom()</code>，我们继续关注下一个点。</p>
+<h1 id="添加平滑的运动"><a href="#添加平滑的运动" class="headerlink" title="添加平滑的运动"></a>添加平滑的运动</h1><p>旋转卡动作有点太死板。只要鼠标（或手指）停止，旋转即刻停止。为了解决这个问题，线性内插（线性插值）都可以使用。一般技术中描述这个<a href="https://codepen.io/rachsmith/post/animation-tip-lerp" target="_blank" rel="external">伟大的教程由雷切尔·史密斯</a>。本质上，而不是从A点跳到B，线性插值会在每一个动画运行一小部分。这将产生一个平滑的过渡，甚至当鼠标/触摸移动已停止。</p>
+<p>让我们创建一个函数实现这个功能：计算给定初始值和终值下一个值，采用线性插值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lerp</span>(<span class="params">start, end</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> dx = end.x - start.x;</div><div class="line">  <span class="keyword">const</span> dy = end.y - start.y;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">x</span>: start.x + dx * <span class="number">0.1</span>,</div><div class="line">    <span class="attr">y</span>: start.y + dy * <span class="number">0.1</span>,</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>非常简约。我们有一个纯函数每次返回一个新的，线性内插的位置值，通过移动当前的（开始）接近每个动画帧上的下一个（完）位置10％的位置。</p>
+<h1 id="调度和-interval"><a href="#调度和-interval" class="headerlink" title="调度和.interval"></a>调度和.interval</h1><p>问题是，我们如何在RxJS中表示动画帧？原来，RxJS有一个叫做<code>Schedulers</code>的东西，它控制什么时候从一个<code>observable</code>发出数据，当订阅都开始接收值。</p>
+<p>使用<a href="http://reactivex.io/documentation/operators/interval.html" target="_blank" rel="external"><code>Rx.Observable.interval()</code></a>，您可以创建一个<code>observable</code>，它在固定的时间间隔发出值，例如每隔一秒（Rx.Observable.interval(1000)）。如果创建一个非常微小的时间间隔，例如<code>Rx.Observable.interval(0)</code>，并希望它只在每个动画帧上发出值，那么在动画帧内<code>Rx.Scheduler.animationFrame</code>每隔16到17ms就会发出一个值，如下所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> animationFrame$ = Rx.Observable.interval(<span class="number">0</span>, Rx.Scheduler.animationFrame);</div></pre></td></tr></table></figure>
+<h1 id="结合-withLatestFrom"><a href="#结合-withLatestFrom" class="headerlink" title="结合.withLatestFrom"></a>结合<code>.withLatestFrom</code></h1><p>要创建平滑线性插值，您只需要关心每个动画帧的最新鼠标或触摸位置。要做到这一点，有一个操作符叫<code>.withLatestFrom()</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> smoothMove$ = animationFrame$</div><div class="line">  .withLatestFrom(move$, (frame, move) =&gt; move);</div></pre></td></tr></table></figure>
+<p>现在，<code>smoothMove$</code>是一个新的<code>observable</code>，<code>move$</code> 只有当<code>animationFrame$</code>发出一个值时，才会发出最新的值。这是必须的 - 你并不想要的动画帧外发出的值（除非你真的喜欢jank）。第二个参数是描述当组合来自每个可观察的最新值时要做什么的函数。在这种情况下，唯一重要的值是<code>move</code>值，这是所有返回的值。</p>
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2017/02/with-latest-from.png" alt="withLatestFrom"></p>
+<h1 id="与过渡-scan"><a href="#与过渡-scan" class="headerlink" title="与过渡.scan"></a>与过渡<code>.scan</code></h1><p>现在你有一个<code>observable</code>从<code>move$</code>每个动画帧发出最新的值，是时候添加线性插值了。<a href="http://reactivex.io/documentation/operators/scan.html" target="_blank" rel="external"><code>.scan()</code></a>运算符“积累”从可观察到的当前值和下一个值，提供给需要这些值的函数。</p>
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2017/02/scan.png" alt="#scan"></p>
+<p>这对于我们的线性插值用例是完美的。记住，我们的<code>lerp(start, end)</code>函数有两个参数：<code>start（current）</code>值和<code>end（next）</code>值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> smoothMove$ = animationFrame$</div><div class="line">  .withLatestFrom(move$, (frame, move) =&gt; move)</div><div class="line">  .scan(<span class="function">(<span class="params">current, next</span>) =&gt;</span> lerp(current, next));</div><div class="line">  <span class="comment">// or simplified: .scan(lerp)</span></div></pre></td></tr></table></figure>
+<p>现在，您可以订阅<code>smoothMove$</code>代替<code>move$</code>在操作中查看线性插值：</p>
+<iframe width="100%" height="500" src="//codepen.io/davidkpiano/embed/127ee82ad742b4dddd657703e2259852?height=500&theme-id=1&slug-hash=127ee82ad742b4dddd657703e2259852&default-tab=js%2Cresult&user=davidkpiano&embed-version=2&pen-title="></iframe>
+
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p><code>RxJS</code> 不是一个动画库，当然，但对于处理随时间变化的值，它的可组合以及声明性的方式是<code>ReactiveX</code>演示动画的核心概念。反应式编程是考虑编程的另类方式，具有许多优点：</p>
+<ul>
+<li>它是声明性的，可组合的和不可变的，避免回调地狱，并使你的代码更简洁，可重用和模块化。</li>
+<li>它在处理所有类型的异步数据时非常有用，无论是获取数据，通过<code>WebSockets</code>进行通信，监听来自多个源的外部事件，甚至是动画。</li>
+<li>“关注的分离” - 您使用<code>Observable</code>和运算符声明性地表示您期望的数据，然后在一个单独的上下文环境中处理<code>.subscribe()</code>，而不会在您的原代码上产生副作用。</li>
+<li>有这么多语言的实现了它 - <code>Java</code>，<code>PHP</code>，<code>Python</code>，<code>Ruby</code>，<code>C＃</code>，<code>Swift</code>和其他你可能没有听说过的。</li>
+<li>它不是一个框架，它与许多流行的框架（如React，Angular和Vue）可以非常好地融合在一起。</li>
+<li>你可以得到行家指点，如果你想要，但<code>ReactiveX</code>从被提出到现在实施了近十年前（2009年），由创意所产生的<a href="http://conal.net/papers/icfp97/" target="_blank" rel="external"><code>Conal Elliott</code>和保罗·胡达克</a> 2年前（1997年），在描述功能性反应的动画（惊喜惊喜）。不用说，它经过了足够的测试。</li>
+</ul>
+<p>本文探讨了一些有用的部分和<code>RxJS</code>的概念-创建与订阅<code>.fromEvent()</code>和<code>.interval()</code>，对订阅操作<code>.map()</code>和<code>.scan()</code>，多个订阅相结合<code>.merge()</code>和<code>.withLatestFrom()</code>，并与引入调度<code>Rx.Scheduler.animationFrame</code>。有很多其他有用的资源学习RxJS：</p>
+<ul>
+<li><a href="http://reactivex.io/rxjs/" target="_blank" rel="external">ReactiveX：RxJS</a> - 官方文档</li>
+<li><a href="http://rxmarbles.com/" target="_blank" rel="external">RxMarbles</a> - 用于可视化观察</li>
+<li><a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754" target="_blank" rel="external">Reactive编程的介绍</a></li>
+</ul>
+<p>如果你想进一步深入<code>RxJS动画</code>（和使用更多的CSS变量），请查看<a href="http://slides.com/davidkhourshid/reactanim#/" target="_blank" rel="external">我的幻灯片从<code>CSS Dev Conf 2016</code></a>和<a href="https://www.youtube.com/watch?v=lTCukb6Zn3g" target="_blank" rel="external">我2016年的演讲从JSConf冰岛</a>关于反应式动画与CSS变量。这里有一些使用RxJS创建的动画可能对触发灵感有帮助：</p>
+<ul>
+<li><a href="http://codepen.io/davidkpiano/pen/Vmyyzd" target="_blank" rel="external">3D数字时钟</a></li>
+<li><a href="http://codepen.io/davidkpiano/pen/mAoaxP" target="_blank" rel="external">心脏app概念</a></li>
+<li><a href="http://codepen.io/Enki/pen/eBwKgO" target="_blank" rel="external">透视使用RxJS拖动</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文译自 &lt;a href=&quot;https://css-tricks.com/animated-intro-rxjs/&quot;&gt;An Animated Intro to RxJS&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;你可能听说过RxJS，ReactiveX，或反应式编程，或者甚至只听过函数式编程。这些术语在谈论最新和最前沿的前端技术时变得越来越突出。如果你像我一样，当你第一次尝试学习它时，你感到很困惑。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="RxJS" scheme="http://robin-front.github.io/categories/RxJS/"/>
+    
+    
+      <category term="RxJS" scheme="http://robin-front.github.io/tags/RxJS/"/>
+    
+  </entry>
   
   <entry>
     <title>通过动图简单通俗地了解Flexbox的工作原理</title>
@@ -1018,47 +1121,6 @@
     
     
       <category term="Node" scheme="http://robin-front.github.io/tags/Node/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>postCSS常用插件</title>
-    <link href="http://robin-front.github.io/2016/04/10/postCSS%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6/"/>
-    <id>http://robin-front.github.io/2016/04/10/postCSS常用插件/</id>
-    <published>2016-04-09T16:43:12.000Z</published>
-    <updated>2016-04-09T16:43:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>PostCSS拥有非常多的插件，诸如自动为CSS添加浏览器前缀的插件autoprefixer、当前移动端最常用的px转rem插件px2rem，还有支持尚未成为CSS标准但特定可用的插件cssnext，还有很多很多。就连著名的Bootstrap在下一个版本Bootstrap 5也将使用PostCSS作为样式的基础。</p>
-<p>一句话来概括PostCSS：CSS编译器能够做到的事情，它也可以做到，而且能够做得更好<br><a id="more"></a></p>
-<h3 id="PostCSS性能"><a href="#PostCSS性能" class="headerlink" title="PostCSS性能"></a>PostCSS性能</h3><p>在PostCSS官方推特上看到，由JavaScript编写的PostCSS比C++编写的libsass还要快3倍.</p>
-<p>如果你对上面的性能截图有疑问，可以亲自来<a href="https://github.com/postcss/benchmark" target="_blank" rel="external">这里</a>测试看看。</p>
-<h3 id="常用的插件"><a href="#常用的插件" class="headerlink" title="常用的插件"></a>常用的插件</h3><h4 id="autoprefixer"><a href="#autoprefixer" class="headerlink" title="autoprefixer"></a>autoprefixer</h4><p>首先是最火的官方插件 <code>autoprefixer</code> 。<code>autoprefixer</code> 是为我们的 <code>css</code> 添加前缀的插件，它的数据来源于 <a href="http://caniuse.com/" target="_blank" rel="external">Can I use</a>。目的是让我们写纯粹的 <code>css</code>。例：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">display</span>: flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>会编译成：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">display</span>: -webkit-box;</div><div class="line">    <span class="attribute">display</span>: -webkit-flex;</div><div class="line">    <span class="attribute">display</span>: -ms-flexbox;</div><div class="line">    <span class="attribute">display</span>: flex</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h5 id="Options"><a href="#Options" class="headerlink" title="Options"></a>Options</h5><p>通过 <code>autoprefixer(options)</code> 配置：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var plugin = autoprefixer(&#123; browsers: ['&gt; 1%', 'IE 7'], cascade: false &#125;);</div></pre></td></tr></table></figure></p>
-<ul>
-<li>browsers (array): 指定你需要支持的浏览器列表。可以直接指定浏览器版本（如 IE 7）,也可以使用选项（如： last 2 version 或 &gt; 5%）,具体选项可以查看 <a href="https://github.com/ai/browserslist#queries" target="_blank" rel="external">Browserslist</a></li>
-<li>cascade (boolean): should Autoprefixer use Visual Cascade, if CSS is uncompressed. Default: true</li>
-<li>add (boolean): 是否添加浏览器兼容前缀. 默认值是true.</li>
-<li>remove (boolean): 是否去除无用的浏览器兼容前缀. 默认值是true.</li>
-<li>supports (boolean): should Autoprefixer add prefixes for @supports parameters. Default is true.<br>flexbox (boolean|string): should Autoprefixer add prefixes for flexbox properties. With “no-2009” value Autoprefixer will add prefixes only for final and IE versions of specification. Default is true.</li>
-<li>grid (boolean): should Autoprefixer add IE prefixes for Grid Layout properties. Default is true.</li>
-<li>stats (object): custom usage statistics for &gt; 10% in my stats browsers query.</li>
-</ul>
-<h5 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h5><p><code>info()</code> 方法可用于查看调试信息.可以像下面这样查看哪些浏览器被选中以及哪些属性被添加兼容前缀：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var info = autoprefixer(&#123; browsers: ['last 1 version'] &#125;).info();</div><div class="line">console.log(info);</div></pre></td></tr></table></figure>
-<h4 id="postcss-safe-parser"><a href="#postcss-safe-parser" class="headerlink" title="postcss-safe-parser"></a>postcss-safe-parser</h4><p><a href="https://github.com/postcss/postcss-safe-parser" target="_blank" rel="external"><code>postcss-safe-parser</code></a> 可以帮你查找并修补CSS语法错误。</p>
-<h4 id="cssnano"><a href="#cssnano" class="headerlink" title="cssnano"></a>cssnano</h4><p><a href="http://cssnano.co/" target="_blank" rel="external"><code>cssnano</code></a> 是模块化的CSS压缩器。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;PostCSS拥有非常多的插件，诸如自动为CSS添加浏览器前缀的插件autoprefixer、当前移动端最常用的px转rem插件px2rem，还有支持尚未成为CSS标准但特定可用的插件cssnext，还有很多很多。就连著名的Bootstrap在下一个版本Bootstrap 5也将使用PostCSS作为样式的基础。&lt;/p&gt;
-&lt;p&gt;一句话来概括PostCSS：CSS编译器能够做到的事情，它也可以做到，而且能够做得更好&lt;br&gt;
-    
-    </summary>
-    
     
   </entry>
   

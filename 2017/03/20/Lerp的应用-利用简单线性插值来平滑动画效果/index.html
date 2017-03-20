@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="robin,blog,前端" />
+  <meta name="keywords" content="animate," />
 
 
 
@@ -86,12 +86,19 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="三寸稚笔">
-<meta property="og:url" content="http://robin-front.github.io/tags/angularJS/index.html">
+<meta name="description" content="上一篇的 RxJS的动画简介 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。
+Lerp是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lerp的应用-利用简单线性插值来平滑动画效果">
+<meta property="og:url" content="http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/index.html">
 <meta property="og:site_name" content="三寸稚笔">
+<meta property="og:description" content="上一篇的 RxJS的动画简介 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。
+Lerp是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.">
+<meta property="og:updated_time" content="2017-03-20T03:04:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="三寸稚笔">
+<meta name="twitter:title" content="Lerp的应用-利用简单线性插值来平滑动画效果">
+<meta name="twitter:description" content="上一篇的 RxJS的动画简介 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。
+Lerp是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.">
 
 
 
@@ -112,10 +119,10 @@
 
 
 
-  <link rel="canonical" href="http://robin-front.github.io/tags/angularJS/"/>
+  <link rel="canonical" href="http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/"/>
 
 
-  <title> 标签: angularJS | 三寸稚笔 </title>
+  <title> Lerp的应用-利用简单线性插值来平滑动画效果 | 三寸稚笔 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -136,7 +143,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right  ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -224,46 +231,165 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        angularJS
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Lerp的应用-利用简单线性插值来平滑动画效果
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-20T11:04:39+08:00" content="2017-03-20">
+              2017-03-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/animate/" itemprop="url" rel="index">
+                    <span itemprop="name">animate</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
+      
+        <p>上一篇的 <a href="http://robin-front.github.io/2017/03/19/RxJS%E7%9A%84%E5%8A%A8%E7%94%BB%E7%AE%80%E4%BB%8B/">RxJS的动画简介</a> 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。</p>
+<p><code>Lerp</code>是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.<br><a id="more"></a></p>
+<h1 id="它是如何工作的？"><a href="#它是如何工作的？" class="headerlink" title="它是如何工作的？"></a>它是如何工作的？</h1><p>如果您有一个对象的当前位置和目标的位置，您可以线性内插这些点之间的距离的百分比，并在每个动画帧上更新该位置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lerp</span>(<span class="params">position, targetPosition</span>) </span>&#123;</div><div class="line"><span class="comment">// 计算当前位置与目标位置差值的 20%</span></div><div class="line">  position.x += (targetPosition.x - position.x)*<span class="number">0.2</span>;</div><div class="line">  position.y += (targetPosition.y - position.y)*<span class="number">0.2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过这样做，对象移动的量随着位置和目标之间的距离减小而变小。这意味着对象将越来越接近它的目标，速度将减慢，这创造一个很好的缓和效果。</p>
+<h1 id="一些例子"><a href="#一些例子" class="headerlink" title="一些例子"></a>一些例子</h1><p>这里有一个球跟随用户的鼠标或触摸运动的例子。如果我们使球移动到鼠标移动的地方，球的移动可以非常快但看起来有点脱节。如果我们快速移动鼠标，我们也可以看到单独的“球影”。</p>
+<iframe width="100%" height="300" src="//codepen.io/anon/embed/avXmyV?slug-hash=avXmyV&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
 
-      <h1 class="post-title">
+<p>这里是同样的演示，除了这次我们使用lerp。不是将球立即向右移动到鼠标位置，我们每次将它移动10％的距离。</p>
+<iframe width="100%" height="300" src="//codepen.io/anon/embed/yYZapV?slug-hash=yYZapV&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
+
+<p>注意球的运动很平滑，整体更令人愉快的效果。</p>
+<p>这里是使用lerp的另一个例子。这次我们有一个滚动指示器，当您向下滚动“页面”时更新。</p>
+<iframe width="100%" height="300" src="//codepen.io/anon/embed/rOPMvz?slug-hash=rOPMvz&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
+
+<iframe width="100%" height="300" src="//codepen.io/anon/embed/epxdxe?slug-hash=epxdxe&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
+
+<p>所以，lerp“把戏”是一个伟大的工具，我们的网络动画套路，以对抗线性或锯齿状的运动。</p>
+
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2015/10/17/angular自定义指令/" itemprop="url">
-              
-                <span itemprop="name">angularJS自定义指令</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-10-17T00:31:51+08:00"
-              content="2015-10-17" >
-          10-17
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/animate/" rel="tag">#animate</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/19/RxJS的动画简介/" rel="next" title="RxJS的动画简介">
+                <i class="fa fa-chevron-left"></i> RxJS的动画简介
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -271,6 +397,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/"
+           data-title="Lerp的应用-利用简单线性插值来平滑动画效果" data-url="http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -290,8 +424,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460"
@@ -377,6 +520,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#它是如何工作的？"><span class="nav-number">1.</span> <span class="nav-text">它是如何工作的？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一些例子"><span class="nav-number">2.</span> <span class="nav-text">一些例子</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -473,6 +627,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 

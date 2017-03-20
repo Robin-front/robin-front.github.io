@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-03-19T06:40:21.000Z</updated>
+  <updated>2017-03-20T03:04:39.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Lerp的应用-利用简单线性插值来平滑动画效果</title>
+    <link href="http://robin-front.github.io/2017/03/20/Lerp%E7%9A%84%E5%BA%94%E7%94%A8-%E5%88%A9%E7%94%A8%E7%AE%80%E5%8D%95%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC%E6%9D%A5%E5%B9%B3%E6%BB%91%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C/"/>
+    <id>http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/</id>
+    <published>2017-03-20T03:04:39.000Z</published>
+    <updated>2017-03-20T03:04:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>上一篇的 <a href="http://robin-front.github.io/2017/03/19/RxJS%E7%9A%84%E5%8A%A8%E7%94%BB%E7%AE%80%E4%BB%8B/">RxJS的动画简介</a> 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。</p>
+<p><code>Lerp</code>是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.<br><a id="more"></a></p>
+<h1 id="它是如何工作的？"><a href="#它是如何工作的？" class="headerlink" title="它是如何工作的？"></a>它是如何工作的？</h1><p>如果您有一个对象的当前位置和目标的位置，您可以线性内插这些点之间的距离的百分比，并在每个动画帧上更新该位置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lerp</span>(<span class="params">position, targetPosition</span>) </span>&#123;</div><div class="line"><span class="comment">// 计算当前位置与目标位置差值的 20%</span></div><div class="line">  position.x += (targetPosition.x - position.x)*<span class="number">0.2</span>;</div><div class="line">  position.y += (targetPosition.y - position.y)*<span class="number">0.2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过这样做，对象移动的量随着位置和目标之间的距离减小而变小。这意味着对象将越来越接近它的目标，速度将减慢，这创造一个很好的缓和效果。</p>
+<h1 id="一些例子"><a href="#一些例子" class="headerlink" title="一些例子"></a>一些例子</h1><p>这里有一个球跟随用户的鼠标或触摸运动的例子。如果我们使球移动到鼠标移动的地方，球的移动可以非常快但看起来有点脱节。如果我们快速移动鼠标，我们也可以看到单独的“球影”。</p>
+<iframe width="100%" height="300" src="//codepen.io/anon/embed/avXmyV?slug-hash=avXmyV&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
+
+<p>这里是同样的演示，除了这次我们使用lerp。不是将球立即向右移动到鼠标位置，我们每次将它移动10％的距离。</p>
+<iframe width="100%" height="300" src="//codepen.io/anon/embed/yYZapV?slug-hash=yYZapV&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
+
+<p>注意球的运动很平滑，整体更令人愉快的效果。</p>
+<p>这里是使用lerp的另一个例子。这次我们有一个滚动指示器，当您向下滚动“页面”时更新。</p>
+<iframe width="100%" height="300" src="//codepen.io/anon/embed/rOPMvz?slug-hash=rOPMvz&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
+
+<iframe width="100%" height="300" src="//codepen.io/anon/embed/epxdxe?slug-hash=epxdxe&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
+
+<p>所以，lerp“把戏”是一个伟大的工具，我们的网络动画套路，以对抗线性或锯齿状的运动。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;上一篇的 &lt;a href=&quot;http://robin-front.github.io/2017/03/19/RxJS%E7%9A%84%E5%8A%A8%E7%94%BB%E7%AE%80%E4%BB%8B/&quot;&gt;RxJS的动画简介&lt;/a&gt; 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Lerp&lt;/code&gt;是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="animate" scheme="http://robin-front.github.io/categories/animate/"/>
+    
+    
+      <category term="animate" scheme="http://robin-front.github.io/tags/animate/"/>
+    
+  </entry>
   
   <entry>
     <title>RxJS的动画简介</title>
@@ -227,7 +268,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 父类构造函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ParentClass</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">ParentClass.prototype.inheritedMethod = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 继承</span></div><div class="line"><span class="keyword">var</span> ChildClass = <span class="built_in">Object</span>.create(ParentClass.prototype, &#123;</div><div class="line">  <span class="comment">// 不可枚举属性</span></div><div class="line">  getFoo: &#123;</div><div class="line">    <span class="attr">value</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.foo; &#125;,</div><div class="line">    <span class="attr">enumerable</span>: <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 自身可枚举属性</span></div><div class="line">ChildClass.foo = <span class="number">1</span>;</div><div class="line"><span class="comment">// 再定义一个原型链属性</span></div><div class="line">ChildClass.prototype.prototypeMethod = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyNames(my_obj).sort()); <span class="comment">// ["foo", "getFoo"]</span></div></pre></td></tr></table></figure>
 <p>兼容性到 IE9, es 5标准。</p>
 <h3 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys()"></a>Object.keys()</h3><p>返回该对象的所有可枚举自身属性的属性名。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//具有随机键排序的数组类对象</span></div><div class="line"><span class="keyword">var</span> an_obj = &#123; <span class="number">100</span>: <span class="string">'a'</span>, <span class="number">2</span>: <span class="string">'b'</span>, <span class="number">7</span>: <span class="string">'c'</span> &#125;;</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(an_obj)); <span class="comment">// console: ['2', '7', '100']</span></div></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">//</span>具有随机键排序的数组类对象</div><div class="line">var an_obj = &#123; <span class="number">100</span>: <span class="string">'a'</span>, <span class="number">2</span>: <span class="string">'b'</span>, <span class="number">7</span>: <span class="string">'c'</span> &#125;;</div><div class="line">console.log(Object.keys(an_obj)); <span class="regexp">//</span> console: [<span class="string">'2'</span>, <span class="string">'7'</span>, <span class="string">'100'</span>]</div></pre></td></tr></table></figure>
 <p>这些属性的顺序与手动遍历（如for..in）该对象属性时的一致。</p>
 <blockquote>
 <p>注意：Object.keys 和 getOwnPropertyNames ，在ES5，如果此方法的参数不是一个对象（原始的），那么它会造成 TypeError。在ES6，非对象的参数将被强制转换为一个对象。</p>
@@ -251,7 +292,7 @@
 <h3 id="只获取原型链上的可枚举属性"><a href="#只获取原型链上的可枚举属性" class="headerlink" title="只获取原型链上的可枚举属性"></a>只获取原型链上的可枚举属性</h3><ul>
 <li>直接用 for..in</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o = <span class="built_in">Object</span>.getPrototypeOf(targetObj); <span class="comment">// 跳过遍历自身属性，直接从原型上开始</span></div><div class="line"><span class="keyword">var</span> k=[],p;</div><div class="line"><span class="keyword">for</span> (p <span class="keyword">in</span> o) <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.hasOwnProperty.call(o,p)) k.push(p);</div><div class="line"><span class="keyword">return</span> k;</div></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o = <span class="built_in">Object</span>.getPrototypeOf(targetObj); <span class="comment">// 跳过遍历自身属性，直接从原型上开始</span></div><div class="line"><span class="keyword">var</span> k=[],p;</div><div class="line"><span class="keyword">for</span> (p <span class="keyword">in</span> o) <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.hasOwnProperty.call(o,p)) k.push(p);</div><div class="line"><span class="keyword">return</span> k;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>注意，这样遍历出来的属性也不一定能访问， 因为自身属性可能会屏蔽掉原型上的属性。</p>
 </blockquote>
@@ -283,7 +324,7 @@
     <updated>2017-01-12T09:49:14.000Z</updated>
     
     <content type="html"><![CDATA[<p>在javascript中，instanceof 和 isPrototypeOf 都可以判断一个原型是否在另一个实例的原型链中，那他们有什么区别呢，为什么说 isPrototypeOf 可以替代 instanceof 。<br><a id="more"></a></p>
-<h3 id="instanceof-用法"><a href="#instanceof-用法" class="headerlink" title="instanceof 用法"></a>instanceof 用法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// init code</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      Super.call(<span class="keyword">this</span>);</div><div class="line">      <span class="comment">// other init code</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">Sub.prototype = <span class="keyword">new</span> Super();</div><div class="line"></div><div class="line"><span class="keyword">var</span> sub = <span class="keyword">new</span> Sub();</div></pre></td></tr></table></figure>
+<h3 id="instanceof-用法"><a href="#instanceof-用法" class="headerlink" title="instanceof 用法"></a>instanceof 用法</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="comment">// init code</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span><span class="params">()</span> </span>&#123;</div><div class="line">      Super.call(<span class="keyword">this</span>);</div><div class="line">      <span class="comment">// other init code</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">Sub.prototype = <span class="keyword">new</span> Super();</div><div class="line"></div><div class="line"><span class="keyword">var</span> sub = <span class="keyword">new</span> Sub();</div></pre></td></tr></table></figure>
 <p>对于上面的代码，用 instanceof 可以像这样确定他们的关系：</p>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">sub</span> <span class="title">instanceof</span> <span class="title">Super</span></span>; // true</div></pre></td></tr></table></figure>
 <h3 id="isPrototypeOf-用法"><a href="#isPrototypeOf-用法" class="headerlink" title="isPrototypeOf 用法"></a>isPrototypeOf 用法</h3><p>复用上面的代码，用 isPrototypeOf 可以这样写：</p>
@@ -327,7 +368,7 @@
 <p>您可以根据需要设定多个振动/暂停对，数组的值可以是偶数或奇数个； 值得注意的是，由于振动在每个振动周期结束时自动停止，因此您不必提供最后一个值去暂停，换句话说，数组长度只需要设置奇数个。</p>
 <h3 id="停止振动"><a href="#停止振动" class="headerlink" title="停止振动"></a>停止振动</h3><p>当调用 window.navigator.vibrate() 的参数为「0」、空白数组，或数组全为「0」时，即可取消目前进行中的振动。</p>
 <h3 id="持续振动"><a href="#持续振动" class="headerlink" title="持续振动"></a>持续振动</h3><p>一些基于setInterval和clearInterval操作将允许您创建持续的振动：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vibrateInterval;</div><div class="line"></div><div class="line"><span class="comment">// Starts vibration at passed in level</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">startVibrate</span>(<span class="params">duration</span>) </span>&#123;</div><div class="line">    navigator.vibrate(duration);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Stops vibration</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopVibrate</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// Clear interval and stop persistent vibrating</span></div><div class="line">    <span class="keyword">if</span>(vibrateInterval) clearInterval(vibrateInterval);</div><div class="line">    navigator.vibrate(<span class="number">0</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Start persistent vibration at given duration and interval</span></div><div class="line"><span class="comment">// Assumes a number value is given</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">startPeristentVibrate</span>(<span class="params">duration, interval</span>) </span>&#123;</div><div class="line">    vibrateInterval = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        startVibrate(duration);</div><div class="line">    &#125;, interval);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> vibrateInterval;</div><div class="line"></div><div class="line"><span class="comment">// Starts vibration at passed in level</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">startVibrate</span><span class="params">(duration)</span> </span>&#123;</div><div class="line">    navigator.vibrate(duration);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Stops vibration</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">stopVibrate</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// Clear interval and stop persistent vibrating</span></div><div class="line">    <span class="keyword">if</span>(vibrateInterval) clearInterval(vibrateInterval);</div><div class="line">    navigator.vibrate(<span class="number">0</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Start persistent vibration at given duration and interval</span></div><div class="line"><span class="comment">// Assumes a number value is given</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">startPeristentVibrate</span><span class="params">(duration, interval)</span> </span>&#123;</div><div class="line">    vibrateInterval = setInterval(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</div><div class="line">        startVibrate(duration);</div><div class="line">    &#125;, interval);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>当然上面的代码片段没有考虑到振动参数为数组情况; 基于阵列的持久性振动将需要计算数组项的和，并基于该数量创建周期（可能具有额外的延迟）。</p>
 <h3 id="生成振动节奏"><a href="#生成振动节奏" class="headerlink" title="生成振动节奏"></a>生成振动节奏</h3><p>可以通过<a href="https://naschq.github.io/vibe.js/" target="_blank" rel="external">vibe.js tool</a>这个工具来生成你需要的振动频率，然后复制它到你的代码里。</p>
 <h3 id="lib"><a href="#lib" class="headerlink" title="lib"></a>lib</h3><p>我写了一个小lib，方便使用<a href="https://github.com/Robin-front/vibrate.js" target="_blank" rel="external">vibrate.js</a></p>
@@ -1036,84 +1077,6 @@
     <summary type="html">
     
       &lt;p&gt;&lt;code&gt;global&lt;/code&gt;对象，也是&lt;code&gt;Node&lt;/code&gt;的全局命名空间；&lt;br&gt;&lt;code&gt;process&lt;/code&gt;对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；&lt;br&gt;&lt;code&gt;Buffer&lt;/code&gt;类，它提供了存储和操作原始数据的功能，同样它也是全局可见的&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Node" scheme="http://robin-front.github.io/categories/Node/"/>
-    
-    
-      <category term="Node" scheme="http://robin-front.github.io/tags/Node/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Node与REPL</title>
-    <link href="http://robin-front.github.io/2016/04/13/%E8%AE%B0node%E4%B8%8EREPL/"/>
-    <id>http://robin-front.github.io/2016/04/13/记node与REPL/</id>
-    <published>2016-04-13T15:15:44.000Z</published>
-    <updated>2016-04-13T15:15:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这几个月，搜芽前端团队搞了<code>Reactjs+Redux</code>项目，在很多时候，比如部署，都需要使用<code>Node</code>，苦于我的肤浅，于是决定补一下功课。最近都会记录一些 <code>Node</code>相关的笔记。<br><a id="more"></a></p>
-<h3 id="Node-的优势"><a href="#Node-的优势" class="headerlink" title="Node 的优势"></a>Node 的优势</h3><ul>
-<li>应用程序可以很容易地扩展，因为执行一个单线程并不会有非常大的开销</li>
-<li>无需诉求于多线程开发，却达到了节约又能高效使用资源的目的。换句话说，你不必创建一个线程安全的应用程序。</li>
-</ul>
-<blockquote>
-<p>全局变量在 <code>Node</code> 中是非常危险的，特别是你忘记 <code>var</code>关键字的时候。</p>
-</blockquote>
-<h3 id="REPL"><a href="#REPL" class="headerlink" title="REPL"></a>REPL</h3><p><code>REPL(read-eval-print-loop)</code> 是<code>Node</code>的一个交互式组件。在 <code>REPL</code>环境下输入的任何内容都由底层的 <code>V8 Javascript引擎</code>进行处理。</p>
-<h4 id="一些操作技巧"><a href="#一些操作技巧" class="headerlink" title="一些操作技巧"></a>一些操作技巧</h4><ul>
-<li><code>_(下划线)</code> 可以调用上一个表达式</li>
-<li>上下键仍然可以快捷输入历史命令, Tab 键自动补全</li>
-<li><p>可以使用重复的 <code>.(点)</code> 来处理多行表达式，如：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;<span class="keyword">var</span> test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">...return val = x * y  </div><div class="line">...&#125;;</div><div class="line"><span class="literal">undefined</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>退出 <code>REPL</code>环境的方式有：</p>
-<ul>
-<li><code>Ctrl + C</code>两次</li>
-<li><code>Ctrl + D</code></li>
-<li><code>.exit</code></li>
-</ul>
-</li>
-</ul>
-<h4 id="REPL-命令"><a href="#REPL-命令" class="headerlink" title="REPL 命令"></a>REPL 命令</h4><ul>
-<li><p><code>.break</code></p>
-<p>如果多行输入发生混乱不知道当前位置时，使用 <code>.break</code>会重新开始。不过会丢失之前输入的多行内容。</p>
-</li>
-<li><p><code>.clear</code></p>
-<p>重置语境并清空所有表达式。该命令可以使你重头再来。</p>
-</li>
-<li><p><code>.exit</code></p>
-<p>退出 <code>REPL</code></p>
-</li>
-<li><p><code>.help</code></p>
-<p>显示所有可用的<code>REPL</code>命令。</p>
-</li>
-<li><p><code>.save</code></p>
-<p>将当前<code>REPL</code>会话保存至文件</p>
-</li>
-<li><p><code>.load</code></p>
-<p>将文件加载到当前会话</p>
-</li>
-</ul>
-<h4 id="定制-REPL"><a href="#定制-REPL" class="headerlink" title="定制 REPL"></a>定制 REPL</h4><p>首先需要引入 <code>REPL</code> 模块：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> repl = <span class="built_in">require</span>(<span class="string">'repl'</span>);</div></pre></td></tr></table></figure>
-<p>通过在<code>repl</code>对象上调用 <code>start</code>方法创建新的 <code>REPL</code>：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">repl.start([prompt], [stream], [<span class="built_in">eval</span>], [useGlobal], [ignoreUndefinded]);</div></pre></td></tr></table></figure></p>
-<p>所有参数都可选。</p>
-<ul>
-<li><code>prompt</code><br>Default is <code>&gt;</code> 默认值为 <code>&gt;</code></li>
-<li><code>stream</code><br>默认值为<code>process.stdin</code></li>
-<li><code>eval</code><br><code>eval</code>的默认值是 <code>async</code></li>
-<li><code>useGlobal</code><br>默认值为 false, 新建一个语境而不是使用全局对象。</li>
-<li><code>ignoreUndefinded</code><br>默认值为 false。 不要忽略<code>undefined</code>的返回值。</li>
-</ul>
-<p>所以让<code>REPL</code>在表达式无返回值时不输出<code>undefined</code>可以这样实现：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">repl = <span class="built_in">require</span>(<span class="string">'repl'</span>);</div><div class="line"><span class="comment">// 设置 `ignoreUndefinded` 为 `true` , 启动 `REPL`</span></div><div class="line">repl.start(<span class="string">'&gt;'</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">true</span>);</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;这几个月，搜芽前端团队搞了&lt;code&gt;Reactjs+Redux&lt;/code&gt;项目，在很多时候，比如部署，都需要使用&lt;code&gt;Node&lt;/code&gt;，苦于我的肤浅，于是决定补一下功课。最近都会记录一些 &lt;code&gt;Node&lt;/code&gt;相关的笔记。&lt;br&gt;
     
     </summary>
     

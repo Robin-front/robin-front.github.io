@@ -79,7 +79,7 @@
 <p>这对于我们的线性插值用例是完美的。记住，我们的<code>lerp(start, end)</code>函数有两个参数：<code>start（current）</code>值和<code>end（next）</code>值。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> smoothMove$ = animationFrame$</div><div class="line">  .withLatestFrom(move$, (frame, move) =&gt; move)</div><div class="line">  .scan(<span class="function">(<span class="params">current, next</span>) =&gt;</span> lerp(current, next));</div><div class="line">  <span class="comment">// or simplified: .scan(lerp)</span></div></pre></td></tr></table></figure>
 <p>现在，您可以订阅<code>smoothMove$</code>代替<code>move$</code>在操作中查看线性插值：</p>
-<iframe width="100%" height="500" src="//codepen.io/davidkpiano/embed/127ee82ad742b4dddd657703e2259852?height=500&theme-id=1&slug-hash=127ee82ad742b4dddd657703e2259852&default-tab=js%2Cresult&user=davidkpiano&embed-version=2&pen-title="></iframe>
+<iframe height="500" src="//codepen.io/davidkpiano/embed/127ee82ad742b4dddd657703e2259852?height=500&theme-id=1&slug-hash=127ee82ad742b4dddd657703e2259852&default-tab=js%2Cresult&user=davidkpiano&embed-version=2&pen-title="></iframe>
 
 <h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p><code>RxJS</code> 不是一个动画库，当然，但对于处理随时间变化的值，它的可组合以及声明性的方式是<code>ReactiveX</code>演示动画的核心概念。反应式编程是考虑编程的另类方式，具有许多优点：</p>
 <ul>

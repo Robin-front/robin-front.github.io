@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-03-21T03:04:39.000Z</updated>
+  <updated>2017-03-20T03:04:39.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://robin-front.github.io/2017/03/20/Lerp%E7%9A%84%E5%BA%94%E7%94%A8-%E5%88%A9%E7%94%A8%E7%AE%80%E5%8D%95%E7%BA%BF%E6%80%A7%E6%8F%92%E5%80%BC%E6%9D%A5%E5%B9%B3%E6%BB%91%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C/"/>
     <id>http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/</id>
     <published>2017-03-20T03:04:39.000Z</published>
-    <updated>2017-03-21T03:04:39.000Z</updated>
+    <updated>2017-03-20T03:04:39.000Z</updated>
     
     <content type="html"><![CDATA[<p>上一篇的 <a href="http://robin-front.github.io/2017/03/19/RxJS%E7%9A%84%E5%8A%A8%E7%94%BB%E7%AE%80%E4%BB%8B/">RxJS的动画简介</a> 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。</p>
 <p><code>Lerp</code>是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.<br><a id="more"></a></p>

@@ -301,7 +301,7 @@ peerDependencies字段，主要用来供插件指定其所需要的主软件的�
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/2016/04/08/babel-loader配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/08/babel-loader配置/" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/08/babel-loader配置/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -416,8 +416,11 @@ peerDependencies字段，主要用来供插件指定其所需要的主软件的�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/08/babel-loader配置/"
-           data-title="babel-loader配置" data-url="http://robin-front.github.io/2016/04/08/babel-loader配置/">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
       </div>
     
   </div>
@@ -658,30 +661,35 @@ peerDependencies字段，主要用来供插件指定其所需要的主软件的�
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"robin-front"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/libs/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'robin-front-github-io';
+      var disqus_identifier = '2016/04/08/babel-loader配置/';
+      var disqus_title = "babel-loader配置";
+      var disqus_url = 'http://robin-front.github.io/2016/04/08/babel-loader配置/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
 
 
 

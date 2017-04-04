@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-03-20T03:04:39.000Z</updated>
+  <updated>2017-04-04T09:48:15.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>为什么选择 RxJS?</title>
+    <link href="http://robin-front.github.io/2017/04/04/why-rxjs/"/>
+    <id>http://robin-front.github.io/2017/04/04/why-rxjs/</id>
+    <published>2017-04-04T09:48:15.000Z</published>
+    <updated>2017-04-04T09:48:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Why-RxJS"><a href="#Why-RxJS" class="headerlink" title="Why RxJS?"></a>Why RxJS?</h2><p>你可能会问，为什么选择 RxJS?  为什么不是 Promises? Promises 可以很好地解决异步操作，像使用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank" rel="external">XMLHttpRequest</a> 去查询服务器, 它预期会返回值并且最终完成请求。  <code>The Reactive Extensions</code> 统一了 <code>JavaScript</code> 中的 <code>Promises</code>, <code>callbacks</code> 以及事件数据，比如 DOM输入, <code>Web Workers</code>, <code>Web Sockets</code>. 一旦我们统一了这些概念，就可以进行各种各样的组合.</p>
+<a id="more"></a>
+<p>为了让您了解丰富的组合，我们可以创建一个自动完成功能，它从文本输入中接收用户输入，然后查询服务，确保不会对每个键盘输入的进行泛滥地调用，而是以一种更自然的方式调用。</p>
+<p>首先，我们将引用JavaScript文件，包括jQuery，尽管RxJS没有依赖于jQuery …<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://code.jquery.com/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"rx.lite.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>接下来，我们将从输入框获取用户输入，使用<a href="content/observable/observable_methods/fromevent.html"><code>Rx.Observable.fromEvent</code></a> 方法监听 <code>keyup</code> 事件.  如果 <a href="http://jquery.com" target="_blank" rel="external">jQuery</a>, <a href="http://zeptojs.com/" target="_blank" rel="external">Zepto</a>, <a href="https://angularjs.org/" target="_blank" rel="external">AngularJS</a> and <a href="http://emberjs.com/" target="_blank" rel="external">Ember.js</a> 可用，将会使用它们来绑定事件, 否则将使用原生事件绑定. 这跟您的框架思考事件的一致方式，因此没有任何惊喜。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $input = $(<span class="string">'#input'</span>),</div><div class="line">    $results = $(<span class="string">'#results'</span>);</div><div class="line"></div><div class="line"><span class="comment">/* 只从 keyup 事件获得输入值 */</span></div><div class="line"><span class="keyword">var</span> keyups = Rx.Observable.fromEvent($input, <span class="string">'keyup'</span>)</div><div class="line">    .map(<span class="function"><span class="params">e</span> =&gt;</span> e.target.value)</div><div class="line">    .filter(<span class="function"><span class="params">text</span> =&gt;</span> text.length &gt; <span class="number">2</span>);</div><div class="line"></div><div class="line"><span class="comment">/* 函数节流输出设置为 500ms */</span></div><div class="line"><span class="keyword">var</span> throttled = keyups.throttle(<span class="number">500</span> <span class="comment">/* ms */</span>);</div><div class="line"></div><div class="line"><span class="comment">/* 现在判断值是否有改变，只获取不同的值 */</span></div><div class="line"><span class="keyword">var</span> distinct = throttled.distinctUntilChanged();</div></pre></td></tr></table></figure></p>
+<p>现在，让我们来查询维基百科！在RxJS中，我们可以立即通过<code>Rx.Observable.fromPromise</code>方法绑定到任何<a href="https://github.com/promises-aplus/promises-spec" target="_blank" rel="external">Promises A+</a>的实现上，或者直接返回它，并将其封装。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">searchWikipedia</span> (<span class="params">term</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> $.ajax(&#123;</div><div class="line">        <span class="attr">url</span>: <span class="string">'http://en.wikipedia.org/w/api.php'</span>,</div><div class="line">        <span class="attr">dataType</span>: <span class="string">'jsonp'</span>,</div><div class="line">        <span class="attr">data</span>: &#123;</div><div class="line">            <span class="attr">action</span>: <span class="string">'opensearch'</span>,</div><div class="line">            <span class="attr">format</span>: <span class="string">'json'</span>,</div><div class="line">            <span class="attr">search</span>: term</div><div class="line">        &#125;</div><div class="line">    &#125;).promise();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一旦创建，现在我们可以将不同的节流输入绑定在一起，然后查询服务。在这种情况下，我们将调用<code>flatMapLatest</code>获取该值，并确保我们不会有任何混乱的调用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> suggestions = distinct.flatMapLatest(searchWikipedia);</div></pre></td></tr></table></figure>
+<p>最后，我们将在可观察对象上调用<code>subscribe</code>方法开始拉数据。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">suggestions.subscribe(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">var</span> res = data[<span class="number">1</span>];</div><div class="line"></div><div class="line">    <span class="comment">/* Do something 像数据绑定 */</span></div><div class="line">    $results.empty();</div><div class="line"></div><div class="line">    $.each(res, (_, value) =&gt; $(<span class="string">'&lt;li&gt;'</span> + value + <span class="string">'&lt;/li&gt;'</span>).appendTo($results));</div><div class="line">&#125;, error =&gt; &#123;</div><div class="line">    <span class="comment">/* handle any errors */</span></div><div class="line">    $results.empty();</div><div class="line"></div><div class="line">    $(<span class="string">'&lt;li&gt;Error: '</span> + error + <span class="string">'&lt;/li&gt;'</span>).appendTo($results);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/Reactive-Extensions/RxJS#why-rxjs" target="_blank" rel="external">翻译参考</a><br><a href="https://robin-front.gitbooks.io/rxjs-doc-chinese/content/why_rxjs.html" target="_blank" rel="external">同步发布RxJS中文文档</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Why-RxJS&quot;&gt;&lt;a href=&quot;#Why-RxJS&quot; class=&quot;headerlink&quot; title=&quot;Why RxJS?&quot;&gt;&lt;/a&gt;Why RxJS?&lt;/h2&gt;&lt;p&gt;你可能会问，为什么选择 RxJS?  为什么不是 Promises? Promises 可以很好地解决异步操作，像使用 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest&quot;&gt;XMLHttpRequest&lt;/a&gt; 去查询服务器, 它预期会返回值并且最终完成请求。  &lt;code&gt;The Reactive Extensions&lt;/code&gt; 统一了 &lt;code&gt;JavaScript&lt;/code&gt; 中的 &lt;code&gt;Promises&lt;/code&gt;, &lt;code&gt;callbacks&lt;/code&gt; 以及事件数据，比如 DOM输入, &lt;code&gt;Web Workers&lt;/code&gt;, &lt;code&gt;Web Sockets&lt;/code&gt;. 一旦我们统一了这些概念，就可以进行各种各样的组合.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="RxJS" scheme="http://robin-front.github.io/categories/RxJS/"/>
+    
+    
+      <category term="RxJS" scheme="http://robin-front.github.io/tags/RxJS/"/>
+    
+  </entry>
   
   <entry>
     <title>Lerp的应用-利用简单线性插值来平滑动画效果</title>
@@ -1032,58 +1066,6 @@
       <category term="Webpack" scheme="http://robin-front.github.io/tags/Webpack/"/>
     
       <category term="react-router" scheme="http://robin-front.github.io/tags/react-router/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Node全局对象：global、process和Buffer</title>
-    <link href="http://robin-front.github.io/2016/04/14/Node%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1%EF%BC%9Aglobal%E3%80%81process%E5%92%8CBuffer/"/>
-    <id>http://robin-front.github.io/2016/04/14/Node全局对象：global、process和Buffer/</id>
-    <published>2016-04-14T15:39:02.000Z</published>
-    <updated>2016-04-14T15:39:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><code>global</code>对象，也是<code>Node</code>的全局命名空间；<br><code>process</code>对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；<br><code>Buffer</code>类，它提供了存储和操作原始数据的功能，同样它也是全局可见的<br><a id="more"></a></p>
-<h2 id="global"><a href="#global" class="headerlink" title="global"></a>global</h2><p>global与浏览器中的<code>window</code>对象是相似的，它们的关健不同点是：</p>
-<p>浏览器中的<code>window</code>对象是一个真正全局的对象。如果在客户端 <code>JavaScript</code>中定义一个全局变量，它将能够被Web页面以及每一个独立的库访问到。</p>
-<p><strong> 而<code>Node</code>模块中创建一个顶层变量（函数之外的变量），它仅仅在该模块中是全局的，而在其他模块中是不可见的。只有那些被模块显式导出的部分才能被引用该模块的应用程序所使用。 </strong></p>
-<p>这意味着，由于不小心使用了重复的全局变量名称而引起的数据冲突问题将会大大减少。</p>
-<h2 id="process"><a href="#process" class="headerlink" title="process"></a>process</h2><p>每个<code>Node</code>应用程序都是一个<code>process</code>对象实例，所以，应用程序自然能直接使用某些内建于 <code>process</code> 对象的功能。</p>
-<ul>
-<li><code>process.execPath</code> 方法可以返回当前 <code>Node</code> 应用程序的执行路径</li>
-<li><code>process.version</code> 提供了 <code>Node</code> 版本信息</li>
-<li><code>process.platform</code> 提供服务器平台信息</li>
-<li><code>process.memoryUsage</code> 方法可以查询当前<code>Node</code> 应用程序的内存使用量</li>
-</ul>
-<p><strong> <code>process.nextTick</code> 方法 </strong></p>
-<p>这个方法可以将一个回调函数挂载到<code>Node</code>程序的事件循环机制中，并在下一个事件循环发生时调用该函数。 例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">asynchFunction</span> = <span class="title">function</span> (<span class="params">data, cb</span>) </span>&#123;</div><div class="line">  process.nextTick(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    cb(val)</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>虽然使用 <code>setTimout</code> 方法并传入一个0毫秒的延迟可以过到同样的目的<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">setTimout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  cb(val)</div><div class="line">&#125;, <span class="number">0</span>)</div></pre></td></tr></table></figure></p>
-<p><strong> 但是，<code>setTimout</code>并不像 <code>process.nextTick</code>那样高效，<code>process.nextTick</code>的调用速度远远快于<code>setTimout</code>方法 </strong></p>
-<p>首先你需要将耗时的处理过和打散并分解成多个部分，每个部分分别通过 <code>process.nextTick</code>调用，最终使得应用程序可以对其他请求进行处理，而无需等待耗时计算过程完成。</p>
-<h2 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h2><p><code>Buffer</code> 是用于处理二进制数据的一种方式。</p>
-<blockquote>
-<p>流处理往往采用的是二进制数据，而非字符串</p>
-</blockquote>
-<p><code>Buffer</code> 支持的编码方式包括：</p>
-<ul>
-<li>ascii 七位 <code>ASCII</code></li>
-<li>utf8 多字节编码的 <code>Unicode</code> 字符</li>
-<li>usc2 两字节，little endian 方式编码的 Unicode 字符</li>
-<li>base64 Base64 编码</li>
-<li>hex 每个字节编码为两个十六进制字符</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;code&gt;global&lt;/code&gt;对象，也是&lt;code&gt;Node&lt;/code&gt;的全局命名空间；&lt;br&gt;&lt;code&gt;process&lt;/code&gt;对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；&lt;br&gt;&lt;code&gt;Buffer&lt;/code&gt;类，它提供了存储和操作原始数据的功能，同样它也是全局可见的&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Node" scheme="http://robin-front.github.io/categories/Node/"/>
-    
-    
-      <category term="Node" scheme="http://robin-front.github.io/tags/Node/"/>
     
   </entry>
   

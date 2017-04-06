@@ -25,10 +25,10 @@
     <content type="html"><![CDATA[<p>也许你之前用过一些像 <code>css usage</code>、<code>css used</code> 这样的浏览器插件去检测代码覆盖率。但现在，Chrome的实验版本<a href="https://www.google.com/chrome/browser/canary.html" target="_blank" rel="external">Canary</a>终于实现了代码覆盖率检测，这意味着它将很快普及到正式版本。这是一个令人兴奋的功能，在使用JavaScript和CSS时非常有用，所以我会做一个快速的演示，并探索它如何使用。</p>
 <a id="more"></a>
 <h2 id="它做了些什么事情"><a href="#它做了些什么事情" class="headerlink" title="它做了些什么事情"></a>它做了些什么事情</h2><p>代码覆盖可以在您运行您的Web应用程序的时候，遍历每个JS / CSS文件，看看哪些代码行运行，哪些代码没有运行。</p>
-<p><a href="https://cdn-images-1.medium.com/max/800/1*gD8lX40PSemDOZgvT695Mg.png" target="_blank" rel="external">coverage</a></p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*gD8lX40PSemDOZgvT695Mg.png" alt="coverage"></p>
 <p>在这里，我做了一个简单的静态网页，Chrome生成了页面上存在的CSS和JS文件的问题汇总。右侧的栏显示每个文件的相对大小，红色表示未使用的代码，绿色显示运行的代码。</p>
 <p>记录代码覆盖范围与devtools时间轴类似，您点击开始记录，然后在您的站点进行正常的交互。完成后，Chrome会进行一些计算并生成读数。在这里，我很好奇网站上有多少未使用的CSS，所以我导航到各个子页面，以确保我触及到每个css。果然，这里有很多改进的空间，因为我的网站上的css的97％没有使用！</p>
-<p><a href="https://cdn-images-1.medium.com/max/1200/1*1SUTeKlhRee3MyKdxkUGtQ.png" target="_blank" rel="external">coverage</a></p>
+<p><img src="https://cdn-images-1.medium.com/max/1200/1*1SUTeKlhRee3MyKdxkUGtQ.png" alt="coverage"></p>
 <p>Chrome还可让您深入研究单个文件的代码范围。在这里，左边的红色/绿色条显示哪一行执行了，哪一行没有。请注意，当检查最小化的文件时，可以按文件左下角的按钮来“<code>prettify</code>”代码。</p>
 <h2 id="这有什么用"><a href="#这有什么用" class="headerlink" title="这有什么用"></a>这有什么用</h2><p>在一个复杂的或长期的项目上工作时，很容易积累冗余代码。如果你使用 <code>webpack</code> 或另一个JS构建系统，可以防止大多数无用的JS代码。但是对于CSS来说，这样做可能会有点棘手。有了这个覆盖工具，在Chrome是一个伟大的方式来快速了解多少冗余的代码在运行，哪些文件需要优化。</p>
 <h2 id="如何才能使用它"><a href="#如何才能使用它" class="headerlink" title="如何才能使用它"></a>如何才能使用它</h2><p>下载Chrome的实验版本<a href="https://www.google.com/chrome/browser/canary.html" target="_blank" rel="external">Canary</a>或等待此功能更新到正式版本。</p>

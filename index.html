@@ -248,8 +248,132 @@
             
               
                 
+                <a class="post-title-link" href="/2017/05/05/RxJS事件桥接/" itemprop="url">
+                  RxJS事件桥接
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-05T16:51:51+08:00" content="2017-05-05">
+              2017-05-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/RxJS/" itemprop="url" rel="index">
+                    <span itemprop="name">RxJS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/05/RxJS事件桥接/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/05/05/RxJS事件桥接/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="事件桥接"><a href="#事件桥接" class="headerlink" title="事件桥接"></a>事件桥接</h1><p>RxJS 提供工厂方法来桥接 DOM 或 Node.js 中已存在的异步数据源，所以，你可以使用丰富的创作、过滤和资源管理功能对RxJS提供的任何类型的数据流进行操作。这篇文章探讨 <a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/api/core/operators/fromevent.md"><code>fromEvent</code></a> 和 <a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/api/core/operators/fromeventpattern.md"><code>fromEventPattern</code></a>操作符，它允许导入一个 DOM 或者普通事件到 RxJS 的数据流。每次引发事件时，一个 <code>OnNext</code> 消息将传递到数据流。然后，可以像其他任何数据流一样操作事件数据流。</p>
+<p>RxJS 不打算取代现有的异步编程模型如 <code>Promises</code> 或 <code>callbacks</code>。但是，当你尝试组合事件， RxJS的工厂方法会提供简便的方法给你，你完全感受不到当前使用了何种编程模式。这真的很方便维护（比如取消订阅）和筛选（比如选择合适的数据）数据源。在本节和下节中，你可以尝试 RxJS 的这些特性如何协助你完成异步编程。</p>
+<p>自然，RxJS 支持一批库和他们的勾子函数去使用他们的事件系统，比如 <a href="http://jquery.com/">jQuery</a>, <a href="http://zeptojs.com/">Zepto.js</a>, <a href="https://angularjs.org/">AngularJS</a>, <a href="http://emberjs.com/">Ember.js</a> 和 <a href="http://backbonejs.org">Backbone.js</a>。这种行为，不管怎样只能重写本地绑定。默认情况下， RxJS 也支持 <a href="http://nodejs.org">Node.js</a> <code>EventEmitter</code> 的事件勾子。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/05/05/RxJS事件桥接/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/05/04/创建和订阅单一数据流/" itemprop="url">
-                  创建和订阅单一数据流
+                  使用RxJS创建和订阅单一数据流
                 </a>
               
             
@@ -1343,140 +1467,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/10/javascript实现手机振动反馈提高用户体验/" itemprop="url">
-                  javascript通过Vibration API实现手机振动反馈提高用户体验
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-10T13:35:00+08:00" content="2017-01-10">
-              2017-01-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Vibration/" itemprop="url" rel="index">
-                    <span itemprop="name">Vibration</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Vibration/html5/" itemprop="url" rel="index">
-                    <span itemprop="name">html5</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/10/javascript实现手机振动反馈提高用户体验/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/01/10/javascript实现手机振动反馈提高用户体验/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>目前大多数的移动设备均具备硬件能力支持振动，让软件代码通过使设备摇晃来向用户提供物理反馈。Vibration API 为 Web应用程序提供访问此硬件的能力。如果设备不支持，则不会产生任何效果。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/10/javascript实现手机振动反馈提高用户体验/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1522,7 +1512,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1539,7 +1529,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

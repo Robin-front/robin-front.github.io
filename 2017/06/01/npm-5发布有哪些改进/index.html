@@ -86,22 +86,25 @@
 
 
 
-<meta name="description" content="npm@5 is now latest
-从今天开始，如果您输入“npm install npm@latest -g”，那么您将被更新为npm版本5。另外，在所有Node.js 8的新安装中都捆绑了npm@5 ，它已经替代了Node.js 7在Node Project的当前版本中。
-在过去一年半的时间里，我们一直在努力解决大量的痛点，其中有些是创建npm以来就已经存在的。今天的发布是对npm速度，一">
+<meta name="description" content="从今天开始，如果您输入“npm install npm@latest -g”，那么您将被更新为npm版本5。另外，在所有Node.js 8的新安装中都捆绑了npm@5 ，它已经替代了Node.js 7在Node Project的当前版本中。
+在过去一年半的时间里，我们一直在努力解决大量的痛点，其中有些是创建npm以来就已经存在的。今天的发布是对npm速度，一致性和用户体验的最大改进。
+发布说明中">
 <meta property="og:type" content="article">
 <meta property="og:title" content="npm@5发布有哪些改进">
 <meta property="og:url" content="http://robin-front.github.io/2017/06/01/npm-5发布有哪些改进/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="npm@5 is now latest
-从今天开始，如果您输入“npm install npm@latest -g”，那么您将被更新为npm版本5。另外，在所有Node.js 8的新安装中都捆绑了npm@5 ，它已经替代了Node.js 7在Node Project的当前版本中。
-在过去一年半的时间里，我们一直在努力解决大量的痛点，其中有些是创建npm以来就已经存在的。今天的发布是对npm速度，一">
+<meta property="og:description" content="从今天开始，如果您输入“npm install npm@latest -g”，那么您将被更新为npm版本5。另外，在所有Node.js 8的新安装中都捆绑了npm@5 ，它已经替代了Node.js 7在Node Project的当前版本中。
+在过去一年半的时间里，我们一直在努力解决大量的痛点，其中有些是创建npm以来就已经存在的。今天的发布是对npm速度，一致性和用户体验的最大改进。
+发布说明中">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*9nI6dL1Z-8cqFpCX96zVFA.gif">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/0*K1Wb1ERhtAHLRG0m.">
 <meta property="og:updated_time" content="2017-06-01T02:15:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="npm@5发布有哪些改进">
-<meta name="twitter:description" content="npm@5 is now latest
-从今天开始，如果您输入“npm install npm@latest -g”，那么您将被更新为npm版本5。另外，在所有Node.js 8的新安装中都捆绑了npm@5 ，它已经替代了Node.js 7在Node Project的当前版本中。
-在过去一年半的时间里，我们一直在努力解决大量的痛点，其中有些是创建npm以来就已经存在的。今天的发布是对npm速度，一">
+<meta name="twitter:description" content="从今天开始，如果您输入“npm install npm@latest -g”，那么您将被更新为npm版本5。另外，在所有Node.js 8的新安装中都捆绑了npm@5 ，它已经替代了Node.js 7在Node Project的当前版本中。
+在过去一年半的时间里，我们一直在努力解决大量的痛点，其中有些是创建npm以来就已经存在的。今天的发布是对npm速度，一致性和用户体验的最大改进。
+发布说明中">
+<meta name="twitter:image" content="https://cdn-images-1.medium.com/max/800/1*9nI6dL1Z-8cqFpCX96zVFA.gif">
 
 
 
@@ -321,12 +324,12 @@
       
 
       
-        <p><a href="https://cdn-images-1.medium.com/max/800/1*9nI6dL1Z-8cqFpCX96zVFA.gif" target="_blank" rel="external">npm@5 is now latest</a></p>
+        <p><img src="https://cdn-images-1.medium.com/max/800/1*9nI6dL1Z-8cqFpCX96zVFA.gif" alt="npm@5 is now latest"></p>
 <p>从今天开始，如果您输入“<code>npm install npm@latest -g</code>”，那么您将被更新为npm版本5。另外，在所有<a href="https://medium.com/@nodejs/node-js-8-big-improvements-for-the-debugging-and-native-module-ecosystem-58454861f2fc" target="_blank" rel="external">Node.js 8</a>的新安装中都捆绑了<code>npm@5</code> ，它已经替代了<code>Node.js 7</code>在Node Project的当前版本中。</p>
 <p>在过去一年半的时间里，我们一直在努力解决大量的痛点，其中有些是创建npm以来就已经存在的。今天的发布是对npm速度，一致性和用户体验的最大改进。</p>
 <p>发布说明中有什么新内容和更改内容的明确列表，但这里有一些亮点：<br><a id="more"></a></p>
 <h2 id="速度很快"><a href="#速度很快" class="headerlink" title="速度很快"></a>速度很快</h2><p>重新编排了包元数据，软件包下载和软件包缓存，这大大加快了工作。一般来说，期望性能提升20-100％; 我们还看到一些安装和版本冲突的运行速度提高了5倍。</p>
-<p><a href="https://cdn-images-1.medium.com/max/800/0*K1Wb1ERhtAHLRG0m." target="_blank" rel="external">speed improvements in npm@5</a></p>
+<p><img src="https://cdn-images-1.medium.com/max/800/0*K1Wb1ERhtAHLRG0m." alt="speed improvements in npm@5"></p>
 <p>由于npm最初的设计，开发人员已经改变了他们如何使用npm。npm生态系统不仅呈指数级增长，而且从2014年起，平均npm软件包中的依赖关系数量增加了250％。现在，更多的开发人员现在可以在本地安装Babel，Webpack和Tap等有用工具，而不是全局。这是一个最佳实践，但这意味着“<code>npm install</code>”可以做更多的工作。</p>
 <p>鉴于我们社区的规模，任何速度上升都会为数百万用户带来巨大的节省，更不用说我们的所有组织和npm企业客户。使npm @ 5变快成为一个很显然的目标。</p>
 <h2 id="目标一致"><a href="#目标一致" class="headerlink" title="目标一致"></a>目标一致</h2><h3 id="默认锁文件"><a href="#默认锁文件" class="headerlink" title="默认锁文件"></a>默认锁文件</h3><p><code>Shrinkwrap</code>很早就已经是npm的一部分，但<code>npm@5</code>使<code>lockfiles</code>成为默认，所以所有的npm安装现在都是可重现的。在安装给定版本的软件包时，每次安装它您获得的文件将是相同的。</p>

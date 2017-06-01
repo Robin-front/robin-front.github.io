@@ -86,22 +86,19 @@
 
 
 
-<meta name="description" content="译
-在eBay，我们正在使用[Marko](http://markojs.com/)每天处理超过十亿的请求，这就要求我们精简我们的开源UI库Marko。我们大大优化了Marko ，以实现快速渲染，高级性能技术，并实现了最小的页面重量（〜10kb gzipped）。性能只是一个方面，因为我们还必须扩展Marko以支持数百个团队的开发，从而允许开发人员有效地创建可维护和强大的Web应用程序。
-我们已经">
+<meta name="description" content="译文：why-is-marko-fast
+在eBay，我们正在使用[Marko](http://markojs.com/)每天处理超过十亿的请求，这就要求我们精简我们的开源UI库Marko。我们大大优化了Marko ，以实现快速渲染，高级性能技术，并实现了最小的页面重量（〜10kb gzipped）。性能只是一个方面，因为我们还必须扩展Marko以支持数百个团队的开发，从而允许开发人员有效地创建可">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Marko和react,preact,vue相比快在哪里">
 <meta property="og:url" content="http://robin-front.github.io/2017/06/01/Marko和react-preact-vue相比快在哪里/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="译
-在eBay，我们正在使用[Marko](http://markojs.com/)每天处理超过十亿的请求，这就要求我们精简我们的开源UI库Marko。我们大大优化了Marko ，以实现快速渲染，高级性能技术，并实现了最小的页面重量（〜10kb gzipped）。性能只是一个方面，因为我们还必须扩展Marko以支持数百个团队的开发，从而允许开发人员有效地创建可维护和强大的Web应用程序。
-我们已经">
+<meta property="og:description" content="译文：why-is-marko-fast
+在eBay，我们正在使用[Marko](http://markojs.com/)每天处理超过十亿的请求，这就要求我们精简我们的开源UI库Marko。我们大大优化了Marko ，以实现快速渲染，高级性能技术，并实现了最小的页面重量（〜10kb gzipped）。性能只是一个方面，因为我们还必须扩展Marko以支持数百个团队的开发，从而允许开发人员有效地创建可">
 <meta property="og:updated_time" content="2017-06-01T02:48:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Marko和react,preact,vue相比快在哪里">
-<meta name="twitter:description" content="译
-在eBay，我们正在使用[Marko](http://markojs.com/)每天处理超过十亿的请求，这就要求我们精简我们的开源UI库Marko。我们大大优化了Marko ，以实现快速渲染，高级性能技术，并实现了最小的页面重量（〜10kb gzipped）。性能只是一个方面，因为我们还必须扩展Marko以支持数百个团队的开发，从而允许开发人员有效地创建可维护和强大的Web应用程序。
-我们已经">
+<meta name="twitter:description" content="译文：why-is-marko-fast
+在eBay，我们正在使用[Marko](http://markojs.com/)每天处理超过十亿的请求，这就要求我们精简我们的开源UI库Marko。我们大大优化了Marko ，以实现快速渲染，高级性能技术，并实现了最小的页面重量（〜10kb gzipped）。性能只是一个方面，因为我们还必须扩展Marko以支持数百个团队的开发，从而允许开发人员有效地创建可">
 
 
 
@@ -321,7 +318,7 @@
       
 
       
-        <p><a href="https://hackernoon.com/why-is-marko-fast-a20796cb8ae3" target="_blank" rel="external">译</a></p>
+        <p><a href="https://hackernoon.com/why-is-marko-fast-a20796cb8ae3" target="_blank" rel="external">译文：why-is-marko-fast</a></p>
 <p>在eBay，我们正在使用<code>[Marko](http://markojs.com/)</code>每天处理超过十亿的请求，这就要求我们精简我们的开源UI库Marko。我们大大优化了Marko ，以实现快速渲染，<a href="http://www.ebaytechblog.com/2014/12/08/async-fragments-rediscovering-progressive-html-rendering-with-marko/" target="_blank" rel="external">高级性能技术</a>，并实现了最小的页面重量（〜10kb gzipped）。性能只是一个方面，因为我们还必须扩展Marko以支持数百个团队的开发，从而允许开发人员有效地创建可维护和强大的Web应用程序。</p>
 <p>我们已经创建了我们自己的<a href="https://github.com/marko-js/isomorphic-ui-benchmarks" target="_blank" rel="external">benchMarks</a>进行比较，也已经将Marko添加到<a href="https://github.com/raxjs/server-side-rendering-comparison/pull/11" target="_blank" rel="external">其他基准测试</a>中，但是基准测试并不总是值得信赖的。尽管我们尽可能公平地对待我们的基准，但最重要的是在现实世界的应用中的表现，而不是专注于微观基准。这就是V8团队转而采用新的方法来衡量和理解现实JavaScript性能的一个原因。</p>
 <p>同样，我们已经观察过我们的开发人员实际开发中如何编写他们的Marko组件，并且发现了可以进一步优化的模式。而不是关注本文中的基准测试，我想关注我们应用于Marko的优化细节。<br><a id="more"></a></p>
@@ -329,13 +326,13 @@
 <p>在浏览器中呈现时，必须解析HTML字符串才能更新DOM。因此，Marko通过程序将视图编译为直接呈现到虚拟文档（VDOM）树，这可以针对浏览器有效地更新真实的DOM。</p>
 <p>给出以下模板：</p>
 <p><a href="https://gist.github.com/anonymous/5ccdaadcb42dc0f5a4b2e6a956111562/raw/fa23a13e458bf8bb79dfbdc659f1248c012a799a/template.marko" target="_blank" rel="external"></a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;Hello $&#123;input.name&#125;!<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;Hello $&#123;input.name&#125;!&lt;/div&gt;</div></pre></td></tr></table></figure>
 <h3 id="编译为服务器"><a href="#编译为服务器" class="headerlink" title="编译为服务器"></a>编译为服务器</h3><p>编译输出针对服务器上的HTML输出进行了优化：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> marko_template = <span class="built_in">require</span>(<span class="string">"marko/html"</span>).t(__filename),</div><div class="line">    marko_helpers = <span class="built_in">require</span>(<span class="string">"marko/runtime/html/helpers"</span>),</div><div class="line">    marko_escapeXml = marko_helpers.x;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">input, out</span>) </span>&#123;</div><div class="line">  out.w(<span class="string">"&lt;div&gt;Hello "</span> +</div><div class="line">    marko_escapeXml(input.name) +</div><div class="line">    <span class="string">"!&lt;/div&gt;"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="编译为浏览器"><a href="#编译为浏览器" class="headerlink" title="编译为浏览器"></a>编译为浏览器</h3><p>编译输出针对浏览器中的虚拟DOM渲染进行了优化：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> marko_template = <span class="built_in">require</span>(<span class="string">"marko/vdom"</span>).t(__filename);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">input, out</span>) </span>&#123;</div><div class="line">  out.e(<span class="string">"DIV"</span>, <span class="literal">null</span>, <span class="number">3</span>)</div><div class="line">    .t(<span class="string">"Hello "</span>)</div><div class="line">    .t(input.name)</div><div class="line">    .t(<span class="string">"!"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="模块化运行时"><a href="#模块化运行时" class="headerlink" title="模块化运行时"></a>模块化运行时</h3><p>Marko运行时并不作为单个JavaScript文件分发。相反，Marko编译器会生成一个JavaScript模块，该模块仅导入实际需要的运行时部分。这允许我们向Marko添加新功能，而不会使现有应用程序膨胀。例如，给出以下模板：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">var</span> color = <span class="string">'red'</span>;</div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;backgroundColor:</span> <span class="attr">color</span>&#125;&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">var</span> color = <span class="string">'red'</span>;</div><div class="line">&lt;div style=&#123;backgroundColor: color&#125;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
 <p>在上面的示例中，需要额外的运行时代码来根据所提供<code>style</code>的JavaScript对象呈现属性。导入<code>styleAttr</code>助手的编译代码如下所示：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> marko_styleAttr = <span class="built_in">require</span>(<span class="string">"marko/runtime/vdom/helper-styleAttr"</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">input, out</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> color = <span class="string">'red'</span>;</div><div class="line">  out.e(<span class="string">"DIV"</span>, &#123;</div><div class="line">      <span class="attr">style</span>: marko_styleAttr(&#123;</div><div class="line">          <span class="attr">backgroundColor</span>: color</div><div class="line">        &#125;)</div><div class="line">    &#125;, <span class="number">0</span>, <span class="number">4</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="高性能的服务器端渲染"><a href="#高性能的服务器端渲染" class="headerlink" title="高性能的服务器端渲染"></a>高性能的服务器端渲染</h3><p>与基于专门进行虚拟DOM渲染的JSX的解决方案相比，Marko在服务器端渲染方面具有巨大的优势。当渲染到服务器上的虚拟DOM树时，它是一个两步的过程来呈现HTML：</p>
@@ -353,7 +350,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">input, out</span>) </span>&#123;</div><div class="line">  out.w(<span class="string">"&lt;div&gt;This is a &lt;strong&gt;static&lt;/strong&gt; node&lt;/div&gt;"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="静态属性的编译时优化"><a href="#静态属性的编译时优化" class="headerlink" title="静态属性的编译时优化"></a>静态属性的编译时优化</h3><p>Marko还将优化动态元素的静态属性。</p>
 <p>给出以下模板：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div.hello&gt;Hello $&#123;input.name&#125;!<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div.hello&gt;Hello $&#123;input.name&#125;!&lt;/div&gt;</div></pre></td></tr></table></figure>
 <p>Marko将产生以下编译输出：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> marko_attrs0 = &#123;</div><div class="line">        <span class="string">"class"</span>: <span class="string">"hello"</span></div><div class="line">      &#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">input, out</span>) </span>&#123;</div><div class="line">  out.e(<span class="string">"DIV"</span>, marko_attrs0, <span class="number">3</span>)</div><div class="line">    .t(<span class="string">"Hello "</span>)</div><div class="line">    .t(input.name)</div><div class="line">    .t(<span class="string">"!"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>请注意，属性对象只创建一次，它用于每个渲染。另外，静态属性不会发生 <code>diffing</code>/<code>patching</code>。</p>

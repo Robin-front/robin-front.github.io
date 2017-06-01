@@ -317,7 +317,7 @@
 
       
         
-          <p><a href="https://hackernoon.com/why-is-marko-fast-a20796cb8ae3">译</a></p>
+          <p><a href="https://hackernoon.com/why-is-marko-fast-a20796cb8ae3">译文：why-is-marko-fast</a></p>
 <p>在eBay，我们正在使用<code>[Marko](http://markojs.com/)</code>每天处理超过十亿的请求，这就要求我们精简我们的开源UI库Marko。我们大大优化了Marko ，以实现快速渲染，<a href="http://www.ebaytechblog.com/2014/12/08/async-fragments-rediscovering-progressive-html-rendering-with-marko/">高级性能技术</a>，并实现了最小的页面重量（〜10kb gzipped）。性能只是一个方面，因为我们还必须扩展Marko以支持数百个团队的开发，从而允许开发人员有效地创建可维护和强大的Web应用程序。</p>
 <p>我们已经创建了我们自己的<a href="https://github.com/marko-js/isomorphic-ui-benchmarks">benchMarks</a>进行比较，也已经将Marko添加到<a href="https://github.com/raxjs/server-side-rendering-comparison/pull/11">其他基准测试</a>中，但是基准测试并不总是值得信赖的。尽管我们尽可能公平地对待我们的基准，但最重要的是在现实世界的应用中的表现，而不是专注于微观基准。这就是V8团队转而采用新的方法来衡量和理解现实JavaScript性能的一个原因。</p>
 <p>同样，我们已经观察过我们的开发人员实际开发中如何编写他们的Marko组件，并且发现了可以进一步优化的模式。而不是关注本文中的基准测试，我想关注我们应用于Marko的优化细节。<br>
@@ -442,7 +442,7 @@
 
       
         
-          <p><a href="https://cdn-images-1.medium.com/max/800/1*9nI6dL1Z-8cqFpCX96zVFA.gif">npm@5 is now latest</a></p>
+          <p><img src="https://cdn-images-1.medium.com/max/800/1*9nI6dL1Z-8cqFpCX96zVFA.gif" alt="npm@5 is now latest"></p>
 <p>从今天开始，如果您输入“<code>npm install npm@latest -g</code>”，那么您将被更新为npm版本5。另外，在所有<a href="https://medium.com/@nodejs/node-js-8-big-improvements-for-the-debugging-and-native-module-ecosystem-58454861f2fc">Node.js 8</a>的新安装中都捆绑了<code>npm@5</code> ，它已经替代了<code>Node.js 7</code>在Node Project的当前版本中。</p>
 <p>在过去一年半的时间里，我们一直在努力解决大量的痛点，其中有些是创建npm以来就已经存在的。今天的发布是对npm速度，一致性和用户体验的最大改进。</p>
 <p>发布说明中有什么新内容和更改内容的明确列表，但这里有一些亮点：<br>

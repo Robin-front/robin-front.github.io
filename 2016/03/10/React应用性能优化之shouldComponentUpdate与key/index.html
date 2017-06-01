@@ -319,13 +319,15 @@
 
       
         <p>虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。</p>
-<p>下面看看加速应用程序的两种简单的配置方法：<br><a id="more"></a></p>
+<p>下面看看加速应用程序的两种简单的配置方法：
+<a id="more"></a></p>
 <h3 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate"></a>shouldComponentUpdate</h3><p>设置新 props，调用 setState 方法或 forceUpdate 方法时，React 都会调用该组件所有子组件的 render 方法。但是在组件树深度嵌套或 render 方法十分复杂的时侯，页面就会有延迟。</p>
 <p>但此时，某些子组件并没有必要更新，或者永远都不需要更新，这时进行的计算过程是没有必要的。</p>
 <p>而 shouldComponentUpdate 方法正是用来判断是否需要调用指定组件的 render 方法。</p>
 <p>shouldComponentUpdate 方法返回一个布尔值。false 表示不要调用 render 方法；true 表示需要调用 render 方法计算出新的虚拟 DOM。</p>
 <blockquote>
-<p>此方法的默认值是 true。<br>并且，组件首次渲染时，shouldComponentUpdate 方法不会被调用</p>
+<p>此方法的默认值是 true。
+并且，组件首次渲染时，shouldComponentUpdate 方法不会被调用</p>
 </blockquote>
 <p>shouldComponentUpdate 方法接受两个参数，新的 props 和新的 state：</p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">React.creatClass(&#123;</div><div class="line">    shouldComponentUpdate: <span class="function"><span class="keyword">function</span> <span class="params">(nextProps, nextState)</span> </span>&#123;</div><div class="line">      <span class="keyword">return</span> nextProps.id !== <span class="keyword">this</span>.props.id</div><div class="line">    &#125;</div><div class="line">  &#125;)</div></pre></td></tr></table></figure>
@@ -454,7 +456,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -462,7 +464,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -471,7 +473,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

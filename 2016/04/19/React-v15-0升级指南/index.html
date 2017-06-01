@@ -315,7 +315,8 @@
       
 
       
-        <p>React-v15.0升级指南<br><a id="more"></a></p>
+        <p>React-v15.0升级指南
+<a id="more"></a></p>
 <h3 id="主要变化"><a href="#主要变化" class="headerlink" title="主要变化"></a>主要变化</h3><h4 id="加入document-createElement-并且废弃-data-reactid"><a href="#加入document-createElement-并且废弃-data-reactid" class="headerlink" title="加入document.createElement 并且废弃 data-reactid"></a>加入<code>document.createElement</code> 并且废弃 <code>data-reactid</code></h4><p>经过我们讨论，<code>DOM</code> 有很大的改变。其中最值得关注的一个变化就是，我们不再给每个 <code>DOM</code>设置<code>data-reactid</code>属性。虽然这更难看出一个网页是否使用了 <code>React</code>，但优势是<code>DOM</code>更轻量了。这一改变让我们使用 <code>document.createElement</code>来初始渲染成为可能。在此之前，我们会生成大量的HTML字符串，然后使用 <code>node.innerHTML</code>来插入。当时，我们决定尽快在大部分案例和支持的浏览器中使用<code>document.createElement</code>。浏览器持续地改善，因此兼容所有浏览器不再是正确的。使用 <code>createElement</code>可以让<code>React</code>的其他功能运行得更快。原来的<code>ids</code>用来映射<code>React</code>组件的事件，这意味着，我们不得不对每一个事件做很多工作，即使我们尽可能地缓存这些数据。正如我们遇到过的，缓存和缓存失效很容易出错，我们发现许多问题都无法重现。现在我们在渲染的时候可以直接建立映射，因为我们有了节点的钩子。</p>
 <blockquote>
 <p><code>data-reactid</code>仍然存在于服务端渲染中。不管怎样，这已经比以前要小很多了，并且这只是一个简单的自增计数器。</p>
@@ -441,7 +442,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -449,7 +450,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -458,7 +459,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -87,18 +87,24 @@
 
 
 <meta name="description" content="whereis搜索命令所在路径及帮助文档所在位置
-选项：-b 只查找可执行文件-m 只查找帮助文件">
+选项：
+-b 只查找可执行文件
+-m 只查找帮助文件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搜索命令之locate、whereis、which、find、grep">
 <meta property="og:url" content="http://robin-front.github.io/2016/03/07/搜索命令之locate、whereis、which、find、grep/index.html">
 <meta property="og:site_name" content="三寸稚笔">
 <meta property="og:description" content="whereis搜索命令所在路径及帮助文档所在位置
-选项：-b 只查找可执行文件-m 只查找帮助文件">
+选项：
+-b 只查找可执行文件
+-m 只查找帮助文件">
 <meta property="og:updated_time" content="2016-03-06T16:58:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搜索命令之locate、whereis、which、find、grep">
 <meta name="twitter:description" content="whereis搜索命令所在路径及帮助文档所在位置
-选项：-b 只查找可执行文件-m 只查找帮助文件">
+选项：
+-b 只查找可执行文件
+-m 只查找帮助文件">
 
 
 
@@ -319,7 +325,10 @@
 
       
         <h3 id="whereis"><a href="#whereis" class="headerlink" title="whereis"></a>whereis</h3><p>搜索命令所在路径及帮助文档所在位置</p>
-<p>选项：<br>-b 只查找可执行文件<br>-m 只查找帮助文件<br><a id="more"></a></p>
+<p>选项：
+-b 只查找可执行文件
+-m 只查找帮助文件
+<a id="more"></a></p>
 <blockquote>
 <p>也可以通过 whereis 命令来判断是否是shell内部命令</p>
 </blockquote>
@@ -328,14 +337,28 @@
 <p>与whereis的区别在于 which 不仅可以查看命令所在路径，还可以查看到命令的别名</p>
 </blockquote>
 <h3 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h3><p>搜索文件名最快的方式，根据后台数据库/var/lib/mlocate搜索</p>
-<p>updatedb 命令手动更新数据库，数据库更新不是即时的，一般需要一天<br>/etc/updatedb.conf 配置文件，用于配置搜索限制</p>
+<p>updatedb 命令手动更新数据库，数据库更新不是即时的，一般需要一天
+/etc/updatedb.conf 配置文件，用于配置搜索限制</p>
 <h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p>最强大的搜索命令，但同时带来性能问题</p>
 <blockquote>
 <p>find [搜索范围] [搜索条件]</p>
 </blockquote>
-<p>-name 按文件名搜索<br>-iname 不区分大小写搜索<br>-user 按照所有者搜索<br>-nouser 查找没有所有者的文件<br>-mtime 按修改文件的日期搜索，如：+10 查找10天前修改的文件， -10 查找10内修改的文件， 10 查找10天当天修改的文件<br>-atime 文件访问时间<br>-ctime 改变文件属性时间<br>-size 按照文件大小按索，如： find . -size 25k，注意 k 是小写， M是大写<br>-inum 按照i节点查找文件<br>-a 逻辑与 and,两个条件都满足，如： find /root -size +20k -a -size -1M 查找大于20k且小于1M的文件<br>-o 逻辑或 or,两个条件满足一个即可<br>-exec 命令 {} \; 对搜索结果执行操作，如： find /root -size 25k -exec rm -rf {} \; 查找/root目录下25k大小的文件之后删除</p>
+<p>-name 按文件名搜索
+-iname 不区分大小写搜索
+-user 按照所有者搜索
+-nouser 查找没有所有者的文件
+-mtime 按修改文件的日期搜索，如：+10 查找10天前修改的文件， -10 查找10内修改的文件， 10 查找10天当天修改的文件
+-atime 文件访问时间
+-ctime 改变文件属性时间
+-size 按照文件大小按索，如： find . -size 25k，注意 k 是小写， M是大写
+-inum 按照i节点查找文件
+-a 逻辑与 and,两个条件都满足，如： find /root -size +20k -a -size -1M 查找大于20k且小于1M的文件
+-o 逻辑或 or,两个条件满足一个即可
+-exec 命令 {} \; 对搜索结果执行操作，如： find /root -size 25k -exec rm -rf {} \; 查找/root目录下25k大小的文件之后删除</p>
 <h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p>在文件中搜索符合条件的字符串</p>
-<p>选项：<br>-i 忽略大小写<br>-v 排除指定字符串</p>
+<p>选项：
+-i 忽略大小写
+-v 排除指定字符串</p>
 <blockquote>
 <p>grep 是包含匹配，只要含有匹配的字符串，一整行都会输出；find 是完全匹配，只输出文件名完全一样的文件</p>
 </blockquote>
@@ -455,7 +478,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -463,7 +486,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -472,7 +495,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

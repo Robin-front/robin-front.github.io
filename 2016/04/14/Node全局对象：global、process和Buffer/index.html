@@ -86,16 +86,22 @@
 
 
 
-<meta name="description" content="global对象，也是Node的全局命名空间；process对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；Buffer类，它提供了存储和操作原始数据的功能，同样它也是全局可见的">
+<meta name="description" content="global对象，也是Node的全局命名空间；
+process对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；
+Buffer类，它提供了存储和操作原始数据的功能，同样它也是全局可见的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node全局对象：global、process和Buffer">
 <meta property="og:url" content="http://robin-front.github.io/2016/04/14/Node全局对象：global、process和Buffer/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="global对象，也是Node的全局命名空间；process对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；Buffer类，它提供了存储和操作原始数据的功能，同样它也是全局可见的">
+<meta property="og:description" content="global对象，也是Node的全局命名空间；
+process对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；
+Buffer类，它提供了存储和操作原始数据的功能，同样它也是全局可见的">
 <meta property="og:updated_time" content="2016-04-14T15:39:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node全局对象：global、process和Buffer">
-<meta name="twitter:description" content="global对象，也是Node的全局命名空间；process对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；Buffer类，它提供了存储和操作原始数据的功能，同样它也是全局可见的">
+<meta name="twitter:description" content="global对象，也是Node的全局命名空间；
+process对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；
+Buffer类，它提供了存储和操作原始数据的功能，同样它也是全局可见的">
 
 
 
@@ -315,7 +321,10 @@
       
 
       
-        <p><code>global</code>对象，也是<code>Node</code>的全局命名空间；<br><code>process</code>对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；<br><code>Buffer</code>类，它提供了存储和操作原始数据的功能，同样它也是全局可见的<br><a id="more"></a></p>
+        <p><code>global</code>对象，也是<code>Node</code>的全局命名空间；
+<code>process</code>对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；
+<code>Buffer</code>类，它提供了存储和操作原始数据的功能，同样它也是全局可见的
+<a id="more"></a></p>
 <h2 id="global"><a href="#global" class="headerlink" title="global"></a>global</h2><p>global与浏览器中的<code>window</code>对象是相似的，它们的关健不同点是：</p>
 <p>浏览器中的<code>window</code>对象是一个真正全局的对象。如果在客户端 <code>JavaScript</code>中定义一个全局变量，它将能够被Web页面以及每一个独立的库访问到。</p>
 <p><strong> 而<code>Node</code>模块中创建一个顶层变量（函数之外的变量），它仅仅在该模块中是全局的，而在其他模块中是不可见的。只有那些被模块显式导出的部分才能被引用该模块的应用程序所使用。 </strong></p>
@@ -330,7 +339,8 @@
 <p><strong> <code>process.nextTick</code> 方法 </strong></p>
 <p>这个方法可以将一个回调函数挂载到<code>Node</code>程序的事件循环机制中，并在下一个事件循环发生时调用该函数。 例：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">asynchFunction</span> = <span class="title">function</span> (<span class="params">data, cb</span>) </span>&#123;</div><div class="line">  process.nextTick(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    cb(val)</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>虽然使用 <code>setTimout</code> 方法并传入一个0毫秒的延迟可以过到同样的目的<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">setTimout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  cb(val)</div><div class="line">&#125;, <span class="number">0</span>)</div></pre></td></tr></table></figure></p>
+<p>虽然使用 <code>setTimout</code> 方法并传入一个0毫秒的延迟可以过到同样的目的
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">setTimout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  cb(val)</div><div class="line">&#125;, <span class="number">0</span>)</div></pre></td></tr></table></figure></p>
 <p><strong> 但是，<code>setTimout</code>并不像 <code>process.nextTick</code>那样高效，<code>process.nextTick</code>的调用速度远远快于<code>setTimout</code>方法 </strong></p>
 <p>首先你需要将耗时的处理过和打散并分解成多个部分，每个部分分别通过 <code>process.nextTick</code>调用，最终使得应用程序可以对其他请求进行处理，而无需等待耗时计算过程完成。</p>
 <h2 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h2><p><code>Buffer</code> 是用于处理二进制数据的一种方式。</p>
@@ -461,7 +471,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -469,7 +479,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -478,7 +488,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

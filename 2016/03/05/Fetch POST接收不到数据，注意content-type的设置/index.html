@@ -354,7 +354,8 @@ PNG ... content of chrome.png ...
 ------WebKitFormBoundaryrGKCBY7qhFd3TrwA--
 </code></pre><p>如果我们使用 new FormData()作为数据主体提交，也需要设置这种类型。</p>
 <h3 id="application-json"><a href="#application-json" class="headerlink" title="application/json"></a>application/json</h3><p>把它作为请求头，用来告诉服务端消息主体是序列化后的 JSON 字符串。但也有些服务端语言还没有支持这种方式，例如 php 就无法通过 $_POST 对象从上面的请求中获得内容。这时候，需要自己动手处理下：在请求头中 Content-Type 为 application/json 时，从 php://input 里获得原始输入流，再 json_decode 成对象。</p>
-<p>参考：<br><a href="https://imququ.com/post/four-ways-to-post-data-in-http.html" target="_blank" rel="external">四种常见的 POST 提交数据方式</a></p>
+<p>参考：
+<a href="https://imququ.com/post/four-ways-to-post-data-in-http.html" target="_blank" rel="external">四种常见的 POST 提交数据方式</a></p>
 
       
     </div>
@@ -475,7 +476,7 @@ PNG ... content of chrome.png ...
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -483,7 +484,7 @@ PNG ... content of chrome.png ...
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -492,7 +493,7 @@ PNG ... content of chrome.png ...
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -315,7 +315,8 @@
       
 
       
-        <p>之前了解的自动化部署都是<code>jekins</code>这样集成化的成熟的工具。最近因为有朋友提交代码时，不想登陆服务器拉取代码，才了解到 <code>git hooks</code>。看来还是git使用不到位。之前一直都是本地开发并提交代码，测试时，人工登陆测试服务器去拉取最新代码。<br><a id="more"></a></p>
+        <p>之前了解的自动化部署都是<code>jekins</code>这样集成化的成熟的工具。最近因为有朋友提交代码时，不想登陆服务器拉取代码，才了解到 <code>git hooks</code>。看来还是git使用不到位。之前一直都是本地开发并提交代码，测试时，人工登陆测试服务器去拉取最新代码。
+<a id="more"></a></p>
 <p>网上资料还是比较多的，最后在本机测试是成功了的。</p>
 <p>主要选要明白几个关键点：</p>
 <ul>
@@ -324,9 +325,14 @@
 <li>SSH 认证</li>
 </ul>
 <p>这几个都比较容易找到资料。</p>
-<h3 id="git-init-–bare"><a href="#git-init-–bare" class="headerlink" title="git init –bare"></a>git init –bare</h3><p>和 <code>git init</code> 不一样的是，<code>git init --bare</code>并不存储实际代码，仓库文件夹不会看到任何项目代码，反而生成了一些 <code>.git</code>之外的文件夹，其中 <code>hooks</code>文件夹就是存放git命令操作后需要执行的脚本。<br>需要新建两个文件夹，一个执行<code>git init --bare</code>作为远端仓库，一个执行<code>git init</code>作为服务器项目目录。<br>本地开发目录和服务器项目目录的<code>remote</code>都要指向 服务器的远端仓库。</p>
-<h3 id="post-receive-文件"><a href="#post-receive-文件" class="headerlink" title="post-receive 文件"></a>post-receive 文件</h3><p>post-receive 文件是git push 之后，执行的脚本文件，自动部署的脚本代码就写在这里。<br>如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="built_in">unset</span> GIT_DIR</div><div class="line"><span class="built_in">echo</span> <span class="string">"远程开始更新"</span></div><div class="line">NowPath=`<span class="built_in">pwd</span>`</div><div class="line"><span class="built_in">echo</span> <span class="variable">$NowPath</span></div><div class="line">DeployPath=<span class="string">"../deploy"</span></div><div class="line"></div><div class="line"><span class="built_in">cd</span> <span class="variable">$DeployPath</span></div><div class="line">git pull origin master</div><div class="line"><span class="built_in">echo</span> <span class="string">"远程更新完毕"</span></div><div class="line"><span class="built_in">cd</span> <span class="variable">$NowPath</span></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure></p>
-<p>这里有一点比较容易出问题的就是路径，最好还是使用绝对路径。<br>脚本里还可以加入任何想执行的脚本，比如打包编译。</p>
+<h3 id="git-init-–bare"><a href="#git-init-–bare" class="headerlink" title="git init –bare"></a>git init –bare</h3><p>和 <code>git init</code> 不一样的是，<code>git init --bare</code>并不存储实际代码，仓库文件夹不会看到任何项目代码，反而生成了一些 <code>.git</code>之外的文件夹，其中 <code>hooks</code>文件夹就是存放git命令操作后需要执行的脚本。
+需要新建两个文件夹，一个执行<code>git init --bare</code>作为远端仓库，一个执行<code>git init</code>作为服务器项目目录。
+本地开发目录和服务器项目目录的<code>remote</code>都要指向 服务器的远端仓库。</p>
+<h3 id="post-receive-文件"><a href="#post-receive-文件" class="headerlink" title="post-receive 文件"></a>post-receive 文件</h3><p>post-receive 文件是git push 之后，执行的脚本文件，自动部署的脚本代码就写在这里。
+如：
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="built_in">unset</span> GIT_DIR</div><div class="line"><span class="built_in">echo</span> <span class="string">"远程开始更新"</span></div><div class="line">NowPath=`<span class="built_in">pwd</span>`</div><div class="line"><span class="built_in">echo</span> <span class="variable">$NowPath</span></div><div class="line">DeployPath=<span class="string">"../deploy"</span></div><div class="line"></div><div class="line"><span class="built_in">cd</span> <span class="variable">$DeployPath</span></div><div class="line">git pull origin master</div><div class="line"><span class="built_in">echo</span> <span class="string">"远程更新完毕"</span></div><div class="line"><span class="built_in">cd</span> <span class="variable">$NowPath</span></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure></p>
+<p>这里有一点比较容易出问题的就是路径，最好还是使用绝对路径。
+脚本里还可以加入任何想执行的脚本，比如打包编译。</p>
 <blockquote>
 <p>不过要注意使用 chmod +x post-receive 改变一下权限，服务器端的配置就基本完成了。</p>
 </blockquote>
@@ -448,7 +454,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -456,7 +462,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -465,7 +471,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -315,7 +315,8 @@
       
 
       
-        <p>在<code>Node</code>中使用子进程的目的，正是希望从<code>Node</code>应用程序中通过命令行的方式访问计算机资源。<br><a id="more"></a></p>
+        <p>在<code>Node</code>中使用子进程的目的，正是希望从<code>Node</code>应用程序中通过命令行的方式访问计算机资源。
+<a id="more"></a></p>
 <p>共有四种不同的技术来创建一个子进程</p>
 <h3 id="child-process-spawn"><a href="#child-process-spawn" class="headerlink" title="child_process.spawn"></a>child_process.spawn</h3><p><code>spawn</code>是创建子进程最常见的方法。例：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).spawn,</div><div class="line">    pwd = spawn(<span class="string">'pwd'</span>);</div><div class="line"></div><div class="line">pwd.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'stdout:'</span> + data);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">pwd.stderr.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'stderr'</span> + data);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">pwd.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">code</span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'child process close with code'</span> + code);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">pwd.on(<span class="string">'exit'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">code</span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'child process exit with code'</span> + code);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
@@ -325,7 +326,8 @@
 <li>子进程退出代码为 1，表示发生了错误；没有错误时，退出代码为 0</li>
 <li>尽量使用<code>close</code>事件而不是<code>exit</code>事件，在进程结束后访问其数据可能会导致应用程序崩溃</li>
 </ul>
-<p>如何使用 <code>stdin</code> 标准输入对象呢：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).spawn,</div><div class="line">    find = spawn(<span class="string">'find'</span>, [<span class="string">'.'</span>, <span class="string">'-ls'</span>]),</div><div class="line">    grep = spawn(<span class="string">'grep'</span>, [<span class="string">'test'</span>]);</div><div class="line"></div><div class="line">grep.stdout.setEncoding(<span class="string">'utf8'</span>);</div><div class="line"></div><div class="line">find.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">  grep.stdin.write(data);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">grep.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(data);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>如何使用 <code>stdin</code> 标准输入对象呢：
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).spawn,</div><div class="line">    find = spawn(<span class="string">'find'</span>, [<span class="string">'.'</span>, <span class="string">'-ls'</span>]),</div><div class="line">    grep = spawn(<span class="string">'grep'</span>, [<span class="string">'test'</span>]);</div><div class="line"></div><div class="line">grep.stdout.setEncoding(<span class="string">'utf8'</span>);</div><div class="line"></div><div class="line">find.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">  grep.stdin.write(data);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">grep.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(data);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
 <p>上面这段例子模拟了<code>Unix</code>管道（|）功能，可以将一个命令的结果传递给另一个命令作为输入。</p>
 <h3 id="child-process-exec-和-child-process-execFile"><a href="#child-process-exec-和-child-process-execFile" class="headerlink" title="child_process.exec 和 child_process.execFile"></a>child_process.exec 和 child_process.execFile</h3><p>通过 <code>child_process.exec</code> 和 <code>child_process.execFile</code> 来启动 <code>shell</code> 执行命令可以缓存命令执行的结果</p>
 <p><code>child_process.execFile</code> 的第一个参数是命令或执行文件路径， 第二个参数是可选参数列表， 第三个参数是回调函数，该回调函数有三个参数： error, stdout 和 stderr。如果没有发生错误，执行结果会保存到 stdout。</p>
@@ -333,7 +335,8 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> execFile = <span class="built_in">require</span>(<span class="string">'child_process'</span>).execFile,</div><div class="line">    child;</div><div class="line"></div><div class="line">child = execFile(<span class="string">'ls'</span>, [<span class="string">'-l'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">error, stdout, stderr</span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span> (error == <span class="literal">null</span>) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'stdout: '</span> + stdout);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p><code>execFile</code> 方法会更安全，因为它的命令行参数作为数组传入。</p>
 <h3 id="child-process-fork"><a href="#child-process-fork" class="headerlink" title="child_process.fork"></a>child_process.fork</h3><p><code>fork</code> 其实是对 <code>spawn</code>的封装，目的是为了启动子进程并运行 <code>Node.js</code>模块。</p>
-<p>例：<br><code>fork(&#39;./child.js&#39;)</code> 相当于 <code>spawn(&#39;node&#39;, [&#39;./child.js&#39;])</code></p>
+<p>例：
+<code>fork(&#39;./child.js&#39;)</code> 相当于 <code>spawn(&#39;node&#39;, [&#39;./child.js&#39;])</code></p>
 <p>此方法会在父进程与子进程之间建立一个真实的通信管道，用于进程之间的通信。但通过<code>fork</code>生成的每个子进程都需要一个全新的 V8 实例，这需要耗费更多时间和内存。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> n = child_process.fork(<span class="string">'./child.js'</span>);</div><div class="line">n.on(<span class="string">'message'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">m</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'PARENT got message:'</span>, m);</div><div class="line">&#125;);</div><div class="line">n.send(&#123; <span class="attr">hello</span>: <span class="string">'world'</span> &#125;);</div></pre></td></tr></table></figure>
 <blockquote>
@@ -455,7 +458,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -463,7 +466,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -472,7 +475,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

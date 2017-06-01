@@ -319,7 +319,8 @@ Lerp是两点之间的线性插值的别称。这是一个实现起来相当简�
 
       
         <p>上一篇的 <a href="http://robin-front.github.io/2017/03/19/RxJS%E7%9A%84%E5%8A%A8%E7%94%BB%E7%AE%80%E4%BB%8B/">RxJS的动画简介</a> 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。</p>
-<p><code>Lerp</code>是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.<br><a id="more"></a></p>
+<p><code>Lerp</code>是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.
+<a id="more"></a></p>
 <h1 id="它是如何工作的？"><a href="#它是如何工作的？" class="headerlink" title="它是如何工作的？"></a>它是如何工作的？</h1><p>如果您有一个对象的当前位置和目标的位置，您可以线性内插这些点之间的距离的百分比，并在每个动画帧上更新该位置。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lerp</span>(<span class="params">position, targetPosition</span>) </span>&#123;</div><div class="line"><span class="comment">// 计算当前位置与目标位置差值的 20%</span></div><div class="line">  position.x += (targetPosition.x - position.x)*<span class="number">0.2</span>;</div><div class="line">  position.y += (targetPosition.y - position.y)*<span class="number">0.2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>通过这样做，对象移动的量随着位置和目标之间的距离减小而变小。这意味着对象将越来越接近它的目标，速度将减慢，这创造一个很好的缓和效果。</p>
@@ -452,7 +453,7 @@ Lerp是两点之间的线性插值的别称。这是一个实现起来相当简�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -460,7 +461,7 @@ Lerp是两点之间的线性插值的别称。这是一个实现起来相当简�
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -469,7 +470,7 @@ Lerp是两点之间的线性插值的别称。这是一个实现起来相当简�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

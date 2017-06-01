@@ -335,7 +335,8 @@ gulp.task(&apos;default&apos;, function () {
 </code></pre><p><code>gulp-imagemin</code> 可以压缩几乎所有图片格式 PNG, JPEG, GIF and SVG，其中png压缩是使用了 <a href="https://github.com/imagemin/imagemin-pngquant" target="_blank" rel="external">pngquant</a> ,需要先另外安装：</p>
 <pre><code>$ npm install --save imagemin-pngquant
 </code></pre><p>但是，图片其实并不需要每次构建都压缩，一般只需要在发布或测试的时候一次性压缩就可以了。 所以也可以不使用 gulp 工具进行图片压缩，直接使用 <a href="https://pngquant.org/" target="_blank" rel="external">pngquant</a>。</p>
-<p>pngquant 使用起来也是很方便的，下载对应版本，windows下添加文件目录到系统环境变量，进入到相应目录，直接使用命令行<br><code>pngquant *.png</code> 即可完成压缩，可以看到目录下生成后缀名为 <code>-fs8.png</code> 或 <code>-or8.png</code>的图片。</p>
+<p>pngquant 使用起来也是很方便的，下载对应版本，windows下添加文件目录到系统环境变量，进入到相应目录，直接使用命令行
+<code>pngquant *.png</code> 即可完成压缩，可以看到目录下生成后缀名为 <code>-fs8.png</code> 或 <code>-or8.png</code>的图片。</p>
 <p>查看 <a href="https://github.com/pornel/pngquant" target="_blank" rel="external">Readme.md</a> 配置相应参数</p>
 <h1 id="pngquant常用的主要参数"><a href="#pngquant常用的主要参数" class="headerlink" title="pngquant常用的主要参数"></a>pngquant常用的主要参数</h1><p><code>--quality min-max</code></p>
 <p>类似JPEG的质量，设置0 ~ 100 的图片压缩质量。</p>
@@ -462,7 +463,7 @@ gulp.task(&apos;default&apos;, function () {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -470,7 +471,7 @@ gulp.task(&apos;default&apos;, function () {
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -479,7 +480,7 @@ gulp.task(&apos;default&apos;, function () {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -321,7 +321,8 @@ Immutable.jsImmutable.js 本身和 React.js 没有必然的联系。它的意义
 
       
         <p>前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。</p>
-<h3 id="Immutable-js"><a href="#Immutable-js" class="headerlink" title="Immutable.js"></a>Immutable.js</h3><p>Immutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。<br><a id="more"></a></p>
+<h3 id="Immutable-js"><a href="#Immutable-js" class="headerlink" title="Immutable.js"></a>Immutable.js</h3><p>Immutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。
+<a id="more"></a></p>
 <p>Javascript中对象都是参考类型，也就是a={a:1}; b=a; b.a=10;你发现a.a也变成10了。可变的好处是节省内存或是利用可变性做一些事情，但是，在复杂的开发中它的副作用远比好处大的多。于是才有了浅copy和深copy，就是为了解决这个问题。举个常见例子：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> defaultConfig = &#123; <span class="comment">/* 默认值 */</span>&#125;;</div><div class="line"><span class="keyword">var</span> config = $.extend(&#123;&#125;, defaultConfig, initConfig); <span class="comment">// jQuery用法。initConfig是自定义值</span></div><div class="line"><span class="keyword">var</span> config = $.extend(<span class="literal">true</span>, &#123;&#125;, defaultConfig, initConfig); <span class="comment">// 如果对象是多层的，就用到deep-copy了</span></div></pre></td></tr></table></figure>
 <p>ES6出现原生的assign方法，但它相当于是浅copy。如果有了不可变的数据结构就省心了，ES5.1中对象有了freeze方法，也是浅copy，a=Object.freeze({a:1}); b=a; b.a=10; a.a还是1。在实际开发中浅copy通常不够。如果用immutableJS:</p>
@@ -336,21 +337,25 @@ Immutable.jsImmutable.js 本身和 React.js 没有必然的联系。它的意义
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; <span class="built_in">Map</span>&#125; <span class="keyword">from</span> <span class="string">'immutable'</span>;</div><div class="line"><span class="keyword">let</span> a = <span class="built_in">Map</span>(&#123;</div><div class="line">  <span class="attr">select</span>: <span class="string">'users'</span>,</div><div class="line">  <span class="attr">filter</span>: <span class="built_in">Map</span>(&#123; <span class="attr">name</span>: <span class="string">'Cam'</span> &#125;)</div><div class="line">&#125;)</div><div class="line"><span class="keyword">let</span> b = a.set(<span class="string">'select'</span>, <span class="string">'people'</span>);</div><div class="line"></div><div class="line">a === b; <span class="comment">// false</span></div><div class="line">a.get(<span class="string">'filter'</span>) === b.get(<span class="string">'filter'</span>); <span class="comment">// true</span></div></pre></td></tr></table></figure>
 <p>上面 a 和 b 共享了没有变化的 <code>filter</code> 节点。</p>
 <h4 id="3-Undo-Redo，Copy-Paste，甚至时间旅行这些功能做起来小菜一碟"><a href="#3-Undo-Redo，Copy-Paste，甚至时间旅行这些功能做起来小菜一碟" class="headerlink" title="3. Undo/Redo，Copy/Paste，甚至时间旅行这些功能做起来小菜一碟"></a>3. Undo/Redo，Copy/Paste，甚至时间旅行这些功能做起来小菜一碟</h4><p>因为每次数据都是不一样的，只要把这些数据放到一个数组里储存起来，想回退到哪里就拿出对应数据即可，很容易开发出撤销重做这种功能。</p>
-<h3 id="为什么在React-js中使用Immutable-js"><a href="#为什么在React-js中使用Immutable-js" class="headerlink" title="为什么在React.js中使用Immutable.js"></a>为什么在React.js中使用Immutable.js</h3><p>熟悉React.js的都应该知道，React.js是一个UI = f(states)的框架，为了解决更新的问题，React.js使用了virtual dom，virtual dom通过diff修改dom，来实现高效的dom更新。<br>听起来很完美吧，但是有一个问题。当state更新时，如果数据没变，你也会去做virtual dom的diff，这就产生了浪费。这种情况其实很常见，如：</p>
+<h3 id="为什么在React-js中使用Immutable-js"><a href="#为什么在React-js中使用Immutable-js" class="headerlink" title="为什么在React.js中使用Immutable.js"></a>为什么在React.js中使用Immutable.js</h3><p>熟悉React.js的都应该知道，React.js是一个UI = f(states)的框架，为了解决更新的问题，React.js使用了virtual dom，virtual dom通过diff修改dom，来实现高效的dom更新。
+听起来很完美吧，但是有一个问题。当state更新时，如果数据没变，你也会去做virtual dom的diff，这就产生了浪费。这种情况其实很常见，如：</p>
 <p>熟悉 React 组件生命周期的话都知道：调用 setState 方法总是会触发 render 方法从而进行 vdom re-render 相关逻辑，哪怕实际上你没有更改到 Component.state 。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.state = &#123;<span class="attr">count</span>: <span class="number">0</span>&#125;</div><div class="line"><span class="keyword">this</span>.setState(&#123;<span class="attr">count</span>: <span class="number">0</span>&#125;);<span class="comment">// 组件 state 并未被改变，但仍会触发 render 方法</span></div></pre></td></tr></table></figure>
 <p>为了避免这种性能上的浪费，React 提供了一个 shouldComponentUpdate 来控制触发 vdom re-render 逻辑的条件。于是 PureRenderMixin 作为一种优化技巧被使用。但PureRenderMixin只是简单的浅比较，不使用于多层比较。那怎么办？？自己去做复杂比较的话，性能又会非常差。</p>
 <p>这时候 immutableJS 就派得上用场了：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> map1 = Immutable.fromJS(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">1</span>, <span class="attr">c</span>:&#123;<span class="attr">b</span>:&#123;<span class="attr">c</span>:&#123;<span class="attr">d</span>:&#123;<span class="attr">e</span>:<span class="number">7</span>&#125;&#125;&#125;&#125;&#125;);</div><div class="line"><span class="keyword">var</span> map2 = Immutable.fromJS(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">1</span>, <span class="attr">c</span>:&#123;<span class="attr">b</span>:&#123;<span class="attr">c</span>:&#123;<span class="attr">d</span>:&#123;<span class="attr">e</span>:<span class="number">7</span>&#125;&#125;&#125;&#125;&#125;);</div><div class="line">Immutable.is(map1, map2); <span class="comment">// true</span></div></pre></td></tr></table></figure>
 <p>每一次state更新只要有数据改变，那么PureRenderMixin可以立刻判断出数据改变，可以大大提升性能。</p>
-<h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><h4 id="与-React-搭配使用，Pure-Render"><a href="#与-React-搭配使用，Pure-Render" class="headerlink" title="与 React 搭配使用，Pure Render"></a>与 React 搭配使用，Pure Render</h4><p>可以使用 <a href="https://github.com/jurassix/react-immutable-render-mixin" target="_blank" rel="external">react-immutable-render-mixin</a><br>通过es6的修饰器 @decorator 来使用</p>
+<h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><h4 id="与-React-搭配使用，Pure-Render"><a href="#与-React-搭配使用，Pure-Render" class="headerlink" title="与 React 搭配使用，Pure Render"></a>与 React 搭配使用，Pure Render</h4><p>可以使用 <a href="https://github.com/jurassix/react-immutable-render-mixin" target="_blank" rel="external">react-immutable-render-mixin</a>
+通过es6的修饰器 @decorator 来使用</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; immutableRenderDecorator &#125; <span class="keyword">from</span> <span class="string">'react-immutable-render-mixin'</span>;</div><div class="line"></div><div class="line">@immutableRenderDecorator</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>或者直接</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> immutableRenderMixin <span class="keyword">from</span> <span class="string">'react-immutable-render-mixin'</span>;</div><div class="line"></div><div class="line">React.createClass(&#123;</div><div class="line">  <span class="attr">mixins</span>: [immutableRenderMixin],</div><div class="line"></div><div class="line">  <span class="attr">render</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;this.props.className&#125;</span>&gt;</span>foo<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <h3 id="与-Redux-搭配使用"><a href="#与-Redux-搭配使用" class="headerlink" title="与 Redux 搭配使用"></a>与 Redux 搭配使用</h3><p>Redux 是目前流行的 Flux 衍生库。它简化了 Flux 中多个 Store 的概念，只有一个 Store，数据操作通过 Reducer 中实现；同时它提供更简洁和清晰的单向数据流（View -&gt; Action -&gt; Middleware -&gt; Reducer），也更易于开发同构应用。目前已经在我们项目中大规模使用。</p>
 <p>由于 Redux 中内置的 combineReducers 和 reducer 中的 initialState 都为原生的 Object 对象，所以不能和 Immutable 原生搭配使用。</p>
 <p>幸运的是，Redux 并不排斥使用 Immutable，可以自己重写 combineReducers 或使用 redux-immutablejs 来提供支持。</p>
-<p>本文原文链接：<br><a href="https://www.zhihu.com/question/28016223/" target="_blank" rel="external">facebook immutable.js 意义何在，使用场景？</a><br><a href="https://github.com/camsong/blog/issues/3" target="_blank" rel="external">Immutable 详解及 React 中实践</a>基本没有改动。</p>
+<p>本文原文链接：
+<a href="https://www.zhihu.com/question/28016223/" target="_blank" rel="external">facebook immutable.js 意义何在，使用场景？</a>
+<a href="https://github.com/camsong/blog/issues/3" target="_blank" rel="external">Immutable 详解及 React 中实践</a>基本没有改动。</p>
 
       
     </div>
@@ -469,7 +474,7 @@ Immutable.jsImmutable.js 本身和 React.js 没有必然的联系。它的意义
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -477,7 +482,7 @@ Immutable.jsImmutable.js 本身和 React.js 没有必然的联系。它的意义
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -486,7 +491,7 @@ Immutable.jsImmutable.js 本身和 React.js 没有必然的联系。它的意义
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

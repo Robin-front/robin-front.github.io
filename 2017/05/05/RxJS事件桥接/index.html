@@ -317,7 +317,8 @@
       
         <h1 id="事件桥接"><a href="#事件桥接" class="headerlink" title="事件桥接"></a>事件桥接</h1><p>RxJS 提供工厂方法来桥接 DOM 或 Node.js 中已存在的异步数据源，所以，你可以使用丰富的创作、过滤和资源管理功能对RxJS提供的任何类型的数据流进行操作。这篇文章探讨 <a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/api/core/operators/fromevent.md" target="_blank" rel="external"><code>fromEvent</code></a> 和 <a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/api/core/operators/fromeventpattern.md" target="_blank" rel="external"><code>fromEventPattern</code></a>操作符，它允许导入一个 DOM 或者普通事件到 RxJS 的数据流。每次引发事件时，一个 <code>OnNext</code> 消息将传递到数据流。然后，可以像其他任何数据流一样操作事件数据流。</p>
 <p>RxJS 不打算取代现有的异步编程模型如 <code>Promises</code> 或 <code>callbacks</code>。但是，当你尝试组合事件， RxJS的工厂方法会提供简便的方法给你，你完全感受不到当前使用了何种编程模式。这真的很方便维护（比如取消订阅）和筛选（比如选择合适的数据）数据源。在本节和下节中，你可以尝试 RxJS 的这些特性如何协助你完成异步编程。</p>
-<p>自然，RxJS 支持一批库和他们的勾子函数去使用他们的事件系统，比如 <a href="http://jquery.com/" target="_blank" rel="external">jQuery</a>, <a href="http://zeptojs.com/" target="_blank" rel="external">Zepto.js</a>, <a href="https://angularjs.org/" target="_blank" rel="external">AngularJS</a>, <a href="http://emberjs.com/" target="_blank" rel="external">Ember.js</a> 和 <a href="http://backbonejs.org" target="_blank" rel="external">Backbone.js</a>。这种行为，不管怎样只能重写本地绑定。默认情况下， RxJS 也支持 <a href="http://nodejs.org" target="_blank" rel="external">Node.js</a> <code>EventEmitter</code> 的事件勾子。<br><a id="more"></a></p>
+<p>自然，RxJS 支持一批库和他们的勾子函数去使用他们的事件系统，比如 <a href="http://jquery.com/" target="_blank" rel="external">jQuery</a>, <a href="http://zeptojs.com/" target="_blank" rel="external">Zepto.js</a>, <a href="https://angularjs.org/" target="_blank" rel="external">AngularJS</a>, <a href="http://emberjs.com/" target="_blank" rel="external">Ember.js</a> 和 <a href="http://backbonejs.org" target="_blank" rel="external">Backbone.js</a>。这种行为，不管怎样只能重写本地绑定。默认情况下， RxJS 也支持 <a href="http://nodejs.org" target="_blank" rel="external">Node.js</a> <code>EventEmitter</code> 的事件勾子。
+<a id="more"></a></p>
 <h2 id="将一个-DOM-事件转换成-RxJS-数据流"><a href="#将一个-DOM-事件转换成-RxJS-数据流" class="headerlink" title="将一个 DOM 事件转换成 RxJS 数据流"></a>将一个 DOM 事件转换成 RxJS 数据流</h2><p>接下来这个例子为鼠标移动事件创建了一个 DOM 事件操作，并且在页面上打印出鼠标的坐标。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> result = <span class="built_in">document</span>.getElementById(<span class="string">'result'</span>);</div><div class="line"></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'mousemove'</span>, e =&gt; result.innerHTML = e.clientX + <span class="string">', '</span> + e.clientY, <span class="literal">false</span>);</div></pre></td></tr></table></figure>
 <p>导入一个事件到 RxJS, 你可以使用 <a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/api/core/operators/fromevent.md" target="_blank" rel="external"><code>fromEvent</code></a> 操作符，并且传入被桥接的事件参数。然后它会将事件转换成数据流。</p>
@@ -470,7 +471,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -478,7 +479,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -487,7 +488,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

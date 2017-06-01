@@ -300,20 +300,23 @@
 
       
         <p>PostCSS拥有非常多的插件，诸如自动为CSS添加浏览器前缀的插件autoprefixer、当前移动端最常用的px转rem插件px2rem，还有支持尚未成为CSS标准但特定可用的插件cssnext，还有很多很多。就连著名的Bootstrap在下一个版本Bootstrap 5也将使用PostCSS作为样式的基础。</p>
-<p>一句话来概括PostCSS：CSS编译器能够做到的事情，它也可以做到，而且能够做得更好<br><a id="more"></a></p>
+<p>一句话来概括PostCSS：CSS编译器能够做到的事情，它也可以做到，而且能够做得更好
+<a id="more"></a></p>
 <h3 id="PostCSS性能"><a href="#PostCSS性能" class="headerlink" title="PostCSS性能"></a>PostCSS性能</h3><p>在PostCSS官方推特上看到，由JavaScript编写的PostCSS比C++编写的libsass还要快3倍.</p>
 <p>如果你对上面的性能截图有疑问，可以亲自来<a href="https://github.com/postcss/benchmark" target="_blank" rel="external">这里</a>测试看看。</p>
 <h3 id="常用的插件"><a href="#常用的插件" class="headerlink" title="常用的插件"></a>常用的插件</h3><h4 id="autoprefixer"><a href="#autoprefixer" class="headerlink" title="autoprefixer"></a>autoprefixer</h4><p>首先是最火的官方插件 <code>autoprefixer</code> 。<code>autoprefixer</code> 是为我们的 <code>css</code> 添加前缀的插件，它的数据来源于 <a href="http://caniuse.com/" target="_blank" rel="external">Can I use</a>。目的是让我们写纯粹的 <code>css</code>。例：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">display</span>: flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>会编译成：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">display</span>: -webkit-box;</div><div class="line">    <span class="attribute">display</span>: -webkit-flex;</div><div class="line">    <span class="attribute">display</span>: -ms-flexbox;</div><div class="line">    <span class="attribute">display</span>: flex</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h5 id="Options"><a href="#Options" class="headerlink" title="Options"></a>Options</h5><p>通过 <code>autoprefixer(options)</code> 配置：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var plugin = autoprefixer(&#123; browsers: ['&gt; 1%', 'IE 7'], cascade: false &#125;);</div></pre></td></tr></table></figure></p>
+<h5 id="Options"><a href="#Options" class="headerlink" title="Options"></a>Options</h5><p>通过 <code>autoprefixer(options)</code> 配置：
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var plugin = autoprefixer(&#123; browsers: ['&gt; 1%', 'IE 7'], cascade: false &#125;);</div></pre></td></tr></table></figure></p>
 <ul>
 <li>browsers (array): 指定你需要支持的浏览器列表。可以直接指定浏览器版本（如 IE 7）,也可以使用选项（如： last 2 version 或 &gt; 5%）,具体选项可以查看 <a href="https://github.com/ai/browserslist#queries" target="_blank" rel="external">Browserslist</a></li>
 <li>cascade (boolean): should Autoprefixer use Visual Cascade, if CSS is uncompressed. Default: true</li>
 <li>add (boolean): 是否添加浏览器兼容前缀. 默认值是true.</li>
 <li>remove (boolean): 是否去除无用的浏览器兼容前缀. 默认值是true.</li>
-<li>supports (boolean): should Autoprefixer add prefixes for @supports parameters. Default is true.<br>flexbox (boolean|string): should Autoprefixer add prefixes for flexbox properties. With “no-2009” value Autoprefixer will add prefixes only for final and IE versions of specification. Default is true.</li>
+<li>supports (boolean): should Autoprefixer add prefixes for @supports parameters. Default is true.
+flexbox (boolean|string): should Autoprefixer add prefixes for flexbox properties. With “no-2009” value Autoprefixer will add prefixes only for final and IE versions of specification. Default is true.</li>
 <li>grid (boolean): should Autoprefixer add IE prefixes for Grid Layout properties. Default is true.</li>
 <li>stats (object): custom usage statistics for &gt; 10% in my stats browsers query.</li>
 </ul>
@@ -431,7 +434,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -439,7 +442,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -448,7 +451,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

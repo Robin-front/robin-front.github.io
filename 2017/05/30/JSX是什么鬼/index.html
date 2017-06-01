@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="JSX,react," />
+  <meta name="keywords" content="react,JSX," />
 
 
 
@@ -327,7 +327,8 @@
       
 
       
-        <p>JSX实际上很简单：只需要花1分钟阅读这个，你会明白有关这个有趣的替代模板的一切。<br><a id="more"></a></p>
+        <p>JSX实际上很简单：只需要花1分钟阅读这个，你会明白有关这个有趣的替代模板的一切。
+<a id="more"></a></p>
 <p>替换标题：“融入JSX”</p>
 <h2 id="Pragma"><a href="#Pragma" class="headerlink" title="Pragma"></a>Pragma</h2><p>您可以声明每个文件或每个函数来告诉您的<code>transpiler</code>（例如：<code>Babel</code>）每个节点在运行时应调用的函数的名称（请参阅“<a href="https://jasonformat.com/wtf-is-jsx/#Transpilation" target="_blank" rel="external">Transpilation</a>”）。</p>
 <p>在下面的例子中，我们说的是“ <code>h()</code>为每个节点注入一个函数”：</p>
@@ -360,12 +361,16 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">nodeName</span>: <span class="string">"div"</span>,</div><div class="line">  <span class="attr">attributes</span>: &#123;</div><div class="line">    <span class="string">"id"</span>: <span class="string">"foo"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">children</span>: [<span class="string">"Hello!"</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>所以我们只需要一个接受该格式并抛出实际DOM节点的函数：(即沉染vdom)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">vnode</span>) </span>&#123;  </div><div class="line">    <span class="comment">// 字符串只转换成 文本节点：</span></div><div class="line">    <span class="keyword">if</span> (vnode.split) <span class="keyword">return</span> <span class="built_in">document</span>.createTextNode(vnode);</div><div class="line"></div><div class="line">    <span class="comment">// 使用 VDOM 的 nodeName 创建一个DOM 标签</span></div><div class="line">    <span class="keyword">let</span> n = <span class="built_in">document</span>.createElement(vnode.nodeName);</div><div class="line"></div><div class="line">    <span class="comment">// 拷贝所有属性到新节点上</span></div><div class="line">    <span class="keyword">let</span> a = vnode.attributes || &#123;&#125;;</div><div class="line">    <span class="built_in">Object</span>.keys(a).forEach( <span class="function"><span class="params">k</span> =&gt;</span> n.setAttribute(k, a[k]) );</div><div class="line"></div><div class="line">    <span class="comment">// 渲染并添加子节点</span></div><div class="line">    (vnode.children || []).forEach( <span class="function"><span class="params">c</span> =&gt;</span> n.appendChild(render(c)) );</div><div class="line"></div><div class="line">    <span class="keyword">return</span> n;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>：） 不难理解这是如何工作的。<br>如果有帮助，您可以将“虚拟DOM”视为一个非常简单的配置，用于构建给定的DOM结构。</p>
+<p>：） 不难理解这是如何工作的。
+如果有帮助，您可以将“虚拟DOM”视为一个非常简单的配置，用于构建给定的DOM结构。</p>
 <blockquote>
 <p>虚拟DOM的好处是它非常轻巧。小对象引用其他小对象，一个由易于优化的应用程序逻辑构成的结构。</p>
 <p>这也意味着它不受任何渲染逻辑或缓慢的DOM方法的束缚。</p>
 </blockquote>
-<h2 id="使用JSX"><a href="#使用JSX" class="headerlink" title="使用JSX"></a>使用JSX</h2><p>我们知道<code>JSX</code>被转换成<code>h()</code>函数调用。<br>那些函数调用创建一个简单的“虚拟”DOM树。<br>我们可以使用该<code>render()</code>函数来制作一个匹配的“真实”DOM树。<br>这就是这样的：</p>
+<h2 id="使用JSX"><a href="#使用JSX" class="headerlink" title="使用JSX"></a>使用JSX</h2><p>我们知道<code>JSX</code>被转换成<code>h()</code>函数调用。
+那些函数调用创建一个简单的“虚拟”DOM树。
+我们可以使用该<code>render()</code>函数来制作一个匹配的“真实”DOM树。
+这就是这样的：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// JSX -&gt; VDOM:</span></div><div class="line"><span class="keyword">let</span> vdom = <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"foo"</span>&gt;</span>Hello!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// VDOM -&gt; DOM:</span></div><div class="line"><span class="keyword">let</span> dom = render(vdom);</div><div class="line"></div><div class="line"><span class="comment">// add the tree to &lt;body&gt;:</span></div><div class="line"><span class="built_in">document</span>.body.appendChild(dom);</div></pre></td></tr></table></figure>
 <h4 id="Partials，迭代与逻辑：没有新的语法"><a href="#Partials，迭代与逻辑：没有新的语法" class="headerlink" title="Partials，迭代与逻辑：没有新的语法"></a>Partials，迭代与逻辑：没有新的语法</h4><blockquote>
 <p>我们拥有所有的JavaScript语法，而不是模板语言引入的有限概念。（PS:这是JSX胜过模板语言的地方）</p>
@@ -380,7 +385,8 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 将数组中的字符串以列表的形式展示</span></div><div class="line"><span class="keyword">let</span> items = [<span class="string">'foo'</span>, <span class="string">'bar'</span>, <span class="string">'baz'</span>];</div><div class="line"></div><div class="line"><span class="comment">// 创建列表li</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">item</span>(<span class="params">text</span>) </span>&#123;  </div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;text&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 一个使用迭代和复用的视图</span></div><div class="line"><span class="keyword">let</span> list = render(  </div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line">    &#123; items.map(item) &#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
 <p><code>render()</code>返回一个DOM节点（在上述情况下是返回<ul>列表），所以我们只需要把它放到DOM中：</ul></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.body.appendChild(list);</div></pre></td></tr></table></figure>
-<h2 id="把它放在一起"><a href="#把它放在一起" class="headerlink" title="把它放在一起"></a>把它放在一起</h2><p>以下是小型虚拟DOM渲染器和使用它的视图的完整源码。<br>具有一些样式的CodePen可在下面获得。</p>
+<h2 id="把它放在一起"><a href="#把它放在一起" class="headerlink" title="把它放在一起"></a>把它放在一起</h2><p>以下是小型虚拟DOM渲染器和使用它的视图的完整源码。
+具有一些样式的CodePen可在下面获得。</p>
 <blockquote>
 <p>同样，我也写了一个例子：<a href="https://github.com/Robin-front/code-code-hut/tree/master/jsx" target="_blank" rel="external">在任何地方使用JSX渲染DOM</a></p>
 </blockquote>
@@ -408,9 +414,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JSX/" rel="tag">#JSX</a>
-          
             <a href="/tags/react/" rel="tag">#react</a>
+          
+            <a href="/tags/JSX/" rel="tag">#JSX</a>
           
         </div>
       
@@ -504,7 +510,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -512,7 +518,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -521,7 +527,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

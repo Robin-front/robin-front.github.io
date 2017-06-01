@@ -368,7 +368,8 @@
 <h4 id="例-2"><a href="#例-2" class="headerlink" title="例"></a>例</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xs = Rx.Observable.create(<span class="function"><span class="params">observer</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Side effect'</span>);</div><div class="line">  observer.onNext(<span class="string">'hi!'</span>);</div><div class="line">  observer.onCompleted();</div><div class="line">&#125;);</div><div class="line"></div><div class="line">xs.publish(<span class="function"><span class="params">sharedXs</span> =&gt;</span> &#123;</div><div class="line">  sharedXs.subscribe(<span class="built_in">console</span>.log);</div><div class="line">  sharedXs.subscribe(<span class="built_in">console</span>.log);</div><div class="line">  <span class="keyword">return</span> sharedXs;</div><div class="line">&#125;).subscribe();</div></pre></td></tr></table></figure>
 <p>这个例子中，<code>xs</code> 是一个有副作用的（写入console） observable。正常情况下，每个单独的订阅都会触发这些副作用。 <code>publish</code> 操作符使用<code>xs</code>单独给所有订阅者 <code>sharedXs</code> 变量去订阅。</p>
 <h4 id="何时忽略这条指南-6"><a href="#何时忽略这条指南-6" class="headerlink" title="何时忽略这条指南"></a>何时忽略这条指南</h4><p>只有当 <code>publish</code> 操作符需要共享副作用时才使用这条指南。在大多数情况下，您可以创建单独的订阅，没有任何问题：不管是订阅没有副作用的或是副作用可以执行多次没有任何问题的。</p>
-<p><a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/designguidelines#4-using-rx" target="_blank" rel="external">参考</a><br><a href="https://robin-front.gitbooks.io/rxjs-doc-chinese/content/content/guidelines/using.html" target="_blank" rel="external">同步翻译至RxJS中文文档</a></p>
+<p><a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/designguidelines#4-using-rx" target="_blank" rel="external">参考</a>
+<a href="https://robin-front.gitbooks.io/rxjs-doc-chinese/content/content/guidelines/using.html" target="_blank" rel="external">同步翻译至RxJS中文文档</a></p>
 
       
     </div>
@@ -485,7 +486,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -493,7 +494,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -502,7 +503,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

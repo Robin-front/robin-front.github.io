@@ -96,7 +96,9 @@ function
 undefined
 
 
-要注意 null 使用 typeof 检测时返回的是 ‘object’对于 null 可以使用123function type(o) &amp;#123;  return (o === null) ? &apos;null&apos;">
+要注意 null 使用 typeof 检测时返回的是 ‘object’
+对于 null 可以使用
+123function type(o) &amp;#123;  return (o === null) ? &apos;null">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正确检测Javascript数据类型">
 <meta property="og:url" content="http://robin-front.github.io/2016/06/08/正确检测Javascript数据类型/index.html">
@@ -111,7 +113,9 @@ function
 undefined
 
 
-要注意 null 使用 typeof 检测时返回的是 ‘object’对于 null 可以使用123function type(o) &amp;#123;  return (o === null) ? &apos;null&apos;">
+要注意 null 使用 typeof 检测时返回的是 ‘object’
+对于 null 可以使用
+123function type(o) &amp;#123;  return (o === null) ? &apos;null">
 <meta property="og:updated_time" content="2016-06-08T15:53:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正确检测Javascript数据类型">
@@ -125,7 +129,9 @@ function
 undefined
 
 
-要注意 null 使用 typeof 检测时返回的是 ‘object’对于 null 可以使用123function type(o) &amp;#123;  return (o === null) ? &apos;null&apos;">
+要注意 null 使用 typeof 检测时返回的是 ‘object’
+对于 null 可以使用
+123function type(o) &amp;#123;  return (o === null) ? &apos;null">
 
 
 
@@ -356,7 +362,9 @@ undefined
 <li>undefined</li>
 </ul>
 <blockquote>
-<p>要注意 null 使用 typeof 检测时返回的是 ‘object’<br>对于 null 可以使用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">type</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (o === <span class="literal">null</span>) ? <span class="string">'null'</span> : <span class="keyword">typeof</span>(o)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>要注意 null 使用 typeof 检测时返回的是 ‘object’
+对于 null 可以使用
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">type</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (o === <span class="literal">null</span>) ? <span class="string">'null'</span> : <span class="keyword">typeof</span>(o)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 </blockquote>
 <h3 id="constructor-构造函数属性值"><a href="#constructor-构造函数属性值" class="headerlink" title="constructor(构造函数属性值)"></a>constructor(构造函数属性值)</h3><p>使用 constructor 属性可以判断绝大部分数据的类型。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>; a.constructor <span class="comment">// number</span></div><div class="line"><span class="keyword">var</span> a = &#123;&#125;; a.constructor <span class="comment">// object</span></div><div class="line"><span class="keyword">var</span> a = []; a.constructor <span class="comment">// array</span></div><div class="line"><span class="keyword">var</span> a = <span class="literal">true</span>; a.constructor <span class="comment">// boolean</span></div><div class="line"><span class="keyword">var</span> a = <span class="string">'true'</span>; a.constructor <span class="comment">// string</span></div><div class="line"><span class="keyword">var</span> a = <span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>)</span>&#123;&#125;; a.constructor <span class="comment">// function</span></div></pre></td></tr></table></figure>
@@ -366,10 +374,13 @@ undefined
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">type</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> !o ? o : (o).constructor</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="Object-prototype-toString"><a href="#Object-prototype-toString" class="headerlink" title="Object.prototype.toString"></a>Object.prototype.toString</h3><p>使用 toString() 方法检测对象类型是最安全、最准确的。它返回的字符串形式如下 [object class], 其中， object表示对象的通用类型，class表示对象的内部类型。</p>
 <blockquote>
-<p>但是，要获取对象class值的唯一方法是必须调用 Object 对象定义的默认 toString() 方法，因为不同对象都会预定义自己的 toString() 方法，所以不能直接调用对象的 toString() 方法。<br>var a = new Date()<br>a.toString() // 当前的UTC时间字符串</p>
+<p>但是，要获取对象class值的唯一方法是必须调用 Object 对象定义的默认 toString() 方法，因为不同对象都会预定义自己的 toString() 方法，所以不能直接调用对象的 toString() 方法。
+var a = new Date()
+a.toString() // 当前的UTC时间字符串</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Date</span>()</div><div class="line"><span class="built_in">Object</span>.prototype.toString.apply(a)</div></pre></td></tr></table></figure>
-<p>完善的检测方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 返回值有： 'undefined', 'null', 'number', 'boolean', 'object', 'function', 'regexp', 'string', 'array', 'date', 'error'</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">typeOf</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> _toString =  <span class="built_in">Object</span>.prototype.toString;</div><div class="line">  <span class="keyword">var</span> _type = &#123;</div><div class="line">    <span class="string">'undefined'</span>: <span class="string">'undefined'</span>,</div><div class="line">    <span class="string">'number'</span>: <span class="string">'number'</span>,</div><div class="line">    <span class="string">'boolean'</span>: <span class="string">'boolean'</span>,</div><div class="line">    <span class="string">'string'</span>: <span class="string">'string'</span>,</div><div class="line">    <span class="string">'[object Function]'</span>: <span class="string">'function'</span>,</div><div class="line">    <span class="string">'[object RegExp]'</span>: <span class="string">'regexp'</span>,</div><div class="line">    <span class="string">'[object Array]'</span>: <span class="string">'array'</span>,</div><div class="line">    <span class="string">'[object Date]'</span>: <span class="string">'date'</span>,</div><div class="line">    <span class="string">'[object Error]'</span>: <span class="string">'error'</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> _type[<span class="keyword">typeof</span> o] || _type[_toString.call(o)] || (o ? <span class="string">'object'</span> : <span class="string">'null'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>完善的检测方法
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 返回值有： 'undefined', 'null', 'number', 'boolean', 'object', 'function', 'regexp', 'string', 'array', 'date', 'error'</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">typeOf</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> _toString =  <span class="built_in">Object</span>.prototype.toString;</div><div class="line">  <span class="keyword">var</span> _type = &#123;</div><div class="line">    <span class="string">'undefined'</span>: <span class="string">'undefined'</span>,</div><div class="line">    <span class="string">'number'</span>: <span class="string">'number'</span>,</div><div class="line">    <span class="string">'boolean'</span>: <span class="string">'boolean'</span>,</div><div class="line">    <span class="string">'string'</span>: <span class="string">'string'</span>,</div><div class="line">    <span class="string">'[object Function]'</span>: <span class="string">'function'</span>,</div><div class="line">    <span class="string">'[object RegExp]'</span>: <span class="string">'regexp'</span>,</div><div class="line">    <span class="string">'[object Array]'</span>: <span class="string">'array'</span>,</div><div class="line">    <span class="string">'[object Date]'</span>: <span class="string">'date'</span>,</div><div class="line">    <span class="string">'[object Error]'</span>: <span class="string">'error'</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> _type[<span class="keyword">typeof</span> o] || _type[_toString.call(o)] || (o ? <span class="string">'object'</span> : <span class="string">'null'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -486,7 +497,7 @@ undefined
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -494,7 +505,7 @@ undefined
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -503,7 +514,7 @@ undefined
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-06-01T02:48:00.000Z</updated>
+  <updated>2017-06-01T10:16:43.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,620 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>RXJS我该选用哪个操作符之-创建篇</title>
+    <link href="http://robin-front.github.io/2017/06/01/RXJS%E6%88%91%E8%AF%A5%E9%80%89%E7%94%A8%E5%93%AA%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%AC%A6%E4%B9%8B-%E5%88%9B%E5%BB%BA%E7%AF%87/"/>
+    <id>http://robin-front.github.io/2017/06/01/RXJS我该选用哪个操作符之-创建篇/</id>
+    <published>2017-06-01T10:16:43.000Z</published>
+    <updated>2017-06-01T10:16:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>RXJS该怎么上手？这么多操作符该用哪个？RXJS比较强大，操作符众多，想熟悉需要比较长时间的运用，所以大部分新手都比较疑惑应该使用哪些操作符去实现自己的数据流的操作。</p>
+<p>更多详情请翻阅 <a href="https://robin-front.github.io/RxJS-doc-chinese">RXJS中文翻译文档</a></p>
+<h1 id="我该选用哪个操作符-创建操作符"><a href="#我该选用哪个操作符-创建操作符" class="headerlink" title="我该选用哪个操作符? - 创建操作符"></a>我该选用哪个操作符? - 创建操作符</h1><p>使用此页面查找<a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/index.html"><code>Observable</code></a>符合您需求的类型创建操作：
+<a id="more"></a></p>
+<table style="display: table">
+<thead>静态方法</thead>
+<tbody>
+    <!-- Observable factories -->
+    <tr>
+        <td rowspan="26">我想创建一个新的序列</td>
+        <td rowspan="4">使用自定义逻辑</td>
+        <td colspan="2"></td>
+        <td>
+            <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/create.html">Observable.create</a>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="3">像一个for循环</td>
+        <td></td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/generate.html">Observable.generate</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">并随时间发射值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/generatewithrelativetime.html">Observable.generateWithRelativeTime</a></td>
+    </tr>
+    <tr>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/generatewithabsolutetime.html">Observable.generateWithAbsoluteTime</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">它返回一个值</td>
+        <td colspan="2"></td>
+        <td>
+            <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/return.html">Observable.return/just</a>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">多次</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/repeat.html">Observable.repeat</a></td>
+    </tr>
+    <tr>
+        <td colspan="3">这会抛出错误</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/throw.html">Observable.throw</a></td>
+    </tr>
+    <tr>
+        <td colspan="3">完成了</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/empty.html">Observable.empty</a></td>
+    </tr>
+    <tr>
+        <td colspan="3">从来没有做任何事情</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/never.html">Observable.never</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">从事件</td>
+        <td colspan="2"></td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/fromevent.html">Observable.fromEvent</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">它使用自定义函数来添加和删除事件处理程序</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/fromeventpattern.html">Observable.fromEventPattern</a></td>
+    </tr>
+    <tr>
+        <td colspan="3">来自一个<a title="ES6 Promise" href="https://www.promisejs.org" target="_blank" rel="external">ES6 Promise</a></td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/frompromise.html">Observable.fromPromise</a></td>
+    </tr>
+    <tr>
+        <td rowspan="6">它可迭代</td>
+        <td rowspan="2">覆盖到数组中的值</td>
+        <td></td>
+        <td>
+            <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/fromarray.html">Observable.fromArray</a><br>
+        </td>
+    </tr>
+    <tr>
+      <td>对象键/值对</td>
+      <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/pairs.html">Observable.pairs</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">异步元素</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/for.html">Observable.for</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">数值范围内的值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/range.html">Observable.range</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">来自一个可迭代的数组或类似数组的对象的值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/from.html">Observable.from</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">来自参数</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/of.html">Observable.of</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">根据定时器发出值</td>
+        <td colspan="2"></td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/interval.html">Observable.interval</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">具有可选的初始延迟</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/timer.html">Observable.timer</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2" colspan="2">不传参调用函数</td>
+        <td>在特定的调度程序</td>
+        <td>
+            <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/start.html">Observable.start</a>
+        </td>
+    </tr>
+    <tr>
+        <td>异步</td>
+        <td>
+            <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/startasync.html">Observable.startAsync</a>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="4">取决于订阅时</td>
+        <td colspan="2">基于布尔条件</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/if.html">Observable.if</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">f从一组预先设定的序列</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/case.html">Observable.case</a></td>
+    </tr>
+    <tr>
+        <td colspan="1" rowspan="2">使用自定义逻辑</td>
+        <td></td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/defer.html">Observable.defer</a></td>
+    </tr>
+    <tr>
+        <td>它取决于资源</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/using.html">Observable.using</a></td>
+    </tr>
+    <!-- Function factories -->
+    <tr>
+        <td rowspan="3">我想包装一个函数</td>
+        <td colspan="2"></td>
+        <td rowspan="3">并产生一个序列的结果</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/toasync.html">Observable.toAsync</a></td>
+    </tr>
+        <td colspan="2">它接受回调</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/fromcallback.html">Observable.fromCallback</a></td>
+    
+    <tr>
+        <td colspan="2">它接受Node.js回调</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/fromnodecallback.html">Observable.fromNodeCallback</a></td>
+    </tr>
+    <!-- Flatteners -->
+    <tr>
+        <td rowspan="30">我想结合多个序列</td>
+        <td colspan="3">并且仅从产生值的序列中接收值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/amb.html">Observable.amb</a></td>
+    </tr>
+    <tr>
+        <td colspan="3">所有人都已经完成通知</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/forkjoin.html">Observable.forkJoin</a></td>
+    </tr>
+    <tr>
+        <td colspan="3">并输出所有这些值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/merge.html">Observable.merge</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">为了</td>
+        <td colspan="2">不改变时重复使用最新值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/operators/combinelatest.html">Observable.combineLatest</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">每个值只使用一次</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/zip.html">Observable.zip</a></td>
+    </tr>
+    <tr>
+        <td rowspan="3">通过订阅每个序列为了</td>
+        <td colspan="2">当前一个序列完成时</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/concat.html">Observable.concat</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">当另一个序列抛出错误时</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/catch.html">Observable.catch</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">不管先前的序列是完成还是抛出错误</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/onerrorresumenext.html">Observable.onErrorResumeNext</a></td>
+    </tr>
+    <tr>
+        <td colspan="3">通过响应不同的值组合<a href="http://en.wikipedia.org/wiki/Join-calculus" target="_blank" rel="external">（连接微积分）</a></td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/when.html">Observable.when</a></td>
+    </tr>
+</tbody></table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;RXJS该怎么上手？这么多操作符该用哪个？RXJS比较强大，操作符众多，想熟悉需要比较长时间的运用，所以大部分新手都比较疑惑应该使用哪些操作符去实现自己的数据流的操作。&lt;/p&gt;
+&lt;p&gt;更多详情请翻阅 &lt;a href=&quot;https://robin-front.github.io/RxJS-doc-chinese&quot;&gt;RXJS中文翻译文档&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;我该选用哪个操作符-创建操作符&quot;&gt;&lt;a href=&quot;#我该选用哪个操作符-创建操作符&quot; class=&quot;headerlink&quot; title=&quot;我该选用哪个操作符? - 创建操作符&quot;&gt;&lt;/a&gt;我该选用哪个操作符? - 创建操作符&lt;/h1&gt;&lt;p&gt;使用此页面查找&lt;a href=&quot;https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/index.html&quot;&gt;&lt;code&gt;Observable&lt;/code&gt;&lt;/a&gt;符合您需求的类型创建操作：
+    
+    </summary>
+    
+      <category term="RXJS" scheme="http://robin-front.github.io/categories/RXJS/"/>
+    
+    
+      <category term="RXJS" scheme="http://robin-front.github.io/tags/RXJS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RXJS我该选用哪个操作符之-实例操作符篇</title>
+    <link href="http://robin-front.github.io/2017/06/01/RXJS%E6%88%91%E8%AF%A5%E9%80%89%E7%94%A8%E5%93%AA%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%AC%A6%E4%B9%8B-%E5%AE%9E%E4%BE%8B%E6%93%8D%E4%BD%9C%E7%AC%A6%E7%AF%87/"/>
+    <id>http://robin-front.github.io/2017/06/01/RXJS我该选用哪个操作符之-实例操作符篇/</id>
+    <published>2017-06-01T09:54:53.000Z</published>
+    <updated>2017-06-01T09:54:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>RXJS比较强大，操作符众多，想熟悉需要比较长时间的运用，所以大部分新手都比较疑惑应该使用哪些操作符去实现自己的数据流的操作。</p>
+<p>更多详情请翻阅 <a href="https://robin-front.github.io/RxJS-doc-chinese">RXJS中文翻译文档</a></p>
+<h1 id="我该选用哪个操作符-实例操作符"><a href="#我该选用哪个操作符-实例操作符" class="headerlink" title="我该选用哪个操作符? - 实例操作符"></a>我该选用哪个操作符? - 实例操作符</h1><p>使用此页面通过类型查找<a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md" target="_blank" rel="external"><code>Observable</code></a> 适合您需要的实例运算符：
+<a id="more"></a></p>
+<table style="display: table">
+<thead>实例操作符</thead>
+<tbody>
+    <!-- Observable operators -->
+    <tr>
+        <td rowspan="71">使用现有的序列</td>
+        <td colspan="3">我想改变每个值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/select.html">map/select</a></td>
+    </tr>
+    <tr>
+        <td colspan="3">我想从每个值拉一个属性</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/pluck.html">pluck</a></td>
+    </tr>
+    <tr>
+        <td colspan="3">我想在不影响值的情况下被通知值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/do.html">do/tap</a><br>
+            <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/doonnext.html">doOnNext/tapOnNext</a><br>
+            <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/doonerror.html">doOnError/tapOnError</a><br>
+            <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/dooncompleted.html">doOnCompleted/tapOnCompleted</a></td>
+    </tr>
+    <tr>
+        <td rowspan="6">我想包含值</td>
+        <td colspan="2">基于自定义逻辑</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/where.html">filter/where</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">从序列开头</td>
+        <td></td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/take.html">take</a></td>
+    </tr>
+    <tr>
+        <td>基于自定义逻辑</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/takewhile.html">takeWhile</a></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+        <td colspan="2">从序列的末尾</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/takelast.html">takeLast</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">直到另一个序列发射一个值或完成</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/takeuntil.html">takeUntil</a></td>
+    </tr>
+    <tr>
+        <td rowspan="7">我想忽略值</td>
+        <td colspan="2">全部</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/ignoreelements.html">ignoreElements</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">从序列的开头</td>
+        <td></td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/skip.html">skip</a></td>
+    </tr>
+    <tr>
+        <td>基于自定义逻辑</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/skipwhile.html">skipWhile</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">从序列的末尾</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/skiplast.html">skipLast</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">直到另一个序列发出一个值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/skipuntil.html">skipUntil</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">与以前的值相同</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/distinctuntilchanged.html">distinctUntilChanged</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">这（触发）太频繁</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/throttle.html">throttle</a></td>
+    </tr>
+    <tr>
+        <td rowspan="4">我想计算</td>
+        <td>总和</td>
+        <td rowspan="2">这些值的</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/sum.html">sum</a></td>
+    </tr>
+    <tr>
+        <td>平均值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/average.html">average</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">使用自定义逻辑</td>
+        <td>并且只输出最终值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/aggregate.html">aggregate</a><br>
+            <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/reduce.html">reduce</a>
+        </td>
+    </tr>
+    <tr>
+        <td>并在计算出值时输出（每一步的）值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/scan.html">scan</a></td>
+    </tr>
+    <tr>
+        <td rowspan="3">我想用元数据包装它的消息</td>
+        <td colspan="2">描述每个消息</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/materialize.html">materialize</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">包括从最后一个价值以来的时间</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/timeinterval.html">timeInterval</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">包括时间戳</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/timestamp.html">timestamp</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">经过一段时间的不活动</td>
+        <td colspan="2">我想抛出一个错误</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/timeout.html">timeout</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">我想切换到另一个序列</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/timeout.html">timeout</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">我想确保只有一个值</td>
+        <td colspan="2">并且如果存在多于或少于一个值则抛出错误</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/single.html">single</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">并且如果没有值，则使用默认值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/singleordefault.html">singleOrDefault</a></td>
+    </tr>
+    <tr>
+        <td rowspan="3">我只想取第一个值</td>
+        <td colspan="2">并且如果没有值，则抛出错误</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/first.html">first</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">并且如果没有值，则使用默认值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/firstordefault.html">firstOrDefault</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">在一段时间内</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/sample.html">sample</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">我只想取最后的值</td>
+        <td colspan="2">如果没有值，则报错</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/last.html">last</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">并且如果没有值，则使用默认值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/lastordefault.html">lastOrDefault</a></td>
+    </tr>
+    <tr>
+        <td colspan="3">我想知道它包含多少值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/count.html">count</a></td>
+    </tr>
+    <tr>
+        <td colspan="3">我想知道它是否包含一个指定的值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/includes.html">contains</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">我想知道条件是否满足</td>
+        <td colspan="2">只需要任一值满足</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/any.html">any/some</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">需要所有值都满足</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/every.html">all/every</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2" colspan="2">我想把消息延迟一段特定的时间</td>
+        <td></td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/delay.html">delay</a></td>
+    </tr>
+    <tr>
+        <td>基于自定义逻辑</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/delaywithselector.html">delayWithSelector</a></td>
+    </tr>
+    <tr>
+        <td rowspan="11">我想给值分组</td>
+        <td colspan="2">直到序列完成</td>
+        <td>
+          <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/toarray.html">toArray</a><br>
+          <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/tomap.html">toMap</a><br>
+          <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/toset.html">toSet</a>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="2">使用自定义逻辑</td>
+        <td>作为数组</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/buffer.html">buffer</a></td>
+    </tr>
+    <tr>
+        <td>作为序列</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/window.html">window</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">根据特定大小分批</td>
+        <td>作为数组</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/bufferwithcount.html">bufferWithCount</a></td>
+    </tr>
+    <tr>
+        <td>作为序列</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/windowwithcount.html">windowWithCount</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">基于时间</td>
+        <td>作为数组</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/bufferwithtime.html">bufferWithTime</a></td>
+    </tr>
+    <tr>
+        <td>作为序列</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/windowwithtime.html">windowWithTime</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">基于时间或计数，以先发生者为准</td>
+        <td>作为数组</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/bufferwithtimeorcount.html">bufferWithTimeOrCount</a></td>
+    </tr>
+    <tr>
+        <td>作为序列</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/windowwithtimeorcount.html">windowWithTimeOrCount</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">基于一个指定的key</td>
+        <td>直到序列完成</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/groupby.html">groupBy</a></td>
+    </tr>
+    <tr>
+        <td>并控制每组的生命周期</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/groupbyuntil.html">groupByUntil</a></td>
+    </tr>
+    <tr>
+        <td rowspan="6">我想为每个值开始一个新的序列</td>
+        <td colspan="2">并且并行地从所有序列中发出值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/selectmany.html">flatMap/selectMany</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">并按顺序从每个序列中输出值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/concatmap.html">concatMap/selectConcat</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">并在新值到达时取消先前的序列</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/flatmaplatest.html">flatMapLatest/selectSwitch</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">并递归地为每个新值启动一个新的序列</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/expand.html">expand</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">并根据onNext，onError和onCompleted并行地从所有序列发出值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/flatmapobserver.html">flatMapObserver/selectManyObserver</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">并根据onNext，onError和onCompleted顺序地从所有序列发出值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/flatmapobserver.html">concatMapObserver/selectConcatObserver</a></td>
+    </tr>
+    <tr>
+        <td>我想把它与另一个结合起来</td>
+        <td colspan="2">两者都完成时发出通知</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/forkjoin.html">forkJoin</a></td>
+    </tr>
+    <tr>
+        <td colspan="3">我想执行复杂的操作，而不会打破流畅的调用</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/let.html">let</a></td>
+    </tr>
+    <tr>
+        <td rowspan="5">我想在多个订阅者之间共享订阅</td>
+        <td colspan="2">使用特定的<code>subject</code>实现</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/multicast.html">multicast</a></td>
+    </tr>
+    <tr>
+        <td colspan="2"></td>
+        <td>
+          <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/publish.html">publish</a><br>
+          <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/share.html">share</a>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">并向未来订阅者提供最后的值</td>
+        <td>
+          <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/publishlast.html">publishLast</a><br>
+          <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/sharelast.html">shareLast</a>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">并向未来订阅者重播默认值或最新值</td>
+        <td>
+          <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/publishvalue.html">publishValue</a><br>
+          <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/sharevalue.html">shareValue</a>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">并向未来的订阅者重播n个值</td>
+        <td>
+          <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/publish.html">replay</a><br>
+          <a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/share.html">shareReplay</a>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="3">发生错误时</td>
+        <td colspan="2">我想重新订阅</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/retry.html">retry</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">我想开始一个新序列</td>
+        <td></td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/catch.html">catch</a></td>
+    </tr>
+    <tr>
+        <td>取决于错误</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/catch.html">catch</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">当完成时</td>
+        <td colspan="2">我想重新订阅</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/repeat.html">repeat</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">我想开始一个新序列</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/concat.html">concat</a></td>
+    </tr>
+    <tr>
+        <td>当完成或抛出错误时</td>
+        <td colspan="2">我想开始一个新序列</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/onerrorresumenext.html">onErrorResumeNext</a></td>
+    </tr>
+    <tr>
+        <td>当完成，抛出错误或退订时</td>
+        <td colspan="2">我想执行一个函数</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/finally.html">finally</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">我想改变路由的调度程序</td>
+        <td colspan="2">调用<code>subscribe</code>（订阅）</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/subscribeon.html">subscribeOn</a></td>
+    </tr>
+    <tr>
+        <td colspan="2">消息</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/observeon.html">observeOn</a></td>
+    </tr>
+    <tr>
+        <td rowspan="9">使用两个序列</td>
+        <td>我想决定从哪个接收值</td>
+        <td colspan="2">取决于哪个序列先发出值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/amb.html">amb</a></td>
+    </tr>
+    <tr>
+        <td colspan="3">我想确定它们的值是否相等</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/sequenceequal.html">sequenceEqual</a></td>
+    </tr>
+    <tr>
+        <td rowspan="5">我想合并它们的值</td>
+        <td colspan="2">只有当第一个序列发射时，使用每个序列的最新值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/withlatestfrom.html">withLatestFrom</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">为了</td>
+        <td>不改变时重复使用最新值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/combinelatest.html">combineLatest</a></td>
+    </tr>
+    <tr>
+        <td>每个值只使用一次</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/zip.html">zip</a></td>
+    </tr>
+    <tr>
+        <td rowspan="2">重复分享我选择的“生命周期”</td>
+        <td>并通知每个组合</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/join.html">join</a></td>
+    </tr>
+    <tr>
+        <td>并给每个“左”的序列的值给“右”的序列</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/groupjoin.html">groupJoin</a></td>
+    </tr>
+    <tr>
+        <td colspan="3">我想包含两者的值</td>
+        <td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_instance_methods/merge.html">merge</a></td>
+    </tr>
+</tbody></table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;RXJS比较强大，操作符众多，想熟悉需要比较长时间的运用，所以大部分新手都比较疑惑应该使用哪些操作符去实现自己的数据流的操作。&lt;/p&gt;
+&lt;p&gt;更多详情请翻阅 &lt;a href=&quot;https://robin-front.github.io/RxJS-doc-chinese&quot;&gt;RXJS中文翻译文档&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;我该选用哪个操作符-实例操作符&quot;&gt;&lt;a href=&quot;#我该选用哪个操作符-实例操作符&quot; class=&quot;headerlink&quot; title=&quot;我该选用哪个操作符? - 实例操作符&quot;&gt;&lt;/a&gt;我该选用哪个操作符? - 实例操作符&lt;/h1&gt;&lt;p&gt;使用此页面通过类型查找&lt;a href=&quot;https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md&quot;&gt;&lt;code&gt;Observable&lt;/code&gt;&lt;/a&gt; 适合您需要的实例运算符：
+    
+    </summary>
+    
+      <category term="RXJS" scheme="http://robin-front.github.io/categories/RXJS/"/>
+    
+    
+      <category term="RXJS" scheme="http://robin-front.github.io/tags/RXJS/"/>
+    
+  </entry>
   
   <entry>
     <title>Marko和react,preact,vue相比快在哪里</title>
@@ -25,18 +639,19 @@
     <content type="html"><![CDATA[<p><a href="https://hackernoon.com/why-is-marko-fast-a20796cb8ae3" target="_blank" rel="external">译文：why-is-marko-fast</a></p>
 <p>在eBay，我们正在使用<code>[Marko](http://markojs.com/)</code>每天处理超过十亿的请求，这就要求我们精简我们的开源UI库Marko。我们大大优化了Marko ，以实现快速渲染，<a href="http://www.ebaytechblog.com/2014/12/08/async-fragments-rediscovering-progressive-html-rendering-with-marko/" target="_blank" rel="external">高级性能技术</a>，并实现了最小的页面重量（〜10kb gzipped）。性能只是一个方面，因为我们还必须扩展Marko以支持数百个团队的开发，从而允许开发人员有效地创建可维护和强大的Web应用程序。</p>
 <p>我们已经创建了我们自己的<a href="https://github.com/marko-js/isomorphic-ui-benchmarks" target="_blank" rel="external">benchMarks</a>进行比较，也已经将Marko添加到<a href="https://github.com/raxjs/server-side-rendering-comparison/pull/11" target="_blank" rel="external">其他基准测试</a>中，但是基准测试并不总是值得信赖的。尽管我们尽可能公平地对待我们的基准，但最重要的是在现实世界的应用中的表现，而不是专注于微观基准。这就是V8团队转而采用新的方法来衡量和理解现实JavaScript性能的一个原因。</p>
-<p>同样，我们已经观察过我们的开发人员实际开发中如何编写他们的Marko组件，并且发现了可以进一步优化的模式。而不是关注本文中的基准测试，我想关注我们应用于Marko的优化细节。<br><a id="more"></a></p>
+<p>同样，我们已经观察过我们的开发人员实际开发中如何编写他们的Marko组件，并且发现了可以进一步优化的模式。而不是关注本文中的基准测试，我想关注我们应用于Marko的优化细节。
+<a id="more"></a></p>
 <h2 id="多个编译输出"><a href="#多个编译输出" class="headerlink" title="多个编译输出"></a>多个编译输出</h2><p>Marko是一个在服务器和浏览器中运行的同构UI库。正如<a href="https://medium.com/@mlrawlings" target="_blank" rel="external">Michael Rawlings</a>在“ <a href="https://hackernoon.com/server-side-rendering-shootout-with-marko-preact-rax-react-and-vue-25e1ae17800f" target="_blank" rel="external">服务器端渲染染</a> ”中提到的，当在服务器上呈现时，Marko直接呈现可以作为HTTP响应发送的文档（HTML）的字符串表示形式。</p>
 <p>在浏览器中呈现时，必须解析HTML字符串才能更新DOM。因此，Marko通过程序将视图编译为直接呈现到虚拟文档（VDOM）树，这可以针对浏览器有效地更新真实的DOM。</p>
 <p>给出以下模板：</p>
 <p><a href="https://gist.github.com/anonymous/5ccdaadcb42dc0f5a4b2e6a956111562/raw/fa23a13e458bf8bb79dfbdc659f1248c012a799a/template.marko" target="_blank" rel="external"></a></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;Hello $&#123;input.name&#125;!&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;Hello $&#123;input.name&#125;!<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <h3 id="编译为服务器"><a href="#编译为服务器" class="headerlink" title="编译为服务器"></a>编译为服务器</h3><p>编译输出针对服务器上的HTML输出进行了优化：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> marko_template = <span class="built_in">require</span>(<span class="string">"marko/html"</span>).t(__filename),</div><div class="line">    marko_helpers = <span class="built_in">require</span>(<span class="string">"marko/runtime/html/helpers"</span>),</div><div class="line">    marko_escapeXml = marko_helpers.x;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">input, out</span>) </span>&#123;</div><div class="line">  out.w(<span class="string">"&lt;div&gt;Hello "</span> +</div><div class="line">    marko_escapeXml(input.name) +</div><div class="line">    <span class="string">"!&lt;/div&gt;"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="编译为浏览器"><a href="#编译为浏览器" class="headerlink" title="编译为浏览器"></a>编译为浏览器</h3><p>编译输出针对浏览器中的虚拟DOM渲染进行了优化：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> marko_template = <span class="built_in">require</span>(<span class="string">"marko/vdom"</span>).t(__filename);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">input, out</span>) </span>&#123;</div><div class="line">  out.e(<span class="string">"DIV"</span>, <span class="literal">null</span>, <span class="number">3</span>)</div><div class="line">    .t(<span class="string">"Hello "</span>)</div><div class="line">    .t(input.name)</div><div class="line">    .t(<span class="string">"!"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="模块化运行时"><a href="#模块化运行时" class="headerlink" title="模块化运行时"></a>模块化运行时</h3><p>Marko运行时并不作为单个JavaScript文件分发。相反，Marko编译器会生成一个JavaScript模块，该模块仅导入实际需要的运行时部分。这允许我们向Marko添加新功能，而不会使现有应用程序膨胀。例如，给出以下模板：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">var</span> color = <span class="string">'red'</span>;</div><div class="line">&lt;div style=&#123;backgroundColor: color&#125;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">var</span> color = <span class="string">'red'</span>;</div><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;backgroundColor:</span> <span class="attr">color</span>&#125;&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <p>在上面的示例中，需要额外的运行时代码来根据所提供<code>style</code>的JavaScript对象呈现属性。导入<code>styleAttr</code>助手的编译代码如下所示：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> marko_styleAttr = <span class="built_in">require</span>(<span class="string">"marko/runtime/vdom/helper-styleAttr"</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">input, out</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> color = <span class="string">'red'</span>;</div><div class="line">  out.e(<span class="string">"DIV"</span>, &#123;</div><div class="line">      <span class="attr">style</span>: marko_styleAttr(&#123;</div><div class="line">          <span class="attr">backgroundColor</span>: color</div><div class="line">        &#125;)</div><div class="line">    &#125;, <span class="number">0</span>, <span class="number">4</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="高性能的服务器端渲染"><a href="#高性能的服务器端渲染" class="headerlink" title="高性能的服务器端渲染"></a>高性能的服务器端渲染</h3><p>与基于专门进行虚拟DOM渲染的JSX的解决方案相比，Marko在服务器端渲染方面具有巨大的优势。当渲染到服务器上的虚拟DOM树时，它是一个两步的过程来呈现HTML：</p>
@@ -54,7 +669,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">input, out</span>) </span>&#123;</div><div class="line">  out.w(<span class="string">"&lt;div&gt;This is a &lt;strong&gt;static&lt;/strong&gt; node&lt;/div&gt;"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="静态属性的编译时优化"><a href="#静态属性的编译时优化" class="headerlink" title="静态属性的编译时优化"></a>静态属性的编译时优化</h3><p>Marko还将优化动态元素的静态属性。</p>
 <p>给出以下模板：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div.hello&gt;Hello $&#123;input.name&#125;!&lt;/div&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div.hello&gt;Hello $&#123;input.name&#125;!<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <p>Marko将产生以下编译输出：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> marko_attrs0 = &#123;</div><div class="line">        <span class="string">"class"</span>: <span class="string">"hello"</span></div><div class="line">      &#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">input, out</span>) </span>&#123;</div><div class="line">  out.e(<span class="string">"DIV"</span>, marko_attrs0, <span class="number">3</span>)</div><div class="line">    .t(<span class="string">"Hello "</span>)</div><div class="line">    .t(input.name)</div><div class="line">    .t(<span class="string">"!"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>请注意，属性对象只创建一次，它用于每个渲染。另外，静态属性不会发生 <code>diffing</code>/<code>patching</code>。</p>
@@ -69,7 +684,7 @@
       &lt;p&gt;&lt;a href=&quot;https://hackernoon.com/why-is-marko-fast-a20796cb8ae3&quot;&gt;译文：why-is-marko-fast&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;在eBay，我们正在使用&lt;code&gt;[Marko](http://markojs.com/)&lt;/code&gt;每天处理超过十亿的请求，这就要求我们精简我们的开源UI库Marko。我们大大优化了Marko ，以实现快速渲染，&lt;a href=&quot;http://www.ebaytechblog.com/2014/12/08/async-fragments-rediscovering-progressive-html-rendering-with-marko/&quot;&gt;高级性能技术&lt;/a&gt;，并实现了最小的页面重量（〜10kb gzipped）。性能只是一个方面，因为我们还必须扩展Marko以支持数百个团队的开发，从而允许开发人员有效地创建可维护和强大的Web应用程序。&lt;/p&gt;
 &lt;p&gt;我们已经创建了我们自己的&lt;a href=&quot;https://github.com/marko-js/isomorphic-ui-benchmarks&quot;&gt;benchMarks&lt;/a&gt;进行比较，也已经将Marko添加到&lt;a href=&quot;https://github.com/raxjs/server-side-rendering-comparison/pull/11&quot;&gt;其他基准测试&lt;/a&gt;中，但是基准测试并不总是值得信赖的。尽管我们尽可能公平地对待我们的基准，但最重要的是在现实世界的应用中的表现，而不是专注于微观基准。这就是V8团队转而采用新的方法来衡量和理解现实JavaScript性能的一个原因。&lt;/p&gt;
-&lt;p&gt;同样，我们已经观察过我们的开发人员实际开发中如何编写他们的Marko组件，并且发现了可以进一步优化的模式。而不是关注本文中的基准测试，我想关注我们应用于Marko的优化细节。&lt;br&gt;
+&lt;p&gt;同样，我们已经观察过我们的开发人员实际开发中如何编写他们的Marko组件，并且发现了可以进一步优化的模式。而不是关注本文中的基准测试，我想关注我们应用于Marko的优化细节。
     
     </summary>
     
@@ -90,7 +705,8 @@
     <content type="html"><![CDATA[<p><img src="https://cdn-images-1.medium.com/max/800/1*9nI6dL1Z-8cqFpCX96zVFA.gif" alt="npm@5 is now latest"></p>
 <p>从今天开始，如果您输入“<code>npm install npm@latest -g</code>”，那么您将被更新为npm版本5。另外，在所有<a href="https://medium.com/@nodejs/node-js-8-big-improvements-for-the-debugging-and-native-module-ecosystem-58454861f2fc" target="_blank" rel="external">Node.js 8</a>的新安装中都捆绑了<code>npm@5</code> ，它已经替代了<code>Node.js 7</code>在Node Project的当前版本中。</p>
 <p>在过去一年半的时间里，我们一直在努力解决大量的痛点，其中有些是创建npm以来就已经存在的。今天的发布是对npm速度，一致性和用户体验的最大改进。</p>
-<p>发布说明中有什么新内容和更改内容的明确列表，但这里有一些亮点：<br><a id="more"></a></p>
+<p>发布说明中有什么新内容和更改内容的明确列表，但这里有一些亮点：
+<a id="more"></a></p>
 <h2 id="速度很快"><a href="#速度很快" class="headerlink" title="速度很快"></a>速度很快</h2><p>重新编排了包元数据，软件包下载和软件包缓存，这大大加快了工作。一般来说，期望性能提升20-100％; 我们还看到一些安装和版本冲突的运行速度提高了5倍。</p>
 <p><img src="https://cdn-images-1.medium.com/max/800/0*K1Wb1ERhtAHLRG0m." alt="speed improvements in npm@5"></p>
 <p>由于npm最初的设计，开发人员已经改变了他们如何使用npm。npm生态系统不仅呈指数级增长，而且从2014年起，平均npm软件包中的依赖关系数量增加了250％。现在，更多的开发人员现在可以在本地安装Babel，Webpack和Tap等有用工具，而不是全局。这是一个最佳实践，但这意味着“<code>npm install</code>”可以做更多的工作。</p>
@@ -107,7 +723,7 @@
       &lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*9nI6dL1Z-8cqFpCX96zVFA.gif&quot; alt=&quot;npm@5 is now latest&quot;&gt;&lt;/p&gt;
 &lt;p&gt;从今天开始，如果您输入“&lt;code&gt;npm install npm@latest -g&lt;/code&gt;”，那么您将被更新为npm版本5。另外，在所有&lt;a href=&quot;https://medium.com/@nodejs/node-js-8-big-improvements-for-the-debugging-and-native-module-ecosystem-58454861f2fc&quot;&gt;Node.js 8&lt;/a&gt;的新安装中都捆绑了&lt;code&gt;npm@5&lt;/code&gt; ，它已经替代了&lt;code&gt;Node.js 7&lt;/code&gt;在Node Project的当前版本中。&lt;/p&gt;
 &lt;p&gt;在过去一年半的时间里，我们一直在努力解决大量的痛点，其中有些是创建npm以来就已经存在的。今天的发布是对npm速度，一致性和用户体验的最大改进。&lt;/p&gt;
-&lt;p&gt;发布说明中有什么新内容和更改内容的明确列表，但这里有一些亮点：&lt;br&gt;
+&lt;p&gt;发布说明中有什么新内容和更改内容的明确列表，但这里有一些亮点：
     
     </summary>
     
@@ -125,7 +741,8 @@
     <published>2017-05-30T01:52:45.000Z</published>
     <updated>2017-05-30T01:52:45.000Z</updated>
     
-    <content type="html"><![CDATA[<p>JSX实际上很简单：只需要花1分钟阅读这个，你会明白有关这个有趣的替代模板的一切。<br><a id="more"></a></p>
+    <content type="html"><![CDATA[<p>JSX实际上很简单：只需要花1分钟阅读这个，你会明白有关这个有趣的替代模板的一切。
+<a id="more"></a></p>
 <p>替换标题：“融入JSX”</p>
 <h2 id="Pragma"><a href="#Pragma" class="headerlink" title="Pragma"></a>Pragma</h2><p>您可以声明每个文件或每个函数来告诉您的<code>transpiler</code>（例如：<code>Babel</code>）每个节点在运行时应调用的函数的名称（请参阅“<a href="https://jasonformat.com/wtf-is-jsx/#Transpilation" target="_blank" rel="external">Transpilation</a>”）。</p>
 <p>在下面的例子中，我们说的是“ <code>h()</code>为每个节点注入一个函数”：</p>
@@ -158,12 +775,16 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">nodeName</span>: <span class="string">"div"</span>,</div><div class="line">  <span class="attr">attributes</span>: &#123;</div><div class="line">    <span class="string">"id"</span>: <span class="string">"foo"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">children</span>: [<span class="string">"Hello!"</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>所以我们只需要一个接受该格式并抛出实际DOM节点的函数：(即沉染vdom)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">vnode</span>) </span>&#123;  </div><div class="line">    <span class="comment">// 字符串只转换成 文本节点：</span></div><div class="line">    <span class="keyword">if</span> (vnode.split) <span class="keyword">return</span> <span class="built_in">document</span>.createTextNode(vnode);</div><div class="line"></div><div class="line">    <span class="comment">// 使用 VDOM 的 nodeName 创建一个DOM 标签</span></div><div class="line">    <span class="keyword">let</span> n = <span class="built_in">document</span>.createElement(vnode.nodeName);</div><div class="line"></div><div class="line">    <span class="comment">// 拷贝所有属性到新节点上</span></div><div class="line">    <span class="keyword">let</span> a = vnode.attributes || &#123;&#125;;</div><div class="line">    <span class="built_in">Object</span>.keys(a).forEach( <span class="function"><span class="params">k</span> =&gt;</span> n.setAttribute(k, a[k]) );</div><div class="line"></div><div class="line">    <span class="comment">// 渲染并添加子节点</span></div><div class="line">    (vnode.children || []).forEach( <span class="function"><span class="params">c</span> =&gt;</span> n.appendChild(render(c)) );</div><div class="line"></div><div class="line">    <span class="keyword">return</span> n;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>：） 不难理解这是如何工作的。<br>如果有帮助，您可以将“虚拟DOM”视为一个非常简单的配置，用于构建给定的DOM结构。</p>
+<p>：） 不难理解这是如何工作的。
+如果有帮助，您可以将“虚拟DOM”视为一个非常简单的配置，用于构建给定的DOM结构。</p>
 <blockquote>
 <p>虚拟DOM的好处是它非常轻巧。小对象引用其他小对象，一个由易于优化的应用程序逻辑构成的结构。</p>
 <p>这也意味着它不受任何渲染逻辑或缓慢的DOM方法的束缚。</p>
 </blockquote>
-<h2 id="使用JSX"><a href="#使用JSX" class="headerlink" title="使用JSX"></a>使用JSX</h2><p>我们知道<code>JSX</code>被转换成<code>h()</code>函数调用。<br>那些函数调用创建一个简单的“虚拟”DOM树。<br>我们可以使用该<code>render()</code>函数来制作一个匹配的“真实”DOM树。<br>这就是这样的：</p>
+<h2 id="使用JSX"><a href="#使用JSX" class="headerlink" title="使用JSX"></a>使用JSX</h2><p>我们知道<code>JSX</code>被转换成<code>h()</code>函数调用。
+那些函数调用创建一个简单的“虚拟”DOM树。
+我们可以使用该<code>render()</code>函数来制作一个匹配的“真实”DOM树。
+这就是这样的：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// JSX -&gt; VDOM:</span></div><div class="line"><span class="keyword">let</span> vdom = <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"foo"</span>&gt;</span>Hello!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// VDOM -&gt; DOM:</span></div><div class="line"><span class="keyword">let</span> dom = render(vdom);</div><div class="line"></div><div class="line"><span class="comment">// add the tree to &lt;body&gt;:</span></div><div class="line"><span class="built_in">document</span>.body.appendChild(dom);</div></pre></td></tr></table></figure>
 <h4 id="Partials，迭代与逻辑：没有新的语法"><a href="#Partials，迭代与逻辑：没有新的语法" class="headerlink" title="Partials，迭代与逻辑：没有新的语法"></a>Partials，迭代与逻辑：没有新的语法</h4><blockquote>
 <p>我们拥有所有的JavaScript语法，而不是模板语言引入的有限概念。（PS:这是JSX胜过模板语言的地方）</p>
@@ -178,7 +799,8 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 将数组中的字符串以列表的形式展示</span></div><div class="line"><span class="keyword">let</span> items = [<span class="string">'foo'</span>, <span class="string">'bar'</span>, <span class="string">'baz'</span>];</div><div class="line"></div><div class="line"><span class="comment">// 创建列表li</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">item</span>(<span class="params">text</span>) </span>&#123;  </div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;text&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 一个使用迭代和复用的视图</span></div><div class="line"><span class="keyword">let</span> list = render(  </div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line">    &#123; items.map(item) &#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
 <p><code>render()</code>返回一个DOM节点（在上述情况下是返回<ul>列表），所以我们只需要把它放到DOM中：</ul></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.body.appendChild(list);</div></pre></td></tr></table></figure>
-<h2 id="把它放在一起"><a href="#把它放在一起" class="headerlink" title="把它放在一起"></a>把它放在一起</h2><p>以下是小型虚拟DOM渲染器和使用它的视图的完整源码。<br>具有一些样式的CodePen可在下面获得。</p>
+<h2 id="把它放在一起"><a href="#把它放在一起" class="headerlink" title="把它放在一起"></a>把它放在一起</h2><p>以下是小型虚拟DOM渲染器和使用它的视图的完整源码。
+具有一些样式的CodePen可在下面获得。</p>
 <blockquote>
 <p>同样，我也写了一个例子：<a href="https://github.com/Robin-front/code-code-hut/tree/master/jsx" target="_blank" rel="external">在任何地方使用JSX渲染DOM</a></p>
 </blockquote>
@@ -188,7 +810,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;JSX实际上很简单：只需要花1分钟阅读这个，你会明白有关这个有趣的替代模板的一切。&lt;br&gt;
+      &lt;p&gt;JSX实际上很简单：只需要花1分钟阅读这个，你会明白有关这个有趣的替代模板的一切。
     
     </summary>
     
@@ -197,9 +819,9 @@
       <category term="react" scheme="http://robin-front.github.io/categories/JSX/react/"/>
     
     
-      <category term="JSX" scheme="http://robin-front.github.io/tags/JSX/"/>
-    
       <category term="react" scheme="http://robin-front.github.io/tags/react/"/>
+    
+      <category term="JSX" scheme="http://robin-front.github.io/tags/JSX/"/>
     
   </entry>
   
@@ -212,7 +834,8 @@
     
     <content type="html"><![CDATA[<h1 id="事件桥接"><a href="#事件桥接" class="headerlink" title="事件桥接"></a>事件桥接</h1><p>RxJS 提供工厂方法来桥接 DOM 或 Node.js 中已存在的异步数据源，所以，你可以使用丰富的创作、过滤和资源管理功能对RxJS提供的任何类型的数据流进行操作。这篇文章探讨 <a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/api/core/operators/fromevent.md" target="_blank" rel="external"><code>fromEvent</code></a> 和 <a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/api/core/operators/fromeventpattern.md" target="_blank" rel="external"><code>fromEventPattern</code></a>操作符，它允许导入一个 DOM 或者普通事件到 RxJS 的数据流。每次引发事件时，一个 <code>OnNext</code> 消息将传递到数据流。然后，可以像其他任何数据流一样操作事件数据流。</p>
 <p>RxJS 不打算取代现有的异步编程模型如 <code>Promises</code> 或 <code>callbacks</code>。但是，当你尝试组合事件， RxJS的工厂方法会提供简便的方法给你，你完全感受不到当前使用了何种编程模式。这真的很方便维护（比如取消订阅）和筛选（比如选择合适的数据）数据源。在本节和下节中，你可以尝试 RxJS 的这些特性如何协助你完成异步编程。</p>
-<p>自然，RxJS 支持一批库和他们的勾子函数去使用他们的事件系统，比如 <a href="http://jquery.com/" target="_blank" rel="external">jQuery</a>, <a href="http://zeptojs.com/" target="_blank" rel="external">Zepto.js</a>, <a href="https://angularjs.org/" target="_blank" rel="external">AngularJS</a>, <a href="http://emberjs.com/" target="_blank" rel="external">Ember.js</a> 和 <a href="http://backbonejs.org" target="_blank" rel="external">Backbone.js</a>。这种行为，不管怎样只能重写本地绑定。默认情况下， RxJS 也支持 <a href="http://nodejs.org" target="_blank" rel="external">Node.js</a> <code>EventEmitter</code> 的事件勾子。<br><a id="more"></a></p>
+<p>自然，RxJS 支持一批库和他们的勾子函数去使用他们的事件系统，比如 <a href="http://jquery.com/" target="_blank" rel="external">jQuery</a>, <a href="http://zeptojs.com/" target="_blank" rel="external">Zepto.js</a>, <a href="https://angularjs.org/" target="_blank" rel="external">AngularJS</a>, <a href="http://emberjs.com/" target="_blank" rel="external">Ember.js</a> 和 <a href="http://backbonejs.org" target="_blank" rel="external">Backbone.js</a>。这种行为，不管怎样只能重写本地绑定。默认情况下， RxJS 也支持 <a href="http://nodejs.org" target="_blank" rel="external">Node.js</a> <code>EventEmitter</code> 的事件勾子。
+<a id="more"></a></p>
 <h2 id="将一个-DOM-事件转换成-RxJS-数据流"><a href="#将一个-DOM-事件转换成-RxJS-数据流" class="headerlink" title="将一个 DOM 事件转换成 RxJS 数据流"></a>将一个 DOM 事件转换成 RxJS 数据流</h2><p>接下来这个例子为鼠标移动事件创建了一个 DOM 事件操作，并且在页面上打印出鼠标的坐标。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> result = <span class="built_in">document</span>.getElementById(<span class="string">'result'</span>);</div><div class="line"></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'mousemove'</span>, e =&gt; result.innerHTML = e.clientX + <span class="string">', '</span> + e.clientY, <span class="literal">false</span>);</div></pre></td></tr></table></figure>
 <p>导入一个事件到 RxJS, 你可以使用 <a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/api/core/operators/fromevent.md" target="_blank" rel="external"><code>fromEvent</code></a> 操作符，并且传入被桥接的事件参数。然后它会将事件转换成数据流。</p>
@@ -251,7 +874,7 @@
     
       &lt;h1 id=&quot;事件桥接&quot;&gt;&lt;a href=&quot;#事件桥接&quot; class=&quot;headerlink&quot; title=&quot;事件桥接&quot;&gt;&lt;/a&gt;事件桥接&lt;/h1&gt;&lt;p&gt;RxJS 提供工厂方法来桥接 DOM 或 Node.js 中已存在的异步数据源，所以，你可以使用丰富的创作、过滤和资源管理功能对RxJS提供的任何类型的数据流进行操作。这篇文章探讨 &lt;a href=&quot;https://github.com/Reactive-Extensions/RxJS/tree/master/doc/api/core/operators/fromevent.md&quot;&gt;&lt;code&gt;fromEvent&lt;/code&gt;&lt;/a&gt; 和 &lt;a href=&quot;https://github.com/Reactive-Extensions/RxJS/tree/master/doc/api/core/operators/fromeventpattern.md&quot;&gt;&lt;code&gt;fromEventPattern&lt;/code&gt;&lt;/a&gt;操作符，它允许导入一个 DOM 或者普通事件到 RxJS 的数据流。每次引发事件时，一个 &lt;code&gt;OnNext&lt;/code&gt; 消息将传递到数据流。然后，可以像其他任何数据流一样操作事件数据流。&lt;/p&gt;
 &lt;p&gt;RxJS 不打算取代现有的异步编程模型如 &lt;code&gt;Promises&lt;/code&gt; 或 &lt;code&gt;callbacks&lt;/code&gt;。但是，当你尝试组合事件， RxJS的工厂方法会提供简便的方法给你，你完全感受不到当前使用了何种编程模式。这真的很方便维护（比如取消订阅）和筛选（比如选择合适的数据）数据源。在本节和下节中，你可以尝试 RxJS 的这些特性如何协助你完成异步编程。&lt;/p&gt;
-&lt;p&gt;自然，RxJS 支持一批库和他们的勾子函数去使用他们的事件系统，比如 &lt;a href=&quot;http://jquery.com/&quot;&gt;jQuery&lt;/a&gt;, &lt;a href=&quot;http://zeptojs.com/&quot;&gt;Zepto.js&lt;/a&gt;, &lt;a href=&quot;https://angularjs.org/&quot;&gt;AngularJS&lt;/a&gt;, &lt;a href=&quot;http://emberjs.com/&quot;&gt;Ember.js&lt;/a&gt; 和 &lt;a href=&quot;http://backbonejs.org&quot;&gt;Backbone.js&lt;/a&gt;。这种行为，不管怎样只能重写本地绑定。默认情况下， RxJS 也支持 &lt;a href=&quot;http://nodejs.org&quot;&gt;Node.js&lt;/a&gt; &lt;code&gt;EventEmitter&lt;/code&gt; 的事件勾子。&lt;br&gt;
+&lt;p&gt;自然，RxJS 支持一批库和他们的勾子函数去使用他们的事件系统，比如 &lt;a href=&quot;http://jquery.com/&quot;&gt;jQuery&lt;/a&gt;, &lt;a href=&quot;http://zeptojs.com/&quot;&gt;Zepto.js&lt;/a&gt;, &lt;a href=&quot;https://angularjs.org/&quot;&gt;AngularJS&lt;/a&gt;, &lt;a href=&quot;http://emberjs.com/&quot;&gt;Ember.js&lt;/a&gt; 和 &lt;a href=&quot;http://backbonejs.org&quot;&gt;Backbone.js&lt;/a&gt;。这种行为，不管怎样只能重写本地绑定。默认情况下， RxJS 也支持 &lt;a href=&quot;http://nodejs.org&quot;&gt;Node.js&lt;/a&gt; &lt;code&gt;EventEmitter&lt;/code&gt; 的事件勾子。
     
     </summary>
     
@@ -441,7 +1064,8 @@
 <h4 id="例-2"><a href="#例-2" class="headerlink" title="例"></a>例</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xs = Rx.Observable.create(<span class="function"><span class="params">observer</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Side effect'</span>);</div><div class="line">  observer.onNext(<span class="string">'hi!'</span>);</div><div class="line">  observer.onCompleted();</div><div class="line">&#125;);</div><div class="line"></div><div class="line">xs.publish(<span class="function"><span class="params">sharedXs</span> =&gt;</span> &#123;</div><div class="line">  sharedXs.subscribe(<span class="built_in">console</span>.log);</div><div class="line">  sharedXs.subscribe(<span class="built_in">console</span>.log);</div><div class="line">  <span class="keyword">return</span> sharedXs;</div><div class="line">&#125;).subscribe();</div></pre></td></tr></table></figure>
 <p>这个例子中，<code>xs</code> 是一个有副作用的（写入console） observable。正常情况下，每个单独的订阅都会触发这些副作用。 <code>publish</code> 操作符使用<code>xs</code>单独给所有订阅者 <code>sharedXs</code> 变量去订阅。</p>
 <h4 id="何时忽略这条指南-6"><a href="#何时忽略这条指南-6" class="headerlink" title="何时忽略这条指南"></a>何时忽略这条指南</h4><p>只有当 <code>publish</code> 操作符需要共享副作用时才使用这条指南。在大多数情况下，您可以创建单独的订阅，没有任何问题：不管是订阅没有副作用的或是副作用可以执行多次没有任何问题的。</p>
-<p><a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/designguidelines#4-using-rx" target="_blank" rel="external">参考</a><br><a href="https://robin-front.gitbooks.io/rxjs-doc-chinese/content/content/guidelines/using.html" target="_blank" rel="external">同步翻译至RxJS中文文档</a></p>
+<p><a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/designguidelines#4-using-rx" target="_blank" rel="external">参考</a>
+<a href="https://robin-front.gitbooks.io/rxjs-doc-chinese/content/content/guidelines/using.html" target="_blank" rel="external">同步翻译至RxJS中文文档</a></p>
 ]]></content>
     
     <summary type="html">
@@ -469,15 +1093,18 @@
     <content type="html"><![CDATA[<h2 id="Why-RxJS"><a href="#Why-RxJS" class="headerlink" title="Why RxJS?"></a>Why RxJS?</h2><p>你可能会问，为什么选择 RxJS?  为什么不是 Promises? Promises 可以很好地解决异步操作，像使用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank" rel="external">XMLHttpRequest</a> 去查询服务器, 它预期会返回值并且最终完成请求。  <code>The Reactive Extensions</code> 统一了 <code>JavaScript</code> 中的 <code>Promises</code>, <code>callbacks</code> 以及事件数据，比如 DOM输入, <code>Web Workers</code>, <code>Web Sockets</code>. 一旦我们统一了这些概念，就可以进行各种各样的组合.</p>
 <a id="more"></a>
 <p>为了让您了解丰富的组合，我们可以创建一个自动完成功能，它从文本输入中接收用户输入，然后查询服务，确保不会对每个键盘输入的进行泛滥地调用，而是以一种更自然的方式调用。</p>
-<p>首先，我们将引用JavaScript文件，包括jQuery，尽管RxJS没有依赖于jQuery …<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://code.jquery.com/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"rx.lite.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>接下来，我们将从输入框获取用户输入，使用<a href="content/observable/observable_methods/fromevent.html"><code>Rx.Observable.fromEvent</code></a> 方法监听 <code>keyup</code> 事件.  如果 <a href="http://jquery.com" target="_blank" rel="external">jQuery</a>, <a href="http://zeptojs.com/" target="_blank" rel="external">Zepto</a>, <a href="https://angularjs.org/" target="_blank" rel="external">AngularJS</a> and <a href="http://emberjs.com/" target="_blank" rel="external">Ember.js</a> 可用，将会使用它们来绑定事件, 否则将使用原生事件绑定. 这跟您的框架思考事件的一致方式，因此没有任何惊喜。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $input = $(<span class="string">'#input'</span>),</div><div class="line">    $results = $(<span class="string">'#results'</span>);</div><div class="line"></div><div class="line"><span class="comment">/* 只从 keyup 事件获得输入值 */</span></div><div class="line"><span class="keyword">var</span> keyups = Rx.Observable.fromEvent($input, <span class="string">'keyup'</span>)</div><div class="line">    .map(<span class="function"><span class="params">e</span> =&gt;</span> e.target.value)</div><div class="line">    .filter(<span class="function"><span class="params">text</span> =&gt;</span> text.length &gt; <span class="number">2</span>);</div><div class="line"></div><div class="line"><span class="comment">/* 函数节流输出设置为 500ms */</span></div><div class="line"><span class="keyword">var</span> throttled = keyups.throttle(<span class="number">500</span> <span class="comment">/* ms */</span>);</div><div class="line"></div><div class="line"><span class="comment">/* 现在判断值是否有改变，只获取不同的值 */</span></div><div class="line"><span class="keyword">var</span> distinct = throttled.distinctUntilChanged();</div></pre></td></tr></table></figure></p>
+<p>首先，我们将引用JavaScript文件，包括jQuery，尽管RxJS没有依赖于jQuery …
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://code.jquery.com/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"rx.lite.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>接下来，我们将从输入框获取用户输入，使用<a href="content/observable/observable_methods/fromevent.html"><code>Rx.Observable.fromEvent</code></a> 方法监听 <code>keyup</code> 事件.  如果 <a href="http://jquery.com" target="_blank" rel="external">jQuery</a>, <a href="http://zeptojs.com/" target="_blank" rel="external">Zepto</a>, <a href="https://angularjs.org/" target="_blank" rel="external">AngularJS</a> and <a href="http://emberjs.com/" target="_blank" rel="external">Ember.js</a> 可用，将会使用它们来绑定事件, 否则将使用原生事件绑定. 这跟您的框架思考事件的一致方式，因此没有任何惊喜。
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $input = $(<span class="string">'#input'</span>),</div><div class="line">    $results = $(<span class="string">'#results'</span>);</div><div class="line"></div><div class="line"><span class="comment">/* 只从 keyup 事件获得输入值 */</span></div><div class="line"><span class="keyword">var</span> keyups = Rx.Observable.fromEvent($input, <span class="string">'keyup'</span>)</div><div class="line">    .map(<span class="function"><span class="params">e</span> =&gt;</span> e.target.value)</div><div class="line">    .filter(<span class="function"><span class="params">text</span> =&gt;</span> text.length &gt; <span class="number">2</span>);</div><div class="line"></div><div class="line"><span class="comment">/* 函数节流输出设置为 500ms */</span></div><div class="line"><span class="keyword">var</span> throttled = keyups.throttle(<span class="number">500</span> <span class="comment">/* ms */</span>);</div><div class="line"></div><div class="line"><span class="comment">/* 现在判断值是否有改变，只获取不同的值 */</span></div><div class="line"><span class="keyword">var</span> distinct = throttled.distinctUntilChanged();</div></pre></td></tr></table></figure></p>
 <p>现在，让我们来查询维基百科！在RxJS中，我们可以立即通过<code>Rx.Observable.fromPromise</code>方法绑定到任何<a href="https://github.com/promises-aplus/promises-spec" target="_blank" rel="external">Promises A+</a>的实现上，或者直接返回它，并将其封装。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">searchWikipedia</span> (<span class="params">term</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> $.ajax(&#123;</div><div class="line">        <span class="attr">url</span>: <span class="string">'http://en.wikipedia.org/w/api.php'</span>,</div><div class="line">        <span class="attr">dataType</span>: <span class="string">'jsonp'</span>,</div><div class="line">        <span class="attr">data</span>: &#123;</div><div class="line">            <span class="attr">action</span>: <span class="string">'opensearch'</span>,</div><div class="line">            <span class="attr">format</span>: <span class="string">'json'</span>,</div><div class="line">            <span class="attr">search</span>: term</div><div class="line">        &#125;</div><div class="line">    &#125;).promise();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>一旦创建，现在我们可以将不同的节流输入绑定在一起，然后查询服务。在这种情况下，我们将调用<code>flatMapLatest</code>获取该值，并确保我们不会有任何混乱的调用。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> suggestions = distinct.flatMapLatest(searchWikipedia);</div></pre></td></tr></table></figure>
 <p>最后，我们将在可观察对象上调用<code>subscribe</code>方法开始拉数据。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">suggestions.subscribe(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">var</span> res = data[<span class="number">1</span>];</div><div class="line"></div><div class="line">    <span class="comment">/* Do something 像数据绑定 */</span></div><div class="line">    $results.empty();</div><div class="line"></div><div class="line">    $.each(res, (_, value) =&gt; $(<span class="string">'&lt;li&gt;'</span> + value + <span class="string">'&lt;/li&gt;'</span>).appendTo($results));</div><div class="line">&#125;, error =&gt; &#123;</div><div class="line">    <span class="comment">/* handle any errors */</span></div><div class="line">    $results.empty();</div><div class="line"></div><div class="line">    $(<span class="string">'&lt;li&gt;Error: '</span> + error + <span class="string">'&lt;/li&gt;'</span>).appendTo($results);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/Reactive-Extensions/RxJS#why-rxjs" target="_blank" rel="external">翻译参考</a><br><a href="https://robin-front.gitbooks.io/rxjs-doc-chinese/content/why_rxjs.html" target="_blank" rel="external">同步发布RxJS中文文档</a></p>
+<p><a href="https://github.com/Reactive-Extensions/RxJS#why-rxjs" target="_blank" rel="external">翻译参考</a>
+<a href="https://robin-front.gitbooks.io/rxjs-doc-chinese/content/why_rxjs.html" target="_blank" rel="external">同步发布RxJS中文文档</a></p>
 ]]></content>
     
     <summary type="html">
@@ -501,7 +1128,8 @@
     <updated>2017-03-20T03:04:39.000Z</updated>
     
     <content type="html"><![CDATA[<p>上一篇的 <a href="http://robin-front.github.io/2017/03/19/RxJS%E7%9A%84%E5%8A%A8%E7%94%BB%E7%AE%80%E4%BB%8B/">RxJS的动画简介</a> 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。</p>
-<p><code>Lerp</code>是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.<br><a id="more"></a></p>
+<p><code>Lerp</code>是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.
+<a id="more"></a></p>
 <h1 id="它是如何工作的？"><a href="#它是如何工作的？" class="headerlink" title="它是如何工作的？"></a>它是如何工作的？</h1><p>如果您有一个对象的当前位置和目标的位置，您可以线性内插这些点之间的距离的百分比，并在每个动画帧上更新该位置。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lerp</span>(<span class="params">position, targetPosition</span>) </span>&#123;</div><div class="line"><span class="comment">// 计算当前位置与目标位置差值的 20%</span></div><div class="line">  position.x += (targetPosition.x - position.x)*<span class="number">0.2</span>;</div><div class="line">  position.y += (targetPosition.y - position.y)*<span class="number">0.2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>通过这样做，对象移动的量随着位置和目标之间的距离减小而变小。这意味着对象将越来越接近它的目标，速度将减慢，这创造一个很好的缓和效果。</p>
@@ -523,7 +1151,7 @@
     <summary type="html">
     
       &lt;p&gt;上一篇的 &lt;a href=&quot;http://robin-front.github.io/2017/03/19/RxJS%E7%9A%84%E5%8A%A8%E7%94%BB%E7%AE%80%E4%BB%8B/&quot;&gt;RxJS的动画简介&lt;/a&gt; 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Lerp&lt;/code&gt;是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.&lt;br&gt;
+&lt;p&gt;&lt;code&gt;Lerp&lt;/code&gt;是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.
     
     </summary>
     
@@ -542,7 +1170,8 @@
     <updated>2017-03-19T06:40:21.000Z</updated>
     
     <content type="html"><![CDATA[<p>本文译自 <a href="https://css-tricks.com/animated-intro-rxjs/" target="_blank" rel="external">An Animated Intro to RxJS</a></p>
-<p>你可能听说过RxJS，ReactiveX，或反应式编程，或者甚至只听过函数式编程。这些术语在谈论最新和最前沿的前端技术时变得越来越突出。如果你像我一样，当你第一次尝试学习它时，你感到很困惑。<br><a id="more"></a></p>
+<p>你可能听说过RxJS，ReactiveX，或反应式编程，或者甚至只听过函数式编程。这些术语在谈论最新和最前沿的前端技术时变得越来越突出。如果你像我一样，当你第一次尝试学习它时，你感到很困惑。
+<a id="more"></a></p>
 <p>根据<a href="http://reactivex.io/" target="_blank" rel="external">ReactiveX.io</a>：</p>
 <blockquote>
 <p>ReactiveX是一个库，用于通过使用可观察序列来组成异步和基于事件的程序。</p>
@@ -626,7 +1255,7 @@
     <summary type="html">
     
       &lt;p&gt;本文译自 &lt;a href=&quot;https://css-tricks.com/animated-intro-rxjs/&quot;&gt;An Animated Intro to RxJS&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;你可能听说过RxJS，ReactiveX，或反应式编程，或者甚至只听过函数式编程。这些术语在谈论最新和最前沿的前端技术时变得越来越突出。如果你像我一样，当你第一次尝试学习它时，你感到很困惑。&lt;br&gt;
+&lt;p&gt;你可能听说过RxJS，ReactiveX，或反应式编程，或者甚至只听过函数式编程。这些术语在谈论最新和最前沿的前端技术时变得越来越突出。如果你像我一样，当你第一次尝试学习它时，你感到很困惑。
     
     </summary>
     
@@ -645,7 +1274,9 @@
     <updated>2017-03-13T03:31:42.000Z</updated>
     
     <content type="html"><![CDATA[<p>本文译自 <a href="https://medium.freecodecamp.com/even-more-about-how-flexbox-works-explained-in-big-colorful-animated-gifs-a5a74812b053#.iwqlenuqq" target="_blank" rel="external">Scott Domes</a></p>
-<p>Flex属性是一个复合属性，而大部分教程中都只设置一个值，但其实它包含了 <code>flex-basis</code>、<code>flex-grow</code>、<code>flex-shrink</code>.<br>让我们深入了解Flexbox - 以及如何利用它来构建适应性强和漂亮的布局.<br><a id="more"></a></p>
+<p>Flex属性是一个复合属性，而大部分教程中都只设置一个值，但其实它包含了 <code>flex-basis</code>、<code>flex-grow</code>、<code>flex-shrink</code>.
+让我们深入了解Flexbox - 以及如何利用它来构建适应性强和漂亮的布局.
+<a id="more"></a></p>
 <h3 id="属性一：-Flex-Basis"><a href="#属性一：-Flex-Basis" class="headerlink" title="属性一： Flex-Basis"></a>属性一： Flex-Basis</h3><p>在<a href="https://medium.freecodecamp.com/an-animated-guide-to-flexbox-d280cf6afc35#.s7qtdlnbf" target="_blank" rel="external">上一篇文章</a>中，我们主要把它用于外部容器中。这一次，我们试着把它用在容器内的子元素中。</p>
 <p>这是一个很不起眼的属性，但也很直接。</p>
 <p><code>Flex-basis</code> 控制着一个元素的默认大小，在其他 flex 属性应用之前。</p>
@@ -718,7 +1349,8 @@
     <summary type="html">
     
       &lt;p&gt;本文译自 &lt;a href=&quot;https://medium.freecodecamp.com/even-more-about-how-flexbox-works-explained-in-big-colorful-animated-gifs-a5a74812b053#.iwqlenuqq&quot;&gt;Scott Domes&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Flex属性是一个复合属性，而大部分教程中都只设置一个值，但其实它包含了 &lt;code&gt;flex-basis&lt;/code&gt;、&lt;code&gt;flex-grow&lt;/code&gt;、&lt;code&gt;flex-shrink&lt;/code&gt;.&lt;br&gt;让我们深入了解Flexbox - 以及如何利用它来构建适应性强和漂亮的布局.&lt;br&gt;
+&lt;p&gt;Flex属性是一个复合属性，而大部分教程中都只设置一个值，但其实它包含了 &lt;code&gt;flex-basis&lt;/code&gt;、&lt;code&gt;flex-grow&lt;/code&gt;、&lt;code&gt;flex-shrink&lt;/code&gt;.
+让我们深入了解Flexbox - 以及如何利用它来构建适应性强和漂亮的布局.
     
     </summary>
     
@@ -736,7 +1368,8 @@
     <published>2017-01-13T02:19:27.000Z</published>
     <updated>2017-01-13T02:19:27.000Z</updated>
     
-    <content type="html"><![CDATA[<p>利用hasOwnProperty、getOwnPropertyNames、Object.keys、for…in遍历对象的可枚举属性、不可枚举属性、原型链上的属性和自身属性。<br><a id="more"></a></p>
+    <content type="html"><![CDATA[<p>利用hasOwnProperty、getOwnPropertyNames、Object.keys、for…in遍历对象的可枚举属性、不可枚举属性、原型链上的属性和自身属性。
+<a id="more"></a></p>
 <p>首先来看看各种方法的用法及兼容性。</p>
 <h3 id="hasOwnProperty-NaN"><a href="#hasOwnProperty-NaN" class="headerlink" title="hasOwnProperty"></a>hasOwnProperty</h3><p>Object.prototype.hasOwnProperty(name) 方法用来判断某个对象是否含有指定的自身属性，它本身是对象原型链上的默认方法。</p>
 <p>hasOwnProperty 方法是 ES3 就标准化了，所以不用担心兼容性问题。</p>
@@ -779,7 +1412,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;利用hasOwnProperty、getOwnPropertyNames、Object.keys、for…in遍历对象的可枚举属性、不可枚举属性、原型链上的属性和自身属性。&lt;br&gt;
+      &lt;p&gt;利用hasOwnProperty、getOwnPropertyNames、Object.keys、for…in遍历对象的可枚举属性、不可枚举属性、原型链上的属性和自身属性。
     
     </summary>
     
@@ -801,7 +1434,8 @@
     <published>2017-01-12T09:49:14.000Z</published>
     <updated>2017-01-12T09:49:14.000Z</updated>
     
-    <content type="html"><![CDATA[<p>在javascript中，instanceof 和 isPrototypeOf 都可以判断一个原型是否在另一个实例的原型链中，那他们有什么区别呢，为什么说 isPrototypeOf 可以替代 instanceof 。<br><a id="more"></a></p>
+    <content type="html"><![CDATA[<p>在javascript中，instanceof 和 isPrototypeOf 都可以判断一个原型是否在另一个实例的原型链中，那他们有什么区别呢，为什么说 isPrototypeOf 可以替代 instanceof 。
+<a id="more"></a></p>
 <h3 id="instanceof-用法"><a href="#instanceof-用法" class="headerlink" title="instanceof 用法"></a>instanceof 用法</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="comment">// init code</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span><span class="params">()</span> </span>&#123;</div><div class="line">      Super.call(<span class="keyword">this</span>);</div><div class="line">      <span class="comment">// other init code</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">Sub.prototype = <span class="keyword">new</span> Super();</div><div class="line"></div><div class="line"><span class="keyword">var</span> sub = <span class="keyword">new</span> Sub();</div></pre></td></tr></table></figure>
 <p>对于上面的代码，用 instanceof 可以像这样确定他们的关系：</p>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">sub</span> <span class="title">instanceof</span> <span class="title">Super</span></span>; // true</div></pre></td></tr></table></figure>
@@ -815,7 +1449,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;在javascript中，instanceof 和 isPrototypeOf 都可以判断一个原型是否在另一个实例的原型链中，那他们有什么区别呢，为什么说 isPrototypeOf 可以替代 instanceof 。&lt;br&gt;
+      &lt;p&gt;在javascript中，instanceof 和 isPrototypeOf 都可以判断一个原型是否在另一个实例的原型链中，那他们有什么区别呢，为什么说 isPrototypeOf 可以替代 instanceof 。
     
     </summary>
     
@@ -835,7 +1469,8 @@
     <published>2017-01-10T05:35:00.000Z</published>
     <updated>2017-01-11T01:13:00.000Z</updated>
     
-    <content type="html"><![CDATA[<p>目前大多数的移动设备均具备硬件能力支持振动，让软件代码通过使设备摇晃来向用户提供物理反馈。Vibration API 为 Web应用程序提供访问此硬件的能力。如果设备不支持，则不会产生任何效果。<br><a id="more"></a></p>
+    <content type="html"><![CDATA[<p>目前大多数的移动设备均具备硬件能力支持振动，让软件代码通过使设备摇晃来向用户提供物理反馈。Vibration API 为 Web应用程序提供访问此硬件的能力。如果设备不支持，则不会产生任何效果。
+<a id="more"></a></p>
 <h3 id="振动描述"><a href="#振动描述" class="headerlink" title="振动描述"></a>振动描述</h3><p>振动被抽象成【开-关】脉冲的模式，且可以具有变化的长度。参数可以是单个整数，表示持续振动的毫秒数 (ms)；或可由多个整数组成的数组，达到振动和暂停循环的效果。只要单一 window.navigator.vibrate() 函式即可控制振动。</p>
 <h3 id="单次振动"><a href="#单次振动" class="headerlink" title="单次振动"></a>单次振动</h3><p>你可指定单一数值，或用只有一个数值成员的数组，让设备振动 1 次：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">window</span><span class="selector-class">.navigator</span><span class="selector-class">.vibrate</span>(200);</div><div class="line"><span class="selector-tag">window</span><span class="selector-class">.navigator</span><span class="selector-class">.vibrate</span>(<span class="selector-attr">[200]</span>);</div></pre></td></tr></table></figure>
@@ -856,7 +1491,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;目前大多数的移动设备均具备硬件能力支持振动，让软件代码通过使设备摇晃来向用户提供物理反馈。Vibration API 为 Web应用程序提供访问此硬件的能力。如果设备不支持，则不会产生任何效果。&lt;br&gt;
+      &lt;p&gt;目前大多数的移动设备均具备硬件能力支持振动，让软件代码通过使设备摇晃来向用户提供物理反馈。Vibration API 为 Web应用程序提供访问此硬件的能力。如果设备不支持，则不会产生任何效果。
     
     </summary>
     
@@ -881,12 +1516,18 @@
 <p><code>lodash</code> 源码如下：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">baseSlice</span>(<span class="params">array, start, end</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> index = <span class="number">-1</span>,</div><div class="line">      length = array.length;</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (start &lt; <span class="number">0</span>) &#123;</div><div class="line">    start = -start &gt; length ? <span class="number">0</span> : (length + start);</div><div class="line">  &#125;</div><div class="line">  end = end &gt; length ? length : end;</div><div class="line">  <span class="keyword">if</span> (end &lt; <span class="number">0</span>) &#123;</div><div class="line">    end += length;</div><div class="line">  &#125;</div><div class="line">  length = start &gt; end ? <span class="number">0</span> : ((end - start) &gt;&gt;&gt; <span class="number">0</span>);</div><div class="line">  start &gt;&gt;&gt;= <span class="number">0</span>;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> result = <span class="built_in">Array</span>(length);</div><div class="line">  <span class="keyword">while</span> (++index &lt; length) &#123;</div><div class="line">    result[index] = array[index + start];</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>于是就开始写代码比较：</p>
-<p>  操作长度为100的数组，执行10000次：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> baseArray = [];</div><div class="line"><span class="keyword">var</span> i = <span class="number">-1</span>;</div><div class="line"><span class="keyword">while</span> (++ i &lt; <span class="number">100</span>) &#123; <span class="comment">// 定义一个10000长度的数组以供使用</span></div><div class="line">  baseArray[i] = i;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.time(<span class="string">'slice with no args'</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++)&#123;</div><div class="line">  baseArray.slice();</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'slice with no args'</span>);</div><div class="line"><span class="built_in">console</span>.time(<span class="string">'slice with args'</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++)&#123;</div><div class="line">  baseArray.slice(<span class="number">20</span>, <span class="number">40</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'slice with args'</span>);</div><div class="line"><span class="built_in">console</span>.time(<span class="string">'index'</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++)&#123;</div><div class="line">  <span class="keyword">var</span> result = <span class="built_in">Array</span>(<span class="number">100</span>);</div><div class="line">  <span class="keyword">var</span> index = <span class="number">-1</span>;</div><div class="line">  <span class="keyword">var</span> length = baseArray.length;</div><div class="line">  <span class="keyword">while</span> (++index &lt; length) &#123;</div><div class="line">    result[index] = baseArray[index];</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'index'</span>);</div><div class="line"><span class="built_in">console</span>.time(<span class="string">'index with no init array'</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++)&#123;</div><div class="line">  <span class="keyword">var</span> result = [];</div><div class="line">  <span class="keyword">var</span> index = <span class="number">-1</span>;</div><div class="line">  <span class="keyword">var</span> length = baseArray.length;</div><div class="line">  <span class="keyword">while</span> (++index &lt; <span class="number">20</span>) &#123;</div><div class="line">    result[index] = baseArray[index];</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'index with no init array'</span>);</div></pre></td></tr></table></figure></p>
+<p>  操作长度为100的数组，执行10000次：
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> baseArray = [];</div><div class="line"><span class="keyword">var</span> i = <span class="number">-1</span>;</div><div class="line"><span class="keyword">while</span> (++ i &lt; <span class="number">100</span>) &#123; <span class="comment">// 定义一个10000长度的数组以供使用</span></div><div class="line">  baseArray[i] = i;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.time(<span class="string">'slice with no args'</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++)&#123;</div><div class="line">  baseArray.slice();</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'slice with no args'</span>);</div><div class="line"><span class="built_in">console</span>.time(<span class="string">'slice with args'</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++)&#123;</div><div class="line">  baseArray.slice(<span class="number">20</span>, <span class="number">40</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'slice with args'</span>);</div><div class="line"><span class="built_in">console</span>.time(<span class="string">'index'</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++)&#123;</div><div class="line">  <span class="keyword">var</span> result = <span class="built_in">Array</span>(<span class="number">100</span>);</div><div class="line">  <span class="keyword">var</span> index = <span class="number">-1</span>;</div><div class="line">  <span class="keyword">var</span> length = baseArray.length;</div><div class="line">  <span class="keyword">while</span> (++index &lt; length) &#123;</div><div class="line">    result[index] = baseArray[index];</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'index'</span>);</div><div class="line"><span class="built_in">console</span>.time(<span class="string">'index with no init array'</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++)&#123;</div><div class="line">  <span class="keyword">var</span> result = [];</div><div class="line">  <span class="keyword">var</span> index = <span class="number">-1</span>;</div><div class="line">  <span class="keyword">var</span> length = baseArray.length;</div><div class="line">  <span class="keyword">while</span> (++index &lt; <span class="number">20</span>) &#123;</div><div class="line">    result[index] = baseArray[index];</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'index with no init array'</span>);</div></pre></td></tr></table></figure></p>
 <p>对比结果：</p>
 <figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// chrome 版本 54.0.2840.98 (64-bit)</span></div><div class="line">slice <span class="keyword">with</span> no args: <span class="number">93.3</span>ms</div><div class="line">slice <span class="keyword">with</span> args: <span class="number">175</span>ms</div><div class="line"><span class="keyword">index</span>: <span class="number">365</span>ms</div><div class="line"><span class="keyword">index</span> <span class="keyword">with</span> no init <span class="keyword">array</span>: <span class="number">546</span>ms</div><div class="line"><span class="comment">// safari 版本 9.0.2 (11601.3.9)</span></div><div class="line">slice <span class="keyword">with</span> no args: <span class="number">122.152</span>ms</div><div class="line">slice <span class="keyword">with</span> args: <span class="number">117.181</span>ms</div><div class="line"><span class="keyword">index</span>: <span class="number">60076.301</span>ms</div><div class="line"><span class="keyword">index</span> <span class="keyword">with</span> no init <span class="keyword">array</span>: <span class="number">62055.406</span>ms</div><div class="line"><span class="comment">//firefox 50.0</span></div><div class="line">slice <span class="keyword">with</span> no args: <span class="number">462.07</span>ms</div><div class="line">slice <span class="keyword">with</span> args: <span class="number">442.25</span>ms</div><div class="line"><span class="keyword">index</span>: <span class="number">194206.08</span>ms</div><div class="line"><span class="keyword">index</span> <span class="keyword">with</span> no init <span class="keyword">array</span>: <span class="number">184714.59</span>ms</div></pre></td></tr></table></figure>
-<p>由于mac ox无法测试IE,<br>可以看出，chrome总体要比safafi、firefox快很多；<br>slice方法上，safari和chrome差不多， chrome下slice有参数比无参数慢；<br>新建数组Array()和 []性能差不多；</p>
-<p>这么看来，那用原生 slice 明显会更好，为什么 lodash 要用循环索引呢？难道是因为一般应用数组都不会这么大，那改成长度为100的数组进行操作；<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// chrome</span></div><div class="line">slice <span class="keyword">with</span> no args: <span class="number">6</span>ms</div><div class="line">slice <span class="keyword">with</span> args: <span class="number">4.12</span>ms</div><div class="line"><span class="keyword">index</span>: <span class="number">5.82</span>ms</div><div class="line"><span class="keyword">index</span> <span class="keyword">with</span> no init <span class="keyword">array</span>: <span class="number">7.96</span>ms</div><div class="line"><span class="comment">// safari</span></div><div class="line">slice <span class="keyword">with</span> no args: <span class="number">9.158</span>ms</div><div class="line">slice <span class="keyword">with</span> args: <span class="number">8.432</span>ms</div><div class="line"><span class="keyword">index</span>: <span class="number">640.311</span>ms</div><div class="line"><span class="keyword">index</span> <span class="keyword">with</span> no init <span class="keyword">array</span>: <span class="number">643.174</span>ms</div><div class="line"><span class="comment">//firefox</span></div><div class="line">slice <span class="keyword">with</span> no args: <span class="number">17.56</span>ms</div><div class="line">slice <span class="keyword">with</span> args: <span class="number">17.53</span>ms</div><div class="line"><span class="keyword">index</span>: <span class="number">2174.15</span>ms</div><div class="line"><span class="keyword">index</span> <span class="keyword">with</span> no init <span class="keyword">array</span>: <span class="number">2198.15</span>ms</div></pre></td></tr></table></figure></p>
-<p>发现结论并没有改变。<br>然后就向lodash提了question, 回复是：</p>
+<p>由于mac ox无法测试IE,
+可以看出，chrome总体要比safafi、firefox快很多；
+slice方法上，safari和chrome差不多， chrome下slice有参数比无参数慢；
+新建数组Array()和 []性能差不多；</p>
+<p>这么看来，那用原生 slice 明显会更好，为什么 lodash 要用循环索引呢？难道是因为一般应用数组都不会这么大，那改成长度为100的数组进行操作；
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// chrome</span></div><div class="line">slice <span class="keyword">with</span> no args: <span class="number">6</span>ms</div><div class="line">slice <span class="keyword">with</span> args: <span class="number">4.12</span>ms</div><div class="line"><span class="keyword">index</span>: <span class="number">5.82</span>ms</div><div class="line"><span class="keyword">index</span> <span class="keyword">with</span> no init <span class="keyword">array</span>: <span class="number">7.96</span>ms</div><div class="line"><span class="comment">// safari</span></div><div class="line">slice <span class="keyword">with</span> no args: <span class="number">9.158</span>ms</div><div class="line">slice <span class="keyword">with</span> args: <span class="number">8.432</span>ms</div><div class="line"><span class="keyword">index</span>: <span class="number">640.311</span>ms</div><div class="line"><span class="keyword">index</span> <span class="keyword">with</span> no init <span class="keyword">array</span>: <span class="number">643.174</span>ms</div><div class="line"><span class="comment">//firefox</span></div><div class="line">slice <span class="keyword">with</span> no args: <span class="number">17.56</span>ms</div><div class="line">slice <span class="keyword">with</span> args: <span class="number">17.53</span>ms</div><div class="line"><span class="keyword">index</span>: <span class="number">2174.15</span>ms</div><div class="line"><span class="keyword">index</span> <span class="keyword">with</span> no init <span class="keyword">array</span>: <span class="number">2198.15</span>ms</div></pre></td></tr></table></figure></p>
+<p>发现结论并没有改变。
+然后就向lodash提了question, 回复是：</p>
 <blockquote>
 <p>The perf wins of Array#slice vs. baseSlice depends on the size of the array. That is a minor point though as the perf of that method is not likely to be an issue. The reason we use baseSlice is because we treat arrays as dense while Array#slice will respect sparse arrays.</p>
 </blockquote>
@@ -894,8 +1535,10 @@
 <p>然后就有下面的测试：</p>
 <p>使用 Array#slice和baseSlice 分别截取数组其中一段，循环1000000次：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> baseArray = [];</div><div class="line"><span class="keyword">var</span> i = <span class="number">-1</span>;</div><div class="line"><span class="keyword">while</span> (++ i &lt; <span class="number">100000</span>) &#123; <span class="comment">// 定义一个10000长度的数组以供使用,这里数组长度并不影响性能，性能影响主要在于截取的长度。</span></div><div class="line">  baseArray[i] = i;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.time(<span class="string">'slice with args'</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000000</span>; i++)&#123;</div><div class="line">  baseArray.slice(<span class="number">0</span>, <span class="number">20</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'slice with args'</span>);</div><div class="line"><span class="built_in">console</span>.time(<span class="string">'index'</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000000</span>; i++)&#123;</div><div class="line">  <span class="keyword">var</span> result = <span class="built_in">Array</span>(<span class="number">20</span>);</div><div class="line">  <span class="keyword">var</span> index = <span class="number">-1</span>;</div><div class="line">  <span class="keyword">while</span> (++index &lt; <span class="number">20</span>) &#123;</div><div class="line">    result[index] = baseArray[index];</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.timeEnd(<span class="string">'index'</span>);</div></pre></td></tr></table></figure>
-<p>不同截取长度在chrome下的效果：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 截取长度 20</span></div><div class="line">slice <span class="keyword">with</span> args: <span class="number">110</span>ms</div><div class="line"><span class="keyword">index</span>: <span class="number">78.9</span>ms</div><div class="line"><span class="comment">// 截取长度 30</span></div><div class="line">slice <span class="keyword">with</span> args: <span class="number">114</span>ms</div><div class="line"><span class="keyword">index</span>: <span class="number">112</span>ms</div><div class="line"><span class="comment">// 截取长度 30</span></div><div class="line">slice <span class="keyword">with</span> args: <span class="number">132</span>ms</div><div class="line"><span class="keyword">index</span>: <span class="number">146</span>ms</div></pre></td></tr></table></figure></p>
-<p>由此看出，截取长度为30左右时，Array#slice和loop方式性能基本一样，而 Array#slice 基本不受截取长度的影响。<br>所以结论是，当长度为30以下时，lodash的方法是比较高效的，当然，这影响微乎其微。像_.chunk方法，一般场景分组都不会太长。</p>
+<p>不同截取长度在chrome下的效果：
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 截取长度 20</span></div><div class="line">slice <span class="keyword">with</span> args: <span class="number">110</span>ms</div><div class="line"><span class="keyword">index</span>: <span class="number">78.9</span>ms</div><div class="line"><span class="comment">// 截取长度 30</span></div><div class="line">slice <span class="keyword">with</span> args: <span class="number">114</span>ms</div><div class="line"><span class="keyword">index</span>: <span class="number">112</span>ms</div><div class="line"><span class="comment">// 截取长度 30</span></div><div class="line">slice <span class="keyword">with</span> args: <span class="number">132</span>ms</div><div class="line"><span class="keyword">index</span>: <span class="number">146</span>ms</div></pre></td></tr></table></figure></p>
+<p>由此看出，截取长度为30左右时，Array#slice和loop方式性能基本一样，而 Array#slice 基本不受截取长度的影响。
+所以结论是，当长度为30以下时，lodash的方法是比较高效的，当然，这影响微乎其微。像_.chunk方法，一般场景分组都不会太长。</p>
 <p>疑惑是，对我的回复的后半句我没怎么看懂，密集数据和稀疏数据对这有什么影响呢？</p>
 ]]></content>
     
@@ -946,7 +1589,8 @@
 <h3 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h3><p>这里是视觉演示:</p>
 <iframe src="http://drupalmotion.com/sites/default/files/demos/debounce-throttle/index.html" height="350px" width="1000px"></iframe>
 
-<p>这是截图：<br><img src="http://drupalmotion.com/sites/default/files/pics/screenshot.png" alt="debounce-throttle"></p>
+<p>这是截图：
+<img src="http://drupalmotion.com/sites/default/files/pics/screenshot.png" alt="debounce-throttle"></p>
 <p>注意：</p>
 <ul>
 <li>这个的源代码演示在<a href="https://github.com/dcorb/debounce-throttle" target="_blank" rel="external">GitHub上托管</a>。</li>
@@ -1003,16 +1647,23 @@
 <li>另一个问题的出现是由于 npm 安装依赖的机制。npm 的安装包是有层次结构的，手动控制要安装的软件包的版本号可以实现，但是你只能在 package.json 使用精确的版本号控制你的直接依赖包，但那些多层以上的依赖就没办法控制了；一个第三方包不严谨的版本依赖生命可能破坏你的依赖管理。</li>
 <li>在开发阶段执行得到的版本，和后续部署时得到的可能是不一致的，更不可控的是，你依赖的第三方包也有这样的情况会导致潜在的上线风险。</li>
 </ul>
-<p>如果要控制上线的风险，我们就必需要解决这个问题，这时候，就需要使用 npm shrinkwrap 这个命令来解决问题。<br><a id="more"></a></p>
+<p>如果要控制上线的风险，我们就必需要解决这个问题，这时候，就需要使用 npm shrinkwrap 这个命令来解决问题。
+<a id="more"></a></p>
 <h3 id="npm-shrinkwrap"><a href="#npm-shrinkwrap" class="headerlink" title="npm shrinkwrap"></a>npm shrinkwrap</h3><p><code>npm shrinkwrap</code> 可以按照当前项目 <code>node_modules</code> 目录内的安装包情况生成稳定的版本号描述。</p>
-<p>比方说，有一个包 A<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"A"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"0.1.0"</span>,</div><div class="line">  <span class="attr">"dependencies"</span>: &#123;</div><div class="line">    <span class="attr">"B"</span>: <span class="string">"&lt;0.1.0"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>还有一个包 B<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"B"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"0.0.1"</span>,</div><div class="line">  <span class="attr">"dependencies"</span>: &#123;</div><div class="line">    <span class="attr">"C"</span>: <span class="string">"&lt;0.1.0"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>以及包 C<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"C"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"0.0.1"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>你的项目只依赖于 A，于是 <code>npm install</code> 会得到这样的目录结构<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">A@<span class="number">0.1</span><span class="number">.0</span></div><div class="line">  `-- B@<span class="number">0.0</span><span class="number">.1</span></div><div class="line">      `-- C@<span class="number">0.0</span><span class="number">.1</span></div></pre></td></tr></table></figure></p>
-<p>这时候，B@0.0.2 发布了，这时候在一个新的环境下执行 <code>npm install</code> 将得到<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">A@<span class="number">0.1</span><span class="number">.0</span></div><div class="line">    `-- B@<span class="number">0.0</span><span class="number">.2</span></div><div class="line">        `-- C@<span class="number">0.0</span><span class="number">.1</span></div></pre></td></tr></table></figure></p>
+<p>比方说，有一个包 A
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"A"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"0.1.0"</span>,</div><div class="line">  <span class="attr">"dependencies"</span>: &#123;</div><div class="line">    <span class="attr">"B"</span>: <span class="string">"&lt;0.1.0"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>还有一个包 B
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"B"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"0.0.1"</span>,</div><div class="line">  <span class="attr">"dependencies"</span>: &#123;</div><div class="line">    <span class="attr">"C"</span>: <span class="string">"&lt;0.1.0"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>以及包 C
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"C"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"0.0.1"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>你的项目只依赖于 A，于是 <code>npm install</code> 会得到这样的目录结构
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">A@<span class="number">0.1</span><span class="number">.0</span></div><div class="line">  `-- B@<span class="number">0.0</span><span class="number">.1</span></div><div class="line">      `-- C@<span class="number">0.0</span><span class="number">.1</span></div></pre></td></tr></table></figure></p>
+<p>这时候，B@0.0.2 发布了，这时候在一个新的环境下执行 <code>npm install</code> 将得到
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">A@<span class="number">0.1</span><span class="number">.0</span></div><div class="line">    `-- B@<span class="number">0.0</span><span class="number">.2</span></div><div class="line">        `-- C@<span class="number">0.0</span><span class="number">.1</span></div></pre></td></tr></table></figure></p>
 <p>这时候两次安装得到的版本号就不一致了。而通过 shrinkwrap 命令，我们可以保证在所有环境下安装得到稳定的结果。</p>
 <p>在项目引入新包的时候，或者 A 的开发者执行一下 npm shrinkwrap，可以在项目根目录得到一个 npm-shrinkwrap.json 文件。</p>
-<p>这个文件内容如下<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"A"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"0.1.0"</span>,</div><div class="line">  <span class="attr">"dependencies"</span>: &#123;</div><div class="line">    <span class="attr">"B"</span>: &#123;</div><div class="line">      <span class="attr">"version"</span>: <span class="string">"0.0.1"</span>,</div><div class="line">      <span class="attr">"dependencies"</span>: &#123;</div><div class="line">        <span class="attr">"C"</span>: &#123;</div><div class="line">          <span class="attr">"version"</span>: <span class="string">"0.0.1"</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这个文件内容如下
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"A"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"0.1.0"</span>,</div><div class="line">  <span class="attr">"dependencies"</span>: &#123;</div><div class="line">    <span class="attr">"B"</span>: &#123;</div><div class="line">      <span class="attr">"version"</span>: <span class="string">"0.0.1"</span>,</div><div class="line">      <span class="attr">"dependencies"</span>: &#123;</div><div class="line">        <span class="attr">"C"</span>: &#123;</div><div class="line">          <span class="attr">"version"</span>: <span class="string">"0.0.1"</span></div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>shrinkwrap 命令根据目前安装在node_modules的文件情况锁定依赖版本。在项目中执行 <code>npm install</code> 的时候，npm 会检查在根目录下有没有 npm-shrinkwrap.json 文件，如果 shrinkwrap 文件存在的话，npm 会使用它（而不是 package.json）来确定安装的各个包的版本号信息。</p>
 <p>这样一来，在安装时候确定的所有版本信息会稳定的固化在 shrinkwrap 里。无论是A，B 和 C中的版本如何变化，或者它们的 package.json 文件如何修改，你始终能保证，在你项目中执行 <code>npm install</code> 的到的版本号时稳定的。</p>
 <h3 id="在开发中使用-shrinkwrap"><a href="#在开发中使用-shrinkwrap" class="headerlink" title="在开发中使用 shrinkwrap"></a>在开发中使用 shrinkwrap</h3><h5 id="在开发过程中，引入一个新包的流程如下"><a href="#在开发过程中，引入一个新包的流程如下" class="headerlink" title="在开发过程中，引入一个新包的流程如下"></a>在开发过程中，引入一个新包的流程如下</h5><ul>
@@ -1047,7 +1698,7 @@
 &lt;li&gt;另一个问题的出现是由于 npm 安装依赖的机制。npm 的安装包是有层次结构的，手动控制要安装的软件包的版本号可以实现，但是你只能在 package.json 使用精确的版本号控制你的直接依赖包，但那些多层以上的依赖就没办法控制了；一个第三方包不严谨的版本依赖生命可能破坏你的依赖管理。&lt;/li&gt;
 &lt;li&gt;在开发阶段执行得到的版本，和后续部署时得到的可能是不一致的，更不可控的是，你依赖的第三方包也有这样的情况会导致潜在的上线风险。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;如果要控制上线的风险，我们就必需要解决这个问题，这时候，就需要使用 npm shrinkwrap 这个命令来解决问题。&lt;br&gt;
+&lt;p&gt;如果要控制上线的风险，我们就必需要解决这个问题，这时候，就需要使用 npm shrinkwrap 这个命令来解决问题。
     
     </summary>
     
@@ -1067,7 +1718,8 @@
     <published>2016-08-11T11:51:56.000Z</published>
     <updated>2016-08-11T11:51:56.000Z</updated>
     
-    <content type="html"><![CDATA[<p>之前了解的自动化部署都是<code>jekins</code>这样集成化的成熟的工具。最近因为有朋友提交代码时，不想登陆服务器拉取代码，才了解到 <code>git hooks</code>。看来还是git使用不到位。之前一直都是本地开发并提交代码，测试时，人工登陆测试服务器去拉取最新代码。<br><a id="more"></a></p>
+    <content type="html"><![CDATA[<p>之前了解的自动化部署都是<code>jekins</code>这样集成化的成熟的工具。最近因为有朋友提交代码时，不想登陆服务器拉取代码，才了解到 <code>git hooks</code>。看来还是git使用不到位。之前一直都是本地开发并提交代码，测试时，人工登陆测试服务器去拉取最新代码。
+<a id="more"></a></p>
 <p>网上资料还是比较多的，最后在本机测试是成功了的。</p>
 <p>主要选要明白几个关键点：</p>
 <ul>
@@ -1076,9 +1728,14 @@
 <li>SSH 认证</li>
 </ul>
 <p>这几个都比较容易找到资料。</p>
-<h3 id="git-init-–bare"><a href="#git-init-–bare" class="headerlink" title="git init –bare"></a>git init –bare</h3><p>和 <code>git init</code> 不一样的是，<code>git init --bare</code>并不存储实际代码，仓库文件夹不会看到任何项目代码，反而生成了一些 <code>.git</code>之外的文件夹，其中 <code>hooks</code>文件夹就是存放git命令操作后需要执行的脚本。<br>需要新建两个文件夹，一个执行<code>git init --bare</code>作为远端仓库，一个执行<code>git init</code>作为服务器项目目录。<br>本地开发目录和服务器项目目录的<code>remote</code>都要指向 服务器的远端仓库。</p>
-<h3 id="post-receive-文件"><a href="#post-receive-文件" class="headerlink" title="post-receive 文件"></a>post-receive 文件</h3><p>post-receive 文件是git push 之后，执行的脚本文件，自动部署的脚本代码就写在这里。<br>如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="built_in">unset</span> GIT_DIR</div><div class="line"><span class="built_in">echo</span> <span class="string">"远程开始更新"</span></div><div class="line">NowPath=`<span class="built_in">pwd</span>`</div><div class="line"><span class="built_in">echo</span> <span class="variable">$NowPath</span></div><div class="line">DeployPath=<span class="string">"../deploy"</span></div><div class="line"></div><div class="line"><span class="built_in">cd</span> <span class="variable">$DeployPath</span></div><div class="line">git pull origin master</div><div class="line"><span class="built_in">echo</span> <span class="string">"远程更新完毕"</span></div><div class="line"><span class="built_in">cd</span> <span class="variable">$NowPath</span></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure></p>
-<p>这里有一点比较容易出问题的就是路径，最好还是使用绝对路径。<br>脚本里还可以加入任何想执行的脚本，比如打包编译。</p>
+<h3 id="git-init-–bare"><a href="#git-init-–bare" class="headerlink" title="git init –bare"></a>git init –bare</h3><p>和 <code>git init</code> 不一样的是，<code>git init --bare</code>并不存储实际代码，仓库文件夹不会看到任何项目代码，反而生成了一些 <code>.git</code>之外的文件夹，其中 <code>hooks</code>文件夹就是存放git命令操作后需要执行的脚本。
+需要新建两个文件夹，一个执行<code>git init --bare</code>作为远端仓库，一个执行<code>git init</code>作为服务器项目目录。
+本地开发目录和服务器项目目录的<code>remote</code>都要指向 服务器的远端仓库。</p>
+<h3 id="post-receive-文件"><a href="#post-receive-文件" class="headerlink" title="post-receive 文件"></a>post-receive 文件</h3><p>post-receive 文件是git push 之后，执行的脚本文件，自动部署的脚本代码就写在这里。
+如：
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="built_in">unset</span> GIT_DIR</div><div class="line"><span class="built_in">echo</span> <span class="string">"远程开始更新"</span></div><div class="line">NowPath=`<span class="built_in">pwd</span>`</div><div class="line"><span class="built_in">echo</span> <span class="variable">$NowPath</span></div><div class="line">DeployPath=<span class="string">"../deploy"</span></div><div class="line"></div><div class="line"><span class="built_in">cd</span> <span class="variable">$DeployPath</span></div><div class="line">git pull origin master</div><div class="line"><span class="built_in">echo</span> <span class="string">"远程更新完毕"</span></div><div class="line"><span class="built_in">cd</span> <span class="variable">$NowPath</span></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure></p>
+<p>这里有一点比较容易出问题的就是路径，最好还是使用绝对路径。
+脚本里还可以加入任何想执行的脚本，比如打包编译。</p>
 <blockquote>
 <p>不过要注意使用 chmod +x post-receive 改变一下权限，服务器端的配置就基本完成了。</p>
 </blockquote>
@@ -1088,7 +1745,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;之前了解的自动化部署都是&lt;code&gt;jekins&lt;/code&gt;这样集成化的成熟的工具。最近因为有朋友提交代码时，不想登陆服务器拉取代码，才了解到 &lt;code&gt;git hooks&lt;/code&gt;。看来还是git使用不到位。之前一直都是本地开发并提交代码，测试时，人工登陆测试服务器去拉取最新代码。&lt;br&gt;
+      &lt;p&gt;之前了解的自动化部署都是&lt;code&gt;jekins&lt;/code&gt;这样集成化的成熟的工具。最近因为有朋友提交代码时，不想登陆服务器拉取代码，才了解到 &lt;code&gt;git hooks&lt;/code&gt;。看来还是git使用不到位。之前一直都是本地开发并提交代码，测试时，人工登陆测试服务器去拉取最新代码。
     
     </summary>
     
@@ -1096,117 +1753,6 @@
     
     
       <category term="git" scheme="http://robin-front.github.io/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>webpack-sourcemap选项应该选哪个</title>
-    <link href="http://robin-front.github.io/2016/08/08/webpack-sourcemap%E9%80%89%E9%A1%B9%E5%BA%94%E8%AF%A5%E9%80%89%E5%93%AA%E4%B8%AA/"/>
-    <id>http://robin-front.github.io/2016/08/08/webpack-sourcemap选项应该选哪个/</id>
-    <published>2016-08-08T09:08:53.000Z</published>
-    <updated>2016-08-08T09:08:53.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>使用 webpack 也有一段时间了，但是每次看到别的项目配置，还是会去浏览一遍。这次刚好看到一个 <code>devtool: &#39;#eval-source-map&#39;</code>，就有些好奇，之前都是默认使用 <code>#source-map</code> 并没有过多去注意它。google一下，发现这个 devtool 选项还不少，那我们到底选哪个呢，它们有哪些区别。<br><a id="more"></a></p>
-<p>先来看看官方文档的相关描述：</p>
-<p><img src="https://raw.githubusercontent.com/Robin-front/blog/master/source/images/201608/webpack-sourcemap.png" alt="devtool"></p>
-<p>有构建速度，重新构建速度，打包速度，来源 这几项的展示。</p>
-<p>然后可以看看这一篇文章，对这几个选项描述得比较详细：</p>
-<p><a href="https://chemzqm.me/webpack-sourcemap" target="_blank" rel="external">https://chemzqm.me/webpack-sourcemap</a></p>
-<p>摘出主要部分：</p>
-<ul>
-<li><code>eval</code> 文档上解释的很明白，每个模块都封装到 <code>eval</code> 包裹起来，并在后面添加 <code>//# sourceURL</code></li>
-<li><code>source-map</code> 这是最原始的 <code>source-map</code> 实现方式，其实现是打包代码同时创建一个新的 <code>sourcemap</code> 文件， 并在打包文件的末尾添加 <code>//# sourceURL</code> 注释行告诉 JS 引擎文件在哪儿</li>
-<li><code>hidden-source-map</code> 文档上也说了，就是 soucremap 但没注释，没注释怎么找文件呢？貌似只能靠后缀，譬如 <code>xxx/bundle.js</code> 文件，某些引擎会尝试去找 <code>xxx/bundle.js.map</code></li>
-<li><code>inline-source-map</code> 为每一个文件添加 <code>sourcemap</code> 的 DataUrl，注意这里的文件是打包前的每一个文件而不是最后打包出来的，同时这个 <code>DataUrl</code> 是包含一个文件完整 <code>souremap</code> 信息的 <code>Base64</code> 格式化后的字符串，而不是一个 url。</li>
-<li><code>eval-source-map</code> 这个就是把 <code>eval</code> 的 <code>sourceURL</code> 换成了完整 <code>souremap</code> 信息的 DataUrl</li>
-<li><code>cheap-source-map</code> 不包含列信息，不包含 <code>loader</code> 的 <code>sourcemap</code>，（譬如 <code>babel</code> 的 sourcemap）</li>
-<li><code>cheap-module-source-map</code> 不包含列信息，同时 <code>loader</code> 的 <code>sourcemap</code> 也被简化为只包含对应行的。最终的 <code>sourcemap</code> 只有一份，它是 <code>webpack</code> 对 <code>loader</code> 生成的 <code>sourcemap</code> 进行简化，然后再次生成的。</li>
-</ul>
-<p>webpack 不仅支持这 7 种，而且它们还是可以任意组合的，就如文档所说，你可以设置 souremap 选项为 <code>cheap-module-inline-source-map</code>。</p>
-<p>结合官方的列表比较和引用的这篇文章的介绍，就比较容易选择合适的选项了。建议开发时使用 <code>#cheap-module-eval-source-map</code>，测试环境或线上有需要的话使用 <code>#cheap-module-source-map</code></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;使用 webpack 也有一段时间了，但是每次看到别的项目配置，还是会去浏览一遍。这次刚好看到一个 &lt;code&gt;devtool: &amp;#39;#eval-source-map&amp;#39;&lt;/code&gt;，就有些好奇，之前都是默认使用 &lt;code&gt;#source-map&lt;/code&gt; 并没有过多去注意它。google一下，发现这个 devtool 选项还不少，那我们到底选哪个呢，它们有哪些区别。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="webpack" scheme="http://robin-front.github.io/categories/webpack/"/>
-    
-    
-      <category term="webpack" scheme="http://robin-front.github.io/tags/webpack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用ApplicationCache离线缓存做一个h5离线应用</title>
-    <link href="http://robin-front.github.io/2016/06/30/%E4%BD%BF%E7%94%A8ApplicationCache%E7%A6%BB%E7%BA%BF%E7%BC%93%E5%AD%98%E5%81%9A%E4%B8%80%E4%B8%AAh5%E7%A6%BB%E7%BA%BF%E5%BA%94%E7%94%A8/"/>
-    <id>http://robin-front.github.io/2016/06/30/使用ApplicationCache离线缓存做一个h5离线应用/</id>
-    <published>2016-06-30T14:41:14.000Z</published>
-    <updated>2016-06-30T14:41:14.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>原生app可以离线操作，在以前是相对web app的优势，web必须联网才能刷新使用。虽然所有浏览器都有缓存机制，但它们并不一定总能起到预期的作用。HTML5 使用 ApplicationCache 接口解决了由离线带来的部分难题。即使用户在离线状态下按了刷新按钮，您的应用也会正常加载和运行。<br><a id="more"></a></p>
-<p>使用缓存接口可为您的应用带来以下三个优势：</p>
-<ul>
-<li>离线浏览 - 用户可在离线时浏览您的完整网站</li>
-<li>速度 - 缓存资源为本地资源，因此加载速度较快。</li>
-<li>服务器负载更少 - 浏览器只会从发生了更改的服务器下载资源。</li>
-</ul>
-<h3 id="引用清单文件"><a href="#引用清单文件" class="headerlink" title="引用清单文件"></a>引用清单文件</h3><h4 id="manifest属性"><a href="#manifest属性" class="headerlink" title="manifest属性"></a>manifest属性</h4><p>要启用某个应用的应用缓存，请在文档的 html 标记中添加 manifest 属性：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">"app.manifest"</span>&gt;</span></div><div class="line">  ...</div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>您应在要缓存的网络应用的每个页面上都添加 manifest 属性。如果网页不包含 manifest 属性，浏览器就不会缓存该网页（除非清单文件中明确列出了该属性）。这就意味着用户浏览的每个包含 manifest 的网页都会隐式添加到应用缓存。因此，您无需在清单中列出每个网页。</p>
-<p>manifest 属性可指向绝对网址或相对路径，但绝对网址必须与相应的网络应用同源。</p>
-<h4 id="清单文件格式与-MIME-类型设置"><a href="#清单文件格式与-MIME-类型设置" class="headerlink" title="清单文件格式与 MIME 类型设置"></a>清单文件格式与 MIME 类型设置</h4><p>清单文件可使用任何文件扩展名，但必须以正确的 <code>text/cache-manifest</code> MIME 类型提供。<br>下面是几件网络服务的配置例子：</p>
-<p>Apache:<br>新建或者编辑现有的 <code>.htaccess</code> 文件，在里面加上一行<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">AddType <span class="built_in">text</span>/cache-manifest .manifest</div></pre></td></tr></table></figure></p>
-<p>Nginx:<br>修改 <code>mime.types</code> 文件，在里面增加 manifest 文件的映射<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">text</span>/cache-manifest manifest</div></pre></td></tr></table></figure></p>
-<p>Tomcat：<br>修改 <code>web.xml</code> 文件，在里面增加<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mime-mapping</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">extension</span>&gt;</span>manifest<span class="tag">&lt;/<span class="name">extension</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">mime-type</span>&gt;</span>text/cache-manifest<span class="tag">&lt;/<span class="name">mime-type</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">mime-mapping</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<h4 id="清单文件结构"><a href="#清单文件结构" class="headerlink" title="清单文件结构"></a>清单文件结构</h4><p>基本的清单格式：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">CACHE MANIFEST</div><div class="line">index<span class="selector-class">.html</span></div><div class="line">stylesheet<span class="selector-class">.css</span></div><div class="line">images/logo<span class="selector-class">.png</span></div><div class="line">scripts/main.js</div></pre></td></tr></table></figure>
-<p>您需要注意以下几点：</p>
-<ul>
-<li>CACHE MANIFEST 字符串应在第一行，且必不可少。</li>
-<li>网站的缓存数据量不得超过 5 MB。不过，如果您要编写的是针对 <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" target="_blank" rel="external">Chrome 网上应用店</a>的应用，可使用 unlimitedStorage 取消该限制。</li>
-<li>如果清单文件或其中指定的资源无法下载，就无法进行整个缓存更新进程。在这种情况下，浏览器将继续使用原应用缓存。</li>
-</ul>
-<p>完整的清单格式：</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">CACHE MANIFEST</div><div class="line"><span class="meta"># daksfljs3kl23j3k43  hash 以便做版本控制</span></div><div class="line"></div><div class="line"><span class="meta"># 默认部分，显式缓存这些文件</span></div><div class="line">CACHE:</div><div class="line">/favicon.ico</div><div class="line">index.html</div><div class="line">stylesheet.css</div><div class="line">images/logo.png</div><div class="line">scripts/main.js</div><div class="line"></div><div class="line"><span class="meta"># 此部分下列出的文件是需要连接到服务器的白名单资源。无论用户是否处于离线状态，对这些资源的所有请求都会绕过缓存。</span></div><div class="line">NETWORK:</div><div class="line">login.php</div><div class="line">/myapi</div><div class="line">http:<span class="comment">//api.twitter.com</span></div><div class="line"></div><div class="line"><span class="meta"># 此部分是可选的，用于指定无法访问资源时的后备网页。其中第一个 URI 代表资源，第二个代表后备网页。两个 URI 必须相关，并且必须与清单文件同源。</span></div><div class="line"><span class="meta"># offline.jpg will be served in place of all images in images/large/</span></div><div class="line"><span class="meta"># offline.html will be served in place of all other .html files</span></div><div class="line">FALLBACK:</div><div class="line">images/large/ images/offline.jpg</div><div class="line">*.html /offline.html</div></pre></td></tr></table></figure>
-<p>应用缓存只在其清单文件发生更改时才会更新。例如，如果您修改了图片资源或更改了 JavaScript 函数，这些更改不会重新缓存。<em>您必须修改清单文件本身才能让浏览器刷新缓存文件。</em></p>
-<blockquote>
-<p>这些部分可按任意顺序排列，且每个部分均可在同一清单中重复出现;<br>可使用通配符。</p>
-</blockquote>
-<p><em>请注意：</em> HTTP 缓存标头以及对通过 SSL 提供的网页设置的缓存限制将被替换为缓存清单。因此，通过 https 提供的网页可实现离线运行。chrome 未来将会禁止非 https 网页使用 <code>ApplicationCache</code> 功能（updated 2016-06-30）</p>
-<h3 id="更新缓存"><a href="#更新缓存" class="headerlink" title="更新缓存"></a>更新缓存</h3><p>应用在离线后将保持缓存状态，除非发生以下某种情况：</p>
-<ul>
-<li>用户清除了浏览器对您网站的数据存储。</li>
-<li>清单文件经过修改。请注意：更新清单中列出的某个文件并不意味着浏览器会重新缓存该资源。清单文件本身必须进行更改。</li>
-<li>应用缓存通过编程方式进行更新。</li>
-</ul>
-<h3 id="缓存状态"><a href="#缓存状态" class="headerlink" title="缓存状态"></a>缓存状态</h3><p>window.applicationCache 对象是对浏览器的应用缓存的编程访问方式。其 status 属性可用于查看缓存的当前状态：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> appCache = <span class="built_in">window</span>.applicationCache;</div><div class="line"></div><div class="line"><span class="keyword">switch</span> (appCache.status) &#123;</div><div class="line">  <span class="keyword">case</span> appCache.UNCACHED: <span class="comment">// UNCACHED == 0</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'UNCACHED'</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> appCache.IDLE: <span class="comment">// IDLE == 1</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'IDLE'</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> appCache.CHECKING: <span class="comment">// CHECKING == 2</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'CHECKING'</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> appCache.DOWNLOADING: <span class="comment">// DOWNLOADING == 3</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'DOWNLOADING'</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> appCache.UPDATEREADY:  <span class="comment">// UPDATEREADY == 4</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'UPDATEREADY'</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">case</span> appCache.OBSOLETE: <span class="comment">// OBSOLETE == 5</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'OBSOLETE'</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">default</span>:</div><div class="line">    <span class="keyword">return</span> <span class="string">'UKNOWN CACHE STATUS'</span>;</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p>用 js  调用 <code>applicationCache.update()</code> 将尝试更新用户的缓存（前提是已更改清单文件）。最后，当 <code>applicationCache.status</code> 处于 <code>UPDATEREADY</code> 状态时，调用 <code>applicationCache.swapCache()</code> 即可将原缓存换成新缓存。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> appCache = <span class="built_in">window</span>.applicationCache;</div><div class="line"></div><div class="line">appCache.update(); <span class="comment">// Attempt to update the user's cache.</span></div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">if (appCache.status == <span class="built_in">window</span>.applicationCache.UPDATEREADY) &#123;</div><div class="line">  appCache.swapCache();  <span class="comment">// The fetch was successful, swap in the new cache.</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>请注意：以这种方式使用 update() 和 swapCache() 不会向用户提供更新的资源。此流程只是让浏览器检查是否有新的清单、下载指定的更新内容以及重新填充应用缓存。因此，还需要对网页进行两次重新加载才能向用户提供新的内容，其中第一次是获得新的应用缓存，第二次是刷新网页内容。</p>
-<p>好消息是，您可以避免重新加载两次的麻烦。要使用户更新到最新版网站，可设置监听器，以监听网页加载时的 updateready 事件：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Check if a new cache is available on page load.</span></div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line"></div><div class="line">  <span class="built_in">window</span>.applicationCache.addEventListener(<span class="string">'updateready'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.applicationCache.status == <span class="built_in">window</span>.applicationCache.UPDATEREADY) &#123;</div><div class="line">      <span class="comment">// Browser downloaded a new app cache.</span></div><div class="line">      <span class="comment">// Swap it in and reload the page to get the new hotness.</span></div><div class="line">      <span class="built_in">window</span>.applicationCache.swapCache();</div><div class="line">      <span class="keyword">if</span> (confirm(<span class="string">'A new version of this site is available. Load it?'</span>)) &#123;</div><div class="line">        <span class="built_in">window</span>.location.reload();</div><div class="line">      &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="comment">// Manifest didn't changed. Nothing new to server.</span></div><div class="line">    &#125;</div><div class="line">  &#125;, <span class="literal">false</span>);</div><div class="line"></div><div class="line">&#125;, <span class="literal">false</span>);</div></pre></td></tr></table></figure>
-<h3 id="applicationCache-事件"><a href="#applicationCache-事件" class="headerlink" title="applicationCache 事件"></a>applicationCache 事件</h3><p>事件会用于监听缓存的状态。浏览器会对下载进度、应用缓存更新和错误状态等情况触发相应事件。以下代码段为每种缓存事件类型设置了事件监听器：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> appCache = <span class="built_in">window</span>.applicationCache;</div><div class="line">unction handleCacheEvent(e) &#123;</div><div class="line">  <span class="comment">//...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleCacheError</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">  alert(<span class="string">'Error: Cache failed to update!'</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// Fired after the first cache of the manifest.</span></div><div class="line">appCache.addEventListener(<span class="string">'cached'</span>, handleCacheEvent, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="comment">// Checking for an update. Always the first event fired in the sequence.</span></div><div class="line">appCache.addEventListener(<span class="string">'checking'</span>, handleCacheEvent, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="comment">// An update was found. The browser is fetching resources.</span></div><div class="line">appCache.addEventListener(<span class="string">'downloading'</span>, handleCacheEvent, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="comment">// The manifest returns 404 or 410, the download failed,</span></div><div class="line"><span class="comment">// or the manifest changed while the download was in progress.</span></div><div class="line">appCache.addEventListener(<span class="string">'error'</span>, handleCacheError, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="comment">// Fired after the first download of the manifest.</span></div><div class="line">appCache.addEventListener(<span class="string">'noupdate'</span>, handleCacheEvent, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="comment">// Fired if the manifest file returns a 404 or 410.</span></div><div class="line"><span class="comment">// This results in the application cache being deleted.</span></div><div class="line">appCache.addEventListener(<span class="string">'obsolete'</span>, handleCacheEvent, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="comment">// Fired for each resource listed in the manifest as it is being fetched.</span></div><div class="line">appCache.addEventListener(<span class="string">'progress'</span>, handleCacheEvent, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="comment">// Fired when the manifest resources have been newly redownloaded.</span></div><div class="line">appCache.addEventListener(<span class="string">'updateready'</span>, handleCacheEvent, <span class="literal">false</span>);</div></pre></td></tr></table></figure></p>
-<p>如果清单文件或其中指定的资源无法下载，整个更新都将失败。在这种情况下，浏览器将继续使用原应用缓存。</p>
-<p>原文： <a href="http://www.html5rocks.com/zh/tutorials/appcache/beginner/" target="_blank" rel="external">应用缓存初级使用指南</a><br><a href="https://html.spec.whatwg.org/#applicationcache" target="_blank" rel="external">html标准</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;原生app可以离线操作，在以前是相对web app的优势，web必须联网才能刷新使用。虽然所有浏览器都有缓存机制，但它们并不一定总能起到预期的作用。HTML5 使用 ApplicationCache 接口解决了由离线带来的部分难题。即使用户在离线状态下按了刷新按钮，您的应用也会正常加载和运行。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="ApplicationCache" scheme="http://robin-front.github.io/categories/ApplicationCache/"/>
-    
-      <category term="html5" scheme="http://robin-front.github.io/categories/ApplicationCache/html5/"/>
-    
-    
-      <category term="ApplicationCache" scheme="http://robin-front.github.io/tags/ApplicationCache/"/>
-    
-      <category term="html5" scheme="http://robin-front.github.io/tags/html5/"/>
     
   </entry>
   

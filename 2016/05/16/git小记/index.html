@@ -315,7 +315,8 @@
       
 
       
-        <p>有一些不太常用的git命令记录下<br><a id="more"></a></p>
+        <p>有一些不太常用的git命令记录下
+<a id="more"></a></p>
 <h3 id="git-amend"><a href="#git-amend" class="headerlink" title="git amend"></a>git amend</h3><p>当一些更改已提交，却发现漏提交了一部分文件，这时就可以用这个命令，可以把漏的部分追加到上一次提交</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add forgotten_file.rb</div><div class="line">git commit ––amend</div></pre></td></tr></table></figure>
 <h3 id="reset-soft"><a href="#reset-soft" class="headerlink" title="reset soft"></a>reset soft</h3><p>刚刚提交，却又发现刚才的代码还有bug，想再次修改后再提交</p>
@@ -324,7 +325,8 @@
 <h3 id="git-blame"><a href="#git-blame" class="headerlink" title="git blame"></a>git blame</h3><p>当你想查出，一个文件里，每一行代码是谁编辑的，可以使用这个命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git blame robin.md</div></pre></td></tr></table></figure>
 <h3 id="git-checkout-tags-v1-0"><a href="#git-checkout-tags-v1-0" class="headerlink" title="git checkout tags/v1.0"></a>git checkout tags/v1.0</h3><p>当分支名和标签名相同时，需要这样写</p>
-<h3 id="branch-at"><a href="#branch-at" class="headerlink" title="branch_at"></a>branch_at</h3><p>当你想从某一历史版本中开一个分支，而不是最新的版本中开分支，可以这样写：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch test_branch eadnadk213dsafdsafkl234j32ll34l2l</div></pre></td></tr></table></figure></p>
+<h3 id="branch-at"><a href="#branch-at" class="headerlink" title="branch_at"></a>branch_at</h3><p>当你想从某一历史版本中开一个分支，而不是最新的版本中开分支，可以这样写：
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch test_branch eadnadk213dsafdsafkl234j32ll34l2l</div></pre></td></tr></table></figure></p>
 <h3 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h3><p>当远程mater分支已更改， 本地又基于旧版本的master进行的提交，可以重新指定基于远程master，之后再提交，避免冲突时把远程的代码merge 掉：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git rebase origin/master master</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
 <h3 id="git-reflog"><a href="#git-reflog" class="headerlink" title="git reflog"></a>git reflog</h3><p>reflog是git用来记录引用变化的一种机制，比如记录分支的变化或者是HEAD引用的变化。可以用来查找操作记录以及恢复数据</p>
@@ -445,7 +447,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">49</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -453,7 +455,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -462,7 +464,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">50</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

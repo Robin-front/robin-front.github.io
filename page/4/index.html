@@ -248,6 +248,148 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/08/babel-loader配置/" itemprop="url">
+                  babel-loader配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-08T08:36:38+08:00" content="2016-04-08">
+              2016-04-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">Webpack</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/08/babel-loader配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/08/babel-loader配置/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install babel-loader babel-core babel-preset-es2015 --save-dev</div></pre></td></tr></table></figure>
+<blockquote>
+<p>npm 从 npm@3 之后不赞成自动安装<code>peerDependencies</code>，所有必须在<code>package.json</code>里明确指定 <code>babel-core</code> 这样的宿主依赖。</p>
+<p><code>peerDependencies</code>字段，主要用来供插件指定其所需要的主软件的版本。更多可以见<a href="http://luckydrq.com/2014-10-23/peer-dependencies/" target="_blank" rel="external">这里</a></p>
+</blockquote>
+<p>如果是从babel 5升级到 babel 6，可以看这份<a href="https://medium.com/@malyw/how-to-update-babel-5-x-6-x-d828c230ec53#.q6grpyp0f" target="_blank" rel="external">指导</a></p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>在<code>webpack.config.js</code>里配置是比较推荐的方式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>: &#123;</div><div class="line">  <span class="attr">loaders</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">test</span>: <span class="regexp">/\.jsx?$/</span>, <span class="comment">// 匹配'js' or 'jsx' 后缀的文件类型</span></div><div class="line">      exclude: <span class="regexp">/(node_modules|bower_components)/</span>, <span class="comment">// 排除某些文件</span></div><div class="line">      loader: <span class="string">'babel'</span>, <span class="comment">// 使用'babel-loader'也是一样的</span></div><div class="line">      query: &#123; <span class="comment">// 参数</span></div><div class="line">        presets: [<span class="string">'es2015'</span>]</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3><p>选项的写法有两种</p>
+<p>一种是查询字符串的方式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>: &#123;</div><div class="line">  <span class="attr">loaders</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">test</span>: <span class="regexp">/\.jsx?$/</span>,</div><div class="line">      <span class="attr">exclude</span>: <span class="regexp">/(node_modules|bower_components)/</span>,</div><div class="line">      <span class="attr">loader</span>: <span class="string">'babel?presets[]=es2015'</span></div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>另一种是指定 <code>query</code>属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>: &#123;</div><div class="line">  <span class="attr">loaders</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">test</span>: <span class="regexp">/\.jsx?$/</span>,</div><div class="line">      <span class="attr">exclude</span>: <span class="regexp">/(node_modules|bower_components)/</span>,</div><div class="line">      <span class="attr">loader</span>: <span class="string">'babel'</span>,</div><div class="line">      <span class="attr">query</span>: &#123;</div><div class="line">        <span class="attr">presets</span>: [<span class="string">'es2015'</span>]</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>babel-loader</code> 还支持以下选项：</p>
+<p><code>cacheDirectory</code>: 默认值是 <code>false</code>。如果设置了这个参数，被转换的结果将会被缓存起来。当Webpack 再次编译时，将会首先尝试从缓存中读取转换结果，以此避免资源浪费。如果该值为空(loader: ‘babel-loader?cacheDirectory’)，<code>loader</code>会使用系统默认的临时文件目录。</p>
+<h3 id="问题及优化"><a href="#问题及优化" class="headerlink" title="问题及优化"></a>问题及优化</h3><h4 id="性能问题"><a href="#性能问题" class="headerlink" title="性能问题"></a>性能问题</h4><ul>
+<li>确保只转换尽可能少的文件，你可能匹配了过多的文件类型，或者匹配了所有的’.js’文件，你需要使用 <code>exclude: /(node_modules|bower_components)/</code> 排除部分目录</li>
+<li>设置 <code>cacheDirectory</code> 参数也可以让你的 <code>loader</code> 性能提升2倍！</li>
+</ul>
+<h4 id="babel-给每个需要的文件注入helper扩展"><a href="#babel-给每个需要的文件注入helper扩展" class="headerlink" title="babel 给每个需要的文件注入helper扩展"></a>babel 给每个需要的文件注入<code>helper</code>扩展</h4><p>您可以改为要求<code>babel</code>作为一个独立运行的模块，以避免重复。</p>
+<p>下面的配置通过<code>babel-plugin-transform-runtime</code>插件可以禁用babel向每个文件注入<code>helper</code></p>
+<blockquote>
+<p>需要先安装插件 <code>npm install babel-plugin-transform-runtime --save</code></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">loaders: [</div><div class="line">  <span class="comment">// the 'transform-runtime' plugin tells babel to require the runtime</span></div><div class="line">  <span class="comment">// instead of inlining it.</span></div><div class="line">  &#123;</div><div class="line">    <span class="attr">test</span>: <span class="regexp">/\.jsx?$/</span>,</div><div class="line">    <span class="attr">exclude</span>: <span class="regexp">/(node_modules|bower_components)/</span>,</div><div class="line">    <span class="attr">loader</span>: <span class="string">'babel'</span>,</div><div class="line">    <span class="attr">query</span>: &#123;</div><div class="line">      <span class="attr">presets</span>: [<span class="string">'es2015'</span>],</div><div class="line">      <span class="attr">plugins</span>: [<span class="string">'transform-runtime'</span>]</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">]</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/07/Webpack-config/" itemprop="url">
                   Webpack-config
                 </a>
@@ -1372,136 +1514,6 @@ PNG ... content of chrome.png ...
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/17/angular自定义指令/" itemprop="url">
-                  angularJS自定义指令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-17T00:31:51+08:00" content="2015-10-17">
-              2015-10-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/angularJS/" itemprop="url" rel="index">
-                    <span itemprop="name">angularJS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/17/angular自定义指令/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/17/angular自定义指令/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><p>可以简单理解成特定DOM元素上执行的函数，它可以拓展元素的功能。</p>
-<p>一个定义指令的基本格式如下：</p>
-<pre><code>angular.module(&apos;myApp&apos;, [])
-    .direcitve(&apos;myDirective&apos;, function(){
-        return {
-        //指令的配置项
-        }
-    });
-</code></pre><p>directive() 方法可以接受两个参数：<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/17/angular自定义指令/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1547,7 +1559,7 @@ PNG ... content of chrome.png ...
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">46</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

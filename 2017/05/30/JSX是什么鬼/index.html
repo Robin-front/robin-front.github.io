@@ -336,7 +336,7 @@
 <p>除了将ES6 / ES7 +语法转换为 ES5 以外，Babel还包括对JSX 开箱即用的转换支持。您不需要添加或更改任何内容以使用此功能。</p>
 <p>通过查看一个非常简单的例子来了解它的工作原理是最简单的：</p>
 <p><em>转换前</em> :( 你写的代码）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** @jsx h */</span></div><div class="line"><span class="keyword">let</span> foo = &lt;div id="foo"&gt;Hello!&lt;/div&gt;;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** @jsx h */</span></div><div class="line"><span class="keyword">let</span> foo = <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"foo"</span>&gt;</span>Hello!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div></pre></td></tr></table></figure>
 <p><em>转换后</em> :(你运行的代码）</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = h(<span class="string">'div'</span>, &#123;<span class="attr">id</span>:<span class="string">"foo"</span>&#125;, <span class="string">'Hello!'</span>);</div></pre></td></tr></table></figure>
 <p>你可能看第二个代码片段的时候，认为使用函数构建UI不会那么糟糕</p>
@@ -366,7 +366,7 @@
 <p>这也意味着它不受任何渲染逻辑或缓慢的DOM方法的束缚。</p>
 </blockquote>
 <h2 id="使用JSX"><a href="#使用JSX" class="headerlink" title="使用JSX"></a>使用JSX</h2><p>我们知道<code>JSX</code>被转换成<code>h()</code>函数调用。<br>那些函数调用创建一个简单的“虚拟”DOM树。<br>我们可以使用该<code>render()</code>函数来制作一个匹配的“真实”DOM树。<br>这就是这样的：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// JSX -&gt; VDOM:</span></div><div class="line"><span class="keyword">let</span> vdom = &lt;div id="foo"&gt;Hello!&lt;/div&gt;;</div><div class="line"></div><div class="line"><span class="comment">// VDOM -&gt; DOM:</span></div><div class="line"><span class="keyword">let</span> dom = render(vdom);</div><div class="line"></div><div class="line"><span class="comment">// add the tree to &lt;body&gt;:</span></div><div class="line"><span class="built_in">document</span>.body.appendChild(dom);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// JSX -&gt; VDOM:</span></div><div class="line"><span class="keyword">let</span> vdom = <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"foo"</span>&gt;</span>Hello!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// VDOM -&gt; DOM:</span></div><div class="line"><span class="keyword">let</span> dom = render(vdom);</div><div class="line"></div><div class="line"><span class="comment">// add the tree to &lt;body&gt;:</span></div><div class="line"><span class="built_in">document</span>.body.appendChild(dom);</div></pre></td></tr></table></figure>
 <h4 id="Partials，迭代与逻辑：没有新的语法"><a href="#Partials，迭代与逻辑：没有新的语法" class="headerlink" title="Partials，迭代与逻辑：没有新的语法"></a>Partials，迭代与逻辑：没有新的语法</h4><blockquote>
 <p>我们拥有所有的JavaScript语法，而不是模板语言引入的有限概念。（PS:这是JSX胜过模板语言的地方）</p>
 </blockquote>
@@ -377,7 +377,7 @@
 <blockquote>
 <p>JSX允许所有 JavaScript的语言功能，而不依赖于在构建步骤中生成奇怪的代码，没有eval()和扩展。</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 将数组中的字符串以列表的形式展示</span></div><div class="line"><span class="keyword">let</span> items = [<span class="string">'foo'</span>, <span class="string">'bar'</span>, <span class="string">'baz'</span>];</div><div class="line"></div><div class="line"><span class="comment">// 创建列表li</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">item</span>(<span class="params">text</span>) </span>&#123;  </div><div class="line">    <span class="keyword">return</span> &lt;li&gt;&#123;text&#125;&lt;/li&gt;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 一个使用迭代和复用的视图</span></div><div class="line"><span class="keyword">let</span> list = render(  </div><div class="line">  &lt;ul&gt;</div><div class="line">    &#123; items.map(item) &#125;</div><div class="line">  &lt;/ul&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 将数组中的字符串以列表的形式展示</span></div><div class="line"><span class="keyword">let</span> items = [<span class="string">'foo'</span>, <span class="string">'bar'</span>, <span class="string">'baz'</span>];</div><div class="line"></div><div class="line"><span class="comment">// 创建列表li</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">item</span>(<span class="params">text</span>) </span>&#123;  </div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;text&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 一个使用迭代和复用的视图</span></div><div class="line"><span class="keyword">let</span> list = render(  </div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line">    &#123; items.map(item) &#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
 <p><code>render()</code>返回一个DOM节点（在上述情况下是返回<ul>列表），所以我们只需要把它放到DOM中：</ul></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.body.appendChild(list);</div></pre></td></tr></table></figure>
 <h2 id="把它放在一起"><a href="#把它放在一起" class="headerlink" title="把它放在一起"></a>把它放在一起</h2><p>以下是小型虚拟DOM渲染器和使用它的视图的完整源码。<br>具有一些样式的CodePen可在下面获得。</p>
@@ -426,6 +426,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/01/npm-5发布有哪些改进/" rel="prev" title="npm@5发布有哪些改进">
+                npm@5发布有哪些改进 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -500,7 +504,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">46</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

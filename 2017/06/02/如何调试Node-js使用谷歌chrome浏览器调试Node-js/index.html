@@ -1,0 +1,717 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="google-site-verification" content="ezF4b6TIq3nrF8BJmQrK_v9BmJnUQfVVPB4xBYo7AD8" />
+<link rel="alternate" href="http://robin-front.github.io/zh-Hans" hreflang="zh-Hans" />
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/libs/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/libs/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="debug,Node.js," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="三寸稚笔" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="如何调试 Node.js, 还在使用 console.log 来调试 Node.js 吗，可以像调试前端页面一样调试 Node.js!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何调试Node.js|使用谷歌chrome浏览器调试Node.js">
+<meta property="og:url" content="http://robin-front.github.io/2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/index.html">
+<meta property="og:site_name" content="三寸稚笔">
+<meta property="og:description" content="如何调试 Node.js, 还在使用 console.log 来调试 Node.js 吗，可以像调试前端页面一样调试 Node.js!">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*NIVrIoEiniOt6cP-d-0LFQ.png">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*QAmWRyPtdfF5X7VuvDN1zg.png">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*zQ1uLl_qiRIAJ7Lxw_LFAQ.png">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*jTzAaK_zRNynCMvlDbx2rA.png">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*URHvZNuF7RksLoDZRbYnpQ.png">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*mk2Ro3VX6iAw7YLWJzlmtw.png">
+<meta property="og:updated_time" content="2017-06-02T09:46:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何调试Node.js|使用谷歌chrome浏览器调试Node.js">
+<meta name="twitter:description" content="如何调试 Node.js, 还在使用 console.log 来调试 Node.js 吗，可以像调试前端页面一样调试 Node.js!">
+<meta name="twitter:image" content="https://cdn-images-1.medium.com/max/800/1*NIVrIoEiniOt6cP-d-0LFQ.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '11169988',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://robin-front.github.io/2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/"/>
+
+
+  <title> 如何调试Node.js|使用谷歌chrome浏览器调试Node.js | 三寸稚笔 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">三寸稚笔</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何调试Node.js|使用谷歌chrome浏览器调试Node.js
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-02T17:46:03+08:00" content="2017-06-02">
+              2017-06-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Node-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>如何调试 Node.js, 还在使用 console.log 来调试 Node.js 吗，可以像调试前端页面一样调试 Node.js!
+<a id="more"></a></p>
+<p>译文：<a href="https://medium.com/the-node-js-collection/debugging-node-js-with-google-chrome-4965b5f910f4" target="_blank" rel="external">Debugging Node.js with Google Chrome</a></p>
+<p>调试是从软件应用程序中识别和删除错误的任务，而不仅仅是打印代码中的值。本文介绍如何使用最新的Google Chrome DevTools高效地调试Node.js程序。</p>
+<h2 id="为什么console-log不是最好的选择？"><a href="#为什么console-log不是最好的选择？" class="headerlink" title="为什么console.log不是最好的选择？"></a>为什么console.log不是最好的选择？</h2><p>使用<code>console.log</code>来调试你的代码，通常你会无限重复地做 “停止你的应用程序，添加一个console.log，并再次启动你的应用程序” 这样的操作。除了减缓您的应用程序的开发外，它还使您的书写变得脏乱并创建不必要的代码。最后，尝试注销变量以及其他可能的日志记录操作的噪点时，可能会在尝试找到正在调试的值时使调试变得困难。</p>
+<h2 id="调试工具"><a href="#调试工具" class="headerlink" title="调试工具"></a>调试工具</h2><p>调试工具为用户提供的是几个重要的功能<code>console.log</code>无法提供。特别是，它们允许您在代码中的特定点暂停执行应用程序，并在程序仍在运行时检查和修改变量的值。</p>
+<h2 id="设置Chrome-for-Node-js调试"><a href="#设置Chrome-for-Node-js调试" class="headerlink" title="设置Chrome for Node.js调试"></a>设置Chrome for Node.js调试</h2><p>使用<code>Chrome 57+</code>，<code>Node.js</code>调试功能是默认启用的，不需要像以前的版本那样从“实验功能”面板手动启用它。</p>
+<p>如果您还没有完成，请将Google Chrome更新到最新版本，并确保使用<code>Node.js 6.4+</code>。</p>
+<p>要开始调试，请使用 <code>- inspect</code>标志运行<code>Node.js</code>应用程序。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node --inspect &lt;your_file&gt; .js</div></pre></td></tr></table></figure>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*NIVrIoEiniOt6cP-d-0LFQ.png" alt="在调试模式下运行Node.js应用程序"></p>
+<p>接下来，忽略从终端中显示的“<code>chrome-devtools://</code>”开头的URL ，而是在Google Chrome中打开“ <code>about:inspect</code> ”。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*QAmWRyPtdfF5X7VuvDN1zg.png" alt="chrome DevTools"></p>
+<p>最后点击“ Open dedicated DevTools for Node” 开始调试应用程序的代码。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*zQ1uLl_qiRIAJ7Lxw_LFAQ.png" alt="deloper tools for Node"></p>
+<p>此外，关于调试<a href="https://nodejs.org/en/docs/guides/debugging-getting-started/" target="_blank" rel="external">Node.js App</a>的官方文档还提供了所有其他检查器工具和客户端选项的详细列表。</p>
+<h2 id="Chrome-DevTools的应用"><a href="#Chrome-DevTools的应用" class="headerlink" title="Chrome DevTools的应用"></a>Chrome DevTools的应用</h2><p>要结束本文，我想说明一下<code>Chrome DevTools</code>在以下<code>Express</code>应用程序中的应用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</div><div class="line"><span class="keyword">const</span> app = express()</div><div class="line"></div><div class="line"><span class="keyword">const</span> PORT = process.env.PORT || <span class="number">3000</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">capitalize</span> (<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> firstLetter = str.charAt(<span class="number">0</span>) <span class="comment">// we can check what's inside here</span></div><div class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;firstLetter.toUpperCase()&#125;</span><span class="subst">$&#123;str.slice(<span class="number">1</span>)&#125;</span>`</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">app.get(<span class="string">'/:name?'</span>, (req, res) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> name = req.params.name ? capitalize(req.params.name) : <span class="string">'World'</span></div><div class="line">  res.send(<span class="string">`Hello <span class="subst">$&#123;name&#125;</span>!`</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(PORT, () =&gt; <span class="built_in">console</span>.log(<span class="string">`App listening on *:<span class="subst">$&#123;PORT&#125;</span>`</span>))</div></pre></td></tr></table></figure>
+<p>让我们从运行<code>- inspect</code>标志，并打开专用<code>DevTools for Node</code>如前所述。</p>
+<p>此时，您将可以访问您可能已经熟悉的所有功能：断点(<code>breakpoints</code>)，压缩代码的源映射(<code>source map for transpiled code</code>)，堆快照检查(<code>heap snapshot inspection</code>)，分配分析(<code>allocation profiling</code>)，JavaScript值热插拔(<code>JavaScript values hot-swapping</code>)等。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*jTzAaK_zRNynCMvlDbx2rA.png" alt="使用断点来调试Express应用程序"></p>
+<p>具体来说，如下图所示，您可以插入断点来停止执行程序，检查和“热交换”变量的值。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*URHvZNuF7RksLoDZRbYnpQ.png" alt="JavaScript值热拔插"></p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*mk2Ro3VX6iAw7YLWJzlmtw.png" alt="JavaScript值热拔插2"></p>
+<p>使用Chrome作为调试工具的另外一件好事是您可以使用相同的界面🚀调试前端和后端JavaScript代码。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/debug/" rel="tag">#debug</a>
+          
+            <a href="/tags/Node-js/" rel="tag">#Node.js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/01/RXJS我该选用哪个操作符之-创建篇/" rel="next" title="RXJS我该选用哪个操作符之-创建篇">
+                <i class="fa fa-chevron-left"></i> RXJS我该选用哪个操作符之-创建篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460"
+               alt="robin" />
+          <p class="site-author-name" itemprop="name">robin</p>
+          <p class="site-description motion-element" itemprop="description">红灯必须闯，马路要横穿！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/robin-front" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/robin-front" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.segmentfault.com/u/robins" target="_blank" title="segmentfault">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  segmentfault
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么console-log不是最好的选择？"><span class="nav-number">1.</span> <span class="nav-text">为什么console.log不是最好的选择？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试工具"><span class="nav-number">2.</span> <span class="nav-text">调试工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置Chrome-for-Node-js调试"><span class="nav-number">3.</span> <span class="nav-text">设置Chrome for Node.js调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chrome-DevTools的应用"><span class="nav-number">4.</span> <span class="nav-text">Chrome DevTools的应用</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">robin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/libs/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/libs/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/libs/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/libs/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libs/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/libs/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'robin-front-github-io';
+      var disqus_identifier = '2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/';
+      var disqus_title = "如何调试Node.js|使用谷歌chrome浏览器调试Node.js";
+      var disqus_url = 'http://robin-front.github.io/2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-74634898-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+</body>
+</html>

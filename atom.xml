@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-06-01T10:16:43.000Z</updated>
+  <updated>2017-06-02T09:46:03.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何调试Node.js|使用谷歌chrome浏览器调试Node.js</title>
+    <link href="http://robin-front.github.io/2017/06/02/%E5%A6%82%E4%BD%95%E8%B0%83%E8%AF%95Node-js%E4%BD%BF%E7%94%A8%E8%B0%B7%E6%AD%8Cchrome%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B0%83%E8%AF%95Node-js/"/>
+    <id>http://robin-front.github.io/2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/</id>
+    <published>2017-06-02T09:46:03.000Z</published>
+    <updated>2017-06-02T09:46:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>如何调试 Node.js, 还在使用 console.log 来调试 Node.js 吗，可以像调试前端页面一样调试 Node.js!
+<a id="more"></a></p>
+<p>译文：<a href="https://medium.com/the-node-js-collection/debugging-node-js-with-google-chrome-4965b5f910f4" target="_blank" rel="external">Debugging Node.js with Google Chrome</a></p>
+<p>调试是从软件应用程序中识别和删除错误的任务，而不仅仅是打印代码中的值。本文介绍如何使用最新的Google Chrome DevTools高效地调试Node.js程序。</p>
+<h2 id="为什么console-log不是最好的选择？"><a href="#为什么console-log不是最好的选择？" class="headerlink" title="为什么console.log不是最好的选择？"></a>为什么console.log不是最好的选择？</h2><p>使用<code>console.log</code>来调试你的代码，通常你会无限重复地做 “停止你的应用程序，添加一个console.log，并再次启动你的应用程序” 这样的操作。除了减缓您的应用程序的开发外，它还使您的书写变得脏乱并创建不必要的代码。最后，尝试注销变量以及其他可能的日志记录操作的噪点时，可能会在尝试找到正在调试的值时使调试变得困难。</p>
+<h2 id="调试工具"><a href="#调试工具" class="headerlink" title="调试工具"></a>调试工具</h2><p>调试工具为用户提供的是几个重要的功能<code>console.log</code>无法提供。特别是，它们允许您在代码中的特定点暂停执行应用程序，并在程序仍在运行时检查和修改变量的值。</p>
+<h2 id="设置Chrome-for-Node-js调试"><a href="#设置Chrome-for-Node-js调试" class="headerlink" title="设置Chrome for Node.js调试"></a>设置Chrome for Node.js调试</h2><p>使用<code>Chrome 57+</code>，<code>Node.js</code>调试功能是默认启用的，不需要像以前的版本那样从“实验功能”面板手动启用它。</p>
+<p>如果您还没有完成，请将Google Chrome更新到最新版本，并确保使用<code>Node.js 6.4+</code>。</p>
+<p>要开始调试，请使用 <code>- inspect</code>标志运行<code>Node.js</code>应用程序。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node --inspect &lt;your_file&gt; .js</div></pre></td></tr></table></figure>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*NIVrIoEiniOt6cP-d-0LFQ.png" alt="在调试模式下运行Node.js应用程序"></p>
+<p>接下来，忽略从终端中显示的“<code>chrome-devtools://</code>”开头的URL ，而是在Google Chrome中打开“ <code>about:inspect</code> ”。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*QAmWRyPtdfF5X7VuvDN1zg.png" alt="chrome DevTools"></p>
+<p>最后点击“ Open dedicated DevTools for Node” 开始调试应用程序的代码。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*zQ1uLl_qiRIAJ7Lxw_LFAQ.png" alt="deloper tools for Node"></p>
+<p>此外，关于调试<a href="https://nodejs.org/en/docs/guides/debugging-getting-started/" target="_blank" rel="external">Node.js App</a>的官方文档还提供了所有其他检查器工具和客户端选项的详细列表。</p>
+<h2 id="Chrome-DevTools的应用"><a href="#Chrome-DevTools的应用" class="headerlink" title="Chrome DevTools的应用"></a>Chrome DevTools的应用</h2><p>要结束本文，我想说明一下<code>Chrome DevTools</code>在以下<code>Express</code>应用程序中的应用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</div><div class="line"><span class="keyword">const</span> app = express()</div><div class="line"></div><div class="line"><span class="keyword">const</span> PORT = process.env.PORT || <span class="number">3000</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">capitalize</span> (<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> firstLetter = str.charAt(<span class="number">0</span>) <span class="comment">// we can check what's inside here</span></div><div class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;firstLetter.toUpperCase()&#125;</span><span class="subst">$&#123;str.slice(<span class="number">1</span>)&#125;</span>`</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">app.get(<span class="string">'/:name?'</span>, (req, res) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> name = req.params.name ? capitalize(req.params.name) : <span class="string">'World'</span></div><div class="line">  res.send(<span class="string">`Hello <span class="subst">$&#123;name&#125;</span>!`</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(PORT, () =&gt; <span class="built_in">console</span>.log(<span class="string">`App listening on *:<span class="subst">$&#123;PORT&#125;</span>`</span>))</div></pre></td></tr></table></figure>
+<p>让我们从运行<code>- inspect</code>标志，并打开专用<code>DevTools for Node</code>如前所述。</p>
+<p>此时，您将可以访问您可能已经熟悉的所有功能：断点(<code>breakpoints</code>)，压缩代码的源映射(<code>source map for transpiled code</code>)，堆快照检查(<code>heap snapshot inspection</code>)，分配分析(<code>allocation profiling</code>)，JavaScript值热插拔(<code>JavaScript values hot-swapping</code>)等。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*jTzAaK_zRNynCMvlDbx2rA.png" alt="使用断点来调试Express应用程序"></p>
+<p>具体来说，如下图所示，您可以插入断点来停止执行程序，检查和“热交换”变量的值。</p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*URHvZNuF7RksLoDZRbYnpQ.png" alt="JavaScript值热拔插"></p>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*mk2Ro3VX6iAw7YLWJzlmtw.png" alt="JavaScript值热拔插2"></p>
+<p>使用Chrome作为调试工具的另外一件好事是您可以使用相同的界面🚀调试前端和后端JavaScript代码。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;如何调试 Node.js, 还在使用 console.log 来调试 Node.js 吗，可以像调试前端页面一样调试 Node.js!
+    
+    </summary>
+    
+      <category term="Node.js" scheme="http://robin-front.github.io/categories/Node-js/"/>
+    
+    
+      <category term="debug" scheme="http://robin-front.github.io/tags/debug/"/>
+    
+      <category term="Node.js" scheme="http://robin-front.github.io/tags/Node-js/"/>
+    
+  </entry>
   
   <entry>
     <title>RXJS我该选用哪个操作符之-创建篇</title>
@@ -819,9 +868,9 @@
       <category term="react" scheme="http://robin-front.github.io/categories/JSX/react/"/>
     
     
-      <category term="react" scheme="http://robin-front.github.io/tags/react/"/>
-    
       <category term="JSX" scheme="http://robin-front.github.io/tags/JSX/"/>
+    
+      <category term="react" scheme="http://robin-front.github.io/tags/react/"/>
     
   </entry>
   
@@ -1708,51 +1757,6 @@ slice方法上，safari和chrome差不多， chrome下slice有参数比无参数
       <category term="npm" scheme="http://robin-front.github.io/tags/npm/"/>
     
       <category term="shrinkwrap" scheme="http://robin-front.github.io/tags/shrinkwrap/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>用Git-Hooks进行自动部署,让提交发布自动化</title>
-    <link href="http://robin-front.github.io/2016/08/11/%E7%94%A8Git-Hooks%E8%BF%9B%E8%A1%8C%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2-%E8%AE%A9%E6%8F%90%E4%BA%A4%E5%8F%91%E5%B8%83%E8%87%AA%E5%8A%A8%E5%8C%96/"/>
-    <id>http://robin-front.github.io/2016/08/11/用Git-Hooks进行自动部署-让提交发布自动化/</id>
-    <published>2016-08-11T11:51:56.000Z</published>
-    <updated>2016-08-11T11:51:56.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前了解的自动化部署都是<code>jekins</code>这样集成化的成熟的工具。最近因为有朋友提交代码时，不想登陆服务器拉取代码，才了解到 <code>git hooks</code>。看来还是git使用不到位。之前一直都是本地开发并提交代码，测试时，人工登陆测试服务器去拉取最新代码。
-<a id="more"></a></p>
-<p>网上资料还是比较多的，最后在本机测试是成功了的。</p>
-<p>主要选要明白几个关键点：</p>
-<ul>
-<li>git init –bare</li>
-<li>post-receive 文件</li>
-<li>SSH 认证</li>
-</ul>
-<p>这几个都比较容易找到资料。</p>
-<h3 id="git-init-–bare"><a href="#git-init-–bare" class="headerlink" title="git init –bare"></a>git init –bare</h3><p>和 <code>git init</code> 不一样的是，<code>git init --bare</code>并不存储实际代码，仓库文件夹不会看到任何项目代码，反而生成了一些 <code>.git</code>之外的文件夹，其中 <code>hooks</code>文件夹就是存放git命令操作后需要执行的脚本。
-需要新建两个文件夹，一个执行<code>git init --bare</code>作为远端仓库，一个执行<code>git init</code>作为服务器项目目录。
-本地开发目录和服务器项目目录的<code>remote</code>都要指向 服务器的远端仓库。</p>
-<h3 id="post-receive-文件"><a href="#post-receive-文件" class="headerlink" title="post-receive 文件"></a>post-receive 文件</h3><p>post-receive 文件是git push 之后，执行的脚本文件，自动部署的脚本代码就写在这里。
-如：
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line"><span class="built_in">unset</span> GIT_DIR</div><div class="line"><span class="built_in">echo</span> <span class="string">"远程开始更新"</span></div><div class="line">NowPath=`<span class="built_in">pwd</span>`</div><div class="line"><span class="built_in">echo</span> <span class="variable">$NowPath</span></div><div class="line">DeployPath=<span class="string">"../deploy"</span></div><div class="line"></div><div class="line"><span class="built_in">cd</span> <span class="variable">$DeployPath</span></div><div class="line">git pull origin master</div><div class="line"><span class="built_in">echo</span> <span class="string">"远程更新完毕"</span></div><div class="line"><span class="built_in">cd</span> <span class="variable">$NowPath</span></div><div class="line"><span class="built_in">exit</span> 0</div></pre></td></tr></table></figure></p>
-<p>这里有一点比较容易出问题的就是路径，最好还是使用绝对路径。
-脚本里还可以加入任何想执行的脚本，比如打包编译。</p>
-<blockquote>
-<p>不过要注意使用 chmod +x post-receive 改变一下权限，服务器端的配置就基本完成了。</p>
-</blockquote>
-<h3 id="SSH认证"><a href="#SSH认证" class="headerlink" title="SSH认证"></a>SSH认证</h3><p>这个在 mac os x 和 linux都没有问题，我用别人的windows配置的时候经常都会出现认证失败，就算认证成功了，也无法执行脚本，对这个还是不太熟悉。我猜可能是 cmd 的问题，ssh 登陆后还遇到过乱码。</p>
-<p>这些都配置好之后，本地开发只需要提交代码，服务器就可以预览最新代码了。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;之前了解的自动化部署都是&lt;code&gt;jekins&lt;/code&gt;这样集成化的成熟的工具。最近因为有朋友提交代码时，不想登陆服务器拉取代码，才了解到 &lt;code&gt;git hooks&lt;/code&gt;。看来还是git使用不到位。之前一直都是本地开发并提交代码，测试时，人工登陆测试服务器去拉取最新代码。
-    
-    </summary>
-    
-      <category term="git" scheme="http://robin-front.github.io/categories/git/"/>
-    
-    
-      <category term="git" scheme="http://robin-front.github.io/tags/git/"/>
     
   </entry>
   

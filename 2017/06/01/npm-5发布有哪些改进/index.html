@@ -338,6 +338,70 @@
 <h3 id="SHA-512哈希"><a href="#SHA-512哈希" class="headerlink" title="SHA-512哈希"></a>SHA-512哈希</h3><p><code>npm@5</code>增加了对<code>Node.js</code>支持的任何tarball Hash功能的支持，并以SHA-512 hash发布。通过检查所有下载的软件包，您可以防止数据损坏和恶意攻击，并且您可以相信您从npm下载的代码是一致和安全的。</p>
 <h3 id="自愈缓存"><a href="#自愈缓存" class="headerlink" title="自愈缓存"></a>自愈缓存</h3><p>我们的新缓存很容易损坏，但也更具弹性。多个npm进程不会破坏共享缓存，<code>npm@5</code>将检查插入和提取的数据，以防止安装损坏的数据。如果缓存项失败完整性检查，<code>npm@5</code>将自动删除它并重新获取。</p>
 <h3 id="更易使用"><a href="#更易使用" class="headerlink" title="更易使用"></a>更易使用</h3><p>根据您的反馈，我们通过<code>npm @ 5</code>中的优化改进了用户体验。其中很大一部分是输出更多的有用的提示信息。最好的例子是，npm不再显示<code>package</code>上的整个树; 相反，您将看到有关安装内容的摘要报告。由于平均每个<code>package</code>中的依赖关系较大，因此我们进行了此更改。逐个文件读出结果是超过一定数量就会显得非常笨重。</p>
+<h2 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h2><p>有一个项目使用 <code>benchmark</code> 比较了 <code>yarn</code>, <code>pnpm</code>, <code>npm</code> 的效率, <a href="https://github.com/JamieMason/npm-cache-benchmark" target="_blank" rel="external">传送门</a></p>
+<p>下面是比较结果：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Installer</th>
+<th style="text-align:right">Average over 5 runs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">yarn –offline</td>
+<td style="text-align:right">5.88</td>
+</tr>
+<tr>
+<td style="text-align:left">pnpm –offline</td>
+<td style="text-align:right">6.72</td>
+</tr>
+<tr>
+<td style="text-align:left">pnpm (cached)</td>
+<td style="text-align:right">6.86</td>
+</tr>
+<tr>
+<td style="text-align:left">npm 5.x (shrinkpacked, compressed)</td>
+<td style="text-align:right">8.35</td>
+</tr>
+<tr>
+<td style="text-align:left">npm 5.x (shrinkpacked)</td>
+<td style="text-align:right">8.94</td>
+</tr>
+<tr>
+<td style="text-align:left">npm 5.x (cached)</td>
+<td style="text-align:right">11.36</td>
+</tr>
+<tr>
+<td style="text-align:left">npm 4.x (cached)</td>
+<td style="text-align:right">13.47</td>
+</tr>
+<tr>
+<td style="text-align:left">yarn</td>
+<td style="text-align:right">13.71</td>
+</tr>
+<tr>
+<td style="text-align:left">npm 5.x</td>
+<td style="text-align:right">14.93</td>
+</tr>
+<tr>
+<td style="text-align:left">pnpm</td>
+<td style="text-align:right">17.57</td>
+</tr>
+<tr>
+<td style="text-align:left">npm 4.x (shrinkpacked, compressed)</td>
+<td style="text-align:right">18.73</td>
+</tr>
+<tr>
+<td style="text-align:left">npm 4.x (shrinkpacked)</td>
+<td style="text-align:right">18.78</td>
+</tr>
+<tr>
+<td style="text-align:left">npm 4.x</td>
+<td style="text-align:right">29.73</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -536,7 +600,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#速度很快"><span class="nav-number">1.</span> <span class="nav-text">速度很快</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标一致"><span class="nav-number">2.</span> <span class="nav-text">目标一致</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#默认锁文件"><span class="nav-number">2.1.</span> <span class="nav-text">默认锁文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SHA-512哈希"><span class="nav-number">2.2.</span> <span class="nav-text">SHA-512哈希</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自愈缓存"><span class="nav-number">2.3.</span> <span class="nav-text">自愈缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更易使用"><span class="nav-number">2.4.</span> <span class="nav-text">更易使用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#速度很快"><span class="nav-number">1.</span> <span class="nav-text">速度很快</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标一致"><span class="nav-number">2.</span> <span class="nav-text">目标一致</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#默认锁文件"><span class="nav-number">2.1.</span> <span class="nav-text">默认锁文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SHA-512哈希"><span class="nav-number">2.2.</span> <span class="nav-text">SHA-512哈希</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自愈缓存"><span class="nav-number">2.3.</span> <span class="nav-text">自愈缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更易使用"><span class="nav-number">2.4.</span> <span class="nav-text">更易使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较"><span class="nav-number">3.</span> <span class="nav-text">比较</span></a></li></ol></div>
             
           </div>
         </section>

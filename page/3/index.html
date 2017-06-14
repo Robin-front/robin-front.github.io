@@ -267,8 +267,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/07/搜索命令之locate、whereis、which、find、grep/" itemprop="url">
-                  搜索命令之locate、whereis、which、find、grep
+                <a class="post-title-link" href="/2016/04/14/Node全局对象：global、process和Buffer/" itemprop="url">
+                  Node全局对象：global、process和Buffer
                 </a>
               
             
@@ -281,8 +281,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-07T00:58:03+08:00" content="2016-03-07">
-              2016-03-07
+            <time itemprop="dateCreated" datetime="2016-04-14T23:39:02+08:00" content="2016-04-14">
+              2016-04-14
             </time>
           </span>
 
@@ -295,8 +295,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
+                  <a href="/categories/Node/" itemprop="url" rel="index">
+                    <span itemprop="name">Node</span>
                   </a>
                 </span>
 
@@ -311,8 +311,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/07/搜索命令之locate、whereis、which、find、grep/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/07/搜索命令之locate、whereis、which、find、grep/" itemprop="commentsCount"></span>
+                <a href="/2016/04/14/Node全局对象：global、process和Buffer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/14/Node全局对象：global、process和Buffer/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -335,10 +335,9 @@
 
       
         
-          <h3 id="whereis"><a href="#whereis" class="headerlink" title="whereis"></a>whereis</h3><p>搜索命令所在路径及帮助文档所在位置</p>
-<p>选项：<br>-b 只查找可执行文件<br>-m 只查找帮助文件<br>
+          <p><code>global</code>对象，也是<code>Node</code>的全局命名空间；<br><code>process</code>对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；<br><code>Buffer</code>类，它提供了存储和操作原始数据的功能，同样它也是全局可见的<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/07/搜索命令之locate、whereis、which、find、grep/#more" rel="contents">
+            <a class="btn" href="/2016/04/14/Node全局对象：global、process和Buffer/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -385,8 +384,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/03/05/Fetch POST接收不到数据，注意content-type的设置/" itemprop="url">
-                  Fetch POST接收不到数据，注意content-type的设置
+                <a class="post-title-link" href="/2016/04/13/记node与REPL/" itemprop="url">
+                  Node与REPL
                 </a>
               
             
@@ -399,8 +398,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-05T10:18:26+08:00" content="2016-03-05">
-              2016-03-05
+            <time itemprop="dateCreated" datetime="2016-04-13T23:15:44+08:00" content="2016-04-13">
+              2016-04-13
             </time>
           </span>
 
@@ -413,8 +412,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/Node/" itemprop="url" rel="index">
+                    <span itemprop="name">Node</span>
                   </a>
                 </span>
 
@@ -429,8 +428,341 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/05/Fetch POST接收不到数据，注意content-type的设置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/05/Fetch POST接收不到数据，注意content-type的设置/" itemprop="commentsCount"></span>
+                <a href="/2016/04/13/记node与REPL/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/13/记node与REPL/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这几个月，搜芽前端团队搞了<code>Reactjs+Redux</code>项目，在很多时候，比如部署，都需要使用<code>Node</code>，苦于我的肤浅，于是决定补一下功课。最近都会记录一些 <code>Node</code>相关的笔记。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/13/记node与REPL/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/10/postCSS常用插件/" itemprop="url">
+                  postCSS常用插件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-10T00:43:12+08:00" content="2016-04-10">
+              2016-04-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/10/postCSS常用插件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/10/postCSS常用插件/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>PostCSS拥有非常多的插件，诸如自动为CSS添加浏览器前缀的插件autoprefixer、当前移动端最常用的px转rem插件px2rem，还有支持尚未成为CSS标准但特定可用的插件cssnext，还有很多很多。就连著名的Bootstrap在下一个版本Bootstrap 5也将使用PostCSS作为样式的基础。</p>
+<p>一句话来概括PostCSS：CSS编译器能够做到的事情，它也可以做到，而且能够做得更好<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/10/postCSS常用插件/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/09/postCSS-loader配置/" itemprop="url">
+                  postCSS-loader配置,让css随心所欲
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-09T22:47:09+08:00" content="2016-04-09">
+              2016-04-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">Webpack</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/09/postCSS-loader配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/09/postCSS-loader配置/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>组件必不可少的一部分就是 <code>css</code>，这里看下关于 <code>css</code>的一些 <code>loaders</code>。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/09/postCSS-loader配置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/08/babel-loader配置/" itemprop="url">
+                  babel-loader配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-08T08:36:38+08:00" content="2016-04-08">
+              2016-04-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">Webpack</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/08/babel-loader配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/08/babel-loader配置/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -454,12 +786,13 @@
       
         
           
-          最近我们前端组在做一个简易的文档系统，使用redux+mongodb。其中抛弃了Ajax，起用了Fetch。
-XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation of Concerns）的原则，配置和调用方式非常混乱，而且基于事件的异步模型写起来也没有现代的
+          安装1npm install babel-loader babel-core babel-preset-es2015 --save-dev
+
+npm 从 npm@3 之后不赞成自动安装peerDependencies，所有必须在package.json里明确指定 babel-core 这样的宿主依赖
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/05/Fetch POST接收不到数据，注意content-type的设置/#more" rel="contents">
+            <a class="btn" href="/2016/04/08/babel-loader配置/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -506,8 +839,8 @@ XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation
             
               
                 
-                <a class="post-title-link" href="/2016/03/04/艾神分享会/" itemprop="url">
-                  如何少埋坑-艾神分享会
+                <a class="post-title-link" href="/2016/04/07/Webpack-config/" itemprop="url">
+                  Webpack-config
                 </a>
               
             
@@ -520,107 +853,8 @@ XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-04T22:47:41+08:00" content="2016-03-04">
-              2016-03-04
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/04/艾神分享会/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/04/艾神分享会/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>又很久没有记录东西了，真是个不自律的人- -！</p>
-<p>去年十月进入搜芽，感觉搜芽是一个共同成长的公司，有一种亲切感。这算是我第一次进一个前端团队比较大的公司，很多想法在分享与讨论中迸发。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/04/艾神分享会/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/30/javascript取本周和本月或任意月的时间段/" itemprop="url">
-                  javascript获取本周和本月或任意月的时间段
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-30T23:36:01+08:00" content="2015-10-30">
-              2015-10-30
+            <time itemprop="dateCreated" datetime="2016-04-07T01:03:50+08:00" content="2016-04-07">
+              2016-04-07
             </time>
           </span>
 
@@ -633,8 +867,8 @@ XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
                   </a>
                 </span>
 
@@ -649,8 +883,8 @@ XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/30/javascript取本周和本月或任意月的时间段/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/30/javascript取本周和本月或任意月的时间段/" itemprop="commentsCount"></span>
+                <a href="/2016/04/07/Webpack-config/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/07/Webpack-config/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -673,10 +907,9 @@ XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation
 
       
         
-          <p>最近有功能从两个时间段变成单个select选择了，但后端不想改接口。只好适配一下，把今天、本周、本月及过去的月份转换一下。</p>
-<p>首先，更改一下select菜单，动态取出过去的月份，添加options。<br>
+          <p>不得不说，<code>Webpack</code> 配置确实烦琐了一些，很多人都使用<code>gulp</code>的插件<code>gulp-webpack</code>来做其他事情。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/30/javascript取本周和本月或任意月的时间段/#more" rel="contents">
+            <a class="btn" href="/2016/04/07/Webpack-config/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -723,8 +956,8 @@ XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation
             
               
                 
-                <a class="post-title-link" href="/2015/10/17/angular自定义指令/" itemprop="url">
-                  angularJS自定义指令
+                <a class="post-title-link" href="/2016/04/02/采用非直进式合并（git-merge-no-ff）/" itemprop="url">
+                  采用非直进式合并（git-merge-no-ff）
                 </a>
               
             
@@ -737,133 +970,8 @@ XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-17T00:31:51+08:00" content="2015-10-17">
-              2015-10-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/angularJS/" itemprop="url" rel="index">
-                    <span itemprop="name">angularJS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/17/angular自定义指令/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/17/angular自定义指令/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><p>可以简单理解成特定DOM元素上执行的函数，它可以拓展元素的功能。</p>
-<p>一个定义指令的基本格式如下：</p>
-<pre><code>angular.module(&apos;myApp&apos;, [])
-    .direcitve(&apos;myDirective&apos;, function(){
-        return {
-        //指令的配置项
-        }
-    });
-</code></pre><p>directive() 方法可以接受两个参数：<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/17/angular自定义指令/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/10/10/git分支/" itemprop="url">
-                  git分支
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-10T22:16:01+08:00" content="2015-10-10">
-              2015-10-10
+            <time itemprop="dateCreated" datetime="2016-04-02T15:44:00+08:00" content="2016-04-02">
+              2016-04-02
             </time>
           </span>
 
@@ -892,8 +1000,125 @@ XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/10/git分支/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/10/git分支/" itemprop="commentsCount"></span>
+                <a href="/2016/04/02/采用非直进式合并（git-merge-no-ff）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/02/采用非直进式合并（git-merge-no-ff）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>使用Git当合并一个分支是一个相当常见的操作。在某些情况下，Git会默认将尝试在快进模式合并一个分支。如果不使用快进合并有什么不同？<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/02/采用非直进式合并（git-merge-no-ff）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/16/快速上手Flow-静态类型检查器/" itemprop="url">
+                  快速上手Flow-静态类型检查器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-16T16:09:49+08:00" content="2016-03-16">
+              2016-03-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Flow/" itemprop="url" rel="index">
+                    <span itemprop="name">Flow</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/16/快速上手Flow-静态类型检查器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/16/快速上手Flow-静态类型检查器/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -917,17 +1142,12 @@ XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation
       
         
           
-          git分支对于我们平常开发新功能，修复bug等有很大的帮助。下面是git分支的常用命令：
-
-分支的新建与切换
-$ git checkout -b version2.0
-  这相当于执行下面这两条命令：
-$ git branch version2.0
-$ git checkout version2.0
+          why Flowjavascript是一个弱类型语言，变量类型不需要声明，运算过程中会根据需要自动转换类型，这个是js的优点，够灵活，编码简单，但是同时也是软肋。有时候，有些类型转换的bug无从查起，特别是在复杂的应用中。
+Flow为Javascript添加了静态类型检查，以提高开发效率和代码质量。
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/10/git分支/#more" rel="contents">
+            <a class="btn" href="/2016/03/16/快速上手Flow-静态类型检查器/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -974,8 +1194,8 @@ $ git checkout version2.0
             
               
                 
-                <a class="post-title-link" href="/2015/10/09/gulp-4.0/" itemprop="url">
-                  gulp 4.0的变化
+                <a class="post-title-link" href="/2016/03/14/React应用性能优化之IMMUTABLE-JS/" itemprop="url">
+                  React应用性能优化之IMMUTABLE.JS
                 </a>
               
             
@@ -988,8 +1208,8 @@ $ git checkout version2.0
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-09T15:23:51+08:00" content="2015-10-09">
-              2015-10-09
+            <time itemprop="dateCreated" datetime="2016-03-14T00:15:07+08:00" content="2016-03-14">
+              2016-03-14
             </time>
           </span>
 
@@ -1002,8 +1222,8 @@ $ git checkout version2.0
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/前端构建/" itemprop="url" rel="index">
-                    <span itemprop="name">前端构建</span>
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
                   </a>
                 </span>
 
@@ -1018,8 +1238,8 @@ $ git checkout version2.0
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/09/gulp-4.0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/09/gulp-4.0/" itemprop="commentsCount"></span>
+                <a href="/2016/03/14/React应用性能优化之IMMUTABLE-JS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/14/React应用性能优化之IMMUTABLE-JS/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1042,22 +1262,10 @@ $ git checkout version2.0
 
       
         
-          <h3 id="升级日志"><a href="#升级日志" class="headerlink" title="升级日志"></a>升级日志</h3><p>先来看看新版有什么不同（<a href="https://github.com/gulpjs/gulp/blob/4.0/CHANGELOG.md">官方升级日志</a>）：</p>
-<ul>
-<li><p>新的任务系统（基于 bach，替换掉了原先基于 orchestrator 的任务系统）</p>
-<ul>
-<li>移除 gulp.reset</li>
-<li>gulp.task 不再支持三个参数的用法</li>
-<li>gulp.task 用字符串注册的任务必须是直接在命令行中调用的任务</li>
-<li>gulp.task 可以接受单参数语法，这个参数必须是一个命名函数，函数名会被作为任务名</li>
-<li>添加了 gulp.series 和 gulp.parallel 方法用于组合任务</li>
-<li>添加了 gulp.tree 方法用于获取任务树，传入 { deep: true } 参数可以得到一个 archy 兼容的节点列表</li>
-<li>添加了 gulp.registry 方法以定制注册表。</li>
-</ul>
-</li>
-</ul>
+          <p>前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。</p>
+<h3 id="Immutable-js"><a href="#Immutable-js" class="headerlink" title="Immutable.js"></a>Immutable.js</h3><p>Immutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/09/gulp-4.0/#more" rel="contents">
+            <a class="btn" href="/2016/03/14/React应用性能优化之IMMUTABLE-JS/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1104,8 +1312,8 @@ $ git checkout version2.0
             
               
                 
-                <a class="post-title-link" href="/2015/10/08/前端批量压缩图片/" itemprop="url">
-                  前端批量压缩图片
+                <a class="post-title-link" href="/2016/03/10/React应用性能优化之shouldComponentUpdate与key/" itemprop="url">
+                  React应用性能优化之shouldComponentUpdate与key
                 </a>
               
             
@@ -1118,8 +1326,8 @@ $ git checkout version2.0
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-08T14:31:51+08:00" content="2015-10-08">
-              2015-10-08
+            <time itemprop="dateCreated" datetime="2016-03-10T22:32:13+08:00" content="2016-03-10">
+              2016-03-10
             </time>
           </span>
 
@@ -1132,8 +1340,8 @@ $ git checkout version2.0
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/前端构建/" itemprop="url" rel="index">
-                    <span itemprop="name">前端构建</span>
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
                   </a>
                 </span>
 
@@ -1148,8 +1356,8 @@ $ git checkout version2.0
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/08/前端批量压缩图片/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/08/前端批量压缩图片/" itemprop="commentsCount"></span>
+                <a href="/2016/03/10/React应用性能优化之shouldComponentUpdate与key/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/React应用性能优化之shouldComponentUpdate与key/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1172,249 +1380,10 @@ $ git checkout version2.0
 
       
         
-          <p>前端切图的时候，png 图片都比较大，一直使用的是 <a href="https://tinypng.com/">Tinypng</a> 来压缩 png 图片，小图标sprite之后，图片数量还是至少在 20 以上，操作甚是麻烦。后来在使用 gulp 的时候，发现了一个批量压缩图片的神器 —— <a href="https://pngquant.org/">pngquant</a> 。</p>
+          <p>虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。</p>
+<p>下面看看加速应用程序的两种简单的配置方法：<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/10/08/前端批量压缩图片/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/30/git ssh-key及多帐户设置/" itemprop="url">
-                  git ssh-key及多帐户设置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-09-30T11:40:01+08:00" content="2015-09-30">
-              2015-09-30
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/30/git ssh-key及多帐户设置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/30/git ssh-key及多帐户设置/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在使用git的时候，我们在管理远程分支之前需要在本机上创建ssh-key密钥对，并把其中的公钥添加到github中。</p>
-<h2 id="首个帐户"><a href="#首个帐户" class="headerlink" title="首个帐户"></a>首个帐户</h2><p>如果你只会在你的计算机使用一个远程的Git服务器，并且账号是一个，比较简单，生成key的时候也没有太大注意的地方，直接运行如下的第一步然后按回车就可以了</p>
-<ol>
-<li>在 gitbash上运行  <code>ssh-keygen -t  rsa  -C  &quot;Github账户邮箱&quot;</code></li>
-<li>接下来会提示输入key的名字 默认名字为<code>id_rsa</code> ,默认不改直接回车就行了</li>
-<li>然后会提示输入口令，这里口令与Github中的密码无关，随便输入可以为空，为空直接回车。</li>
-<li><p>如果在第二步中的没有重新命名的话，则忽略此步骤，<code>ssh agent</code>默认只读取<code>id_rsa</code>，为了让SSH识别新的私钥，需将其添加到SSH agent中,如第二步改的名字为<code>robin</code>, 则执行：<code>ssh-add id_rsa</code>如果出现<code>Could not open a connection to your authentication agent</code>的错误，就试着先用以下命令：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/30/git ssh-key及多帐户设置/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/09/19/维护一个方便自己开发的Less库/" itemprop="url">
-                  维护一个方便自己开发的Less库
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-09-19T23:14:16+08:00" content="2015-09-19">
-              2015-09-19
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/less/" itemprop="url" rel="index">
-                    <span itemprop="name">less</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/09/19/维护一个方便自己开发的Less库/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/19/维护一个方便自己开发的Less库/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="less"><a href="#less" class="headerlink" title="less"></a>less</h2><p>用less开发的时候，经常会用到一些重复使用的mixins，建个库记录维护起来，方便以后自己开发的时候快速引用。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/09/19/维护一个方便自己开发的Less库/#more" rel="contents">
+            <a class="btn" href="/2016/03/10/React应用性能优化之shouldComponentUpdate与key/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1445,7 +1414,7 @@ $ git checkout version2.0
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1486,7 +1455,7 @@ $ git checkout version2.0
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1494,7 +1463,7 @@ $ git checkout version2.0
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1503,7 +1472,7 @@ $ git checkout version2.0
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">43</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1558,7 +1527,7 @@ $ git checkout version2.0
         <div class="copyright" >
   
   &copy;  2015 - 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

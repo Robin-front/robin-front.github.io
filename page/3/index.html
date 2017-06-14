@@ -267,8 +267,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/14/Node全局对象：global、process和Buffer/" itemprop="url">
-                  Node全局对象：global、process和Buffer
+                <a class="post-title-link" href="/2016/11/17/Debounce-and-Throttle-的可視化解釋/" itemprop="url">
+                  Debounce-and-Throttle-的可視化解釋
                 </a>
               
             
@@ -281,8 +281,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-14T23:39:02+08:00" content="2016-04-14">
-              2016-04-14
+            <time itemprop="dateCreated" datetime="2016-11-17T10:22:22+08:00" content="2016-11-17">
+              2016-11-17
             </time>
           </span>
 
@@ -295,8 +295,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Node/" itemprop="url" rel="index">
-                    <span itemprop="name">Node</span>
+                  <a href="/categories/函数节流/" itemprop="url" rel="index">
+                    <span itemprop="name">函数节流</span>
                   </a>
                 </span>
 
@@ -311,8 +311,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/14/Node全局对象：global、process和Buffer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/14/Node全局对象：global、process和Buffer/" itemprop="commentsCount"></span>
+                <a href="/2016/11/17/Debounce-and-Throttle-的可視化解釋/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/17/Debounce-and-Throttle-的可視化解釋/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -335,9 +335,9 @@
 
       
         
-          <p><code>global</code>对象，也是<code>Node</code>的全局命名空间；<br><code>process</code>对象，它提供了一些关键功能，例如对三种标准I/O流的封装，以及将同步函数转换为异步回调的功能；<br><code>Buffer</code>类，它提供了存储和操作原始数据的功能，同样它也是全局可见的<br>
+          <p>Debounce 和 Throttle是两个概念，我们可以在JavaScript中使用，以提高我们对执行功能的控制，在事件处理的时候特别有用。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/14/Node全局对象：global、process和Buffer/#more" rel="contents">
+            <a class="btn" href="/2016/11/17/Debounce-and-Throttle-的可視化解釋/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -384,8 +384,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/13/记node与REPL/" itemprop="url">
-                  Node与REPL
+                <a class="post-title-link" href="/2016/10/20/使用-npm-shrinkwrap-来管理项目依赖/" itemprop="url">
+                  使用 npm shrinkwrap 来管理项目依赖
                 </a>
               
             
@@ -398,8 +398,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-13T23:15:44+08:00" content="2016-04-13">
-              2016-04-13
+            <time itemprop="dateCreated" datetime="2016-10-20T17:35:22+08:00" content="2016-10-20">
+              2016-10-20
             </time>
           </span>
 
@@ -412,8 +412,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Node/" itemprop="url" rel="index">
-                    <span itemprop="name">Node</span>
+                  <a href="/categories/npm/" itemprop="url" rel="index">
+                    <span itemprop="name">npm</span>
                   </a>
                 </span>
 
@@ -428,8 +428,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/13/记node与REPL/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/13/记node与REPL/" itemprop="commentsCount"></span>
+                <a href="/2016/10/20/使用-npm-shrinkwrap-来管理项目依赖/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/20/使用-npm-shrinkwrap-来管理项目依赖/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -452,9 +452,16 @@
 
       
         
-          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这几个月，搜芽前端团队搞了<code>Reactjs+Redux</code>项目，在很多时候，比如部署，都需要使用<code>Node</code>，苦于我的肤浅，于是决定补一下功课。最近都会记录一些 <code>Node</code>相关的笔记。<br>
+          <p>管理依赖是一个复杂软件开发过程中必定会遇到的问题。</p>
+<p>在Node.js项目开发的时候，我们也经常需要安装和升级对应的依赖。虽然 npm 以及语意化的版本号 (semantic versioning, semver) 让开发过程中依赖的获取和升级变得非常容易， 但不严格的版本号限制，也带来了版本号的不确定性。主要的问题可能有三个：</p>
+<ul>
+<li>npm 建议使用 semver 的应用程序版本，但这也完全依赖第三方包遵守这一规则。如果你依赖于的包不遵循 semver ，或者依赖的包的新版本有重大更改（而你使用了 ^ 的宽泛版本安装），这潜在可能是会导致问题的。</li>
+<li>另一个问题的出现是由于 npm 安装依赖的机制。npm 的安装包是有层次结构的，手动控制要安装的软件包的版本号可以实现，但是你只能在 package.json 使用精确的版本号控制你的直接依赖包，但那些多层以上的依赖就没办法控制了；一个第三方包不严谨的版本依赖生命可能破坏你的依赖管理。</li>
+<li>在开发阶段执行得到的版本，和后续部署时得到的可能是不一致的，更不可控的是，你依赖的第三方包也有这样的情况会导致潜在的上线风险。</li>
+</ul>
+<p>如果要控制上线的风险，我们就必需要解决这个问题，这时候，就需要使用 npm shrinkwrap 这个命令来解决问题。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/13/记node与REPL/#more" rel="contents">
+            <a class="btn" href="/2016/10/20/使用-npm-shrinkwrap-来管理项目依赖/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -501,8 +508,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/10/postCSS常用插件/" itemprop="url">
-                  postCSS常用插件
+                <a class="post-title-link" href="/2016/08/11/用Git-Hooks进行自动部署-让提交发布自动化/" itemprop="url">
+                  用Git-Hooks进行自动部署,让提交发布自动化
                 </a>
               
             
@@ -515,463 +522,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-10T00:43:12+08:00" content="2016-04-10">
-              2016-04-10
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/10/postCSS常用插件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/10/postCSS常用插件/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>PostCSS拥有非常多的插件，诸如自动为CSS添加浏览器前缀的插件autoprefixer、当前移动端最常用的px转rem插件px2rem，还有支持尚未成为CSS标准但特定可用的插件cssnext，还有很多很多。就连著名的Bootstrap在下一个版本Bootstrap 5也将使用PostCSS作为样式的基础。</p>
-<p>一句话来概括PostCSS：CSS编译器能够做到的事情，它也可以做到，而且能够做得更好<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/10/postCSS常用插件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/09/postCSS-loader配置/" itemprop="url">
-                  postCSS-loader配置,让css随心所欲
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-09T22:47:09+08:00" content="2016-04-09">
-              2016-04-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">Webpack</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/09/postCSS-loader配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/09/postCSS-loader配置/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>组件必不可少的一部分就是 <code>css</code>，这里看下关于 <code>css</code>的一些 <code>loaders</code>。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/09/postCSS-loader配置/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/08/babel-loader配置/" itemprop="url">
-                  babel-loader配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-08T08:36:38+08:00" content="2016-04-08">
-              2016-04-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">Webpack</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/08/babel-loader配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/08/babel-loader配置/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          安装1npm install babel-loader babel-core babel-preset-es2015 --save-dev
-
-npm 从 npm@3 之后不赞成自动安装peerDependencies，所有必须在package.json里明确指定 babel-core 这样的宿主依赖
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/08/babel-loader配置/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/07/Webpack-config/" itemprop="url">
-                  Webpack-config
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-07T01:03:50+08:00" content="2016-04-07">
-              2016-04-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/07/Webpack-config/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/07/Webpack-config/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>不得不说，<code>Webpack</code> 配置确实烦琐了一些，很多人都使用<code>gulp</code>的插件<code>gulp-webpack</code>来做其他事情。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/07/Webpack-config/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/02/采用非直进式合并（git-merge-no-ff）/" itemprop="url">
-                  采用非直进式合并（git-merge-no-ff）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-02T15:44:00+08:00" content="2016-04-02">
-              2016-04-02
+            <time itemprop="dateCreated" datetime="2016-08-11T19:51:56+08:00" content="2016-08-11">
+              2016-08-11
             </time>
           </span>
 
@@ -1000,8 +552,8 @@ npm 从 npm@3 之后不赞成自动安装peerDependencies，所有必须在packa
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/02/采用非直进式合并（git-merge-no-ff）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/02/采用非直进式合并（git-merge-no-ff）/" itemprop="commentsCount"></span>
+                <a href="/2016/08/11/用Git-Hooks进行自动部署-让提交发布自动化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/11/用Git-Hooks进行自动部署-让提交发布自动化/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1024,9 +576,9 @@ npm 从 npm@3 之后不赞成自动安装peerDependencies，所有必须在packa
 
       
         
-          <p>使用Git当合并一个分支是一个相当常见的操作。在某些情况下，Git会默认将尝试在快进模式合并一个分支。如果不使用快进合并有什么不同？<br>
+          <p>之前了解的自动化部署都是<code>jekins</code>这样集成化的成熟的工具。最近因为有朋友提交代码时，不想登陆服务器拉取代码，才了解到 <code>git hooks</code>。看来还是git使用不到位。之前一直都是本地开发并提交代码，测试时，人工登陆测试服务器去拉取最新代码。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/02/采用非直进式合并（git-merge-no-ff）/#more" rel="contents">
+            <a class="btn" href="/2016/08/11/用Git-Hooks进行自动部署-让提交发布自动化/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1073,8 +625,8 @@ npm 从 npm@3 之后不赞成自动安装peerDependencies，所有必须在packa
             
               
                 
-                <a class="post-title-link" href="/2016/03/16/快速上手Flow-静态类型检查器/" itemprop="url">
-                  快速上手Flow-静态类型检查器
+                <a class="post-title-link" href="/2016/08/08/webpack-sourcemap选项应该选哪个/" itemprop="url">
+                  webpack-sourcemap选项应该选哪个
                 </a>
               
             
@@ -1087,8 +639,8 @@ npm 从 npm@3 之后不赞成自动安装peerDependencies，所有必须在packa
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-16T16:09:49+08:00" content="2016-03-16">
-              2016-03-16
+            <time itemprop="dateCreated" datetime="2016-08-08T17:08:53+08:00" content="2016-08-08">
+              2016-08-08
             </time>
           </span>
 
@@ -1101,8 +653,8 @@ npm 从 npm@3 之后不赞成自动安装peerDependencies，所有必须在packa
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Flow/" itemprop="url" rel="index">
-                    <span itemprop="name">Flow</span>
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
                   </a>
                 </span>
 
@@ -1117,8 +669,254 @@ npm 从 npm@3 之后不赞成自动安装peerDependencies，所有必须在packa
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/16/快速上手Flow-静态类型检查器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/16/快速上手Flow-静态类型检查器/" itemprop="commentsCount"></span>
+                <a href="/2016/08/08/webpack-sourcemap选项应该选哪个/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/08/webpack-sourcemap选项应该选哪个/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>使用 webpack 也有一段时间了，但是每次看到别的项目配置，还是会去浏览一遍。这次刚好看到一个 <code>devtool: &#39;#eval-source-map&#39;</code>，就有些好奇，之前都是默认使用 <code>#source-map</code> 并没有过多去注意它。google一下，发现这个 devtool 选项还不少，那我们到底选哪个呢，它们有哪些区别。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/08/webpack-sourcemap选项应该选哪个/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/30/使用ApplicationCache离线缓存做一个h5离线应用/" itemprop="url">
+                  使用ApplicationCache离线缓存做一个h5离线应用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-30T22:41:14+08:00" content="2016-06-30">
+              2016-06-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ApplicationCache/" itemprop="url" rel="index">
+                    <span itemprop="name">ApplicationCache</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ApplicationCache/html5/" itemprop="url" rel="index">
+                    <span itemprop="name">html5</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/30/使用ApplicationCache离线缓存做一个h5离线应用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/30/使用ApplicationCache离线缓存做一个h5离线应用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>原生app可以离线操作，在以前是相对web app的优势，web必须联网才能刷新使用。虽然所有浏览器都有缓存机制，但它们并不一定总能起到预期的作用。HTML5 使用 ApplicationCache 接口解决了由离线带来的部分难题。即使用户在离线状态下按了刷新按钮，您的应用也会正常加载和运行。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/30/使用ApplicationCache离线缓存做一个h5离线应用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/08/正确检测Javascript数据类型/" itemprop="url">
+                  正确检测Javascript数据类型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-08T23:53:10+08:00" content="2016-06-08">
+              2016-06-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/08/正确检测Javascript数据类型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/08/正确检测Javascript数据类型/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1142,12 +940,22 @@ npm 从 npm@3 之后不赞成自动安装peerDependencies，所有必须在packa
       
         
           
-          why Flowjavascript是一个弱类型语言，变量类型不需要声明，运算过程中会根据需要自动转换类型，这个是js的优点，够灵活，编码简单，但是同时也是软肋。有时候，有些类型转换的bug无从查起，特别是在复杂的应用中。
-Flow为Javascript添加了静态类型检查，以提高开发效率和代码质量。
+          
+typeof对于任何变量来说，使用typeof 总是以字符串形式返回以下6种类型之一：
+
+number
+string
+boolean
+object
+function
+undefined
+
+
+要注意 null 使用 typeof 检测时返回的是 ‘object’对于 null 可以使用123func
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/16/快速上手Flow-静态类型检查器/#more" rel="contents">
+            <a class="btn" href="/2016/06/08/正确检测Javascript数据类型/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1194,8 +1002,8 @@ Flow为Javascript添加了静态类型检查，以提高开发效率和代码质
             
               
                 
-                <a class="post-title-link" href="/2016/03/14/React应用性能优化之IMMUTABLE-JS/" itemprop="url">
-                  React应用性能优化之IMMUTABLE.JS
+                <a class="post-title-link" href="/2016/05/16/git小记/" itemprop="url">
+                  git小记
                 </a>
               
             
@@ -1208,8 +1016,8 @@ Flow为Javascript添加了静态类型检查，以提高开发效率和代码质
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-14T00:15:07+08:00" content="2016-03-14">
-              2016-03-14
+            <time itemprop="dateCreated" datetime="2016-05-16T20:57:45+08:00" content="2016-05-16">
+              2016-05-16
             </time>
           </span>
 
@@ -1222,8 +1030,8 @@ Flow为Javascript添加了静态类型检查，以提高开发效率和代码质
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index">
-                    <span itemprop="name">React</span>
+                  <a href="/categories/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
                   </a>
                 </span>
 
@@ -1238,8 +1046,8 @@ Flow为Javascript添加了静态类型检查，以提高开发效率和代码质
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/14/React应用性能优化之IMMUTABLE-JS/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/14/React应用性能优化之IMMUTABLE-JS/" itemprop="commentsCount"></span>
+                <a href="/2016/05/16/git小记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/16/git小记/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1262,10 +1070,9 @@ Flow为Javascript添加了静态类型检查，以提高开发效率和代码质
 
       
         
-          <p>前一篇文章记录了React应用的性能优化点，今天还有个更闪耀的 Immutable.js。</p>
-<h3 id="Immutable-js"><a href="#Immutable-js" class="headerlink" title="Immutable.js"></a>Immutable.js</h3><p>Immutable.js 本身和 React.js 没有必然的联系。它的意义在于它弥补了Javascript没有不可变数据结构的问题。<br>
+          <p>有一些不太常用的git命令记录下<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/14/React应用性能优化之IMMUTABLE-JS/#more" rel="contents">
+            <a class="btn" href="/2016/05/16/git小记/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1312,8 +1119,8 @@ Flow为Javascript添加了静态类型检查，以提高开发效率和代码质
             
               
                 
-                <a class="post-title-link" href="/2016/03/10/React应用性能优化之shouldComponentUpdate与key/" itemprop="url">
-                  React应用性能优化之shouldComponentUpdate与key
+                <a class="post-title-link" href="/2016/05/04/pm2一个带有负载均衡功能的Node应用的进程管理器/" itemprop="url">
+                  pm2一个带有负载均衡功能的Node应用的进程管理器
                 </a>
               
             
@@ -1326,8 +1133,8 @@ Flow为Javascript添加了静态类型检查，以提高开发效率和代码质
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-10T22:32:13+08:00" content="2016-03-10">
-              2016-03-10
+            <time itemprop="dateCreated" datetime="2016-05-04T22:04:27+08:00" content="2016-05-04">
+              2016-05-04
             </time>
           </span>
 
@@ -1340,8 +1147,8 @@ Flow为Javascript添加了静态类型检查，以提高开发效率和代码质
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index">
-                    <span itemprop="name">React</span>
+                  <a href="/categories/Node/" itemprop="url" rel="index">
+                    <span itemprop="name">Node</span>
                   </a>
                 </span>
 
@@ -1356,8 +1163,8 @@ Flow为Javascript添加了静态类型检查，以提高开发效率和代码质
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/10/React应用性能优化之shouldComponentUpdate与key/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/10/React应用性能优化之shouldComponentUpdate与key/" itemprop="commentsCount"></span>
+                <a href="/2016/05/04/pm2一个带有负载均衡功能的Node应用的进程管理器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/04/pm2一个带有负载均衡功能的Node应用的进程管理器/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1380,10 +1187,243 @@ Flow为Javascript添加了静态类型检查，以提高开发效率和代码质
 
       
         
-          <p>虽然React 的 vDom diff算法能保证最小程度的 DOM 改变，但当组件树嵌套得非常深时，就不得不需要渲染一个新的虚拟 DOM 来让应用运行得更加高效。</p>
-<p>下面看看加速应用程序的两种简单的配置方法：<br>
+          <p>PM2是一个提供了内置的负载均衡的Node.js应用程序进程管理器。它可以让你保持应用程序永远在线，无需停机地重启应用，也有助于系统管理员工作。<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/10/React应用性能优化之shouldComponentUpdate与key/#more" rel="contents">
+            <a class="btn" href="/2016/05/04/pm2一个带有负载均衡功能的Node应用的进程管理器/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/24/Node-js的cluster模块发挥CPU的多核优势/" itemprop="url">
+                  Node.js的cluster模块发挥CPU的多核优势
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-24T22:20:00+08:00" content="2016-04-24">
+              2016-04-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Node/" itemprop="url" rel="index">
+                    <span itemprop="name">Node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/24/Node-js的cluster模块发挥CPU的多核优势/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/24/Node-js的cluster模块发挥CPU的多核优势/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>一个Node.js应用程序只能使用在一个线程中。为了充分发挥多核CPU的优势，Node.js中提供了一个 <code>cluster</code>模块，允许在多个子进程中运行不同的Node.js应用程序。<code>cluster</code>模块是对 <code>child_process.fork()</code>的一个封装。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/24/Node-js的cluster模块发挥CPU的多核优势/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/22/子进程child-process让Node-js具备命令行的功能/" itemprop="url">
+                  子进程child_process让Node.js具备命令行的功能
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-22T00:02:56+08:00" content="2016-04-22">
+              2016-04-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Node/" itemprop="url" rel="index">
+                    <span itemprop="name">Node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/22/子进程child-process让Node-js具备命令行的功能/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/22/子进程child-process让Node-js具备命令行的功能/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在<code>Node</code>中使用子进程的目的，正是希望从<code>Node</code>应用程序中通过命令行的方式访问计算机资源。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/22/子进程child-process让Node-js具备命令行的功能/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1414,7 +1454,7 @@ Flow为Javascript添加了静态类型检查，以提高开发效率和代码质
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1455,7 +1495,7 @@ Flow为Javascript添加了静态类型检查，以提高开发效率和代码质
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1463,7 +1503,7 @@ Flow为Javascript添加了静态类型检查，以提高开发效率和代码质
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1472,7 +1512,7 @@ Flow为Javascript添加了静态类型检查，以提高开发效率和代码质
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">53</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

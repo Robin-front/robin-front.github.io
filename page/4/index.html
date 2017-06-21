@@ -2,22 +2,25 @@
 
 
 
-  
 
-
-<html class="theme-next muse use-motion">
+<html class="theme-next muse" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="google-site-verification" content="ezF4b6TIq3nrF8BJmQrK_v9BmJnUQfVVPB4xBYo7AD8" />
-<link rel="alternate" href="http://robin-front.github.io/zh-Hans" hreflang="zh-Hans" />
+
+
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
+  <meta name="google-site-verification" content="ezF4b6TIq3nrF8BJmQrK_v9BmJnUQfVVPB4xBYo7AD8" />
+
+
+
+
 
 
 
@@ -29,7 +32,7 @@
 
   
   
-  <link href="/libs/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -63,12 +66,12 @@
 
 
 
-<link href="/libs/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="robin,blog,前端" />
+  <meta name="keywords" content="robin,blog,web前端开发" />
 
 
 
@@ -79,7 +82,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -95,39 +98,62 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"right","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
-    motion: true,
+    motion: false,
     duoshuo: {
-      userId: '11169988',
+      userId: 'undefined',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://robin-front.github.io/page/4/"/>
+
+
+
 
 
   <title> 三寸稚笔 </title>
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-8386186071288063",
-      enable_page_level_ads: true
-    });
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-8386186071288063",
+    enable_page_level_ads: true
+  });
   </script>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-74634898-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
 
 
 
@@ -143,31 +169,35 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right 
+  <div class="container sidebar-position-left 
    page-home 
  ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">三寸稚笔</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三寸稚笔</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
   </div>
-  <p class="site-subtitle"></p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -180,6 +210,8 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
             首页
           </a>
         </li>
@@ -187,6 +219,8 @@
         
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -196,6 +230,8 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
             关于
           </a>
         </li>
@@ -203,6 +239,8 @@
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -212,17 +250,75 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
           </a>
         </li>
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
   
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
 </nav>
+
+
 
  </div>
     </header>
@@ -308,13 +404,6 @@
           
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/18/react-router动态路由与Webpack分片thunks/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/18/react-router动态路由与Webpack分片thunks/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
@@ -433,13 +522,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/14/Node全局对象：global、process和Buffer/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/14/Node全局对象：global、process和Buffer/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -557,13 +639,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/13/记node与REPL/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/13/记node与REPL/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -659,13 +734,6 @@
           
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/10/postCSS常用插件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/10/postCSS常用插件/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
@@ -783,13 +851,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/09/postCSS-loader配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/09/postCSS-loader配置/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -904,13 +965,6 @@
           
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/08/babel-loader配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/08/babel-loader配置/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
@@ -1049,13 +1103,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/07/Webpack-config/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/07/Webpack-config/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1170,13 +1217,6 @@
           
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/02/采用非直进式合并（git-merge-no-ff）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/02/采用非直进式合并（git-merge-no-ff）/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
@@ -1293,13 +1333,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/16/快速上手Flow-静态类型检查器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/16/快速上手Flow-静态类型检查器/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1353,7 +1386,7 @@
 <p>也可以这样：
 <figure class="highlight excel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/* @flow */</div><div class="line"><span class="built_in">type</span> <span class="built_in">T</span> = number;</div><div class="line"><span class="built_in">var</span> <span class="symbol">x:</span> <span class="built_in">T</span> = <span class="number">0</span>;</div></pre></td></tr></table></figure></p>
 <p>下面是一个更详细的例子：
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> People &#123;</div><div class="line">    name: <span class="built_in">string</span>;</div><div class="line">    <span class="keyword">constructor</span>(name:string)&#123;</div><div class="line">        <span class="keyword">this</span>.name = name</div><div class="line">    &#125;</div><div class="line">    getAge():<span class="built_in">number</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">18</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLength</span>(<span class="params">param?:<span class="built_in">string</span></span>):<span class="title">number</span> </span>&#123;</div><div class="line">    <span class="comment">/*param?:string传参类型什么，?表示此处可不传值；*/</span></div><div class="line">    <span class="comment">/*\:number为函数返回值类型,如果没有return可不写或写void*/</span></div><div class="line">    <span class="keyword">var</span> s:<span class="built_in">string</span> = <span class="string">'string'</span>;<span class="comment">/*字符*/</span></div><div class="line">    <span class="keyword">var</span> ss:<span class="built_in">String</span> = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'string'</span>);<span class="comment">/*字符对象*/</span></div><div class="line"></div><div class="line">    <span class="comment">/* s = ss*/</span><span class="comment">//类型不同，flow会报错</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> n:<span class="built_in">number</span> = <span class="number">12</span>;<span class="comment">/*数字*/</span></div><div class="line">    <span class="keyword">var</span> nn:<span class="built_in">Number</span> = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">12</span>);<span class="comment">/*数字对象*/</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> b:<span class="built_in">boolean</span> = <span class="literal">true</span>;<span class="comment">/*bool值，仅能为true/false*/</span></div><div class="line">    <span class="keyword">var</span> bb:<span class="built_in">Boolean</span> = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">true</span>);<span class="comment">/*bool值对象*/</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> o:&#123;prop1:<span class="built_in">number</span>,prop2:<span class="built_in">string</span>&#125; = &#123;</div><div class="line">        <span class="comment">/*对象熟悉声明*/</span></div><div class="line">        prop1: <span class="number">12</span>,</div><div class="line">        prop2: <span class="string">'21123'</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> v:<span class="built_in">void</span> = <span class="literal">undefined</span>;<span class="comment">/*undefined*/</span></div><div class="line">    <span class="keyword">var</span> a:<span class="built_in">any</span> = <span class="string">'aa'</span>;<span class="comment">/*任意类型，除undefined*/</span></div><div class="line">    <span class="keyword">var</span> m:mixed = <span class="string">'1'</span>;<span class="comment">/*任意类型+undefined*/</span></div><div class="line">    <span class="keyword">var</span> mm:mixed = <span class="literal">undefined</span>;<span class="comment">/*任意类型+undefined*/</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> aa:<span class="built_in">Array</span>&lt;<span class="built_in">number</span>&gt; = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];<span class="comment">/*数组内值类型声明*/</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> P:Class&lt;People&gt; = People;<span class="comment">/*自定义类型声明*/</span></div><div class="line">    <span class="keyword">var</span> p:People = <span class="keyword">new</span> People(<span class="string">'pt'</span>);<span class="comment">/*自定义People类型*/</span></div><div class="line"></div><div class="line">    <span class="keyword">if</span> (param) &#123;</div><div class="line">        <span class="keyword">return</span> param.length;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> People &#123;</div><div class="line">    name: <span class="built_in">string</span>;</div><div class="line">    <span class="keyword">constructor</span>(<span class="params">name:<span class="built_in">string</span></span>)&#123;</div><div class="line">        <span class="keyword">this</span>.name = name</div><div class="line">    &#125;</div><div class="line">    getAge():<span class="built_in">number</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">18</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLength</span>(<span class="params">param?:<span class="built_in">string</span></span>):<span class="title">number</span> </span>&#123;</div><div class="line">    <span class="comment">/*param?:string传参类型什么，?表示此处可不传值；*/</span></div><div class="line">    <span class="comment">/*\:number为函数返回值类型,如果没有return可不写或写void*/</span></div><div class="line">    <span class="keyword">var</span> s:<span class="built_in">string</span> = <span class="string">'string'</span>;<span class="comment">/*字符*/</span></div><div class="line">    <span class="keyword">var</span> ss:<span class="built_in">String</span> = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'string'</span>);<span class="comment">/*字符对象*/</span></div><div class="line"></div><div class="line">    <span class="comment">/* s = ss*/</span><span class="comment">//类型不同，flow会报错</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> n:<span class="built_in">number</span> = <span class="number">12</span>;<span class="comment">/*数字*/</span></div><div class="line">    <span class="keyword">var</span> nn:<span class="built_in">Number</span> = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">12</span>);<span class="comment">/*数字对象*/</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> b:<span class="built_in">boolean</span> = <span class="literal">true</span>;<span class="comment">/*bool值，仅能为true/false*/</span></div><div class="line">    <span class="keyword">var</span> bb:<span class="built_in">Boolean</span> = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">true</span>);<span class="comment">/*bool值对象*/</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> o:&#123;prop1:<span class="built_in">number</span>,prop2:<span class="built_in">string</span>&#125; = &#123;</div><div class="line">        <span class="comment">/*对象熟悉声明*/</span></div><div class="line">        prop1: <span class="number">12</span>,</div><div class="line">        prop2: <span class="string">'21123'</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> v:<span class="built_in">void</span> = <span class="literal">undefined</span>;<span class="comment">/*undefined*/</span></div><div class="line">    <span class="keyword">var</span> a:<span class="built_in">any</span> = <span class="string">'aa'</span>;<span class="comment">/*任意类型，除undefined*/</span></div><div class="line">    <span class="keyword">var</span> m:mixed = <span class="string">'1'</span>;<span class="comment">/*任意类型+undefined*/</span></div><div class="line">    <span class="keyword">var</span> mm:mixed = <span class="literal">undefined</span>;<span class="comment">/*任意类型+undefined*/</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> aa:<span class="built_in">Array</span>&lt;<span class="built_in">number</span>&gt; = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];<span class="comment">/*数组内值类型声明*/</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> P:Class&lt;People&gt; = People;<span class="comment">/*自定义类型声明*/</span></div><div class="line">    <span class="keyword">var</span> p:People = <span class="keyword">new</span> People(<span class="string">'pt'</span>);<span class="comment">/*自定义People类型*/</span></div><div class="line"></div><div class="line">    <span class="keyword">if</span> (param) &#123;</div><div class="line">        <span class="keyword">return</span> param.length;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p>Flow致力于支持最新的JavaScript标准。目前已经支持各种ES6特性如destructuring, classes, extended objects, optional function parameters，以及核心API扩展（比如Map, Set, Promise, 和 new methods on Object, Array, 和 Math)。其它特性（尤其是模块）正在开发中。Flow支持CommonJS / Node.js 规范的模块。</p>
 <p>Flow 也已经支持 React。</p>
 <h3 id="代码编译"><a href="#代码编译" class="headerlink" title="代码编译"></a>代码编译</h3><p>在构建工具中添加flow检查的步骤。webpack和gulp都有对应的flow插件。</p>
@@ -1453,13 +1486,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/14/React应用性能优化之IMMUTABLE-JS/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/14/React应用性能优化之IMMUTABLE-JS/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1547,25 +1573,32 @@
 
       
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460"
                alt="robin" />
           <p class="site-author-name" itemprop="name">robin</p>
-          <p class="site-description motion-element" itemprop="description">红灯必须闯，马路要横穿！</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">51</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -1573,8 +1606,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -1631,12 +1666,17 @@
         
         
 
+        
+
+
       </section>
 
       
 
+      
 
     </div>
+
   </aside>
 
 
@@ -1646,7 +1686,18 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div align="center">
+<!-- bottom -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8386186071288063"
+     data-ad-slot="9018566839"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="copyright" >
   
   &copy;  2014 - 
   <span itemprop="copyrightYear">2017</span>
@@ -1655,6 +1706,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">robin</span>
 </div>
+
 
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
@@ -1667,7 +1719,6 @@
   </a>
 </div>
 
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
         
 
@@ -1675,9 +1726,13 @@
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -1699,72 +1754,40 @@
   
 
 
-
-  
-  <script type="text/javascript" src="/libs/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/libs/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/libs/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/libs/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/libs/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/libs/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
 
 
 
   
-  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   
 
 
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-  
-
-    <script type="text/javascript">
-      var disqus_shortname = 'robin-front-github-io';
-      var disqus_identifier = 'page/4/index.html';
-      var disqus_title = "";
-      var disqus_url = '';
-
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-      
-    </script>
-  
-
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
 
 
 
@@ -1775,19 +1798,191 @@
 
   
 
-  
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
 
   
 
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-74634898-1', 'auto');
-    ga('send', 'pageview');
+  
 
+    
+      <script id="dsq-count-scr" src="https://robin-front-github-io.disqus.com/count.js" async></script>
+    
+
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
   </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

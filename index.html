@@ -2,22 +2,25 @@
 
 
 
-  
 
-
-<html class="theme-next muse use-motion">
+<html class="theme-next muse" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="google-site-verification" content="ezF4b6TIq3nrF8BJmQrK_v9BmJnUQfVVPB4xBYo7AD8" />
-<link rel="alternate" href="http://robin-front.github.io/zh-Hans" hreflang="zh-Hans" />
+
+
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
+  <meta name="google-site-verification" content="ezF4b6TIq3nrF8BJmQrK_v9BmJnUQfVVPB4xBYo7AD8" />
+
+
+
+
 
 
 
@@ -29,7 +32,7 @@
 
   
   
-  <link href="/libs/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -63,12 +66,12 @@
 
 
 
-<link href="/libs/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="robin,blog,前端" />
+  <meta name="keywords" content="robin,blog,web前端开发" />
 
 
 
@@ -79,7 +82,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
 
 
 
@@ -95,39 +98,62 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Muse',
-    sidebar: {"position":"right","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
-    motion: true,
+    motion: false,
     duoshuo: {
-      userId: '11169988',
+      userId: 'undefined',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
-
   <link rel="canonical" href="http://robin-front.github.io/"/>
+
+
+
 
 
   <title> 三寸稚笔 </title>
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-8386186071288063",
-      enable_page_level_ads: true
-    });
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-8386186071288063",
+    enable_page_level_ads: true
+  });
   </script>
 </head>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-74634898-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
 
 
 
@@ -143,31 +169,35 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right 
+  <div class="container sidebar-position-left 
    page-home 
  ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">三寸稚笔</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">三寸稚笔</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
   </div>
-  <p class="site-subtitle"></p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -180,6 +210,8 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
             首页
           </a>
         </li>
@@ -187,6 +219,8 @@
         
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -196,6 +230,8 @@
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
             关于
           </a>
         </li>
@@ -203,6 +239,8 @@
         
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -212,17 +250,75 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
             标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
           </a>
         </li>
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
   
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
 </nav>
+
+
 
  </div>
     </header>
@@ -296,13 +392,6 @@
           
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/06/05/使用RXJS组合、过滤和映射数据流的值/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/06/05/使用RXJS组合、过滤和映射数据流的值/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
@@ -419,13 +508,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -540,13 +622,6 @@
           
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/06/01/RXJS我该选用哪个操作符之-创建篇/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/06/01/RXJS我该选用哪个操作符之-创建篇/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
@@ -665,13 +740,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/06/01/RXJS我该选用哪个操作符之-实例操作符篇/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/06/01/RXJS我该选用哪个操作符之-实例操作符篇/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -694,7 +762,7 @@
         
           <p>RXJS比较强大，操作符众多，想熟悉需要比较长时间的运用，所以大部分新手都比较疑惑应该使用哪些操作符去实现自己的数据流的操作。</p>
 <p>更多详情请翻阅 <a href="https://robin-front.github.io/RxJS-doc-chinese">RXJS中文翻译文档</a></p>
-<h1 id="我该选用哪个操作符-实例操作符"><a href="#我该选用哪个操作符-实例操作符" class="headerlink" title="我该选用哪个操作符? - 实例操作符"></a>我该选用哪个操作符? - 实例操作符</h1><p>使用此页面通过类型查找<a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md"><code>Observable</code></a> 适合您需要的实例运算符：
+<h1 id="我该选用哪个操作符-实例操作符"><a href="#我该选用哪个操作符-实例操作符" class="headerlink" title="我该选用哪个操作符? - 实例操作符"></a>我该选用哪个操作符? - 实例操作符</h1><p>使用此页面通过类型查找<a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md" target="_blank" rel="external"><code>Observable</code></a> 适合您需要的实例运算符：
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/06/01/RXJS我该选用哪个操作符之-实例操作符篇/#more" rel="contents">
               阅读全文 &raquo;
@@ -789,13 +857,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/06/01/Marko和react-preact-vue相比快在哪里/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/06/01/Marko和react-preact-vue相比快在哪里/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -816,9 +877,9 @@
 
       
         
-          <p><a href="https://hackernoon.com/why-is-marko-fast-a20796cb8ae3">译文：why-is-marko-fast</a></p>
-<p>在eBay，我们正在使用<code>[Marko](http://markojs.com/)</code>每天处理超过十亿的请求，这就要求我们精简我们的开源UI库Marko。我们大大优化了Marko ，以实现快速渲染，<a href="http://www.ebaytechblog.com/2014/12/08/async-fragments-rediscovering-progressive-html-rendering-with-marko/">高级性能技术</a>，并实现了最小的页面重量（〜10kb gzipped）。性能只是一个方面，因为我们还必须扩展Marko以支持数百个团队的开发，从而允许开发人员有效地创建可维护和强大的Web应用程序。</p>
-<p>我们已经创建了我们自己的<a href="https://github.com/marko-js/isomorphic-ui-benchmarks">benchMarks</a>进行比较，也已经将Marko添加到<a href="https://github.com/raxjs/server-side-rendering-comparison/pull/11">其他基准测试</a>中，但是基准测试并不总是值得信赖的。尽管我们尽可能公平地对待我们的基准，但最重要的是在现实世界的应用中的表现，而不是专注于微观基准。这就是V8团队转而采用新的方法来衡量和理解现实JavaScript性能的一个原因。</p>
+          <p><a href="https://hackernoon.com/why-is-marko-fast-a20796cb8ae3" target="_blank" rel="external">译文：why-is-marko-fast</a></p>
+<p>在eBay，我们正在使用<code>[Marko](http://markojs.com/)</code>每天处理超过十亿的请求，这就要求我们精简我们的开源UI库Marko。我们大大优化了Marko ，以实现快速渲染，<a href="http://www.ebaytechblog.com/2014/12/08/async-fragments-rediscovering-progressive-html-rendering-with-marko/" target="_blank" rel="external">高级性能技术</a>，并实现了最小的页面重量（〜10kb gzipped）。性能只是一个方面，因为我们还必须扩展Marko以支持数百个团队的开发，从而允许开发人员有效地创建可维护和强大的Web应用程序。</p>
+<p>我们已经创建了我们自己的<a href="https://github.com/marko-js/isomorphic-ui-benchmarks" target="_blank" rel="external">benchMarks</a>进行比较，也已经将Marko添加到<a href="https://github.com/raxjs/server-side-rendering-comparison/pull/11" target="_blank" rel="external">其他基准测试</a>中，但是基准测试并不总是值得信赖的。尽管我们尽可能公平地对待我们的基准，但最重要的是在现实世界的应用中的表现，而不是专注于微观基准。这就是V8团队转而采用新的方法来衡量和理解现实JavaScript性能的一个原因。</p>
 <p>同样，我们已经观察过我们的开发人员实际开发中如何编写他们的Marko组件，并且发现了可以进一步优化的模式。而不是关注本文中的基准测试，我想关注我们应用于Marko的优化细节。
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/06/01/Marko和react-preact-vue相比快在哪里/#more" rel="contents">
@@ -914,13 +975,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/06/01/npm-5发布有哪些改进/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/06/01/npm-5发布有哪些改进/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -942,7 +996,7 @@
       
         
           <p><img src="https://cdn-images-1.medium.com/max/800/1*9nI6dL1Z-8cqFpCX96zVFA.gif" alt="npm@5 is now latest"></p>
-<p>从今天开始，如果您输入“<code>npm install npm@latest -g</code>”，那么您将被更新为npm版本5。另外，在所有<a href="https://medium.com/@nodejs/node-js-8-big-improvements-for-the-debugging-and-native-module-ecosystem-58454861f2fc">Node.js 8</a>的新安装中都捆绑了<code>npm@5</code> ，它已经替代了<code>Node.js 7</code>在Node Project的当前版本中。</p>
+<p>从今天开始，如果您输入“<code>npm install npm@latest -g</code>”，那么您将被更新为npm版本5。另外，在所有<a href="https://medium.com/@nodejs/node-js-8-big-improvements-for-the-debugging-and-native-module-ecosystem-58454861f2fc" target="_blank" rel="external">Node.js 8</a>的新安装中都捆绑了<code>npm@5</code> ，它已经替代了<code>Node.js 7</code>在Node Project的当前版本中。</p>
 <p>在过去一年半的时间里，我们一直在努力解决大量的痛点，其中有些是创建npm以来就已经存在的。今天的发布是对npm速度，一致性和用户体验的最大改进。</p>
 <p>发布说明中有什么新内容和更改内容的明确列表，但这里有一些亮点：
           <div class="post-more-link text-center">
@@ -1050,13 +1104,6 @@
           
 
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/05/30/JSX是什么鬼/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/05/30/JSX是什么鬼/" itemprop="commentsCount"></span>
-                </a>
-              </span>
             
           
 
@@ -1173,13 +1220,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/05/05/RxJS事件桥接/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/05/05/RxJS事件桥接/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1200,9 +1240,9 @@
 
       
         
-          <h1 id="事件桥接"><a href="#事件桥接" class="headerlink" title="事件桥接"></a>事件桥接</h1><p>RxJS 提供工厂方法来桥接 DOM 或 Node.js 中已存在的异步数据源，所以，你可以使用丰富的创作、过滤和资源管理功能对RxJS提供的任何类型的数据流进行操作。这篇文章探讨 <a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/api/core/operators/fromevent.md"><code>fromEvent</code></a> 和 <a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/api/core/operators/fromeventpattern.md"><code>fromEventPattern</code></a>操作符，它允许导入一个 DOM 或者普通事件到 RxJS 的数据流。每次引发事件时，一个 <code>OnNext</code> 消息将传递到数据流。然后，可以像其他任何数据流一样操作事件数据流。</p>
+          <h1 id="事件桥接"><a href="#事件桥接" class="headerlink" title="事件桥接"></a>事件桥接</h1><p>RxJS 提供工厂方法来桥接 DOM 或 Node.js 中已存在的异步数据源，所以，你可以使用丰富的创作、过滤和资源管理功能对RxJS提供的任何类型的数据流进行操作。这篇文章探讨 <a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/api/core/operators/fromevent.md" target="_blank" rel="external"><code>fromEvent</code></a> 和 <a href="https://github.com/Reactive-Extensions/RxJS/tree/master/doc/api/core/operators/fromeventpattern.md" target="_blank" rel="external"><code>fromEventPattern</code></a>操作符，它允许导入一个 DOM 或者普通事件到 RxJS 的数据流。每次引发事件时，一个 <code>OnNext</code> 消息将传递到数据流。然后，可以像其他任何数据流一样操作事件数据流。</p>
 <p>RxJS 不打算取代现有的异步编程模型如 <code>Promises</code> 或 <code>callbacks</code>。但是，当你尝试组合事件， RxJS的工厂方法会提供简便的方法给你，你完全感受不到当前使用了何种编程模式。这真的很方便维护（比如取消订阅）和筛选（比如选择合适的数据）数据源。在本节和下节中，你可以尝试 RxJS 的这些特性如何协助你完成异步编程。</p>
-<p>自然，RxJS 支持一批库和他们的勾子函数去使用他们的事件系统，比如 <a href="http://jquery.com/">jQuery</a>, <a href="http://zeptojs.com/">Zepto.js</a>, <a href="https://angularjs.org/">AngularJS</a>, <a href="http://emberjs.com/">Ember.js</a> 和 <a href="http://backbonejs.org">Backbone.js</a>。这种行为，不管怎样只能重写本地绑定。默认情况下， RxJS 也支持 <a href="http://nodejs.org">Node.js</a> <code>EventEmitter</code> 的事件勾子。
+<p>自然，RxJS 支持一批库和他们的勾子函数去使用他们的事件系统，比如 <a href="http://jquery.com/" target="_blank" rel="external">jQuery</a>, <a href="http://zeptojs.com/" target="_blank" rel="external">Zepto.js</a>, <a href="https://angularjs.org/" target="_blank" rel="external">AngularJS</a>, <a href="http://emberjs.com/" target="_blank" rel="external">Ember.js</a> 和 <a href="http://backbonejs.org" target="_blank" rel="external">Backbone.js</a>。这种行为，不管怎样只能重写本地绑定。默认情况下， RxJS 也支持 <a href="http://nodejs.org" target="_blank" rel="external">Node.js</a> <code>EventEmitter</code> 的事件勾子。
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/05/05/RxJS事件桥接/#more" rel="contents">
               阅读全文 &raquo;
@@ -1297,13 +1337,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/05/04/创建和订阅单一数据流/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/05/04/创建和订阅单一数据流/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1324,7 +1357,7 @@
 
       
         
-          <p><a href="https://robin-front.gitbooks.io/rxjs-doc-chinese/content/content/getting_started_with_rxjs/creating_and_querying_observable_sequences/creating_and_subscribing_to_simple_observable_sequences.html">来自</a></p>
+          <p><a href="https://robin-front.gitbooks.io/rxjs-doc-chinese/content/content/getting_started_with_rxjs/creating_and_querying_observable_sequences/creating_and_subscribing_to_simple_observable_sequences.html" target="_blank" rel="external">来自</a></p>
 <h1 id="创建和订阅单一可观察序列"><a href="#创建和订阅单一可观察序列" class="headerlink" title="创建和订阅单一可观察序列"></a>创建和订阅单一可观察序列</h1><p>你不需要去实现 <code>Observable</code> 类去创建一个可观察序列。 同样的，你也不需要去实现 <code>Observer</code> 去订阅数据流。通过安装 Rx 库，你可以利用 <code>Observable</code>类型，它提供了许多操作符来根据零个，一个或多个元素去创建一个数据流。另外， RxJS 还提供 <code>subscribe</code> 方法允许你使用 <code>onNext</code>, <code>onError</code> 和 <code>onCompleted</code> 函数。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/05/04/创建和订阅单一数据流/#more" rel="contents">
@@ -1432,13 +1465,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/04/06/Coverage针对js和css的代码覆盖检测-Chrome-devtools的新功能/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/04/06/Coverage针对js和css的代码覆盖检测-Chrome-devtools的新功能/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1459,7 +1485,7 @@
 
       
         
-          <p>也许你之前用过一些像 <code>css usage</code>、<code>css used</code> 这样的浏览器插件去检测代码覆盖率。但现在，Chrome的实验版本<a href="https://www.google.com/chrome/browser/canary.html">Canary</a>终于实现了代码覆盖率检测，这意味着它将很快普及到正式版本。这是一个令人兴奋的功能，在使用JavaScript和CSS时非常有用，所以我会做一个快速的演示，并探索它如何使用。</p>
+          <p>也许你之前用过一些像 <code>css usage</code>、<code>css used</code> 这样的浏览器插件去检测代码覆盖率。但现在，Chrome的实验版本<a href="https://www.google.com/chrome/browser/canary.html" target="_blank" rel="external">Canary</a>终于实现了代码覆盖率检测，这意味着它将很快普及到正式版本。这是一个令人兴奋的功能，在使用JavaScript和CSS时非常有用，所以我会做一个快速的演示，并探索它如何使用。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/04/06/Coverage针对js和css的代码覆盖检测-Chrome-devtools的新功能/#more" rel="contents">
               阅读全文 &raquo;
@@ -1525,25 +1551,32 @@
 
       
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460"
                alt="robin" />
           <p class="site-author-name" itemprop="name">robin</p>
-          <p class="site-description motion-element" itemprop="description">红灯必须闯，马路要横穿！</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
         </div>
         <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">51</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
           
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -1551,8 +1584,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">52</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -1609,12 +1644,17 @@
         
         
 
+        
+
+
       </section>
 
       
 
+      
 
     </div>
+
   </aside>
 
 
@@ -1624,7 +1664,18 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div align="center">
+<!-- bottom -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8386186071288063"
+     data-ad-slot="9018566839"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div class="copyright" >
   
   &copy;  2014 - 
   <span itemprop="copyrightYear">2017</span>
@@ -1633,6 +1684,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">robin</span>
 </div>
+
 
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
@@ -1645,7 +1697,6 @@
   </a>
 </div>
 
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
         
 
@@ -1653,9 +1704,13 @@
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -1677,72 +1732,40 @@
   
 
 
-
-  
-  <script type="text/javascript" src="/libs/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/libs/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/libs/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/libs/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/libs/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/libs/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
 
 
 
   
-  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   
 
 
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
 
-  
-
-    <script type="text/javascript">
-      var disqus_shortname = 'robin-front-github-io';
-      var disqus_identifier = 'index.html';
-      var disqus_title = "";
-      var disqus_url = '';
-
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-      
-    </script>
-  
-
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
 
 
 
@@ -1753,19 +1776,191 @@
 
   
 
-  
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
 
   
 
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-74634898-1', 'auto');
-    ga('send', 'pageview');
+  
 
+    
+      <script id="dsq-count-scr" src="https://robin-front-github-io.disqus.com/count.js" async></script>
+    
+
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
   </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

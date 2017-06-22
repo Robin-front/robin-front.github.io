@@ -327,6 +327,236 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/06/21/webpack3官方正式发布-作用域提升，“魔法注释”，以及更多新特性！/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="robin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三寸稚笔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/21/webpack3官方正式发布-作用域提升，“魔法注释”，以及更多新特性！/" itemprop="url">webpack3官方正式发布,亮点:作用域提升，“魔法注释”，以及更多新特性！</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-21T15:35:55+08:00">
+                2017-06-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-22T15:35:55+08:00">
+                2017-06-22
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/21/webpack3官方正式发布-作用域提升，“魔法注释”，以及更多新特性！/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/21/webpack3官方正式发布-作用域提升，“魔法注释”，以及更多新特性！/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,192
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="作用域提升，“魔法注释”，以及更多新特性！"><a href="#作用域提升，“魔法注释”，以及更多新特性！" class="headerlink" title="作用域提升，“魔法注释”，以及更多新特性！"></a>作用域提升，“魔法注释”，以及更多新特性！</h1><p><a href="https://medium.com/webpack/webpack-3-official-release-15fd2dd8f07b" target="_blank" rel="external">原文</a></p>
+<p>在我们发布了 webpack v2 之后，我们曾向社区做了一些承诺。 我们承诺，我们将提供用户投票的功能。 此外，我们承诺我们的发布周期会 <strong>更快，更稳定</strong>。</p>
+<p>这次没有 beta 版本，完全向下兼容。我们承诺让你们、让 webpack 成长的社区更轻松的使用。webpack 团队自豪地宣布，今天我们已经发布了 webpack 3.0.0！ 现在就可以下载或升级！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack@3.0.0 --save-dev</div></pre></td></tr></table></figure>
+<p>或者使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add webpack@3.0.0 --dev</div></pre></td></tr></table></figure>
+<p><em>从 webpack 2 迁移到 3，只需要执行升级命令，在使用上没有任何差别。我们将这次升级标记为版本的重大升级，是因为内部的突破性变化可能会影响某些插件的使用。</em></p>
+<p><strong>到目前为止，98%的升级的用户都没有遇到任何不兼容！</strong></p>
+<h1 id="有哪些新特性"><a href="#有哪些新特性" class="headerlink" title="有哪些新特性?"></a>有哪些新特性?</h1><p>像上文提到的一样，我们发布了一些由用户投票选出的功能，感谢 Github，赞助商和我们的支持者，有了他们我们才能做出每一个改进。😍</p>
+<h2 id="🔬作用域提升（Scope-Hoisting）🔬"><a href="#🔬作用域提升（Scope-Hoisting）🔬" class="headerlink" title="🔬作用域提升（Scope Hoisting）🔬"></a>🔬作用域提升（Scope Hoisting）🔬</h2><p>作用域提升是 webpack 3 的重点功能。之前 webpack 在打包时，您的 bundle 中的每个模块都将被包装在单独的函数闭包中。这些闭包会使您的 JavaScript 在浏览器中执行速度更慢。相比之下，像 Closure Compiler 和 RollupJS 这样的工具可以将所有模块包装在一个大的闭包内，从而使您的代码在浏览器中具有更快的执行速度。</p>
+<p><blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">70K =&gt; 37K (gzip!) savings on our main bundle using <a href="https://twitter.com/hashtag/Webpack?src=hash" target="_blank" rel="external">#Webpack</a> 3 RC.2 + ModuleConcatenationPlugin 😲 🔥 Awesome work <a href="https://twitter.com/TheLarkInn" target="_blank" rel="external">@TheLarkInn</a> <a href="https://twitter.com/wSokra" target="_blank" rel="external">@wSokra</a> et al! <a href="https://t.co/zVfQoivT9d" target="_blank" rel="external">pic.twitter.com/zVfQoivT9d</a></p>&mdash; Jeremy Gayed 🤓 (@tizmagik) <a href="https://twitter.com/tizmagik/status/876128847682523138" target="_blank" rel="external">June 17, 2017</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>而现在，使用 webpack 3，您现在可以 <strong>在配置中添加下面的插件以启用作用域提升</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;  </div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.optimize.ModuleConcatenationPlugin()</div><div class="line">  ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>作用域提升是基于 ECMAScript Module 语法实现的一个特征。通过这个，webpack 可以根据你正在使用什么样的模块和<a href="https://medium.com/webpack/webpack-freelancing-log-book-week-5-7-4764be3266f5" target="_blank" rel="external">一些其他条件</a>来回退到正常的捆绑。</p>
+<p>为了了解什么触发了这些回退，我们添加了一个 <code>--display-optimization-bailout</code>cli 标志，它将告诉你是什么导致的回退。</p>
+<p><blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Total evaluation script time went from 2.52s to 2.06s, first meaningful paint from 3.43s to 2.70s and all initial event fired 20% earlier</p>&mdash; Jeremias Menichelli (@jeremenichelli) <a href="https://twitter.com/jeremenichelli/status/876527176606265344" target="_blank" rel="external">June 18, 2017</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>同时，由于作用域提升会移除模块外的函数包装，你可能会看到一些小的体积改进。然而，更显着的改进是JavaScript在浏览器中加载的速度。 如果您在比较使用之前和之后时发现加载速度取得了非常棒的改进，请随时回复一些数据，我们将很荣幸分享！</p>
+<h2 id="🔮-魔法注释-”Magic-Comments”-🔮"><a href="#🔮-魔法注释-”Magic-Comments”-🔮" class="headerlink" title="🔮 魔法注释 ”Magic Comments” 🔮"></a>🔮 魔法注释 ”Magic Comments” 🔮</h2><p>当我们在webpack 2中引入使用动态导入语法（<code>import()</code>）时，用户表示，他们不能像使用 <code>require.ensure</code> 一样创建命名 chunk。我们现在介绍由社区创建的“魔法注释”，它可以传递 chunk 名称，还有<a href="https://medium.com/webpack/how-to-use-webpacks-new-magic-comment-feature-with-react-universal-component-ssr-a38fd3e296a" target="_blank" rel="external">更多功能</a>，例如可以添加更多的内联注释到 <code>import()</code> 语句中。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span>(<span class="comment">/* webpackChunkName: "my-chunk-name" */</span> <span class="string">'module'</span>);</div></pre></td></tr></table></figure>
+<p>通过使用注释，我们能够在使用动态导入语法的同时，对代码块进行命名。</p>
+<p>尽管这是我们在 v2.4 和 v2.6 中发布的技术特性，但在 v3 中，我们修复了这些功能的一些错误，使其变得更稳定。 同时，现在允许动态导入语法具有与 <code>require.ensure</code> 相同的灵活性。</p>
+<p><blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">TIL webpack /<em>chunkName</em>/ comments aren&#39;t just for nicer filenames—also great for organizing your chunks. Even interops w/ commonsChunk! <a href="https://t.co/wjdT9y6oTE" target="_blank" rel="external">pic.twitter.com/wjdT9y6oTE</a></p>&mdash; Adam Rackis (@AdamRackis) <a href="https://twitter.com/AdamRackis/status/872602076056088576" target="_blank" rel="external">June 7, 2017</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>要了解更多信息，请参阅我们<a href="https://webpack.js.org/guides/code-splitting-async" target="_blank" rel="external">最新文档的代码分割部分</a>，文档高亮了这些新功能！</p>
+<h2 id="😍-接下来是什么？😍"><a href="#😍-接下来是什么？😍" class="headerlink" title="😍 接下来是什么？😍"></a>😍 接下来是什么？😍</h2><p>我们有很多功能和增强功能想要推出！但我们需要了解用户需求的优先级。所以访问我们的<a href="http://webpack.js.org/vote" target="_blank" rel="external">投票页面</a>，并提出你想看到的功能！</p>
+<p>这些是我们希望带给您的一些功能：</p>
+<ul>
+<li>更好地构建缓存</li>
+<li>更快的初始构建和增量构建</li>
+<li>更好的TypeScript体验</li>
+<li>改进长期缓存</li>
+<li>WASM模块支持</li>
+<li>改善用户体验</li>
+</ul>
+<h2 id="🙇-致谢-🙇"><a href="#🙇-致谢-🙇" class="headerlink" title="🙇 致谢 🙇"></a>🙇 致谢 🙇</h2><p>感谢我们所有的用户，贡献者，文档作者，博客，赞助商，支持者和维护者。是他们都帮助我们确保 webpack 在未来几年成功。</p>
+<p>为此，我们感谢所有人。webpack 发展到现在与你的支持密不可分，我们迫不及待地想要与你分享未来 webpack 的新进展！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/06/14/Flow和TypeScript之间的区别和优劣/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2100,201 +2330,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/05/04/创建和订阅单一数据流/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="robin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三寸稚笔">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/04/创建和订阅单一数据流/" itemprop="url">使用RxJS创建和订阅单一数据流</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-04T18:06:14+08:00">
-                2017-05-04
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-05-04T18:06:14+08:00">
-                2017-05-04
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxJS/" itemprop="url" rel="index">
-                    <span itemprop="name">RxJS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/04/创建和订阅单一数据流/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/05/04/创建和订阅单一数据流/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  3,012
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  13
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="https://robin-front.gitbooks.io/rxjs-doc-chinese/content/content/getting_started_with_rxjs/creating_and_querying_observable_sequences/creating_and_subscribing_to_simple_observable_sequences.html" target="_blank" rel="external">来自</a></p>
-<h1 id="创建和订阅单一可观察序列"><a href="#创建和订阅单一可观察序列" class="headerlink" title="创建和订阅单一可观察序列"></a>创建和订阅单一可观察序列</h1><p>你不需要去实现 <code>Observable</code> 类去创建一个可观察序列。 同样的，你也不需要去实现 <code>Observer</code> 去订阅数据流。通过安装 Rx 库，你可以利用 <code>Observable</code>类型，它提供了许多操作符来根据零个，一个或多个元素去创建一个数据流。另外， RxJS 还提供 <code>subscribe</code> 方法允许你使用 <code>onNext</code>, <code>onError</code> 和 <code>onCompleted</code> 函数。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/04/创建和订阅单一数据流/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2344,7 +2379,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-count">53</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

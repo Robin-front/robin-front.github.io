@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-06-05T08:24:16.000Z</updated>
+  <updated>2017-06-14T15:28:54.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,101 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Flow和TypeScript之间的区别和优劣</title>
+    <link href="http://robin-front.github.io/2017/06/14/Flow%E5%92%8CTypeScript%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BC%98%E5%8A%A3/"/>
+    <id>http://robin-front.github.io/2017/06/14/Flow和TypeScript之间的区别和优劣/</id>
+    <published>2017-06-14T15:28:54.000Z</published>
+    <updated>2017-06-14T15:28:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>采用Flow＆TypeScript, 两者上手流程之间的比较。</p>
+<p>让我们想象一下我们想要采用一种类型检查器的场景…</p>
+<p>本文译自： <a href="http://thejameskyle.com/adopting-flow-and-typescript.html" target="_blank" rel="external">adopting flow and typescript</a>
+<a id="more"></a></p>
+<p>最近我们已经注意到了我们的应用程序中的很多NaN的出现。我们搜索源代码并找到以下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// math.js</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> n * n;</div><div class="line">&#125;</div><div class="line">square(<span class="string">"oops"</span>);</div></pre></td></tr></table></figure>
+<p>我们对自己叹了口气，也许决定添加一个类型检查器。我们退后一步，查看我们的选项： <a href="https://flow.org/" target="_blank" rel="external">Flow</a> 或 <a href="http://www.typescriptlang.org/" target="_blank" rel="external">TypeScript</a>。</p>
+<p>这两个工具都有相当简单的方法给逐个文件应用：</p>
+<ul>
+<li>Flow: <code>// @flow</code> 向文件顶部添加注释</li>
+<li>TypeScript：将扩展名更改为<code>.js</code>扩展<code>.ts</code> 名</li>
+</ul>
+<p>但是让我们比较一下这里面发生了什么。</p>
+<h3 id="采用TypeScript"><a href="#采用TypeScript" class="headerlink" title="采用TypeScript"></a>采用TypeScript</h3><p>要采用TypeScript，我们首先重命名<code>math.js</code>为 <code>math.ts</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// math.ts</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> n * n;</div><div class="line">&#125;</div><div class="line">square(<span class="string">"oops"</span>);</div></pre></td></tr></table></figure>
+<p>现在我们将运行typescript：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(no errors)</div></pre></td></tr></table></figure>
+<p>没有错误，是因为TypeScript要求我们给函数键入注释，然后才会根据注释检查类型。如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">n: number</span>): <span class="title">number</span> </span>&#123;</div><div class="line">  <span class="keyword">return</span> n * n;</div><div class="line">&#125;</div><div class="line">square(<span class="string">"oops"</span>);</div></pre></td></tr></table></figure>
+<p>如果没有这些类型，TypeScript将根据您的配置执行下面两件事情之一：</p>
+<ul>
+<li><ol>
+<li>隐含地将每个未知类型转换为<code>any</code>。这种任何类型将让您退出所有类型检查。</li>
+</ol>
+</li>
+<li><ol>
+<li>或者如果您使用了<code>--noImplicitAny</code>选项，它会为任何未知类型抛出错误，指明需要添加类型注释。</li>
+</ol>
+</li>
+</ul>
+<p>这意味着TypeScript 覆盖的代码量与您所写的类型相关。写入类型时，类型coverage将线性上升。</p>
+<h3 id="类型覆盖（type-coverage）"><a href="#类型覆盖（type-coverage）" class="headerlink" title="类型覆盖（type coverage）"></a>类型覆盖（type coverage）</h3><p>在我们进一步讲解之前，我应该解释一下什么是类型覆盖。</p>
+<p><img src="http://thejameskyle.com/img/type-coverage.png" alt="未有类型覆盖的代码用红色显示"></p>
+<p>未有类型覆盖的代码用红色显示</p>
+<p>如果你看到你的代码中的值和表达式，并问类型检查器“你知道这是什么类型吗”。</p>
+<p>如果类型检查器知道它类型，则覆盖该值或表达式。如果类型检查器不知道类型，那么它没有被覆盖。</p>
+<p>您希望您的程序尽可能多地提供类型覆盖，因为这样可以在更多地方抛出错误时提前告诉您。</p>
+<p>没有类型覆盖，类型检查器什么都不是。</p>
+<h3 id="采用Flow"><a href="#采用Flow" class="headerlink" title="采用Flow"></a>采用Flow</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// @flow</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> n * n;</div><div class="line">&#125;</div><div class="line">square(<span class="string">"oops"</span>);</div></pre></td></tr></table></figure>
+<p>然后我们将运行Flow并查看结果：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> n * n;</div><div class="line">         ^   ^</div><div class="line">         <span class="built_in">Error</span> (x2)</div><div class="line">&#125;</div><div class="line">square(<span class="string">"oops"</span>);</div><div class="line"></div><div class="line"><span class="built_in">Error</span> (x2)</div><div class="line">string. The operand <span class="keyword">of</span> an arithmetic operation must be a number.</div></pre></td></tr></table></figure>
+<p>紧接着就抛出了类型错误，告诉我们代码出了问题。</p>
+<p>Flow 只需要我们键入文件和外部模块的导出。可以推测出其他一切。</p>
+<p>这使得类型覆盖率快得多。只需几种类型，您可以快速获取具有非常高类型覆盖率的文件。</p>
+<p>根据我的经验，我可以在短短几分钟内将文件覆盖约70-90％。</p>
+<p>这是一个非常科学的差异图：</p>
+<p><img src="http://thejameskyle.com/img/adopting-flow-and-typescript-graph.png" alt=""></p>
+<p>这不是我一家之言，你可以自己尝试一下，看看几种类型的区别。</p>
+<p>要查看Flow中文件的类型覆盖，可以运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">flow coverage path/to/file.js --color</div></pre></td></tr></table></figure>
+<p>您还可以使用 <a href="https://github.com/rpl/flow-coverage-report" target="_blank" rel="external">流量报告</a> 来帮助您。</p>
+<blockquote>
+<p>注意：我没有注意到TypeScript 有任何的类型报告工具（如果您知道一个，请给我发送一个链接）。但是，您可以测试代码是否覆盖，以确定当您出现错误时是否会报告错误。</p>
+</blockquote>
+<h3 id="这个的工作原理是什么"><a href="#这个的工作原理是什么" class="headerlink" title="这个的工作原理是什么"></a>这个的工作原理是什么</h3><p>这两种工具具有不同行为的原因归结于其架构之间的区别。</p>
+<h4 id="TypeScript体系结构：AST导向"><a href="#TypeScript体系结构：AST导向" class="headerlink" title="TypeScript体系结构：AST导向"></a>TypeScript体系结构：AST导向</h4><p>TypeScript将遍历您的程序并构建已知类型的表。当它发现值和表达式时，它会立即为其分配类型。当TypeScript发现一个未知的类型时，它必须立即作出决定，这意味着将其分配给<code>any</code>或抛出错误。</p>
+<h4 id="Flow-架构：图形导向"><a href="#Flow-架构：图形导向" class="headerlink" title="Flow 架构：图形导向"></a>Flow 架构：图形导向</h4><p>Flow 将建立一个你所有的值和表达式及其彼此之间的关系的图表。然后，它将开始为每个值和表达式分配类型。如果它找到一个未知的类型，它将使它成为一个“开放”类型，稍后再回来判断。</p>
+<p>一旦Flow具有您的程序的完整蓝图，它将开始连接所有点，从一个值连接到另一个值地跟踪类型。打开类型接受流入它们的所有值的类型 - 生成的类型称为 “推断类型”。</p>
+<p>你可以看这个是怎么回事。来看看我们在之前的类型错误：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> n * n;</div><div class="line">         ^   ^</div><div class="line">         <span class="built_in">Error</span> (x2)</div><div class="line">&#125;</div><div class="line">square(<span class="string">"oops"</span>);</div><div class="line"></div><div class="line"><span class="built_in">Error</span> (x2)</div><div class="line">string. The operand <span class="keyword">of</span> an arithmetic operation must be a number.</div></pre></td></tr></table></figure>
+<p>注意错误是指向<code>n * n</code>而不是 <code>square(&quot;oops&quot;)</code>。因为我们没有写入一个类型为n的 “oops”字符串流入它，并且Flow开始检查n，就好像它是一个字符串。</p>
+<p>添加类型注释我们可以看到错误点移动了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">n: number</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> n * n;</div><div class="line">&#125;</div><div class="line">square(<span class="string">"oops"</span>);</div><div class="line">       ^ <span class="built_in">Error</span></div><div class="line"></div><div class="line"><span class="built_in">Error</span>: string.</div><div class="line">This type is incompatible <span class="keyword">with</span> the expected param type <span class="keyword">of</span> number.</div></pre></td></tr></table></figure>
+<p>这提出了一个重要的一点：Flow可以在任何地方自动推断类型并不意味着你不应该添加类型注释你的代码。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>TypeScript和Flow都有非常好的上手过程。一个个文件地尝试是一个很好的经历。</p>
+<p>但是，如果使用Flow，你就会有更高以及更快的覆盖类型，你就可以安心睡觉。</p>
+<p>使用Flow，您可以添加类型以使错误更友好，而不仅只是发现它们。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;采用Flow＆TypeScript, 两者上手流程之间的比较。&lt;/p&gt;
+&lt;p&gt;让我们想象一下我们想要采用一种类型检查器的场景…&lt;/p&gt;
+&lt;p&gt;本文译自： &lt;a href=&quot;http://thejameskyle.com/adopting-flow-and-typescript.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;adopting flow and typescript&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="Flow" scheme="http://robin-front.github.io/categories/Flow/"/>
+    
+      <category term="TypeScript" scheme="http://robin-front.github.io/categories/Flow/TypeScript/"/>
+    
+    
+      <category term="Flow" scheme="http://robin-front.github.io/tags/Flow/"/>
+    
+      <category term="TypeScript" scheme="http://robin-front.github.io/tags/TypeScript/"/>
+    
+  </entry>
   
   <entry>
     <title>使用RXJS组合、过滤和映射数据流的值</title>
@@ -1729,76 +1824,6 @@ slice方法上，safari和chrome差不多， chrome下slice有参数比无参数
       <category term="array" scheme="http://robin-front.github.io/tags/array/"/>
     
       <category term="slice" scheme="http://robin-front.github.io/tags/slice/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Debounce-and-Throttle-的可視化解釋</title>
-    <link href="http://robin-front.github.io/2016/11/17/Debounce-and-Throttle-%E7%9A%84%E5%8F%AF%E8%A6%96%E5%8C%96%E8%A7%A3%E9%87%8B/"/>
-    <id>http://robin-front.github.io/2016/11/17/Debounce-and-Throttle-的可視化解釋/</id>
-    <published>2016-11-17T02:22:22.000Z</published>
-    <updated>2016-11-21T03:19:22.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Debounce 和 Throttle是两个概念，我们可以在JavaScript中使用，以提高我们对执行功能的控制，在事件处理的时候特别有用。</p>
-<a id="more"></a>
-<h3 id="比喻"><a href="#比喻" class="headerlink" title="比喻"></a>比喻</h3><p>这两种技术都回答同样的问题“一个功能可以随着时间被推移多久？”</p>
-<ul>
-<li>Debounce：把它看成是“多个分组事件之一”。试想一下，你回家，再进入电梯，门正在关闭……，突然你的邻居出现在大厅，并试图跳上电梯。要有礼貌！并打开大门，他说：你等等，让我一起上。相同的情况下，可以与第三人再次发生，等等…这可能会延缓出发几分钟。</li>
-<li>Throttle：把它看成是一个阀，它规定了执行的流程。我们可以判断函数可以在一定时间内被调用的最大次数。因此，再用电梯比喻..你有足够的礼貌，持续10秒等人，但一旦时间到了，你一定要走！</li>
-</ul>
-<p>无 Debounce 或 Throttle 事件处理程序就像一次只能一个人用的电梯：没有那么高效。</p>
-<p>我希望这个坏比喻对你有所帮助，但有时言语并不会对掌握这些概念有多大的帮助，所以我创建了一个演示去理解 Debounce 和 Throttle 概念，并把它们应用到mousemove事件。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">elevator_departure</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">  alert(name + <span class="string">" was the last one. Nobody else? Let's go then"</span>);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> debounced_elevator_departure = $.debounce(<span class="number">200</span>, <span class="literal">false</span>, elevator_departure);</div><div class="line"></div><div class="line">debounced_elevator_departure(<span class="string">'John'</span>);</div><div class="line">debounced_elevator_departure(<span class="string">'Mike'</span>);</div><div class="line">debounced_elevator_departure(<span class="string">'Peter'</span>);</div><div class="line"><span class="comment">// You will see *only* one message, "Peter was the last one. Nobody else? Let's go then";</span></div></pre></td></tr></table></figure>
-<p>我发现这3个人在JavaScript中都通过debounce和throttle执行了。我真的建议你先读一下 <a href="http://benalman.com/projects/jquery-throttle-debounce-plugin/" target="_blank" rel="external"><code>Ben Alman&#39;s</code></a> 的文章，以便更好地理解  debounce 和 throttle. <code>underscore</code> 和 <code>lodash</code> 有不同的实现方式，但参数都是一样的（除了 <code>throttle</code>没有 <code>trailing</code>）.</p>
-<ul>
-<li><a href="http://underscorejs.org/" target="_blank" rel="external">Underscore.js</a> by Jeremy Ashkenas *</li>
-<li><a href="http://lodash.com/" target="_blank" rel="external">Lodash.js</a> by John-David Dalton *</li>
-<li><a href="http://benalman.com/projects/jquery-throttle-debounce-plugin/" target="_blank" rel="external">jQuery Plugin</a> by Ben Alman.</li>
-</ul>
-<h3 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h3><p>这里是视觉演示:</p>
-<iframe src="http://drupalmotion.com/sites/default/files/demos/debounce-throttle/index.html" height="350px" width="1000px"></iframe>
-
-<p>这是截图：
-<img src="http://drupalmotion.com/sites/default/files/pics/screenshot.png" alt="debounce-throttle"></p>
-<p>注意：</p>
-<ul>
-<li>这个的源代码演示在<a href="https://github.com/dcorb/debounce-throttle" target="_blank" rel="external">GitHub上托管</a>。</li>
-<li>如果你看到动画在浏览器中并不流畅，请在一个单独的页面打开演示，或者尝试在Chrome中。</li>
-<li>我通过在鼠标区域 <code>tapping</code>来去在<code>Android</code>环境下演示它</li>
-<li>每个单元代表约30毫秒，但JS是单线程的，所以浏览器是不是准确。这个演示并不是想成为一个最佳实践，只是为了更好地去理解概念。</li>
-<li>当你做了<code>setTimeout</code>，时间间隔可能不同，在每个浏览器在4ms和15ms的之间（<a href="http://www.nczonline.net/blog/2011/12/14/timer-resolution-in-browsers/" target="_blank" rel="external">尼古拉斯Zakas的文章</a>），甚至是<code>setTimeout(fn,0)</code>至少需要4毫秒。在另一方面，时间为1毫秒为最小单位的。</li>
-<li>在<code>mousemove</code>第一行中的事件也有做节流（80毫秒）。这对理解演示有所帮助。</li>
-<li>要获得 <code>trailing</code>选项<code>$.throttle</code>，你需要传递<code>false</code>。</li>
-<li>不要忘了，这一切都是builder，他们返回一个函数，所以你只需要执行一次。</li>
-</ul>
-<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><h4 id="debounce-案例"><a href="#debounce-案例" class="headerlink" title="debounce 案例"></a>debounce 案例</h4><p>用它减少执行频繁的事件。例子：</p>
-<ul>
-<li>当将要处理的textarea的快速打字：你不想执行处理函数，直到用户停止输入再来处理文本。</li>
-<li>当数据保存到通过AJAX服务器：你不想每秒调用非常缓慢的邮件服务器</li>
-</ul>
-<h4 id="throttle-案例"><a href="#throttle-案例" class="headerlink" title="throttle 案例"></a>throttle 案例</h4><p>和<code>debounce</code> 一样，但如果想每隔一段时间必须执行事件，可以使用它：</p>
-<ul>
-<li>假设用户不停地快速输入30秒，可能你会想每5秒执行一次函数；</li>
-<li>一些对性能有影响的事件但又必须处理：scroll, mouseweel, mousemove。一个简单的鼠标滚轮运动可以在一秒钟内触发几十个事件。</li>
-</ul>
-<p>本文翻译自 <a href="http://drupalmotion.com/article/debounce-and-throttle-visual-explanation" target="_blank" rel="external">Debounce and Throttle: a visual explanation</a></p>
-<p>========= update on 11-21 =========</p>
-<h3 id="example"><a href="#example" class="headerlink" title="example"></a>example</h3><h4 id="debounce"><a href="#debounce" class="headerlink" title="debounce"></a>debounce</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> validation = _.debounce(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  ... <span class="comment">// 校验输入，逻辑可能还会有点复杂</span></div><div class="line">&#125;, <span class="number">250</span>)</div><div class="line">jQuery(<span class="string">'input'</span>).keyup(validation) <span class="comment">// 输入完成或停顿250ms后才去执行校验，如果不停输入10s，则10s内都不会触发</span></div><div class="line"><span class="comment">/**</span></div><div class="line"> *  debounce第三个参数为可选参数，</div><div class="line"> *  leading为true时，则在事件开始时首先执行一次， 默认值为 false；</div><div class="line"> *  trailing为true时，则在结束时触发, 默认值为 true；</div><div class="line"> *  maxWait设置每隔多长时间必须触发；</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123; ... &#125;</div><div class="line">jQuery(<span class="string">'input'</span>).on(<span class="string">'keyup'</span>, _.debounce(foo, <span class="number">300</span>, &#123;</div><div class="line">  <span class="string">'leading'</span>: <span class="literal">true</span>, <span class="comment">// 注意： 执行的前提是定时器为undefined</span></div><div class="line">  <span class="string">'trailing'</span>: <span class="literal">false</span>,</div><div class="line">  <span class="string">'maxWait'</span>: <span class="number">1000</span></div><div class="line">&#125;));</div><div class="line"></div><div class="line"><span class="comment">// debounce还可以被取消</span></div><div class="line">jQuery(<span class="string">'button'</span>).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  validation.cancel();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h4 id="throttle"><a href="#throttle" class="headerlink" title="throttle"></a>throttle</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mousemove</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line">jQuery(<span class="string">'#div'</span>).on(<span class="string">'mousemove'</span>, _.throttle(mousemove, <span class="number">100</span>)) <span class="comment">// 每100ms必须触发一次</span></div><div class="line"></div><div class="line"><span class="comment">// mousemove会在定时器开始时触发, 但5分钟内不会有第二次</span></div><div class="line">jQuery(<span class="string">'#div'</span>).on(<span class="string">'mousemove'</span>, _.throttle(mousemove, <span class="number">300000</span>, &#123;</div><div class="line">  <span class="string">'leading'</span>: <span class="literal">true</span>, <span class="comment">// 定时器前沿触发，默认值为true</span></div><div class="line">  <span class="string">'trailing'</span>: <span class="literal">false</span> <span class="comment">// 定时器后沿触发，默认值为true</span></div><div class="line">&#125;));</div><div class="line"><span class="comment">// throttle 同样可以被取消</span></div><div class="line">jQuery(<span class="built_in">window</span>).on(<span class="string">'popstate'</span>, throttled.cancel);</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Debounce 和 Throttle是两个概念，我们可以在JavaScript中使用，以提高我们对执行功能的控制，在事件处理的时候特别有用。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="函数节流" scheme="http://robin-front.github.io/categories/%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81/"/>
-    
-    
-      <category term="debounce" scheme="http://robin-front.github.io/tags/debounce/"/>
-    
-      <category term="throttle" scheme="http://robin-front.github.io/tags/throttle/"/>
     
   </entry>
   

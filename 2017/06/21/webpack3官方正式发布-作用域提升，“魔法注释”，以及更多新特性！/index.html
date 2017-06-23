@@ -490,7 +490,8 @@
 <p>或者使用</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add webpack@3.0.0 --dev</div></pre></td></tr></table></figure>
 <p><em>从 webpack 2 迁移到 3，只需要执行升级命令，在使用上没有任何差别。我们将这次升级标记为版本的重大升级，是因为内部的突破性变化可能会影响某些插件的使用。</em></p>
-<p><strong>到目前为止，98%的升级的用户都没有遇到任何不兼容！</strong></p>
+<p><strong>到目前为止，98%的升级的用户都没有遇到任何不兼容！</strong>
+<a id="more"></a></p>
 <h1 id="有哪些新特性"><a href="#有哪些新特性" class="headerlink" title="有哪些新特性?"></a>有哪些新特性?</h1><p>像上文提到的一样，我们发布了一些由用户投票选出的功能，感谢 Github，赞助商和我们的支持者，有了他们我们才能做出每一个改进。😍</p>
 <h2 id="🔬作用域提升（Scope-Hoisting）🔬"><a href="#🔬作用域提升（Scope-Hoisting）🔬" class="headerlink" title="🔬作用域提升（Scope Hoisting）🔬"></a>🔬作用域提升（Scope Hoisting）🔬</h2><p>作用域提升是 webpack 3 的重点功能。之前 webpack 在打包时，您的 bundle 中的每个模块都将被包装在单独的函数闭包中。这些闭包会使您的 JavaScript 在浏览器中执行速度更慢。相比之下，像 Closure Compiler 和 RollupJS 这样的工具可以将所有模块包装在一个大的闭包内，从而使您的代码在浏览器中具有更快的执行速度。</p>
 <p><blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">70K =&gt; 37K (gzip!) savings on our main bundle using <a href="https://twitter.com/hashtag/Webpack?src=hash" target="_blank" rel="external">#Webpack</a> 3 RC.2 + ModuleConcatenationPlugin 😲 🔥 Awesome work <a href="https://twitter.com/TheLarkInn" target="_blank" rel="external">@TheLarkInn</a> <a href="https://twitter.com/wSokra" target="_blank" rel="external">@wSokra</a> et al! <a href="https://t.co/zVfQoivT9d" target="_blank" rel="external">pic.twitter.com/zVfQoivT9d</a></p>&mdash; Jeremy Gayed 🤓 (@tizmagik) <a href="https://twitter.com/tizmagik/status/876128847682523138" target="_blank" rel="external">June 17, 2017</a></blockquote></p>
@@ -591,6 +592,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/06/22/css-animations-vs-web-animations-api/" rel="prev" title="css 动画和 Web Animation API(WAAPI)对比">
+                css 动画和 Web Animation API(WAAPI)对比 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -668,7 +673,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -679,7 +684,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -690,7 +695,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

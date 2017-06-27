@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-06-22T09:48:00.000Z</updated>
+  <updated>2017-06-26T09:51:00.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,125 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Web Animations API入门教程第2部分：动画和时间线控制</title>
+    <link href="http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation/"/>
+    <id>http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation/</id>
+    <published>2017-06-26T09:51:00.000Z</published>
+    <updated>2017-06-26T09:51:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是 Web Animations API 入门教程系列的第2部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与<a href="https://twitter.com/dancwilson" target="_blank" rel="external">@dancwilson</a>联系。</p>
+<p>现在我们了解如何使用Web Animations API <a href="https://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-1-Creating-a-Basic-Animation/">创建基本动画</a>，让我们来谈谈状态（states），控制(controls)，回调(callback)和时间轴(timelines)。
+<a id="more"></a></p>
+<h1 id="Animations-播放状态和控制"><a href="#Animations-播放状态和控制" class="headerlink" title="Animations 播放状态和控制"></a>Animations 播放状态和控制</h1><p>当你调用时<code>element.animate()</code>，返回一个<code>Animation</code>对象（以前称为<code>AnimationPlayerspec</code>），动画开始播放。要查看动画的当前状态，您可以检查<code>readonly</code>属性<code>playState</code>，该属性将返回五个字符串之一。我们也可以通过调用四种方法之一修改动画的当前状态：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> player = element.animate(<span class="comment">/* ... */</span>);</div><div class="line"><span class="built_in">console</span>.log(player.playState); <span class="comment">//"running"</span></div><div class="line"></div><div class="line">player.pause(); <span class="comment">//"paused"</span></div><div class="line">player.play();  <span class="comment">//"running"</span></div><div class="line">player.cancel(); <span class="comment">//"idle"... 跳到原始状态</span></div><div class="line">player.finish(); <span class="comment">//"finished"...跳到结束状态</span></div></pre></td></tr></table></figure>
+<p>此外<code>running</code>，<code>paused</code>，<code>idle</code>，和<code>finished</code>播放状态有一个<code>pending</code>状态定义当播放或暂停任务正在等待批准即将发生。</p>
+<p>这个“步行圆圈”示例显示六个圆缩放。您可以暂停或播放每个圈子，以查看上述播放状态的一部分。</p>
+<iframe height="265" scrolling="no" title="Blob That Walks" src="//codepen.io/danwilson/embed/WvXRYg/?height=265&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/danwilson/pen/WvXRYg/" target="_blank" rel="external">Blob That Walks</a> by Dan Wilson (<a href="https://codepen.io/danwilson" target="_blank" rel="external">@danwilson</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.
+</iframe>
+
+<h1 id="播放速率"><a href="#播放速率" class="headerlink" title="播放速率"></a>播放速率</h1><p>在之前的CodePen示例中，还有一个“2x”按钮，您可以按更改动画的播放速度，将其切换到双倍速度。这是通过读/写<code>playbackRate</code>属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> player = element.animate(<span class="comment">/* ... */</span>);</div><div class="line"><span class="built_in">console</span>.log(player.playbackRate); <span class="comment">//1</span></div><div class="line"></div><div class="line">player.playbackRate = <span class="number">2</span>; <span class="comment">//双倍速度, 也可以使用十进制数字控制它降低速度.</span></div></pre></td></tr></table></figure>
+<h1 id="动画完成后的回调"><a href="#动画完成后的回调" class="headerlink" title="动画完成后的回调"></a>动画完成后的回调</h1><p>使用CSS transitions，当转换结束时，通常会触发一个事件。类似地，<code>Animation</code>允许您指定一个<code>onfinish</code>函数，在动画完成或调用之前讨论过的<code>finish()</code>方法时调用它。请注意，根据规范，无法完成无限次迭代的动画集，也不能完成一个具有<code>playbackRate = 0</code> 的动画集。还有一个<code>oncancel</code>处理程序，以及在<code>Animation</code>完成时使用<code>Promises</code>的写法。</p>
+<p>以下示例用于<code>onfinish</code>在动画完成后显示一些统计信息（并且它也很好地切换到下一次关于时间轴的讨论）。</p>
+<iframe height="265" scrolling="no" title="Timer Countdown" src="//codepen.io/danwilson/embed/RPMVZJ/?height=265&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/danwilson/pen/RPMVZJ/" target="_blank" rel="external">Timer Countdown</a> by Dan Wilson (<a href="https://codepen.io/danwilson" target="_blank" rel="external">@danwilson</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.
+</iframe>
+
+<h1 id="时间轴"><a href="#时间轴" class="headerlink" title="时间轴"></a>时间轴</h1><p>每个<code>Animation</code>都公开两个读/写时间相关属性 - <code>currentTime</code>和<code>startTime</code>。现在，我们将重点关注前者。</p>
+<p><code>currentTime</code>返回动画当前的毫秒数。最大值将为延迟时间 +（持续时间<em>迭代次数）（`delay + (duration </em> iterations)`），因此无限次迭代将不具有最大值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> player = element.animate([</div><div class="line">  &#123;<span class="attr">opacity</span>: <span class="number">1</span>&#125;, &#123;<span class="attr">opacity</span>: <span class="number">0</span>&#125;</div><div class="line">], &#123;</div><div class="line">  <span class="attr">duration</span>: <span class="number">1000</span>,</div><div class="line">  <span class="attr">delay</span>: <span class="number">500</span>,</div><div class="line">  <span class="attr">iterations</span>: <span class="number">3</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">player.onfinish = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(player.currentTime); <span class="comment">// 3500</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>播放速率将影响时间轴的持续时间。如果您将播放速度设置为10，则您的最大时间保持不变，但您的时间轴会快10倍。这个概念也在之前的“计时器倒计时”示例中显示。</p>
+<p>由于<code>currentTime</code>是可 读/写，我们也可以使用它来跳转到时间轴中的某一点。它也可以让我们同步两个动画，如下例所示。</p>
+<iframe height="265" scrolling="no" title="Syncing Timelines - WAAPI" src="//codepen.io/danwilson/embed/YXYWKK/?height=265&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/danwilson/pen/YXYWKK/" target="_blank" rel="external">Syncing Timelines - WAAPI</a> by Dan Wilson (<a href="https://codepen.io/danwilson" target="_blank" rel="external">@danwilson</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.
+</iframe>
+
+<h1 id="还有一个选项：-reverse"><a href="#还有一个选项：-reverse" class="headerlink" title="还有一个选项： reverse()"></a>还有一个选项： reverse()</h1><p>你也可以使用<code>reverse()</code>反转一个与之非常相似的动画<code>play()</code>（比如它会有相同的playState），除了它将以相反的方式遍历时间轴。当动画完成时，<code>currentTime</code>将为0。</p>
+<iframe height="265" scrolling="no" title="waRKOm" src="//codepen.io/danwilson/embed/waRKOm/?height=265&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/danwilson/pen/waRKOm/" target="_blank" rel="external">waRKOm</a> by Dan Wilson (<a href="https://codepen.io/danwilson" target="_blank" rel="external">@danwilson</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.
+</iframe>
+
+<h1 id="下一节…"><a href="#下一节…" class="headerlink" title="下一节…"></a>下一节…</h1><p>这包含了很多的信息，但仍然只是熟悉一下WAAPI有哪些可用的。下面我们来看一些更高级的用法。</p>
+<p>查看本系列的其余部分：</p>
+<ul>
+<li>介绍</li>
+<li>第1部分：<a href="https://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-1-Creating-a-Basic-Animation/">创建基本动画</a></li>
+<li>第3部分：多重动画</li>
+<li>第4部分：GroupEffects和SequenceEffects</li>
+<li>第5部分：运动路径</li>
+<li>结论</li>
+</ul>
+<p>【翻译原文】: <a href="http://danielcwilson.com/blog/2015/07/animations-part-2/" target="_blank" rel="external">http://danielcwilson.com/blog/2015/07/animations-part-2/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是 Web Animations API 入门教程系列的第2部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;
+&lt;p&gt;现在我们了解如何使用Web Animations API &lt;a href=&quot;https://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-1-Creating-a-Basic-Animation/&quot;&gt;创建基本动画&lt;/a&gt;，让我们来谈谈状态（states），控制(controls)，回调(callback)和时间轴(timelines)。
+    
+    </summary>
+    
+      <category term="Web Animations" scheme="http://robin-front.github.io/categories/Web-Animations/"/>
+    
+    
+      <category term="Web Animations" scheme="http://robin-front.github.io/tags/Web-Animations/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Web Animations API 入门教程第1部分:创建一个基本的动画</title>
+    <link href="http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-1-Creating-a-Basic-Animation/"/>
+    <id>http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-1-Creating-a-Basic-Animation/</id>
+    <published>2017-06-26T03:25:31.000Z</published>
+    <updated>2017-06-26T03:25:31.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是 Web Animations API 入门教程系列的第1部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与<a href="https://twitter.com/dancwilson" target="_blank" rel="external">@dancwilson</a>联系。</p>
+<p>我们之前初步看了下 Web Animations API，但是我们没有得到任何真正的细节，所以现在我们来看看。</p>
+<p>WAAPI（Web Animations API, 以下均简称WAAPI）为您提供更多的控制比您可能已经习惯使用的CSS动画，但在我们进入这些演示之前，我们需要设置基本目标：如何通过此API创建基本动画？
+<a id="more"></a></p>
+<h1 id="创建关键帧动画"><a href="#创建关键帧动画" class="headerlink" title="创建关键帧动画"></a>创建关键帧动画</h1><p>如果您熟悉CSS Transitions/ Animations，这将非常熟悉。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> player = <span class="built_in">document</span>.getElementById(<span class="string">'toAnimate'</span>).animate([</div><div class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(1)'</span>, <span class="attr">opacity</span>: <span class="number">1</span>, <span class="attr">offset</span>: <span class="number">0</span> &#125;,</div><div class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(.5)'</span>, <span class="attr">opacity</span>: <span class="number">.5</span>, <span class="attr">offset</span>: <span class="number">.3</span> &#125;,</div><div class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(.667)'</span>, <span class="attr">opacity</span>: <span class="number">.667</span>, <span class="attr">offset</span>: <span class="number">.7875</span> &#125;,</div><div class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(.6)'</span>, <span class="attr">opacity</span>: <span class="number">.6</span>, <span class="attr">offset</span>: <span class="number">1</span> &#125;</div><div class="line">  ], &#123;</div><div class="line">    <span class="attr">duration</span>: <span class="number">700</span>, <span class="comment">//毫秒</span></div><div class="line">    easing: <span class="string">'ease-in-out'</span>, <span class="comment">//'linear', a bezier curve等.</span></div><div class="line">    delay: <span class="number">10</span>, <span class="comment">//毫秒</span></div><div class="line">    iterations: <span class="literal">Infinity</span>, <span class="comment">//或其他数值</span></div><div class="line">    direction: <span class="string">'alternate'</span>, <span class="comment">//'normal', 'reverse', 等.</span></div><div class="line">    fill: <span class="string">'forwards'</span> <span class="comment">//'backwards', 'both', 'none', 'auto'</span></div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<p>为了对照，这里是一个等效的CSS关键帧动画</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">keyframes</span> emphasis &#123;</div><div class="line">  0% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(1);</div><div class="line">    <span class="attribute">opacity</span>: <span class="number">1</span>;</div><div class="line">  &#125;</div><div class="line">  30% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(.5);</div><div class="line">    <span class="attribute">opacity</span>: .<span class="number">5</span>;</div><div class="line">  &#125;</div><div class="line">  78<span class="selector-class">.75</span>% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(.667);</div><div class="line">    <span class="attribute">opacity</span>: .<span class="number">667</span>;</div><div class="line">  &#125;</div><div class="line">  100% &#123;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(.6);</div><div class="line">    <span class="attribute">opacity</span>: .<span class="number">6</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="selector-id">#toAnimate</span> &#123;</div><div class="line">  <span class="attribute">animation</span>: emphasis <span class="number">700ms</span> ease-in-out <span class="number">10ms</span> infinite alternate forwards;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们将分解这一切，解释每一部会。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> player = <span class="built_in">document</span>.getElementById(<span class="string">'toAnimate'</span>).animate()</div></pre></td></tr></table></figure>
+<p>动画将返回一个 <strong>Animation</strong>（以前在规范中称为 <strong>AnimationPlayer</strong>）对象，这将给我们做些有趣的事情，所以你可能想要设置一个变量来捕获这个引用。我们找到我们想要的动画元素（这里简单地使用document.getElementById）并调用该<code>animate</code>函数。此功能是新添加的特性，所以如果您必须要测试它的支持性/存在性，在使用它之前或者引用 <a href="https://github.com/web-animations/web-animations-js" target="_blank" rel="external">polyfill</a>。</p>
+<p>该<code>animate</code>函数有两个参数，一个<code>KeyframeEffects</code>和一个<code>AnimationEffectTimingProperties</code>选项的数组。本质上，第一个参数映射到CSS中的内容<code>@keyframe</code>s，第二个参数是您在CSS规则中使用的<code>animation-*</code>属性（或<code>animation</code>简写，如我之前的示例）所指定的那样。这里的主要优点是我们可以使用变量或重用以前定义的<code>KeyframeEffects</code>，而使用CSS我们仅限于我们在前面声明的值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> player = <span class="built_in">document</span>.getElementById(<span class="string">'toAnimate'</span>).animate([</div><div class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(1)'</span>, <span class="attr">opacity</span>: <span class="number">1</span> &#125;,</div><div class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(.5)'</span>, <span class="attr">opacity</span>: <span class="number">.5</span> &#125;,</div><div class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(.667)'</span>, <span class="attr">opacity</span>: <span class="number">.667</span> &#125;,</div><div class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(.6)'</span>, <span class="attr">opacity</span>: <span class="number">.6</span> &#125;</div><div class="line">  ]);</div></pre></td></tr></table></figure>
+<p>对于每一个<code>KeyframeEffect</code>，我们将CSS中的百分比偏移量改为<code>offset</code>从0到1 的十进制值。它是可选的，如果没有指定，它们将均匀分布（因此，如果您有三个，则第一个具有偏移为0，第二个偏移量为.5，第三个偏移量为1）。您还可以指定<code>easing</code>与<code>animation-timing-functionCSS</code>中相同的属性。每个的其他属性<code>KeyframeEffect</code>都是动画的属性。每个属性的值应该符合在JavaScript的<code>element.style</code>中的用法，因此<code>opacity</code>将是一个数字，但<code>transform</code>会期望一个字符串。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> player = <span class="built_in">document</span>.getElementById(<span class="string">'toAnimate'</span>).animate([], &#123;</div><div class="line">    <span class="attr">duration</span>: <span class="number">700</span>, <span class="comment">//milliseconds</span></div><div class="line">    easing: <span class="string">'ease-in-out'</span>, <span class="comment">//'linear', a bezier curve, etc.</span></div><div class="line">    delay: <span class="number">10</span>, <span class="comment">//milliseconds</span></div><div class="line">    iterations: <span class="literal">Infinity</span>, <span class="comment">//or a number</span></div><div class="line">    direction: <span class="string">'alternate'</span>, <span class="comment">//'normal', 'reverse', etc.</span></div><div class="line">    fill: <span class="string">'forwards'</span> <span class="comment">//'backwards', 'both', 'none', 'auto'</span></div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<p>时间属性将映射到CSS动画属性，尽管有时会使用不同的名称。较早的代码示例讨论了主要选项。</p>
+<p>以下是使用<code>polyfill</code>的示例（但如果您正在Chrome 36+，Opera 23+或Firefox 48+中查看，则应使用实际的浏览器实现）。第一列灰色块使用WAAPI动画，第二列红色块使用CSS关键帧进行动画。</p>
+<iframe height="265" scrolling="no" title="CSS Keyframes v. WAAPI" src="//codepen.io/danwilson/embed/QwrZwd/?height=265&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/danwilson/pen/QwrZwd/" target="_blank" rel="external">CSS Keyframes v. WAAPI</a> by Dan Wilson (<a href="https://codepen.io/danwilson" target="_blank" rel="external">@danwilson</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.
+</iframe>
+
+
+<h1 id="下一节…"><a href="#下一节…" class="headerlink" title="下一节…"></a>下一节…</h1><p>现在我们知道如何创建在CSS中熟知的等效动画，我们将开始查看<code>Animation</code> 的 <code>animate</code> 函数返回的对象。这是我们看到真正的功能和改进的地方。</p>
+<p>查看本系列的其余部分：</p>
+<ul>
+<li>介绍</li>
+<li>第2部分：动画和时间线控件</li>
+<li>第3部分：多重动画</li>
+<li>第4部分：GroupEffects和SequenceEffects</li>
+<li>第5部分：运动路径</li>
+<li>结论</li>
+</ul>
+<p>【翻译原文】： <a href="http://danielcwilson.com/blog/2015/07/animations-part-1/" target="_blank" rel="external">http://danielcwilson.com/blog/2015/07/animations-part-1/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是 Web Animations API 入门教程系列的第1部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;
+&lt;p&gt;我们之前初步看了下 Web Animations API，但是我们没有得到任何真正的细节，所以现在我们来看看。&lt;/p&gt;
+&lt;p&gt;WAAPI（Web Animations API, 以下均简称WAAPI）为您提供更多的控制比您可能已经习惯使用的CSS动画，但在我们进入这些演示之前，我们需要设置基本目标：如何通过此API创建基本动画？
+    
+    </summary>
+    
+      <category term="Web Animations" scheme="http://robin-front.github.io/categories/Web-Animations/"/>
+    
+    
+      <category term="Web Animations" scheme="http://robin-front.github.io/tags/Web-Animations/"/>
+    
+  </entry>
   
   <entry>
     <title>css 动画和 Web Animation API(WAAPI)对比</title>
@@ -25,7 +144,6 @@
     <content type="html"><![CDATA[<p>有一个JavaScript的动画原生API，称为<code>Web Animation API</code>。我们在这篇文章中称之为<code>WAAPI</code>。MDN有很好的<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API" target="_blank" rel="external">文档</a>，Dan Wilson 有一个伟大的<a href="http://danielcwilson.com/blog/2015/07/animations-part-1/" target="_blank" rel="external">系列文章</a>。</p>
 <p>在本文中，我们将比较WAAPI和CSS中完成的动画。
 <a id="more"></a></p>
-<p><a href="https://css-tricks.com/css-animations-vs-web-animations-api/?utm_source=frontendfocus" target="_blank" rel="external">原文</a></p>
 <h1 id="关于浏览器支持的提示"><a href="#关于浏览器支持的提示" class="headerlink" title="关于浏览器支持的提示"></a>关于浏览器支持的提示</h1><p>尽管现在浏览器的支持很有限，但WAAPI有一个全面而强大的<a href="https://github.com/web-animations/web-animations-js/tree/master" target="_blank" rel="external">polyfill</a>工具，让它可以在当前的生产环境中使用。</p>
 <p>一如既往，您可以检查<a href="http://caniuse.com/#feat=web-animation" target="_blank" rel="external">Can I Use</a> 的浏览器支持数据。然而，这并没有提供非常好的信息来支持WAAPI的所有子功能。这是一个检查器：</p>
 <iframe height="265" scrolling="no" title="WAAPI Browser Support Test" src="//codepen.io/danwilson/embed/xGBKVq/?height=265&theme-id=0&default-tab=js,result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/danwilson/pen/xGBKVq/" target="_blank" rel="external">WAAPI Browser Support Test</a> by Dan Wilson (<a href="https://codepen.io/danwilson" target="_blank" rel="external">@danwilson</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.
@@ -106,6 +224,7 @@
 <p>在这个例子中，只有在页面上的所有动画完成后，我们的函数才能运行。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Promise</span>.all(<span class="built_in">document</span>.getAnimations().map(<span class="function"><span class="params">animation</span> =&gt;</span></div><div class="line">  animation.finished)).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;           </div><div class="line">    <span class="comment">// do something cool</span></div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
 <h1 id="未来"><a href="#未来" class="headerlink" title="未来"></a>未来</h1><p>本文中提到的功能只是开始。目前的规范和实践看起来是一件伟大的事情的开始。</p>
+<p>「翻譯原文」：<a href="https://css-tricks.com/css-animations-vs-web-animations-api/?utm_source=frontendfocus" target="_blank" rel="external">https://css-tricks.com/css-animations-vs-web-animations-api/?utm_source=frontendfocus</a></p>
 ]]></content>
     
     <summary type="html">
@@ -1577,7 +1696,7 @@
     <published>2017-03-20T03:04:39.000Z</published>
     <updated>2017-03-20T03:04:39.000Z</updated>
     
-    <content type="html"><![CDATA[<p>上一篇的 <a href="http://robin-front.github.io/2017/03/19/RxJS%E7%9A%84%E5%8A%A8%E7%94%BB%E7%AE%80%E4%BB%8B/">RxJS的动画简介</a> 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。</p>
+    <content type="html"><![CDATA[<p>上一篇的 <a href="https://robin-front.github.io/2017/03/19/RxJS%E7%9A%84%E5%8A%A8%E7%94%BB%E7%AE%80%E4%BB%8B/">RxJS的动画简介</a> 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。</p>
 <p><code>Lerp</code>是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.
 <a id="more"></a></p>
 <h1 id="它是如何工作的？"><a href="#它是如何工作的？" class="headerlink" title="它是如何工作的？"></a>它是如何工作的？</h1><p>如果您有一个对象的当前位置和目标的位置，您可以线性内插这些点之间的距离的百分比，并在每个动画帧上更新该位置。</p>
@@ -1600,7 +1719,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;上一篇的 &lt;a href=&quot;http://robin-front.github.io/2017/03/19/RxJS%E7%9A%84%E5%8A%A8%E7%94%BB%E7%AE%80%E4%BB%8B/&quot;&gt;RxJS的动画简介&lt;/a&gt; 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。&lt;/p&gt;
+      &lt;p&gt;上一篇的 &lt;a href=&quot;https://robin-front.github.io/2017/03/19/RxJS%E7%9A%84%E5%8A%A8%E7%94%BB%E7%AE%80%E4%BB%8B/&quot;&gt;RxJS的动画简介&lt;/a&gt; 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;Lerp&lt;/code&gt;是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.
     
     </summary>
@@ -1808,107 +1927,6 @@
     
     
       <category term="Flexbox" scheme="http://robin-front.github.io/tags/Flexbox/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>js遍历Object对象可枚举属性、不可枚举属性、原型链属性和自身属性</title>
-    <link href="http://robin-front.github.io/2017/01/13/js%E9%81%8D%E5%8E%86Object%E5%8F%AF%E6%9E%9A%E4%B8%BE%E5%B1%9E%E6%80%A7%E3%80%81%E4%B8%8D%E5%8F%AF%E6%9E%9A%E4%B8%BE%E5%B1%9E%E6%80%A7%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%B1%9E%E6%80%A7%E5%92%8C%E8%87%AA%E8%BA%AB%E5%B1%9E%E6%80%A7/"/>
-    <id>http://robin-front.github.io/2017/01/13/js遍历Object可枚举属性、不可枚举属性、原型链属性和自身属性/</id>
-    <published>2017-01-13T02:19:27.000Z</published>
-    <updated>2017-01-13T02:19:27.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>利用hasOwnProperty、getOwnPropertyNames、Object.keys、for…in遍历对象的可枚举属性、不可枚举属性、原型链上的属性和自身属性。
-<a id="more"></a></p>
-<p>首先来看看各种方法的用法及兼容性。</p>
-<h3 id="hasOwnProperty-NaN"><a href="#hasOwnProperty-NaN" class="headerlink" title="hasOwnProperty"></a>hasOwnProperty</h3><p>Object.prototype.hasOwnProperty(name) 方法用来判断某个对象是否含有指定的自身属性，它本身是对象原型链上的默认方法。</p>
-<p>hasOwnProperty 方法是 ES3 就标准化了，所以不用担心兼容性问题。</p>
-<p>但由于 hasOwnProperty 是原型链上的方法，所以有可能被对象的自身方法所屏蔽。如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = &#123;</div><div class="line">    <span class="attr">hasOwnProperty</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">bar</span>: <span class="string">'Here be dragons'</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">foo.hasOwnProperty(<span class="string">'bar'</span>); <span class="comment">// 始终返回 false</span></div><div class="line"></div><div class="line"><span class="comment">// 如果担心这种情况，可以直接使用原型链上真正的 hasOwnProperty 方法</span></div><div class="line">(&#123;&#125;).hasOwnProperty.call(foo, <span class="string">'bar'</span>); <span class="comment">// true</span></div><div class="line"><span class="built_in">Object</span>.prototype.hasOwnProperty.call(foo, <span class="string">'bar'</span>); <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<h3 id="getOwnPropertyNames"><a href="#getOwnPropertyNames" class="headerlink" title="getOwnPropertyNames"></a>getOwnPropertyNames</h3><p>Object.getOwnPropertyNames(obj)方法返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性）组成的数组, 该方法不会获取到原型链上的属性。如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 父类构造函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ParentClass</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">ParentClass.prototype.inheritedMethod = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 继承</span></div><div class="line"><span class="keyword">var</span> ChildClass = <span class="built_in">Object</span>.create(ParentClass.prototype, &#123;</div><div class="line">  <span class="comment">// 不可枚举属性</span></div><div class="line">  getFoo: &#123;</div><div class="line">    <span class="attr">value</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.foo; &#125;,</div><div class="line">    <span class="attr">enumerable</span>: <span class="literal">false</span></div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 自身可枚举属性</span></div><div class="line">ChildClass.foo = <span class="number">1</span>;</div><div class="line"><span class="comment">// 再定义一个原型链属性</span></div><div class="line">ChildClass.prototype.prototypeMethod = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyNames(my_obj).sort()); <span class="comment">// ["foo", "getFoo"]</span></div></pre></td></tr></table></figure>
-<p>兼容性到 IE9, es 5标准。</p>
-<h3 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys()"></a>Object.keys()</h3><p>返回该对象的所有可枚举自身属性的属性名。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//具有随机键排序的数组类对象</span></div><div class="line"><span class="keyword">var</span> an_obj = &#123; <span class="number">100</span>: <span class="string">'a'</span>, <span class="number">2</span>: <span class="string">'b'</span>, <span class="number">7</span>: <span class="string">'c'</span> &#125;;</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(an_obj)); <span class="comment">// console: ['2', '7', '100']</span></div></pre></td></tr></table></figure>
-<p>这些属性的顺序与手动遍历（如for..in）该对象属性时的一致。</p>
-<blockquote>
-<p>注意：Object.keys 和 getOwnPropertyNames ，在ES5，如果此方法的参数不是一个对象（原始的），那么它会造成 TypeError。在ES6，非对象的参数将被强制转换为一个对象。</p>
-</blockquote>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Object.keys(<span class="string">"foo"</span>);</div><div class="line">Object.getOwnPropertyNames(<span class="string">"foo"</span>);</div><div class="line"><span class="regexp">//</span> <span class="symbol">TypeError:</span> <span class="string">"foo"</span> is <span class="keyword">not</span> an object (ES5 code)</div><div class="line"></div><div class="line">Object.keys(<span class="string">"foo"</span>);</div><div class="line"><span class="regexp">//</span> [<span class="string">"0"</span>, <span class="string">"1"</span>, <span class="string">"2"</span>]                   (ES6 code)</div><div class="line">Object.getOwnPropertyNames(<span class="string">"foo"</span>);</div><div class="line"><span class="regexp">//</span> [<span class="string">"0"</span>, <span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"length"</span>]                   (ES6 code)</div></pre></td></tr></table></figure>
-<p>兼容性到 IE9, es 5标准。</p>
-<h3 id="for-in"><a href="#for-in" class="headerlink" title="for..in"></a>for..in</h3><p>手动遍历，可以遍历到自身和原型链上所有可枚举的属性。</p>
-<h3 id="只获取自身可枚举属性"><a href="#只获取自身可枚举属性" class="headerlink" title="只获取自身可枚举属性"></a>只获取自身可枚举属性</h3><ul>
-<li>直接用 <code>Object.keys()</code></li>
-<li>IE9 以下可以通过<code>hasOwnProperty</code>实现：</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (!<span class="built_in">Object</span>.keys) <span class="built_in">Object</span>.keys = <span class="function"><span class="keyword">function</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (o !== <span class="built_in">Object</span>(o))</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'Object.keys called on a non-object'</span>);</div><div class="line">  <span class="keyword">var</span> k=[],p;</div><div class="line">  <span class="keyword">for</span> (p <span class="keyword">in</span> o) <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.hasOwnProperty.call(o,p)) k.push(p);</div><div class="line">  <span class="keyword">return</span> k;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="只获取自身不可枚举属性"><a href="#只获取自身不可枚举属性" class="headerlink" title="只获取自身不可枚举属性"></a>只获取自身不可枚举属性</h3><ul>
-<li>通过 <code>Object.keys()</code> 排除可枚举属性</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> target = myObject;</div><div class="line"><span class="keyword">var</span> enum_and_nonenum = <span class="built_in">Object</span>.getOwnPropertyNames(target);</div><div class="line"><span class="comment">// 排除可枚举属性</span></div><div class="line"><span class="keyword">var</span> enum_only = <span class="built_in">Object</span>.keys(target);</div><div class="line"><span class="keyword">var</span> nonenum_only = enum_and_nonenum.filter(<span class="function"><span class="keyword">function</span>(<span class="params">key</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> indexInEnum = enum_only.indexOf(key);</div><div class="line">    <span class="keyword">if</span> (indexInEnum == <span class="number">-1</span>) &#123;</div><div class="line">        <span class="comment">// not found in enum_only keys mean the key is non-enumerable,</span></div><div class="line">        <span class="comment">// so return true so we keep this in the filter</span></div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(nonenum_only);</div></pre></td></tr></table></figure>
-<ul>
-<li>通过<code>propertyIsEnumerable</code>判断，该方法返回Boolean值，不可枚举返回false。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> target = myObject;</div><div class="line"><span class="keyword">var</span> enum_and_nonenum = <span class="built_in">Object</span>.getOwnPropertyNames(target);</div><div class="line"><span class="keyword">var</span> enum_only = <span class="built_in">Object</span>.keys(target);</div><div class="line"><span class="keyword">var</span> nonenum_only = enum_and_nonenum.filter(<span class="function"><span class="keyword">function</span>(<span class="params">key</span>) </span>&#123;</div><div class="line">    <span class="comment">// 筛选不可枚举属性</span></div><div class="line">    <span class="keyword">return</span> !target.propertyIsEnumerable(key)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(nonenum_only);</div></pre></td></tr></table></figure>
-<h3 id="只获取原型链上的可枚举属性"><a href="#只获取原型链上的可枚举属性" class="headerlink" title="只获取原型链上的可枚举属性"></a>只获取原型链上的可枚举属性</h3><ul>
-<li>直接用 for..in</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o = <span class="built_in">Object</span>.getPrototypeOf(targetObj); <span class="comment">// 跳过遍历自身属性，直接从原型上开始</span></div><div class="line"><span class="keyword">var</span> k=[],p;</div><div class="line"><span class="keyword">for</span> (p <span class="keyword">in</span> o) <span class="keyword">if</span> (<span class="built_in">Object</span>.prototype.hasOwnProperty.call(o,p)) k.push(p);</div><div class="line"><span class="keyword">return</span> k;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>注意，这样遍历出来的属性也不一定能访问， 因为自身属性可能会屏蔽掉原型上的属性。</p>
-</blockquote>
-<h3 id="只获取原型链上的不可枚举属性"><a href="#只获取原型链上的不可枚举属性" class="headerlink" title="只获取原型链上的不可枚举属性"></a>只获取原型链上的不可枚举属性</h3><p>比较麻烦，如果使用 getOwnPropertyNames，只能单独获取一层原型链，必须一级一级遍历往上找，而且这也不一定有场景，因为原型链上的方法重名是会被屏蔽的。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;利用hasOwnProperty、getOwnPropertyNames、Object.keys、for…in遍历对象的可枚举属性、不可枚举属性、原型链上的属性和自身属性。
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
-    
-    
-      <category term="getOwnPropertyNames" scheme="http://robin-front.github.io/tags/getOwnPropertyNames/"/>
-    
-      <category term="hasOwnProperty" scheme="http://robin-front.github.io/tags/hasOwnProperty/"/>
-    
-      <category term="Object.keys" scheme="http://robin-front.github.io/tags/Object-keys/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>比较instanceof与isPrototypeOf</title>
-    <link href="http://robin-front.github.io/2017/01/12/%E6%AF%94%E8%BE%83instanceof%E4%B8%8EisPrototypeof/"/>
-    <id>http://robin-front.github.io/2017/01/12/比较instanceof与isPrototypeof/</id>
-    <published>2017-01-12T09:49:14.000Z</published>
-    <updated>2017-01-12T09:49:14.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在javascript中，instanceof 和 isPrototypeOf 都可以判断一个原型是否在另一个实例的原型链中，那他们有什么区别呢，为什么说 isPrototypeOf 可以替代 instanceof 。
-<a id="more"></a></p>
-<h3 id="instanceof-用法"><a href="#instanceof-用法" class="headerlink" title="instanceof 用法"></a>instanceof 用法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Super</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="comment">// init code</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Sub</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      Super.call(<span class="keyword">this</span>);</div><div class="line">      <span class="comment">// other init code</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">Sub.prototype = <span class="keyword">new</span> Super();</div><div class="line"></div><div class="line"><span class="keyword">var</span> sub = <span class="keyword">new</span> Sub();</div></pre></td></tr></table></figure>
-<p>对于上面的代码，用 instanceof 可以像这样确定他们的关系：</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">sub</span> <span class="title">instanceof</span> <span class="title">Super</span></span>; // true</div></pre></td></tr></table></figure>
-<h3 id="isPrototypeOf-用法"><a href="#isPrototypeOf-用法" class="headerlink" title="isPrototypeOf 用法"></a>isPrototypeOf 用法</h3><p>复用上面的代码，用 isPrototypeOf 可以这样写：</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Super.prototype.isPrototypeOf(<span class="function"><span class="keyword">sub</span>)</span>; // true</div></pre></td></tr></table></figure>
-<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>乍一看，都可以用，但某种情况下是有区别的，例如：</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var super = &#123;</div><div class="line">    <span class="regexp">//</span> some super properties</div><div class="line">&#125;</div><div class="line"></div><div class="line">var <span class="function"><span class="keyword">sub</span> = <span class="title">Object</span>.<span class="title">create</span></span>(super);</div><div class="line"><span class="function"><span class="keyword">sub</span>.<span class="title">someProp</span> = 5</span>;</div><div class="line"></div><div class="line">var <span class="function"><span class="keyword">sub</span> = <span class="title">Object</span>.<span class="title">create</span></span>(sub);</div><div class="line"></div><div class="line">console.log(super.isPrototypeOf(<span class="function"><span class="keyword">sub</span>))</span>;  // true</div><div class="line">console.log(<span class="function"><span class="keyword">sub</span> <span class="title">instanceof</span> <span class="title">super</span>)</span>;      // TypeError</div></pre></td></tr></table></figure>
-<p>这时候 super 并不是构造函数，无法使用 instanceof, 只能使用 isPrototypeOf.</p>
-<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>结论就是 isPrototypeOf 能使用的场景更广，完全可以替代 instanceof， 只是写起来没那么简洁。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在javascript中，instanceof 和 isPrototypeOf 都可以判断一个原型是否在另一个实例的原型链中，那他们有什么区别呢，为什么说 isPrototypeOf 可以替代 instanceof 。
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
-    
-    
-      <category term="instanceof" scheme="http://robin-front.github.io/tags/instanceof/"/>
-    
-      <category term="isPrototypeOf" scheme="http://robin-front.github.io/tags/isPrototypeOf/"/>
     
   </entry>
   

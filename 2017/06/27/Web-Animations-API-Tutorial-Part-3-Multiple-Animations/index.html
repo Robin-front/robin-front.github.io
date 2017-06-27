@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="animate," />
+  <meta name="keywords" content="Web Animations," />
 
 
 
@@ -91,17 +91,17 @@
 
 
 
-<meta name="description" content="上一篇的 RxJS的动画简介 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。 Lerp是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.">
-<meta name="keywords" content="animate">
+<meta name="description" content="这是 Web Animations API 入门教程系列的第3部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与@dancwilson联系。 在我们讨论动画和时间线控制之后，让我们来讨论多个动画。">
+<meta name="keywords" content="Web Animations">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lerp的应用-利用简单线性插值来平滑动画效果">
-<meta property="og:url" content="http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/index.html">
+<meta property="og:title" content="Web Animations API 入门教程第3部分: 多个Animations对象">
+<meta property="og:url" content="http://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="上一篇的 RxJS的动画简介 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。 Lerp是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.">
-<meta property="og:updated_time" content="2017-03-20T03:04:39.000Z">
+<meta property="og:description" content="这是 Web Animations API 入门教程系列的第3部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与@dancwilson联系。 在我们讨论动画和时间线控制之后，让我们来讨论多个动画。">
+<meta property="og:updated_time" content="2017-06-27T02:17:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lerp的应用-利用简单线性插值来平滑动画效果">
-<meta name="twitter:description" content="上一篇的 RxJS的动画简介 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。 Lerp是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.">
+<meta name="twitter:title" content="Web Animations API 入门教程第3部分: 多个Animations对象">
+<meta name="twitter:description" content="这是 Web Animations API 入门教程系列的第3部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与@dancwilson联系。 在我们讨论动画和时间线控制之后，让我们来讨论多个动画。">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/"/>
+  <link rel="canonical" href="http://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/"/>
 
 
 
 
 
-  <title> Lerp的应用-利用简单线性插值来平滑动画效果 | 三寸稚笔 </title>
+  <title> Web Animations API 入门教程第3部分: 多个Animations对象 | 三寸稚笔 </title>
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
   (adsbygoogle = window.adsbygoogle || []).push({
@@ -330,7 +330,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/">
+    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="robin">
@@ -347,7 +347,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Lerp的应用-利用简单线性插值来平滑动画效果</h2>
+          <h2 class="post-title" itemprop="name headline">Web Animations API 入门教程第3部分: 多个Animations对象</h2>
         
 
         <div class="post-meta">
@@ -359,8 +359,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T11:04:39+08:00">
-                2017-03-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-27T10:17:19+08:00">
+                2017-06-27
               </time>
             
 
@@ -375,8 +375,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-03-20T11:04:39+08:00">
-                2017-03-20
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-27T10:17:19+08:00">
+                2017-06-27
               </time>
             
           </span>
@@ -394,8 +394,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/animate/" itemprop="url" rel="index">
-                    <span itemprop="name">animate</span>
+                  <a href="/categories/Web-Animations/" itemprop="url" rel="index">
+                    <span itemprop="name">Web Animations</span>
                   </a>
                 </span>
 
@@ -412,9 +412,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/#comments" itemprop="discussionUrl">
+                <a href="/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -438,7 +438,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  466
+                  658
                 </span>
               
 
@@ -454,7 +454,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -483,25 +483,36 @@
           (adsbygoogle = window.adsbygoogle || []).push({});
           </script>
         </div>
-        <p>上一篇的 <a href="https://robin-front.github.io/2017/03/19/RxJS%E7%9A%84%E5%8A%A8%E7%94%BB%E7%AE%80%E4%BB%8B/">RxJS的动画简介</a> 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。</p>
-<p><code>Lerp</code>是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.
+        <p>这是 Web Animations API 入门教程系列的第3部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与<a href="https://twitter.com/dancwilson" target="_blank" rel="external">@dancwilson</a>联系。</p>
+<p>在我们讨论<a href="http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation/">动画和时间线控制</a>之后，让我们来讨论多个动画。
 <a id="more"></a></p>
-<h1 id="它是如何工作的？"><a href="#它是如何工作的？" class="headerlink" title="它是如何工作的？"></a>它是如何工作的？</h1><p>如果您有一个对象的当前位置和目标的位置，您可以线性内插这些点之间的距离的百分比，并在每个动画帧上更新该位置。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lerp</span>(<span class="params">position, targetPosition</span>) </span>&#123;</div><div class="line"><span class="comment">// 计算当前位置与目标位置差值的 20%</span></div><div class="line">  position.x += (targetPosition.x - position.x)*<span class="number">0.2</span>;</div><div class="line">  position.y += (targetPosition.y - position.y)*<span class="number">0.2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>通过这样做，对象移动的量随着位置和目标之间的距离减小而变小。这意味着对象将越来越接近它的目标，速度将减慢，这创造一个很好的缓和效果。</p>
-<h1 id="一些例子"><a href="#一些例子" class="headerlink" title="一些例子"></a>一些例子</h1><p>这里有一个球跟随用户的鼠标或触摸运动的例子。如果我们使球移动到鼠标移动的地方，球的移动可以非常快但看起来有点脱节。如果我们快速移动鼠标，我们也可以看到单独的“球影”。</p>
-<iframe width="100%" height="300" src="//codepen.io/anon/embed/avXmyV?slug-hash=avXmyV&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
+<h1 id="每个元素的多个动画"><a href="#每个元素的多个动画" class="headerlink" title="每个元素的多个动画"></a>每个元素的多个动画</h1><iframe height="265" scrolling="no" title="Multiple animate calls" src="//codepen.io/danwilson/embed/PqxvJo/?height=265&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/danwilson/pen/PqxvJo/" target="_blank" rel="external">Multiple animate calls</a> by Dan Wilson (<a href="https://codepen.io/danwilson" target="_blank" rel="external">@danwilson</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.
+</iframe>
 
-<p>这里是同样的演示，除了这次我们使用lerp。不是将球立即向右移动到鼠标位置，我们每次将它移动10％的距离。</p>
-<iframe width="100%" height="300" src="//codepen.io/anon/embed/yYZapV?slug-hash=yYZapV&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
+<p>在这个例子中，每个矩形都有三个动画应用（涉及到transform，opacity和color）。您可以多次调用元素的<code>animate()</code>方法，类似于允许多个动画的CSS。</p>
+<p>使用CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#toAnimate</span> &#123;</div><div class="line">  <span class="attribute">animation</span>: pulse <span class="number">1s</span>, activate <span class="number">3000ms</span>, have-fun-with-it <span class="number">2.5s</span>;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">keyframes</span> pulse &#123; <span class="comment">/* ... */</span> &#125;</div><div class="line">@<span class="keyword">keyframes</span> activate &#123; <span class="comment">/* ... */</span> &#125;</div><div class="line">@<span class="keyword">keyframes</span> have-fun-with-it &#123; <span class="comment">/* ... */</span> &#125;</div></pre></td></tr></table></figure>
+<p>使用Web Animations API：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> animated = <span class="built_in">document</span>.getElementById(<span class="string">'toAnimate'</span>);</div><div class="line"><span class="keyword">var</span> pulseKeyframes, <span class="comment">//在这里定义 keyframes.</span></div><div class="line">    activateKeyframes,</div><div class="line">    haveFunKeyframes;</div><div class="line"><span class="keyword">var</span> pulse = animated.animate(pulseKeyframes, <span class="number">1000</span>); <span class="comment">// 第二个数值参数作为持续时间的缩写</span></div><div class="line"><span class="keyword">var</span> activate = animated.animate(activateKeyframes, <span class="number">3000</span>);</div><div class="line"><span class="keyword">var</span> haveFunWithIt = animated.animate(haveFunKeyframes, <span class="number">2500</span>);</div></pre></td></tr></table></figure>
+<p>使用Web Animations API，这将创建三个Animation对象，每个对象可以通过时间轴(timeline)或播放速率(playback rate)进行暂停，播放，完成，取消的操作。</p>
+<h1 id="获取-Animations，全部动画对象"><a href="#获取-Animations，全部动画对象" class="headerlink" title="获取 Animations，全部动画对象"></a>获取 Animations，全部动画对象</h1><p>所以你可以知道一个动画开始播放了，但是当你想在元素上调用<code>animate()</code>时你却还没有捕获到Animation的引用。那要怎么做？</p>
+<iframe height="265" scrolling="no" title="Pause All those Random Dots!" src="//codepen.io/danwilson/embed/PqgKVK/?height=265&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/danwilson/pen/PqgKVK/" target="_blank" rel="external">Pause All those Random Dots!</a> by Dan Wilson (<a href="https://codepen.io/danwilson" target="_blank" rel="external">@danwilson</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.
+</iframe>
 
-<p>注意球的运动很平滑，整体更令人愉快的效果。</p>
-<p>这里是使用lerp的另一个例子。这次我们有一个滚动指示器，当您向下滚动“页面”时更新。</p>
-<iframe width="100%" height="300" src="//codepen.io/anon/embed/rOPMvz?slug-hash=rOPMvz&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
-
-<iframe width="100%" height="300" src="//codepen.io/anon/embed/epxdxe?slug-hash=epxdxe&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
-
-<p>所以，lerp“把戏”是一个伟大的工具，我们的网络动画套路，以对抗线性或锯齿状的运动。</p>
+<p>该规范允许<code>getAnimations()</code>在文档上的方法。在最新版本的规范中，它直接在<code>document（document.getAnimations()）</code>上，在Firefox 48+上它是这样实现的。然而，对于Chrome 52 和<a href="https://github.com/web-animations/web-animations-js" target="_blank" rel="external">polyfill</a>（如V2.2.0的），则根据该旧规范将其置于新的<code>timeline</code>对象上。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 如果引用了 polyfill ，你可以这样写</span></div><div class="line"><span class="keyword">var</span> animations = <span class="built_in">document</span>.getAnimations ? <span class="built_in">document</span>.getAnimations() : <span class="built_in">document</span>.timeline.getAnimations();</div><div class="line"><span class="comment">// 返回一个数组，包含所有正在进行的（除了已完成的和被取消的）动画</span></div></pre></td></tr></table></figure>
+<p>在CodePen示例中，您将看到随机的持续时间，延迟和无限持续时间的变换移动的几个点。“暂停全部”按钮调用<code>getAnimations()</code>并遍历所有, 返回的玩家（每个动画对象）并暂停每一个。</p>
+<h1 id="下一节…"><a href="#下一节…" class="headerlink" title="下一节…"></a>下一节…</h1><p>在下一部分中，我们将看看WAAPI动画可以创建的不同方式（因为它不仅仅是<code>element.animate</code>）。提示：<code>document.timeline</code>会出现更多的体现。</p>
+<p>查看本系列的其余部分：</p>
+<ul>
+<li>介绍</li>
+<li>第1部分：<a href="https://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-1-Creating-a-Basic-Animation/">创建基本动画</a></li>
+<li>第2部分：<a href="https://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation/">动画和时间线控制</a></li>
+<li>第3部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/">多个动画</a></li>
+<li>第4部分：GroupEffects和SequenceEffects</li>
+<li>第5部分：运动路径</li>
+<li>结论</li>
+</ul>
 
       
     </div>
@@ -530,7 +541,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/" title="Lerp的应用-利用简单线性插值来平滑动画效果">http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/</a>
+      <a href="http://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/" title="Web Animations API 入门教程第3部分: 多个Animations对象">http://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -546,7 +557,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/animate/" rel="tag"># animate</a>
+            <a href="/tags/Web-Animations/" rel="tag"># Web Animations</a>
           
         </div>
       
@@ -559,8 +570,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/19/RxJS的动画简介/" rel="next" title="RxJS的动画简介">
-                <i class="fa fa-chevron-left"></i> RxJS的动画简介
+              <a href="/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation/" rel="next" title="Web Animations API入门教程第2部分：动画和时间线控制">
+                <i class="fa fa-chevron-left"></i> Web Animations API入门教程第2部分：动画和时间线控制
               </a>
             
           </div>
@@ -568,10 +579,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/04/why-rxjs/" rel="prev" title="为什么选择 RxJS?">
-                为什么选择 RxJS? <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -743,7 +750,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#它是如何工作的？"><span class="nav-number">1.</span> <span class="nav-text">它是如何工作的？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一些例子"><span class="nav-number">2.</span> <span class="nav-text">一些例子</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#每个元素的多个动画"><span class="nav-number">1.</span> <span class="nav-text">每个元素的多个动画</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取-Animations，全部动画对象"><span class="nav-number">2.</span> <span class="nav-text">获取 Animations，全部动画对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下一节…"><span class="nav-number">3.</span> <span class="nav-text">下一节…</span></a></li></ol></div>
             
 
           </div>
@@ -899,9 +906,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/';
-          this.page.identifier = '2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/';
-          this.page.title = 'Lerp的应用-利用简单线性插值来平滑动画效果';
+          this.page.url = 'http://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/';
+          this.page.identifier = '2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/';
+          this.page.title = 'Web Animations API 入门教程第3部分: 多个Animations对象';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://robin-front-github-io.disqus.com/embed.js';

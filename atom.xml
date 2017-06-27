@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-06-26T09:51:00.000Z</updated>
+  <updated>2017-06-27T02:17:19.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Web Animations API 入门教程第3部分: 多个Animations对象</title>
+    <link href="http://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/"/>
+    <id>http://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/</id>
+    <published>2017-06-27T02:17:19.000Z</published>
+    <updated>2017-06-27T02:17:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是 Web Animations API 入门教程系列的第3部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与<a href="https://twitter.com/dancwilson" target="_blank" rel="external">@dancwilson</a>联系。</p>
+<p>在我们讨论<a href="http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation/">动画和时间线控制</a>之后，让我们来讨论多个动画。
+<a id="more"></a></p>
+<h1 id="每个元素的多个动画"><a href="#每个元素的多个动画" class="headerlink" title="每个元素的多个动画"></a>每个元素的多个动画</h1><iframe height="265" scrolling="no" title="Multiple animate calls" src="//codepen.io/danwilson/embed/PqxvJo/?height=265&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/danwilson/pen/PqxvJo/" target="_blank" rel="external">Multiple animate calls</a> by Dan Wilson (<a href="https://codepen.io/danwilson" target="_blank" rel="external">@danwilson</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.
+</iframe>
+
+<p>在这个例子中，每个矩形都有三个动画应用（涉及到transform，opacity和color）。您可以多次调用元素的<code>animate()</code>方法，类似于允许多个动画的CSS。</p>
+<p>使用CSS：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#toAnimate</span> &#123;</div><div class="line">  <span class="attribute">animation</span>: pulse <span class="number">1s</span>, activate <span class="number">3000ms</span>, have-fun-with-it <span class="number">2.5s</span>;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">keyframes</span> pulse &#123; <span class="comment">/* ... */</span> &#125;</div><div class="line">@<span class="keyword">keyframes</span> activate &#123; <span class="comment">/* ... */</span> &#125;</div><div class="line">@<span class="keyword">keyframes</span> have-fun-with-it &#123; <span class="comment">/* ... */</span> &#125;</div></pre></td></tr></table></figure>
+<p>使用Web Animations API：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> animated = <span class="built_in">document</span>.getElementById(<span class="string">'toAnimate'</span>);</div><div class="line"><span class="keyword">var</span> pulseKeyframes, <span class="comment">//在这里定义 keyframes.</span></div><div class="line">    activateKeyframes,</div><div class="line">    haveFunKeyframes;</div><div class="line"><span class="keyword">var</span> pulse = animated.animate(pulseKeyframes, <span class="number">1000</span>); <span class="comment">// 第二个数值参数作为持续时间的缩写</span></div><div class="line"><span class="keyword">var</span> activate = animated.animate(activateKeyframes, <span class="number">3000</span>);</div><div class="line"><span class="keyword">var</span> haveFunWithIt = animated.animate(haveFunKeyframes, <span class="number">2500</span>);</div></pre></td></tr></table></figure>
+<p>使用Web Animations API，这将创建三个Animation对象，每个对象可以通过时间轴(timeline)或播放速率(playback rate)进行暂停，播放，完成，取消的操作。</p>
+<h1 id="获取-Animations，全部动画对象"><a href="#获取-Animations，全部动画对象" class="headerlink" title="获取 Animations，全部动画对象"></a>获取 Animations，全部动画对象</h1><p>所以你可以知道一个动画开始播放了，但是当你想在元素上调用<code>animate()</code>时你却还没有捕获到Animation的引用。那要怎么做？</p>
+<iframe height="265" scrolling="no" title="Pause All those Random Dots!" src="//codepen.io/danwilson/embed/PqgKVK/?height=265&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/danwilson/pen/PqgKVK/" target="_blank" rel="external">Pause All those Random Dots!</a> by Dan Wilson (<a href="https://codepen.io/danwilson" target="_blank" rel="external">@danwilson</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.
+</iframe>
+
+<p>该规范允许<code>getAnimations()</code>在文档上的方法。在最新版本的规范中，它直接在<code>document（document.getAnimations()）</code>上，在Firefox 48+上它是这样实现的。然而，对于Chrome 52 和<a href="https://github.com/web-animations/web-animations-js" target="_blank" rel="external">polyfill</a>（如V2.2.0的），则根据该旧规范将其置于新的<code>timeline</code>对象上。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 如果引用了 polyfill ，你可以这样写</span></div><div class="line"><span class="keyword">var</span> animations = <span class="built_in">document</span>.getAnimations ? <span class="built_in">document</span>.getAnimations() : <span class="built_in">document</span>.timeline.getAnimations();</div><div class="line"><span class="comment">// 返回一个数组，包含所有正在进行的（除了已完成的和被取消的）动画</span></div></pre></td></tr></table></figure>
+<p>在CodePen示例中，您将看到随机的持续时间，延迟和无限持续时间的变换移动的几个点。“暂停全部”按钮调用<code>getAnimations()</code>并遍历所有, 返回的玩家（每个动画对象）并暂停每一个。</p>
+<h1 id="下一节…"><a href="#下一节…" class="headerlink" title="下一节…"></a>下一节…</h1><p>在下一部分中，我们将看看WAAPI动画可以创建的不同方式（因为它不仅仅是<code>element.animate</code>）。提示：<code>document.timeline</code>会出现更多的体现。</p>
+<p>查看本系列的其余部分：</p>
+<ul>
+<li>介绍</li>
+<li>第1部分：<a href="https://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-1-Creating-a-Basic-Animation/">创建基本动画</a></li>
+<li>第2部分：<a href="https://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation/">动画和时间线控制</a></li>
+<li>第3部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/">多个动画</a></li>
+<li>第4部分：GroupEffects和SequenceEffects</li>
+<li>第5部分：运动路径</li>
+<li>结论</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是 Web Animations API 入门教程系列的第3部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;
+&lt;p&gt;在我们讨论&lt;a href=&quot;http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation/&quot;&gt;动画和时间线控制&lt;/a&gt;之后，让我们来讨论多个动画。
+    
+    </summary>
+    
+      <category term="Web Animations" scheme="http://robin-front.github.io/categories/Web-Animations/"/>
+    
+    
+      <category term="Web Animations" scheme="http://robin-front.github.io/tags/Web-Animations/"/>
+    
+  </entry>
   
   <entry>
     <title>Web Animations API入门教程第2部分：动画和时间线控制</title>
@@ -56,6 +109,7 @@
 <ul>
 <li>介绍</li>
 <li>第1部分：<a href="https://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-1-Creating-a-Basic-Animation/">创建基本动画</a></li>
+<li>第2部分：<a href="http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation/">动画和时间线控制</a></li>
 <li>第3部分：多重动画</li>
 <li>第4部分：GroupEffects和SequenceEffects</li>
 <li>第5部分：运动路径</li>
@@ -110,7 +164,8 @@
 <p>查看本系列的其余部分：</p>
 <ul>
 <li>介绍</li>
-<li>第2部分：动画和时间线控件</li>
+<li>第1部分：<a href="https://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-1-Creating-a-Basic-Animation/">创建基本动画</a></li>
+<li>第2部分：<a href="http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation/">动画和时间线控制</a></li>
 <li>第3部分：多重动画</li>
 <li>第4部分：GroupEffects和SequenceEffects</li>
 <li>第5部分：运动路径</li>
@@ -1832,101 +1887,6 @@
     
     
       <category term="RxJS" scheme="http://robin-front.github.io/tags/RxJS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>通过动图简单通俗地了解Flexbox的工作原理</title>
-    <link href="http://robin-front.github.io/2017/03/13/%E9%80%9A%E8%BF%87%E5%8A%A8%E5%9B%BE%E7%AE%80%E5%8D%95%E9%80%9A%E4%BF%97%E5%9C%B0%E4%BA%86%E8%A7%A3Flexbox%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/"/>
-    <id>http://robin-front.github.io/2017/03/13/通过动图简单通俗地了解Flexbox的工作原理/</id>
-    <published>2017-03-13T03:31:42.000Z</published>
-    <updated>2017-03-13T03:31:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文译自 <a href="https://medium.freecodecamp.com/even-more-about-how-flexbox-works-explained-in-big-colorful-animated-gifs-a5a74812b053#.iwqlenuqq" target="_blank" rel="external">Scott Domes</a></p>
-<p>Flex属性是一个复合属性，而大部分教程中都只设置一个值，但其实它包含了 <code>flex-basis</code>、<code>flex-grow</code>、<code>flex-shrink</code>.
-让我们深入了解Flexbox - 以及如何利用它来构建适应性强和漂亮的布局.
-<a id="more"></a></p>
-<h3 id="属性一：-Flex-Basis"><a href="#属性一：-Flex-Basis" class="headerlink" title="属性一： Flex-Basis"></a>属性一： Flex-Basis</h3><p>在<a href="https://medium.freecodecamp.com/an-animated-guide-to-flexbox-d280cf6afc35#.s7qtdlnbf" target="_blank" rel="external">上一篇文章</a>中，我们主要把它用于外部容器中。这一次，我们试着把它用在容器内的子元素中。</p>
-<p>这是一个很不起眼的属性，但也很直接。</p>
-<p><code>Flex-basis</code> 控制着一个元素的默认大小，在其他 flex 属性应用之前。</p>
-<p>在下面的 GIF 看来，它的作用和 <code>width</code> 的作用一样：</p>
-<p><img src="https://cdn-images-1.medium.com/max/1000/1*S3LKFr_BICUtAWA5LOFxVw.gif" alt="flex-basis"></p>
-<p>是什么让 <code>flex-basis</code> 表现得和 <code>width</code> 一样？事实上，它对应着 flex 的坐标轴。</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*_Ruy6jFG7gUpSf76IUcJTQ.png" alt="flex axes"></p>
-<blockquote>
-<p>flex-basis 影响无素在主轴上的大小</p>
-</blockquote>
-<p>让我们看看保持 <code>flex-basis</code> 的值不变，但是改变主轴方向会有什么变化：</p>
-<p><img src="https://cdn-images-1.medium.com/max/1000/1*W4QU1Fw9kDLEH2m-J9VGyw.gif" alt="flex direction"></p>
-<p>注意到，我从手动设置高度变成手动设置宽度。 <code>Flex-basis</code> 影响宽度还是高度取决于 <code>flex-direction</code> 的值。</p>
-<h3 id="属性二：Flex-Grow"><a href="#属性二：Flex-Grow" class="headerlink" title="属性二：Flex Grow"></a>属性二：Flex Grow</h3><p>现在，我们来点更复杂的。</p>
-<p>首先，让我们设置给所有方块设置相同的宽度，120px:</p>
-<p><img src="https://cdn-images-1.medium.com/max/1000/1*dON3-0RooiPyfDr0DBEOmA.png" alt="same width"></p>
-<p>现在，当它加上属性 <code>flex-grow</code>（默认值为0）.这意味着，不允许方块自动充满容器。</p>
-<p>没理解？现在给每个方块的 <code>flex-grow</code> 属性设置为 <code>1</code>：</p>
-<p><img src="https://cdn-images-1.medium.com/max/1000/1*cK-yB4z_L6bmEqoG5qDoRA.png" alt="flex-grow"></p>
-<p>所有方块共同充满了容器的整个宽度，并且是平均分。 <code>flex-grow</code> 属性覆盖了 <code>width</code> 属性。</p>
-<p>让人困惑的是 <code>flex-grow</code> 的值到底是什么意思？ <code>flex-grow: 1</code> 意味着什么？</p>
-<p>好吧，下图是给每个方块设置 <code>flex-grow</code> 值为 <code>999</code> 的表现：</p>
-<p><img src="https://cdn-images-1.medium.com/max/1000/1*p2fLcy13xFU9GjtM4cbHEw.png" alt="flex-grow:999"></p>
-<p>这真是。。完全一样。</p>
-<p>那是因为 <code>flex-grow</code> 不是一个绝对的值，而是一个相对的值。</p>
-<p>重要的不是一个方块 <code>flex-grow</code> 值的本身，而是这个值和其他方块的值的关系。</p>
-<p>如果给每个方块设置 <code>flex-grow: 1</code>， 然后调整第3个方块的 <code>flex-grow</code> 属性，可以看到如下变化：</p>
-<p><img src="https://cdn-images-1.medium.com/max/1000/1*gHyLHG52cySgLmy0x-edZA.gif" alt="flex-grow change"></p>
-<p>想要真正明白这里发生了什么，让我们快速略过一个简单的数学计算。</p>
-<p>每个正方形都以flex-grow为1开始。如果我们将每个正方形的flex-grow相加，则总和为6。因此，容器被分成6个单独的部分。<em>每个正方形增长到可用空间的1/6以填满容器。</em></p>
-<p>当设置第3个方块的<code>flex-grow</code> 为 2， 现在容器被分成7份，因为 <code>flex-grow</code> 属性的值的总和为 <code>1+1+2+1+1+1</code>.</p>
-<p>方块3获得 2/7 的宽度，剩下的获得 1/7。</p>
-<p>当设置第3个方块为 <code>flex-grow: 3</code>， 容器被分成8份（1+1+3+1+1+1）, 方块3占 3/8, 剩下的占 1/8.</p>
-<p>以此类推。</p>
-<p><code>flex-grow</code>是占所有值总和的比例。如果给所有方块设置<code>flex-grow: 4</code>, 方块3设置 <code>flex-grow: 12</code>, 效果和给它们分别设置 1 和 3 是一样的。</p>
-<p><img src="https://cdn-images-1.medium.com/max/1000/1*JnjR4ULs8de0so1bdUPogw.png" alt="flex-grow"></p>
-<p>最后一点，<code>flex-grow</code> 和 <code>flex-basis</code> 都和主轴对应。我们的方块只会增长宽度，除非设置 <code>flex-direction</code> 为 <code>column</code>.</p>
-<h3 id="属性三：-Flex-Shrink"><a href="#属性三：-Flex-Shrink" class="headerlink" title="属性三： Flex Shrink"></a>属性三： Flex Shrink</h3><p><code>flex-shrink</code> 和 <code>flex-grow</code>正好相反，决定每个方块可以收缩多少。</p>
-<p>它只有在元素必须收缩以适应其容器时才起作用 - 即当容器太小时。</p>
-<p>它的主要用途是指定哪些元素要缩小，哪些元素不用缩小。默认情况下，每个方块的 <code>flex-shrink</code> 值为1 - 这意味着它会随着容器的收缩而收缩。</p>
-<p>让我们看看它的表现。在下面的GIFS中，正方形的<code>flex-grow</code>为1，因此它们填充了容器，并且<code>flex-shrink</code>为1，因此它们被允许收缩.</p>
-<p><img src="https://cdn-images-1.medium.com/max/1000/1*FVO9kX3wwqakhcT9JWS2Ww.gif" alt="flex-shrink"></p>
-<p>现在让我们将方块3的<code>flex-shrink</code>设置为0.它禁止收缩，所以它会增长以适应容器，但它拒绝收缩到其设置的120px宽度以下。</p>
-<p><img src="https://cdn-images-1.medium.com/max/1000/1*GrLzJ4jH3v2Z5Va_TMOXkQ.gif" alt="flex-shrink"></p>
-<p><code>flex-shrink</code>的默认值是1 - 这意味着你的元素会收缩，除非设置为0去禁止它。</p>
-<p>同样，<code>flex-shrink</code> 是按比例的。如果一个盒子的<code>flex-shrink</code>为6，其余的<code>flex-shrink</code>为2，一个盒子将以3倍的速度缩减，当空间被压缩。</p>
-<p>注意这里说的是：具有3x弹性收缩的方块将比其他方块缩短3倍。<em>这并不意味着它将收缩1/3的宽度。</em></p>
-<p>稍后，我们会深入了解这到底会收缩或增长多少，在此之前，先来看一下最后一个属性，并把所有混在一起。</p>
-<h3 id="属性四：-Flex"><a href="#属性四：-Flex" class="headerlink" title="属性四： Flex"></a>属性四： Flex</h3><p>flex 是 grow, shrink 以及 basis 的缩写，复合属性。</p>
-<p>它的默认值是 0(grow) 1（shrink）auto(basis).</p>
-<p>最后一个例子，让我们简化到两个 boxs</p>
-<p>这是它们的属性：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.square</span><span class="selector-id">#one</span> &#123;</div><div class="line">  <span class="attribute">flex</span>: <span class="number">2</span> <span class="number">1</span> <span class="number">300px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.square</span><span class="selector-id">#two</span> &#123;</div><div class="line">  <span class="attribute">flex</span>: <span class="number">1</span> <span class="number">2</span> <span class="number">300px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>两者都有相同的 <code>flex-basis</code>属性。这意味着如果它们都有足够的空间（容器是600px加上边距和填充空间），它们都将是300px宽度。</p>
-<p>但随着容器的增长，Square 1（具有更高的flex-grow）将增长两倍。随着盒子的收缩，Square 2（具有更高的flex-shrink）将缩短两倍。</p>
-<p><img src="https://cdn-images-1.medium.com/max/1000/1*BKZt7AT5eFee4KRhe82gew.gif" alt="all together"></p>
-<h4 id="它是如何增长和收缩的"><a href="#它是如何增长和收缩的" class="headerlink" title="它是如何增长和收缩的"></a>它是如何增长和收缩的</h4><p>这里有可能会混淆：当Square 1增长时，它不会增长到Square 2的两倍。同样，当Square 2缩小时，它不会缩小到Square 1的一半大小 - 即使比率的收缩率为2比1。</p>
-<blockquote>
-<p>这不是他们的大小 2比1或1比2.这是他们的收缩和增长的速度的比例。</p>
-</blockquote>
-<h4 id="一点数学计算"><a href="#一点数学计算" class="headerlink" title="一点数学计算"></a>一点数学计算</h4><p>容器的起始大小为640像素。在容器的每一边占用20px的填充后，这留下了足够的空间，两个方块恢复到它们的<code>flex-basis</code>的300px.</p>
-<p>当容器设置为430px时，我们丢失了210px的空间。正方形1，flex-shrink:1，失去70px。方形2，flex-shrink: 2，失去140px。</p>
-<p>当容器缩小到340px时，我们现在已经失去了300像素的空间。方块1损失100像素，方块2损失200像素.</p>
-<p>损失的空间根据它们各自的收缩率（2:1）的比率来分割。</p>
-<p><code>flex-grow</code>同样。当容器增长到940px，我们获得了300px的空间，Square 1获得了额外的200px，Square 2获得了额外的100px。</p>
-<p><img src="https://cdn-images-1.medium.com/max/1000/1*70-KTWYpA2LnLjqi0xDrJA.gif" alt="grow and shrink"></p>
-<p>在上面的GIF中，您可以看到宽度如何根据比率进行调整，增量（Δ）显示与基于<code>flex-basis</code>的差异。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文译自 &lt;a href=&quot;https://medium.freecodecamp.com/even-more-about-how-flexbox-works-explained-in-big-colorful-animated-gifs-a5a74812b053#.iwqlenuqq&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Scott Domes&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Flex属性是一个复合属性，而大部分教程中都只设置一个值，但其实它包含了 &lt;code&gt;flex-basis&lt;/code&gt;、&lt;code&gt;flex-grow&lt;/code&gt;、&lt;code&gt;flex-shrink&lt;/code&gt;.
-让我们深入了解Flexbox - 以及如何利用它来构建适应性强和漂亮的布局.
-    
-    </summary>
-    
-      <category term="Flexbox" scheme="http://robin-front.github.io/categories/Flexbox/"/>
-    
-    
-      <category term="Flexbox" scheme="http://robin-front.github.io/tags/Flexbox/"/>
     
   </entry>
   

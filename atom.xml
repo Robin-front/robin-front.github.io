@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-06-28T01:59:47.000Z</updated>
+  <updated>2017-06-28T03:11:47.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Web Animations API 入门教程总结回顾</title>
+    <link href="http://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Conclusion/"/>
+    <id>http://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Conclusion/</id>
+    <published>2017-06-28T03:11:47.000Z</published>
+    <updated>2017-06-28T03:11:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是 Web Animations API 入门教程系列的总结部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与<a href="https://twitter.com/dancwilson" target="_blank" rel="external">@dancwilson</a>联系。</p>
+<p>我们已经涵盖了相当多的知识面，希望能够解决有关Web Animations API是什么（而不是什么）的问题。要总结这个系列，我们将回顾一下我们已经讨论过的内容，并看看尚未实现的内容。
+<a id="more"></a></p>
+<h1 id="为什么要用API？"><a href="#为什么要用API？" class="headerlink" title="为什么要用API？"></a>为什么要用API？</h1><p>在介绍中，我们讨论了API是如何将CSS，JS和SVG中的各种方法结合起来进行动画处理，旨在充分利用它们。这意味着，例如，JavaScript可以锁定CSS多年来的硬件加速，并不限于CSS的声明性。API并不意味着替换像<a href="http://greensock.com/" target="_blank" rel="external">GSAP</a>这样的库，而只是为了在浏览器级别提供更多的选项。</p>
+<p><a href="https://birtles.github.io/areweanimatedyet/" target="_blank" rel="external">Firefox</a>和<a href="https://www.chromestatus.com/features#animations" target="_blank" rel="external">Chrome</a>都已经开始实施，而Edge已经<a href="https://dev.modern.ie/platform/status/webanimationsjavascriptapi/" target="_blank" rel="external">积压了很多事没有做</a>。随着团队完成<a href="https://w3c.github.io/web-animations/" target="_blank" rel="external">规范</a>，<a href="https://github.com/web-animations/web-animations-js" target="_blank" rel="external">polyfill</a>可以让我们开始玩转它。</p>
+<h1 id="动画基础"><a href="#动画基础" class="headerlink" title="动画基础"></a>动画基础</h1><p>要<a href="https://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-1-Creating-a-Basic-Animation/">创建一个基本的动画</a>，我们通过提供关键帧和时序属性来跟踪类似于CSS的结构。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> player = <span class="built_in">document</span>.getElementById(<span class="string">'toAnimate'</span>).animate([</div><div class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(1)'</span>, <span class="attr">opacity</span>: <span class="number">1</span>, <span class="attr">offset</span>: <span class="number">0</span> &#125;,</div><div class="line">    &#123; <span class="attr">transform</span>: <span class="string">'scale(.6)'</span>, <span class="attr">opacity</span>: <span class="number">.6</span>, <span class="attr">offset</span>: <span class="number">1</span> &#125;</div><div class="line">  ], &#123;</div><div class="line">    <span class="attr">duration</span>: <span class="number">700</span>,</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<p><a href="http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation/">时间轴控制</a>是当前CSS中明显不存在的部分。通过<code>playState</code>属性读取动画的状态，并改变状态，例如<code>play()</code>，<code>pause()</code>，和<code>finish()</code>。我们也可以通过读/写<code>playbackRate</code>属性将播放速度更改或更快。<code>currentTime</code>可读写，我们可以设置当动画与完成回调<code>onfinish</code>。</p>
+<h1 id="多个动画和分组"><a href="#多个动画和分组" class="headerlink" title="多个动画和分组"></a>多个动画和分组</h1><p>Web Animations API允许对元素设置<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/">多个动画</a>，创建单独的动画对象。<code>document</code>上默认的<code>timeline</code>可以使用<code>getAnimations()</code>方法让我们访问创建的所有动画。可以通过使用<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-4-GroupEffects-and-SequenceEffects/">GroupEffects 和 SequenceEffects</a>（在polyfill中提供但不在Level 1规范中）将动画组合在一起或一个接一个地进行播放。</p>
+<h1 id="运动路径与未来"><a href="#运动路径与未来" class="headerlink" title="运动路径与未来"></a>运动路径与未来</h1><p>在这个系列中，沿着<a href="https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/">一条路径运动</a>让我们看到了它在CSS中的第一个实现，但还有很多其他模块尚未实现。</p>
+<h1 id="间距-Spacing"><a href="#间距-Spacing" class="headerlink" title="间距(Spacing)"></a>间距(Spacing)</h1><p>如果在关键帧中没有设置<code>offset</code>，则当前的实现使用默认的间隔，这意味着它们是均匀分布的（例如，三个帧将具有0,1,5和1的偏移量）。该规范还定义了一种基于属性来调整动画的方法，以使其具有恒定的变化率。当讨论<a href="http://w3c.github.io/web-animations/#spacing-keyframes" target="_blank" rel="external">Spacing keyframes</a>时，该规范描述了这一点。</p>
+<h1 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h1><p>该规范已经演变成–包括<code>ready</code>在内的，每次动画取消或进入挂起状态（通常在更改为“运行”或“已暂停”）之前将会被新的<code>Promise</code>替换。除了<code>onfinish</code>, 我们在本系列中讨论的使用回调之外，我们还可使用<code>finished</code>返回的<code>Promise</code>在动画完成后运行其他功能。</p>
+<h1 id="让我们继续谈论Web动画API"><a href="#让我们继续谈论Web动画API" class="headerlink" title="让我们继续谈论Web动画API"></a>让我们继续谈论Web动画API</h1><p>人们开始更多地谈论这个API，我希望这个讨论继续下去。规格，浏览器实现和polyfill已经持续了一段时间，他们准备好仔细检查。</p>
+<p>有时CSS会有更多场景，有时候是<code>requestAnimationFrame</code>，有时使用类库会是最好的解决方案。知道什么时候使用什么是好的，这个API提供了不少以前我们以前没有的可用的东西，所以很有趣。</p>
+<p>查看本系列的其余部分：</p>
+<ul>
+<li>介绍</li>
+<li>第1部分：<a href="https://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-1-Creating-a-Basic-Animation/">创建基本动画</a></li>
+<li>第2部分：<a href="http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation/">动画和时间线控制</a></li>
+<li>第3部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/">多个动画</a></li>
+<li>第4部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-4-GroupEffects-and-SequenceEffects/">GroupEffects和SequenceEffects</a></li>
+<li>第5部分：<a href="https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/">运动路径</a></li>
+<li><a href="https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Conclusion/">总结与回顾</a></li>
+</ul>
+<p>【翻译原文】： <a href="http://danielcwilson.com/blog/2015/09/animations-conclusion/" target="_blank" rel="external">http://danielcwilson.com/blog/2015/09/animations-conclusion/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是 Web Animations API 入门教程系列的总结部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;
+&lt;p&gt;我们已经涵盖了相当多的知识面，希望能够解决有关Web Animations API是什么（而不是什么）的问题。要总结这个系列，我们将回顾一下我们已经讨论过的内容，并看看尚未实现的内容。
+    
+    </summary>
+    
+      <category term="Web Animations" scheme="http://robin-front.github.io/categories/Web-Animations/"/>
+    
+    
+      <category term="Web Animations" scheme="http://robin-front.github.io/tags/Web-Animations/"/>
+    
+  </entry>
   
   <entry>
     <title>Web Animations API 入门教程第5部分: 可爱的运动路径</title>
@@ -71,7 +119,7 @@
 <li>第3部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/">多个动画</a></li>
 <li>第4部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-4-GroupEffects-and-SequenceEffects/">GroupEffects和SequenceEffects</a></li>
 <li>第5部分：<a href="https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/">运动路径</a></li>
-<li>结论</li>
+<li><a href="https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Conclusion/">总结与回顾</a></li>
 </ul>
 <p>【翻译原文】： <a href="http://danielcwilson.com/blog/2015/09/animations-part-5/" target="_blank" rel="external">http://danielcwilson.com/blog/2015/09/animations-part-5/</a></p>
 ]]></content>
@@ -131,7 +179,7 @@
 <li>第3部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/">多个动画</a></li>
 <li>第4部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-4-GroupEffects-and-SequenceEffects/">GroupEffects和SequenceEffects</a></li>
 <li>第5部分：<a href="https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/">运动路径</a></li>
-<li>结论</li>
+<li><a href="https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Conclusion/">总结与回顾</a></li>
 </ul>
 <p>【翻译原文】：<a href="http://danielcwilson.com/blog/2015/09/animations-part-4/" target="_blank" rel="external">http://danielcwilson.com/blog/2015/09/animations-part-4/</a></p>
 ]]></content>
@@ -185,7 +233,7 @@
 <li>第3部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/">多个动画</a></li>
 <li>第4部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-4-GroupEffects-and-SequenceEffects/">GroupEffects和SequenceEffects</a></li>
 <li>第5部分：<a href="https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/">运动路径</a></li>
-<li>结论</li>
+<li><a href="https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Conclusion/">总结与回顾</a></li>
 </ul>
 <p>【翻译原文】: <a href="http://danielcwilson.com/blog/2015/08/animations-part-3/" target="_blank" rel="external">http://danielcwilson.com/blog/2015/08/animations-part-3/</a></p>
 ]]></content>
@@ -249,7 +297,7 @@
 <li>第3部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/">多个动画</a></li>
 <li>第4部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-4-GroupEffects-and-SequenceEffects/">GroupEffects和SequenceEffects</a></li>
 <li>第5部分：<a href="https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/">运动路径</a></li>
-<li>结论</li>
+<li><a href="https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Conclusion/">总结与回顾</a></li>
 </ul>
 <p>【翻译原文】: <a href="http://danielcwilson.com/blog/2015/07/animations-part-2/" target="_blank" rel="external">http://danielcwilson.com/blog/2015/07/animations-part-2/</a></p>
 ]]></content>
@@ -305,7 +353,7 @@
 <li>第3部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/">多个动画</a></li>
 <li>第4部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-4-GroupEffects-and-SequenceEffects/">GroupEffects和SequenceEffects</a></li>
 <li>第5部分：<a href="https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/">运动路径</a></li>
-<li>结论</li>
+<li><a href="https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Conclusion/">总结与回顾</a></li>
 </ul>
 <p>【翻译原文】： <a href="http://danielcwilson.com/blog/2015/07/animations-part-1/" target="_blank" rel="external">http://danielcwilson.com/blog/2015/07/animations-part-1/</a></p>
 ]]></content>
@@ -1833,43 +1881,6 @@
       &lt;h1 id=&quot;使用-Rx-的奇淫技巧&quot;&gt;&lt;a href=&quot;#使用-Rx-的奇淫技巧&quot; class=&quot;headerlink&quot; title=&quot;使用 Rx 的奇淫技巧&quot;&gt;&lt;/a&gt;使用 Rx 的奇淫技巧&lt;/h1&gt;&lt;h3 id=&quot;尝试画珠宝图&quot;&gt;&lt;a href=&quot;#尝试画珠宝图&quot; class=&quot;headerlink&quot; title=&quot;尝试画珠宝图&quot;&gt;&lt;/a&gt;尝试画珠宝图&lt;/h3&gt;&lt;p&gt;为你想创建的流画一个珠宝图。 通过画珠宝图，你将会很清楚你应该使用哪些操作符。&lt;/p&gt;
 &lt;p&gt;珠宝图就是每个珠宝表示当前的一个事件或状态。珠宝图需要包含输入和输出流。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Reactive-Extensions/RxJS/master/doc/designguidelines/images/throttleWithTimeout.png&quot; alt=&quot;throttleWithSelector&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="RxJS" scheme="http://robin-front.github.io/categories/RxJS/"/>
-    
-    
-      <category term="RxJS" scheme="http://robin-front.github.io/tags/RxJS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>为什么选择 RxJS?</title>
-    <link href="http://robin-front.github.io/2017/04/04/why-rxjs/"/>
-    <id>http://robin-front.github.io/2017/04/04/why-rxjs/</id>
-    <published>2017-04-04T09:48:15.000Z</published>
-    <updated>2017-04-04T09:48:15.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Why-RxJS"><a href="#Why-RxJS" class="headerlink" title="Why RxJS?"></a>Why RxJS?</h2><p>你可能会问，为什么选择 RxJS?  为什么不是 Promises? Promises 可以很好地解决异步操作，像使用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank" rel="external">XMLHttpRequest</a> 去查询服务器, 它预期会返回值并且最终完成请求。  <code>The Reactive Extensions</code> 统一了 <code>JavaScript</code> 中的 <code>Promises</code>, <code>callbacks</code> 以及事件数据，比如 DOM输入, <code>Web Workers</code>, <code>Web Sockets</code>. 一旦我们统一了这些概念，就可以进行各种各样的组合.</p>
-<a id="more"></a>
-<p>为了让您了解丰富的组合，我们可以创建一个自动完成功能，它从文本输入中接收用户输入，然后查询服务，确保不会对每个键盘输入的进行泛滥地调用，而是以一种更自然的方式调用。</p>
-<p>首先，我们将引用JavaScript文件，包括jQuery，尽管RxJS没有依赖于jQuery …
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://code.jquery.com/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"rx.lite.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>接下来，我们将从输入框获取用户输入，使用<a href="content/observable/observable_methods/fromevent.html"><code>Rx.Observable.fromEvent</code></a> 方法监听 <code>keyup</code> 事件.  如果 <a href="http://jquery.com" target="_blank" rel="external">jQuery</a>, <a href="http://zeptojs.com/" target="_blank" rel="external">Zepto</a>, <a href="https://angularjs.org/" target="_blank" rel="external">AngularJS</a> and <a href="http://emberjs.com/" target="_blank" rel="external">Ember.js</a> 可用，将会使用它们来绑定事件, 否则将使用原生事件绑定. 这跟您的框架思考事件的一致方式，因此没有任何惊喜。
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $input = $(<span class="string">'#input'</span>),</div><div class="line">    $results = $(<span class="string">'#results'</span>);</div><div class="line"></div><div class="line"><span class="comment">/* 只从 keyup 事件获得输入值 */</span></div><div class="line"><span class="keyword">var</span> keyups = Rx.Observable.fromEvent($input, <span class="string">'keyup'</span>)</div><div class="line">    .map(<span class="function"><span class="params">e</span> =&gt;</span> e.target.value)</div><div class="line">    .filter(<span class="function"><span class="params">text</span> =&gt;</span> text.length &gt; <span class="number">2</span>);</div><div class="line"></div><div class="line"><span class="comment">/* 函数节流输出设置为 500ms */</span></div><div class="line"><span class="keyword">var</span> throttled = keyups.throttle(<span class="number">500</span> <span class="comment">/* ms */</span>);</div><div class="line"></div><div class="line"><span class="comment">/* 现在判断值是否有改变，只获取不同的值 */</span></div><div class="line"><span class="keyword">var</span> distinct = throttled.distinctUntilChanged();</div></pre></td></tr></table></figure></p>
-<p>现在，让我们来查询维基百科！在RxJS中，我们可以立即通过<code>Rx.Observable.fromPromise</code>方法绑定到任何<a href="https://github.com/promises-aplus/promises-spec" target="_blank" rel="external">Promises A+</a>的实现上，或者直接返回它，并将其封装。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">searchWikipedia</span> (<span class="params">term</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> $.ajax(&#123;</div><div class="line">        <span class="attr">url</span>: <span class="string">'http://en.wikipedia.org/w/api.php'</span>,</div><div class="line">        <span class="attr">dataType</span>: <span class="string">'jsonp'</span>,</div><div class="line">        <span class="attr">data</span>: &#123;</div><div class="line">            <span class="attr">action</span>: <span class="string">'opensearch'</span>,</div><div class="line">            <span class="attr">format</span>: <span class="string">'json'</span>,</div><div class="line">            <span class="attr">search</span>: term</div><div class="line">        &#125;</div><div class="line">    &#125;).promise();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>一旦创建，现在我们可以将不同的节流输入绑定在一起，然后查询服务。在这种情况下，我们将调用<code>flatMapLatest</code>获取该值，并确保我们不会有任何混乱的调用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> suggestions = distinct.flatMapLatest(searchWikipedia);</div></pre></td></tr></table></figure>
-<p>最后，我们将在可观察对象上调用<code>subscribe</code>方法开始拉数据。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">suggestions.subscribe(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">var</span> res = data[<span class="number">1</span>];</div><div class="line"></div><div class="line">    <span class="comment">/* Do something 像数据绑定 */</span></div><div class="line">    $results.empty();</div><div class="line"></div><div class="line">    $.each(res, (_, value) =&gt; $(<span class="string">'&lt;li&gt;'</span> + value + <span class="string">'&lt;/li&gt;'</span>).appendTo($results));</div><div class="line">&#125;, error =&gt; &#123;</div><div class="line">    <span class="comment">/* handle any errors */</span></div><div class="line">    $results.empty();</div><div class="line"></div><div class="line">    $(<span class="string">'&lt;li&gt;Error: '</span> + error + <span class="string">'&lt;/li&gt;'</span>).appendTo($results);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/Reactive-Extensions/RxJS#why-rxjs" target="_blank" rel="external">翻译参考</a>
-<a href="https://robin-front.gitbooks.io/rxjs-doc-chinese/content/why_rxjs.html" target="_blank" rel="external">同步发布RxJS中文文档</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Why-RxJS&quot;&gt;&lt;a href=&quot;#Why-RxJS&quot; class=&quot;headerlink&quot; title=&quot;Why RxJS?&quot;&gt;&lt;/a&gt;Why RxJS?&lt;/h2&gt;&lt;p&gt;你可能会问，为什么选择 RxJS?  为什么不是 Promises? Promises 可以很好地解决异步操作，像使用 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;XMLHttpRequest&lt;/a&gt; 去查询服务器, 它预期会返回值并且最终完成请求。  &lt;code&gt;The Reactive Extensions&lt;/code&gt; 统一了 &lt;code&gt;JavaScript&lt;/code&gt; 中的 &lt;code&gt;Promises&lt;/code&gt;, &lt;code&gt;callbacks&lt;/code&gt; 以及事件数据，比如 DOM输入, &lt;code&gt;Web Workers&lt;/code&gt;, &lt;code&gt;Web Sockets&lt;/code&gt;. 一旦我们统一了这些概念，就可以进行各种各样的组合.&lt;/p&gt;
     
     </summary>
     

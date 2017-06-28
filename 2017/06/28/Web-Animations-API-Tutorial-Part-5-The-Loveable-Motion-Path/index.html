@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="animate," />
+  <meta name="keywords" content="Web Animations," />
 
 
 
@@ -91,17 +91,17 @@
 
 
 
-<meta name="description" content="上一篇的 RxJS的动画简介 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。 Lerp是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.">
-<meta name="keywords" content="animate">
+<meta name="description" content="这是 Web Animations API 入门教程系列的第5部分。 重要信息：自撰写本文以来，运动路径的规范（和Chromium实现）已经发生了重大变化。以下在概念上仍然有效，但是属性名称和更多内容已经改变。截至2016年10月，请查看CSS运动路径。 最后，沿着路径动画…不再仅仅是SVG的领域。">
+<meta name="keywords" content="Web Animations">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lerp的应用-利用简单线性插值来平滑动画效果">
-<meta property="og:url" content="http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/index.html">
+<meta property="og:title" content="Web Animations API 入门教程第5部分: 可爱的运动路径">
+<meta property="og:url" content="http://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="上一篇的 RxJS的动画简介 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。 Lerp是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.">
-<meta property="og:updated_time" content="2017-03-20T03:04:39.000Z">
+<meta property="og:description" content="这是 Web Animations API 入门教程系列的第5部分。 重要信息：自撰写本文以来，运动路径的规范（和Chromium实现）已经发生了重大变化。以下在概念上仍然有效，但是属性名称和更多内容已经改变。截至2016年10月，请查看CSS运动路径。 最后，沿着路径动画…不再仅仅是SVG的领域。">
+<meta property="og:updated_time" content="2017-06-28T01:59:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lerp的应用-利用简单线性插值来平滑动画效果">
-<meta name="twitter:description" content="上一篇的 RxJS的动画简介 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。 Lerp是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.">
+<meta name="twitter:title" content="Web Animations API 入门教程第5部分: 可爱的运动路径">
+<meta name="twitter:description" content="这是 Web Animations API 入门教程系列的第5部分。 重要信息：自撰写本文以来，运动路径的规范（和Chromium实现）已经发生了重大变化。以下在概念上仍然有效，但是属性名称和更多内容已经改变。截至2016年10月，请查看CSS运动路径。 最后，沿着路径动画…不再仅仅是SVG的领域。">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/"/>
+  <link rel="canonical" href="http://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/"/>
 
 
 
 
 
-  <title> Lerp的应用-利用简单线性插值来平滑动画效果 | 三寸稚笔 </title>
+  <title> Web Animations API 入门教程第5部分: 可爱的运动路径 | 三寸稚笔 </title>
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
   (adsbygoogle = window.adsbygoogle || []).push({
@@ -330,7 +330,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/">
+    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="robin">
@@ -347,7 +347,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Lerp的应用-利用简单线性插值来平滑动画效果</h2>
+          <h2 class="post-title" itemprop="name headline">Web Animations API 入门教程第5部分: 可爱的运动路径</h2>
         
 
         <div class="post-meta">
@@ -359,8 +359,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T11:04:39+08:00">
-                2017-03-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-28T09:59:47+08:00">
+                2017-06-28
               </time>
             
 
@@ -375,8 +375,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-03-20T11:04:39+08:00">
-                2017-03-20
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-28T09:59:47+08:00">
+                2017-06-28
               </time>
             
           </span>
@@ -394,8 +394,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/animate/" itemprop="url" rel="index">
-                    <span itemprop="name">animate</span>
+                  <a href="/categories/Web-Animations/" itemprop="url" rel="index">
+                    <span itemprop="name">Web Animations</span>
                   </a>
                 </span>
 
@@ -412,9 +412,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/#comments" itemprop="discussionUrl">
+                <a href="/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -438,7 +438,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  466
+                  1,475
                 </span>
               
 
@@ -454,7 +454,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  2
+                  5
                 </span>
               
             </div>
@@ -483,25 +483,58 @@
           (adsbygoogle = window.adsbygoogle || []).push({});
           </script>
         </div>
-        <p>上一篇的 <a href="https://robin-front.github.io/2017/03/19/RxJS%E7%9A%84%E5%8A%A8%E7%94%BB%E7%AE%80%E4%BB%8B/">RxJS的动画简介</a> 里提到一个动画平滑的小技巧, 这里展示几个例子，它真的很简单却很有用。</p>
-<p><code>Lerp</code>是两点之间的线性插值的别称。这是一个实现起来相当简单的效果，但可以真正改善你的动画的外观，如果你将一个对象从点A移动到点B.
+        <p>这是 Web Animations API 入门教程系列的第5部分。</p>
+<p>重要信息：自撰写本文以来，运动路径的规范（和Chromium实现）已经发生了重大变化。以下在概念上仍然有效，但是属性名称和更多内容已经改变。截至2016年10月，请查看<a href="https://codepen.io/danwilson/post/css-motion-paths-2016" target="_blank" rel="external">CSS运动路径</a>。</p>
+<p>最后，沿着路径动画…不再仅仅是SVG的领域。
 <a id="more"></a></p>
-<h1 id="它是如何工作的？"><a href="#它是如何工作的？" class="headerlink" title="它是如何工作的？"></a>它是如何工作的？</h1><p>如果您有一个对象的当前位置和目标的位置，您可以线性内插这些点之间的距离的百分比，并在每个动画帧上更新该位置。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lerp</span>(<span class="params">position, targetPosition</span>) </span>&#123;</div><div class="line"><span class="comment">// 计算当前位置与目标位置差值的 20%</span></div><div class="line">  position.x += (targetPosition.x - position.x)*<span class="number">0.2</span>;</div><div class="line">  position.y += (targetPosition.y - position.y)*<span class="number">0.2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>通过这样做，对象移动的量随着位置和目标之间的距离减小而变小。这意味着对象将越来越接近它的目标，速度将减慢，这创造一个很好的缓和效果。</p>
-<h1 id="一些例子"><a href="#一些例子" class="headerlink" title="一些例子"></a>一些例子</h1><p>这里有一个球跟随用户的鼠标或触摸运动的例子。如果我们使球移动到鼠标移动的地方，球的移动可以非常快但看起来有点脱节。如果我们快速移动鼠标，我们也可以看到单独的“球影”。</p>
-<iframe width="100%" height="300" src="//codepen.io/anon/embed/avXmyV?slug-hash=avXmyV&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
+<h1 id="运动路径：当前方向（Spec）"><a href="#运动路径：当前方向（Spec）" class="headerlink" title="运动路径：当前方向（Spec）"></a>运动路径：当前方向（Spec）</h1><iframe height="265" scrolling="no" title="Motion Path Infinity" src="//codepen.io/danwilson/embed/MwLmby/?height=265&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/danwilson/pen/MwLmby/" target="_blank" rel="external">Motion Path Infinity</a> by Dan Wilson (<a href="https://codepen.io/danwilson" target="_blank" rel="external">@danwilson</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.
+</iframe>
 
-<p>这里是同样的演示，除了这次我们使用lerp。不是将球立即向右移动到鼠标位置，我们每次将它移动10％的距离。</p>
-<iframe width="100%" height="300" src="//codepen.io/anon/embed/yYZapV?slug-hash=yYZapV&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
+<p>随着API规范的运用，运动路径出现了不同的形式。最初有可能的一个方向是一个形式的特效（如前面所讨论的<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-4-GroupEffects-and-SequenceEffects/">GroupEffect</a>），但随后借助CSS模块的运动路径的气势一点点上升（<a href="https://www.w3.org/TR/motion-1/" target="_blank" rel="external">拥有它自己的规范</a>）。</p>
+<p>因此，沿着路径动画将只是另一组CSS属性，可以动画化，正如<code>opacity</code>和<code>tranform</code>也可以。这样，CSS过渡和关键帧可以使用它,Web Animations API也是…这是伟大的，因为我们想要尽可能多的这些方法之间共享给我们更多的灵活性。Chrome和Opera已经发布了一个初步的实现，所以我们可以在今天开始玩它，尽管还没有在polyfill找到它的任何使用方式。</p>
+<p>让我们分解这些属性，我们如何使用它们，现在还有什么事情可以阻碍我们。</p>
+<h1 id="运动路径属性"><a href="#运动路径属性" class="headerlink" title="运动路径属性"></a>运动路径属性</h1><p>我们将讨论<code>motion</code>的三个属性。现在，要查看示例，您将需要运行Chrome 46或Opera 33。</p>
+<h2 id="motion-path"><a href="#motion-path" class="headerlink" title="motion-path"></a>motion-path</h2><p>起始点是<code>motion-path</code>定义元素可以移动的路径，遵循SVG 1.1中的路径工作方式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#motioner</span> &#123;</div><div class="line">  <span class="attribute">motion-path</span>: <span class="built_in">path</span>(<span class="string">"M200 200 S 200.5 200.1 348.7 184.4z"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这也可以<code>fill-rule</code>在路径调用中作为可选的第一个参数。我建议您阅读<a href="http://svgpocketguide.com/book/#section-4" target="_blank" rel="external">Joni Trythall的“优秀口袋指南”</a>，就SVG进行讨论。</p>
+<p>根据规范，您还可以使用基本形状，例如<code>circle</code>，<code>polygon</code>，<code>ellipse</code>，和<code>inset</code>。如果您尝试过使用<a href="http://alistapart.com/article/css-shapes-101" target="_blank" rel="external">CSS shape</a>，这些应该看起来很熟悉。</p>
+<p>根据Blink的初始实现，我只看过这个<code>path()</code>方法可以工作，所以我一直没有正确使用形状或者还没到时候。</p>
+<h2 id="motion-offset"><a href="#motion-offset" class="headerlink" title="motion-offset"></a>motion-offset</h2><p>驱动运动，并将元素放在我们使用的路径上的某个位置<code>motion-offset</code>。这可以是双倍长度值或百分比。因此，从路径的起点到最后，我们设置一个从0到100％的动画。使用我们拥有的Web Animations API</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> m = <span class="built_in">document</span>.getElementById(<span class="string">'motioner'</span>);</div><div class="line">m.animate([</div><div class="line">  &#123; <span class="attr">motionOffset</span>: <span class="number">0</span> &#125;,</div><div class="line">  &#123; <span class="attr">motionOffset</span>: <span class="string">'100%'</span> &#125;</div><div class="line">], <span class="number">1000</span>);</div></pre></td></tr></table></figure>
+<p>以及CSS的写法</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#motioner</span> &#123;</div><div class="line">  <span class="attribute">animation</span>: path-animation <span class="number">1s</span>;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">keyframes</span> path-animation &#123;</div><div class="line">  0% &#123;</div><div class="line">    <span class="attribute">motion-offset</span>: <span class="number">0</span>;</div><div class="line">  &#125;</div><div class="line">  100% &#123;</div><div class="line">    <span class="attribute">motion-offset</span>: <span class="string">'100%'</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<iframe height="265" scrolling="no" title="CSS Motion Path Spiral" src="//codepen.io/danwilson/embed/ZGmeRO/?height=265&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/danwilson/pen/ZGmeRO/" target="_blank" rel="external">CSS Motion Path Spiral</a> by Dan Wilson (<a href="https://codepen.io/danwilson" target="_blank" rel="external">@danwilson</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.
+</iframe>
 
-<p>注意球的运动很平滑，整体更令人愉快的效果。</p>
-<p>这里是使用lerp的另一个例子。这次我们有一个滚动指示器，当您向下滚动“页面”时更新。</p>
-<iframe width="100%" height="300" src="//codepen.io/anon/embed/rOPMvz?slug-hash=rOPMvz&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
+<p>该CodePen演示显示了从外部到内部沿着螺旋路径移动的几个点。随着每个点接近中心，它变得越来越快，变得越来越透明。 <code>.animate()</code>在每个点被称为两次无限迭代和一个延迟，其中一个调用集中在运动偏移，另一个焦点在缩放和不透明度上。我分解了他们，指出了不同的解决方案，当然，他们也可以结合在一起。</p>
+<p>这种方法还使用功能检测，您将会注意到，如果您在Safari，Firefox，Edge或旧版Chrome / Opera中查看，因为您将看到一条消息而不是动画。有几种方法可以做到这一点，比如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> m = <span class="built_in">document</span>.getElementById(<span class="string">'motioner'</span>);</div><div class="line"><span class="keyword">if</span> (m.style.motionOffset !== <span class="literal">undefined</span>) &#123; ... &#125;</div></pre></td></tr></table></figure>
+<p>当然，我们不想在真正的网页中完全阻止用户，所以如果支持，我们可以有另一个动画（或者没有动画）切换到<code>Motion Path</code>动画。像往常一样，渐进增强(Progressive Enhancement)是我们的朋友。</p>
+<h2 id="motion-rotation"><a href="#motion-rotation" class="headerlink" title="motion-rotation"></a>motion-rotation</h2><p>最后的属性是motion-rotation，它处理元素沿着路径移动时面向哪个方向。有四种主要方法可以指定这一点。</p>
+<ul>
+<li>auto 表示元素将随路径旋转。</li>
+<li>reverse 元素也将随着路径旋转，但会增加180度，因此将向后。</li>
+<li>auto Xdeg / reverse Xdeg 除了添加X度也会一样</li>
+<li>Xdeg 将不再与路径一起旋转，元素将保持固定朝向相同的方向。</li>
+</ul>
+<iframe height="265" scrolling="no" title="CSS MotionPath" src="//codepen.io/danwilson/embed/qdLQjz/?height=265&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/danwilson/pen/qdLQjz/" target="_blank" rel="external">CSS MotionPath</a> by Dan Wilson (<a href="https://codepen.io/danwilson" target="_blank" rel="external">@danwilson</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.
+</iframe>
 
-<iframe width="100%" height="300" src="//codepen.io/anon/embed/epxdxe?slug-hash=epxdxe&default-tab=result&height=300&theme-id=1970&user=anon"></iframe>
-
-<p>所以，lerp“把戏”是一个伟大的工具，我们的网络动画套路，以对抗线性或锯齿状的运动。</p>
+<h1 id="少了点什么东西？"><a href="#少了点什么东西？" class="headerlink" title="少了点什么东西？"></a>少了点什么东西？</h1><p>这是第一个版本，当然，浏览器制造商和规范作者仍在讨论这一切。在尝试这一过程中，我注意到的最大的一件事就是缺少适应不同屏幕/容器尺寸的路径。</p>
+<p>路径只是按照它们的定义出现。当使用SVG时，我们获得灵活性，因为我们在容器上具有不同的坐标系和属性，如 <a href="http://sarasoueidan.com/blog/svg-coordinate-systems/#svg-viewbox" target="_blank" rel="external">viewBox</a>。使用CSS中定义的运动路径，路径的大小不能被其他属性另外修改或约束。元素上定义的宽度和高度仅适用于元素，而不是其运动路径。您可以使用媒体查询或JavaScript来定义不同条件的不同路径，但是想通过<code>motion</code>属性灵活地设置它们是不可能的事。</p>
+<h1 id="回顾和下一节"><a href="#回顾和下一节" class="headerlink" title="回顾和下一节"></a>回顾和下一节</h1><p>我们将看到规范的方向，但现在尝试这样做是很有趣的，看看它可能提供什么（和不提供什么）。我正在收集我在CodePen上找到的<a href="http://codepen.io/collection/AQWaem" target="_blank" rel="external">CSS Motion Path演示文稿</a>，而Eric Willigers（Chrome开发团队的相关实现任务的所有者）拥有一个<a href="https://docs.google.com/document/d/15nn0tc9meyahzSBAauYtIUpGFsuHaieZt403k1v9B90/edit" target="_blank" rel="external">Google Doc的例子</a>。</p>
+<p>我们将在下次再次介绍我们所讨论的内容，并且再看几个目前唯一的规范主题。</p>
+<p>查看本系列的其余部分：</p>
+<ul>
+<li>介绍</li>
+<li>第1部分：<a href="https://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-1-Creating-a-Basic-Animation/">创建基本动画</a></li>
+<li>第2部分：<a href="http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation/">动画和时间线控制</a></li>
+<li>第3部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations/">多个动画</a></li>
+<li>第4部分：<a href="https://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-4-GroupEffects-and-SequenceEffects/">GroupEffects和SequenceEffects</a></li>
+<li>第5部分：<a href="https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/">运动路径</a></li>
+<li>结论</li>
+</ul>
+<p>【翻译原文】： <a href="http://danielcwilson.com/blog/2015/09/animations-part-5/" target="_blank" rel="external">http://danielcwilson.com/blog/2015/09/animations-part-5/</a></p>
 
       
     </div>
@@ -530,7 +563,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/" title="Lerp的应用-利用简单线性插值来平滑动画效果">http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/</a>
+      <a href="http://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/" title="Web Animations API 入门教程第5部分: 可爱的运动路径">http://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -546,7 +579,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/animate/" rel="tag"># animate</a>
+            <a href="/tags/Web-Animations/" rel="tag"># Web Animations</a>
           
         </div>
       
@@ -559,8 +592,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/19/RxJS的动画简介/" rel="next" title="RxJS的动画简介">
-                <i class="fa fa-chevron-left"></i> RxJS的动画简介
+              <a href="/2017/06/27/Web-Animations-API-Tutorial-Part-4-GroupEffects-and-SequenceEffects/" rel="next" title="Web Animations API 入门教程第4部分: GroupEffects & SequenceEffects">
+                <i class="fa fa-chevron-left"></i> Web Animations API 入门教程第4部分: GroupEffects & SequenceEffects
               </a>
             
           </div>
@@ -568,10 +601,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/04/why-rxjs/" rel="prev" title="为什么选择 RxJS?">
-                为什么选择 RxJS? <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -743,7 +772,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#它是如何工作的？"><span class="nav-number">1.</span> <span class="nav-text">它是如何工作的？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一些例子"><span class="nav-number">2.</span> <span class="nav-text">一些例子</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#运动路径：当前方向（Spec）"><span class="nav-number">1.</span> <span class="nav-text">运动路径：当前方向（Spec）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运动路径属性"><span class="nav-number">2.</span> <span class="nav-text">运动路径属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#motion-path"><span class="nav-number">2.1.</span> <span class="nav-text">motion-path</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#motion-offset"><span class="nav-number">2.2.</span> <span class="nav-text">motion-offset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#motion-rotation"><span class="nav-number">2.3.</span> <span class="nav-text">motion-rotation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#少了点什么东西？"><span class="nav-number">3.</span> <span class="nav-text">少了点什么东西？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回顾和下一节"><span class="nav-number">4.</span> <span class="nav-text">回顾和下一节</span></a></li></ol></div>
             
 
           </div>
@@ -899,9 +928,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://robin-front.github.io/2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/';
-          this.page.identifier = '2017/03/20/Lerp的应用-利用简单线性插值来平滑动画效果/';
-          this.page.title = 'Lerp的应用-利用简单线性插值来平滑动画效果';
+          this.page.url = 'http://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/';
+          this.page.identifier = '2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/';
+          this.page.title = 'Web Animations API 入门教程第5部分: 可爱的运动路径';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://robin-front-github-io.disqus.com/embed.js';

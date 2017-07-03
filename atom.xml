@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-06-28T03:11:47.000Z</updated>
+  <updated>2017-07-03T03:02:06.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,115 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Array数组的indexOf、includes vs for-loop性能比较</title>
+    <link href="http://robin-front.github.io/2017/07/03/arr-of-indexOf-vs-includes-and-for-loop/"/>
+    <id>http://robin-front.github.io/2017/07/03/arr-of-indexOf-vs-includes-and-for-loop/</id>
+    <published>2017-07-03T03:02:06.000Z</published>
+    <updated>2017-07-03T03:02:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近遇到一道算法题，然后有些人会使用 <code>includes</code>、<code>indexOf</code> 去判断是否存在另一个数。这让我不禁思考，这和 <code>for loop</code>有什么区别，能减少时间复杂度吗？我一开始也不是很清楚，但我可以找文档，找标准。我的第一判断是 <code>includes</code> 完全和 <code>for loop</code>没有区别的，只是es6 标准规范提供的语法糖，而 <code>indexOf</code> 还是有一定效率的。带着疑惑，查看 MDN 和 <a href="http://www.ecma-international.org/ecma-262" target="_blank" rel="external">ecma-262</a>
+<a id="more"></a></p>
+<h1 id="includes"><a href="#includes" class="headerlink" title="includes"></a>includes</h1><p><code>includes</code> 是 ES6 新增语法，返回 布尔值。最容易拿 <code>indexOf</code> 来比较， <code>indexOf</code> 不能判断 <code>NaN</code>, 而且不够语义，返回的是 匹配值的位置 或 <code>-1</code>。
+<code>includes</code> 内部实现是这样的：</p>
+<blockquote>
+<ol>
+<li>Let O be ? ToObject(this value).</li>
+<li>Let len be ? ToLength(? Get(O, “length”)).</li>
+<li>If len is 0, return false.</li>
+<li>Let n be ? ToInteger(fromIndex). (If fromIndex is undefined, this step produces the value 0.)</li>
+<li>If n ≥ 0, then<ol>
+<li>Let k be n.</li>
+</ol>
+</li>
+<li>Else n &lt; 0,<ol>
+<li>Let k be len + n.</li>
+<li>If k &lt; 0, let k be 0.</li>
+</ol>
+</li>
+<li>Repeat, while k &lt; len<ol>
+<li>Let elementK be the result of ? Get(O, ! ToString(k)).</li>
+<li>If SameValueZero(searchElement, elementK) is true, return true.</li>
+<li>Increase k by 1.</li>
+</ol>
+</li>
+<li>Return false.</li>
+</ol>
+</blockquote>
+<p>其中的 <code>SameValueZero</code> 内部实现是这样的：</p>
+<blockquote>
+<ol>
+<li>If Type(x) is different from Type(y), return false.</li>
+<li>If Type(x) is Number, then<ol>
+<li>If x is NaN and y is NaN, return true.</li>
+<li>If x is +0 and y is -0, return true.</li>
+<li>If x is -0 and y is +0, return true.</li>
+<li>If x is the same Number value as y, return true.</li>
+</ol>
+</li>
+<li>Return false.</li>
+<li>Return SameValueNonNumber(x, y).</li>
+</ol>
+</blockquote>
+<p>从上面可以看出 <code>includes</code> 内部是使用 <code>while</code> 循环，并不能够降低时间复杂度。它能判断出 <code>NaN</code> 以及 <code>+0</code>等于<code>-0</code>。</p>
+<p><strong>所以，返回值的语义化和 <code>NaN</code>的判断就是  <code>includes</code> 的场景。</strong></p>
+<h1 id="indexOf"><a href="#indexOf" class="headerlink" title="indexOf"></a>indexOf</h1><p>好，<code>includes</code> 用来提升效率的幻想破灭了，那 <code>indexOf</code> 呢，规范是这么写的：</p>
+<blockquote>
+<ol>
+<li>Let O be ? ToObject(this value).</li>
+<li>Let len be ? ToLength(? Get(O, “length”)).</li>
+<li>If len is 0, return -1.</li>
+<li>Let n be ? ToInteger(fromIndex). (If fromIndex is undefined, this step produces the value 0.)</li>
+<li>If n ≥ len, return -1.</li>
+<li>If n ≥ 0, then<ol>
+<li>If n is -0, let k be +0; else let k be n.</li>
+</ol>
+</li>
+<li>Else n &lt; 0,<ol>
+<li>Let k be len + n.</li>
+<li>If k &lt; 0, let k be 0.</li>
+</ol>
+</li>
+<li>Repeat, while k &lt; len<ol>
+<li>Let kPresent be ? HasProperty(O, ! ToString(k)).</li>
+<li>If kPresent is true, then<ol>
+<li>Let elementK be ? Get(O, ! ToString(k)).</li>
+<li>Let same be the result of performing Strict Equality Comparison searchElement === elementK.</li>
+<li>If same is true, return k.</li>
+</ol>
+</li>
+<li>Increase k by 1.</li>
+</ol>
+</li>
+<li>Return -1.</li>
+</ol>
+</blockquote>
+<p><code>Array</code>的 <code>indexOf</code> 也使用了 <code>while</code> 循环，并使用 <code>===</code> 全等比较。（<strong>注： 与 <code>String.prototype.indexOf</code> 并不同</strong>）</p>
+<p><strong><code>indexOf</code> 使用场景是需要知道 匹配值的位置。</strong></p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>这是一个<a href="https://jsperf.com/includes-vs-indexof-vs-forloop/1" target="_blank" rel="external">性能测试比较</a></p>
+<p><img src="https://raw.githubusercontent.com/Robin-front/blog/master/source/images/20170703/includes.vs.indexOf.png" alt="我的测试结果"></p>
+<p>so? 如果单纯只是想比较，简单的才是最快的。 <code>includes</code>与<code>indexOf</code>效率相当，而<code>for Loop</code>最快，因为没有其他的前置判断和浏览器对它的优化。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近遇到一道算法题，然后有些人会使用 &lt;code&gt;includes&lt;/code&gt;、&lt;code&gt;indexOf&lt;/code&gt; 去判断是否存在另一个数。这让我不禁思考，这和 &lt;code&gt;for loop&lt;/code&gt;有什么区别，能减少时间复杂度吗？我一开始也不是很清楚，但我可以找文档，找标准。我的第一判断是 &lt;code&gt;includes&lt;/code&gt; 完全和 &lt;code&gt;for loop&lt;/code&gt;没有区别的，只是es6 标准规范提供的语法糖，而 &lt;code&gt;indexOf&lt;/code&gt; 还是有一定效率的。带着疑惑，查看 MDN 和 &lt;a href=&quot;http://www.ecma-international.org/ecma-262&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ecma-262&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="Array" scheme="http://robin-front.github.io/categories/Array/"/>
+    
+    
+      <category term="Array" scheme="http://robin-front.github.io/tags/Array/"/>
+    
+      <category term="indexOf" scheme="http://robin-front.github.io/tags/indexOf/"/>
+    
+      <category term="includes" scheme="http://robin-front.github.io/tags/includes/"/>
+    
+      <category term="loop" scheme="http://robin-front.github.io/tags/loop/"/>
+    
+  </entry>
   
   <entry>
     <title>Web Animations API 入门教程总结回顾</title>
@@ -1833,43 +1942,6 @@
       <category term="RxJS" scheme="http://robin-front.github.io/tags/RxJS/"/>
     
       <category term="Observable" scheme="http://robin-front.github.io/tags/Observable/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Coverage针对js和css的代码覆盖检测-Chrome_devtools的新功能</title>
-    <link href="http://robin-front.github.io/2017/04/06/Coverage%E9%92%88%E5%AF%B9js%E5%92%8Ccss%E7%9A%84%E4%BB%A3%E7%A0%81%E8%A6%86%E7%9B%96%E6%A3%80%E6%B5%8B-Chrome-devtools%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD/"/>
-    <id>http://robin-front.github.io/2017/04/06/Coverage针对js和css的代码覆盖检测-Chrome-devtools的新功能/</id>
-    <published>2017-04-06T03:21:26.000Z</published>
-    <updated>2017-04-06T03:21:26.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>也许你之前用过一些像 <code>css usage</code>、<code>css used</code> 这样的浏览器插件去检测代码覆盖率。但现在，Chrome的实验版本<a href="https://www.google.com/chrome/browser/canary.html" target="_blank" rel="external">Canary</a>终于实现了代码覆盖率检测，这意味着它将很快普及到正式版本。这是一个令人兴奋的功能，在使用JavaScript和CSS时非常有用，所以我会做一个快速的演示，并探索它如何使用。</p>
-<a id="more"></a>
-<h2 id="它做了些什么事情"><a href="#它做了些什么事情" class="headerlink" title="它做了些什么事情"></a>它做了些什么事情</h2><p>代码覆盖可以在您运行您的Web应用程序的时候，遍历每个JS / CSS文件，看看哪些代码行运行，哪些代码没有运行。</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*gD8lX40PSemDOZgvT695Mg.png" alt="coverage"></p>
-<p>在这里，我做了一个简单的静态网页，Chrome生成了页面上存在的CSS和JS文件的问题汇总。右侧的栏显示每个文件的相对大小，红色表示未使用的代码，绿色显示运行的代码。</p>
-<p>记录代码覆盖范围与devtools时间轴类似，您点击开始记录，然后在您的站点进行正常的交互。完成后，Chrome会进行一些计算并生成读数。在这里，我很好奇网站上有多少未使用的CSS，所以我导航到各个子页面，以确保我触及到每个css。果然，这里有很多改进的空间，因为我的网站上的css的97％没有使用！</p>
-<p><img src="https://cdn-images-1.medium.com/max/1200/1*1SUTeKlhRee3MyKdxkUGtQ.png" alt="coverage"></p>
-<p>Chrome还可让您深入研究单个文件的代码范围。在这里，左边的红色/绿色条显示哪一行执行了，哪一行没有。请注意，当检查最小化的文件时，可以按文件左下角的按钮来“<code>prettify</code>”代码。</p>
-<h2 id="这有什么用"><a href="#这有什么用" class="headerlink" title="这有什么用"></a>这有什么用</h2><p>在一个复杂的或长期的项目上工作时，很容易积累冗余代码。如果你使用 <code>webpack</code> 或另一个JS构建系统，可以防止大多数无用的JS代码。但是对于CSS来说，这样做可能会有点棘手。有了这个覆盖工具，在Chrome是一个伟大的方式来快速了解多少冗余的代码在运行，哪些文件需要优化。</p>
-<h2 id="如何才能使用它"><a href="#如何才能使用它" class="headerlink" title="如何才能使用它"></a>如何才能使用它</h2><p>下载Chrome的实验版本<a href="https://www.google.com/chrome/browser/canary.html" target="_blank" rel="external">Canary</a>或等待此功能更新到正式版本。</p>
-<p>【译文参考】：<a href="https://blog.logrocket.com/using-the-chrome-devtools-new-code-coverage-feature-ca96c3dddcaf" target="_blank" rel="external">https://blog.logrocket.com/using-the-chrome-devtools-new-code-coverage-feature-ca96c3dddcaf</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;也许你之前用过一些像 &lt;code&gt;css usage&lt;/code&gt;、&lt;code&gt;css used&lt;/code&gt; 这样的浏览器插件去检测代码覆盖率。但现在，Chrome的实验版本&lt;a href=&quot;https://www.google.com/chrome/browser/canary.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Canary&lt;/a&gt;终于实现了代码覆盖率检测，这意味着它将很快普及到正式版本。这是一个令人兴奋的功能，在使用JavaScript和CSS时非常有用，所以我会做一个快速的演示，并探索它如何使用。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Chrome_devtools" scheme="http://robin-front.github.io/categories/Chrome-devtools/"/>
-    
-      <category term="javascript" scheme="http://robin-front.github.io/categories/Chrome-devtools/javascript/"/>
-    
-    
-      <category term="coverage" scheme="http://robin-front.github.io/tags/coverage/"/>
-    
-      <category term="Chrome_devtools" scheme="http://robin-front.github.io/tags/Chrome-devtools/"/>
     
   </entry>
   

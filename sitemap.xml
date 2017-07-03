@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://robin-front.github.io/2017/07/03/arr-of-indexOf-vs-includes-and-for-loop/</loc>
+    
+    <lastmod>2017-07-03T03:02:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Conclusion/</loc>
     
     <lastmod>2017-06-28T03:11:47.000Z</lastmod>
@@ -219,14 +226,14 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2015/10/30/javascript%E5%8F%96%E6%9C%AC%E5%91%A8%E5%92%8C%E6%9C%AC%E6%9C%88%E6%88%96%E4%BB%BB%E6%84%8F%E6%9C%88%E7%9A%84%E6%97%B6%E9%97%B4%E6%AE%B5/</loc>
+    <loc>http://robin-front.github.io/categories/index.html</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/categories/index.html</loc>
+    <loc>http://robin-front.github.io/about/index.html</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     
@@ -247,7 +254,7 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/404.html</loc>
+    <loc>http://robin-front.github.io/tags/index.html</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     
@@ -268,21 +275,21 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/tags/index.html</loc>
-    
-    <lastmod>2016-10-20T08:02:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://robin-front.github.io/about/index.html</loc>
-    
-    <lastmod>2016-10-20T08:02:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://robin-front.github.io/2015/10/09/gulp-4.0/</loc>
+    
+    <lastmod>2016-10-20T08:02:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/404.html</loc>
+    
+    <lastmod>2016-10-20T08:02:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2015/10/30/javascript%E5%8F%96%E6%9C%AC%E5%91%A8%E5%92%8C%E6%9C%AC%E6%9C%88%E6%88%96%E4%BB%BB%E6%84%8F%E6%9C%88%E7%9A%84%E6%97%B6%E9%97%B4%E6%AE%B5/</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     

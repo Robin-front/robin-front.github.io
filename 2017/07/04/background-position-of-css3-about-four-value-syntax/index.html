@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="debug,Node.js," />
+  <meta name="keywords" content="background,css3," />
 
 
 
@@ -91,24 +91,17 @@
 
 
 
-<meta name="description" content="如何调试 Node.js, 还在使用 console.log 来调试 Node.js 吗，可以像调试前端页面一样调试 Node.js!">
-<meta name="keywords" content="debug,Node.js">
+<meta name="description" content="刨根问底，每个css属性都要知道它的所有值实在不容易。今天看看 background-position. background-positionCSS中的属性允许您在其容器内移动背景图像（或渐变）。">
+<meta name="keywords" content="background,css3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何调试Node.js|使用谷歌chrome浏览器调试Node.js">
-<meta property="og:url" content="http://robin-front.github.io/2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/index.html">
+<meta property="og:title" content="css3中background-position的四值语法">
+<meta property="og:url" content="http://robin-front.github.io/2017/07/04/background-position-of-css3-about-four-value-syntax/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="如何调试 Node.js, 还在使用 console.log 来调试 Node.js 吗，可以像调试前端页面一样调试 Node.js!">
-<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*NIVrIoEiniOt6cP-d-0LFQ.png">
-<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*QAmWRyPtdfF5X7VuvDN1zg.png">
-<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*zQ1uLl_qiRIAJ7Lxw_LFAQ.png">
-<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*jTzAaK_zRNynCMvlDbx2rA.png">
-<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*URHvZNuF7RksLoDZRbYnpQ.png">
-<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*mk2Ro3VX6iAw7YLWJzlmtw.png">
-<meta property="og:updated_time" content="2017-06-02T09:46:03.000Z">
+<meta property="og:description" content="刨根问底，每个css属性都要知道它的所有值实在不容易。今天看看 background-position. background-positionCSS中的属性允许您在其容器内移动背景图像（或渐变）。">
+<meta property="og:updated_time" content="2017-07-04T03:27:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何调试Node.js|使用谷歌chrome浏览器调试Node.js">
-<meta name="twitter:description" content="如何调试 Node.js, 还在使用 console.log 来调试 Node.js 吗，可以像调试前端页面一样调试 Node.js!">
-<meta name="twitter:image" content="https://cdn-images-1.medium.com/max/800/1*NIVrIoEiniOt6cP-d-0LFQ.png">
+<meta name="twitter:title" content="css3中background-position的四值语法">
+<meta name="twitter:description" content="刨根问底，每个css属性都要知道它的所有值实在不容易。今天看看 background-position. background-positionCSS中的属性允许您在其容器内移动背景图像（或渐变）。">
 
 
 
@@ -136,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://robin-front.github.io/2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/"/>
+  <link rel="canonical" href="http://robin-front.github.io/2017/07/04/background-position-of-css3-about-four-value-syntax/"/>
 
 
 
 
 
-  <title> 如何调试Node.js|使用谷歌chrome浏览器调试Node.js | 三寸稚笔 </title>
+  <title> css3中background-position的四值语法 | 三寸稚笔 </title>
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
   (adsbygoogle = window.adsbygoogle || []).push({
@@ -337,7 +330,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/">
+    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/07/04/background-position-of-css3-about-four-value-syntax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="robin">
@@ -354,7 +347,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">如何调试Node.js|使用谷歌chrome浏览器调试Node.js</h2>
+          <h2 class="post-title" itemprop="name headline">css3中background-position的四值语法</h2>
         
 
         <div class="post-meta">
@@ -366,8 +359,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-02T17:46:03+08:00">
-                2017-06-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-04T11:27:55+08:00">
+                2017-07-04
               </time>
             
 
@@ -382,8 +375,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-06-02T17:46:03+08:00">
-                2017-06-02
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-04T11:27:55+08:00">
+                2017-07-04
               </time>
             
           </span>
@@ -401,8 +394,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Node-js/" itemprop="url" rel="index">
-                    <span itemprop="name">Node.js</span>
+                  <a href="/categories/css3/" itemprop="url" rel="index">
+                    <span itemprop="name">css3</span>
                   </a>
                 </span>
 
@@ -419,9 +412,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/#comments" itemprop="discussionUrl">
+                <a href="/2017/07/04/background-position-of-css3-about-four-value-syntax/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/07/04/background-position-of-css3-about-four-value-syntax/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -445,7 +438,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  738
+                  931
                 </span>
               
 
@@ -461,7 +454,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  3 min
+                  4 min
                 </span>
               
             </div>
@@ -490,31 +483,79 @@
           (adsbygoogle = window.adsbygoogle || []).push({});
           </script>
         </div>
-        <p>如何调试 Node.js, 还在使用 console.log 来调试 Node.js 吗，可以像调试前端页面一样调试 Node.js!
+        <p>刨根问底，每个css属性都要知道它的所有值实在不容易。今天看看 <code>background-position</code>.</p>
+<p>background-positionCSS中的属性允许您在其容器内移动背景图像（或渐变）。
 <a id="more"></a></p>
-<p>译文：<a href="https://medium.com/the-node-js-collection/debugging-node-js-with-google-chrome-4965b5f910f4" target="_blank" rel="external">Debugging Node.js with Google Chrome</a></p>
-<p>调试是从软件应用程序中识别和删除错误的任务，而不仅仅是打印代码中的值。本文介绍如何使用最新的Google Chrome DevTools高效地调试Node.js程序。</p>
-<h2 id="为什么console-log不是最好的选择？"><a href="#为什么console-log不是最好的选择？" class="headerlink" title="为什么console.log不是最好的选择？"></a>为什么console.log不是最好的选择？</h2><p>使用<code>console.log</code>来调试你的代码，通常你会无限重复地做 “停止你的应用程序，添加一个console.log，并再次启动你的应用程序” 这样的操作。除了减缓您的应用程序的开发外，它还使您的书写变得脏乱并创建不必要的代码。最后，尝试注销变量以及其他可能的日志记录操作的噪点时，可能会在尝试找到正在调试的值时使调试变得困难。</p>
-<h2 id="调试工具"><a href="#调试工具" class="headerlink" title="调试工具"></a>调试工具</h2><p>调试工具为用户提供的是几个重要的功能<code>console.log</code>无法提供。特别是，它们允许您在代码中的特定点暂停执行应用程序，并在程序仍在运行时检查和修改变量的值。</p>
-<h2 id="设置Chrome-for-Node-js调试"><a href="#设置Chrome-for-Node-js调试" class="headerlink" title="设置Chrome for Node.js调试"></a>设置Chrome for Node.js调试</h2><p>使用<code>Chrome 57+</code>，<code>Node.js</code>调试功能是默认启用的，不需要像以前的版本那样从“实验功能”面板手动启用它。</p>
-<p>如果您还没有完成，请将Google Chrome更新到最新版本，并确保使用<code>Node.js 6.4+</code>。</p>
-<p>要开始调试，请使用 <code>- inspect</code>标志运行<code>Node.js</code>应用程序。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node --inspect &lt;your_file&gt; .js</div></pre></td></tr></table></figure>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*NIVrIoEiniOt6cP-d-0LFQ.png" alt="在调试模式下运行Node.js应用程序"></p>
-<p>接下来，忽略从终端中显示的“<code>chrome-devtools://</code>”开头的URL ，而是在Google Chrome中打开“ <code>about:inspect</code> ”。</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*QAmWRyPtdfF5X7VuvDN1zg.png" alt="chrome DevTools"></p>
-<p>最后点击“ Open dedicated DevTools for Node” 开始调试应用程序的代码。</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*zQ1uLl_qiRIAJ7Lxw_LFAQ.png" alt="deloper tools for Node"></p>
-<p>此外，关于调试<a href="https://nodejs.org/en/docs/guides/debugging-getting-started/" target="_blank" rel="external">Node.js App</a>的官方文档还提供了所有其他检查器工具和客户端选项的详细列表。</p>
-<h2 id="Chrome-DevTools的应用"><a href="#Chrome-DevTools的应用" class="headerlink" title="Chrome DevTools的应用"></a>Chrome DevTools的应用</h2><p>要结束本文，我想说明一下<code>Chrome DevTools</code>在以下<code>Express</code>应用程序中的应用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</div><div class="line"><span class="keyword">const</span> app = express()</div><div class="line"></div><div class="line"><span class="keyword">const</span> PORT = process.env.PORT || <span class="number">3000</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">capitalize</span> (<span class="params">str</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> firstLetter = str.charAt(<span class="number">0</span>) <span class="comment">// we can check what's inside here</span></div><div class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;firstLetter.toUpperCase()&#125;</span><span class="subst">$&#123;str.slice(<span class="number">1</span>)&#125;</span>`</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">app.get(<span class="string">'/:name?'</span>, (req, res) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> name = req.params.name ? capitalize(req.params.name) : <span class="string">'World'</span></div><div class="line">  res.send(<span class="string">`Hello <span class="subst">$&#123;name&#125;</span>!`</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.listen(PORT, () =&gt; <span class="built_in">console</span>.log(<span class="string">`App listening on *:<span class="subst">$&#123;PORT&#125;</span>`</span>))</div></pre></td></tr></table></figure>
-<p>让我们从运行<code>- inspect</code>标志，并打开专用<code>DevTools for Node</code>如前所述。</p>
-<p>此时，您将可以访问您可能已经熟悉的所有功能：断点(<code>breakpoints</code>)，压缩代码的源映射(<code>source map for transpiled code</code>)，堆快照检查(<code>heap snapshot inspection</code>)，分配分析(<code>allocation profiling</code>)，JavaScript值热插拔(<code>JavaScript values hot-swapping</code>)等。</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*jTzAaK_zRNynCMvlDbx2rA.png" alt="使用断点来调试Express应用程序"></p>
-<p>具体来说，如下图所示，您可以插入断点来停止执行程序，检查和“热交换”变量的值。</p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*URHvZNuF7RksLoDZRbYnpQ.png" alt="JavaScript值热拔插"></p>
-<p><img src="https://cdn-images-1.medium.com/max/800/1*mk2Ro3VX6iAw7YLWJzlmtw.png" alt="JavaScript值热拔插2"></p>
-<p>使用Chrome作为调试工具的另外一件好事是您可以使用相同的界面🚀调试前端和后端JavaScript代码。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span> &#123;</div><div class="line">  <span class="attribute">background-position</span>: <span class="number">100px</span> <span class="number">5px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>它有三种不同的取值：</p>
+<ul>
+<li>长度值（例如<code>100px 5px</code>）</li>
+<li>百分比（例如<code>100% 5%</code>）</li>
+<li>关键字（例如<code>top right</code>）</li>
+</ul>
+<p>默认值为<code>0 0</code>。这会将您的背景图像放在容器的左上角。</p>
+<p>长度值很简单：第一个值是水平位置，第二个值是垂直位置。因此，<code>100px 5px</code>将图像向右移动100像素，向下移动五个像素。您可以设定长度值单位为<code>px</code>，<code>em</code>或<a href="http://www.w3.org/Style/Examples/007/units.en.html" target="_blank" rel="external">任何其他的CSS长度值</a>。</p>
+<p>百分比有所不同。戴上你的数学帽子：用<code>x％</code>移动背景图像意味着 <strong>将图像中的<code>X％</code>点</strong> 与 <strong>容器中的<code>X％</code>点</strong> 对齐(PS：很多人解释的时候只会说向左向下移动了x%,这就无法解释50%)。例如，<code>50%</code>意味着它会将图像的中间与容器的中间对齐。<code>100%</code>意味着它会将图像的最后一个像素与容器的最后一个像素对齐，依此类推。</p>
+<p>关键字只是百分比的捷径。这<code>top right</code>比记住和写作要容易得多<code>0 100%</code>，这就是关键字的意义。以下是所有五个关键字及其等价取值的列表：</p>
+<ul>
+<li><code>top</code>：垂直0％</li>
+<li><code>right</code>：水平100％</li>
+<li><code>bottom</code>：垂直100％</li>
+<li><code>left</code>：水平0％</li>
+<li><code>center</code>：如果水平尚未定义，则水平为50％。如果定义了则应用到垂直。</li>
+</ul>
+<p>有趣的是，您关键字使用的顺序并不重要：与之<code>top center</code>相同<code>center top</code>。只有当您使用单一关键字时，您才能做到这一点。<code>center 10%</code>是不一样的<code>10% center</code>。</p>
+<h1 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h1><p>此演示演示了<code>background-position</code>具有长度单位，百分比和关键字取值的集合示例。</p>
+<iframe height="265" scrolling="no" title="background-position values" src="//codepen.io/team/css-tricks/embed/ogqrGw/?height=265&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/team/css-tricks/pen/ogqrGw/" target="_blank" rel="external">background-position values</a> by CSS-Tricks (<a href="https://codepen.io/css-tricks" target="_blank" rel="external">@css-tricks</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.
+</iframe>
+
+<h1 id="声明值-Declaring-Values"><a href="#声明值-Declaring-Values" class="headerlink" title="声明值(Declaring Values)"></a>声明值(Declaring Values)</h1><p><code>background-position</code>现代浏览器中最多可以放置四个值（有关详细信息，请参阅<a href="#browser-support">浏览器支持列表</a>）。</p>
+<p>如果您只声明 <strong>一个值</strong>，则该值是水平偏移量。浏览器将垂直偏移设置为<code>center</code>。</p>
+<p>当您声明 <strong>两个值</strong> 时，第一个值是水平偏移量，第二个值是垂直偏移量。</p>
+<p>当您开始使用三个或四个值时，事情会变得更加棘手，但您也可以更好地控制您的背景位置。</p>
+<p>三或四值语法在关键字和长度或百分比单位之间进行交替。您可以在<code>background-position</code>的三值或四值中使用任何关键字值， <em>除</em> <code>center</code>之外。</p>
+<p>当您指定 <strong>三个值</strong> 时，浏览器将“丢失”第四个值插入为<code>0.</code>以下是三值的示例<code>background-position</code>：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#threevalues</span> &#123;</div><div class="line">  <span class="attribute">background-position</span>: right <span class="number">45px</span> bottom;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样就可以将背景图像定位在右侧的<code>45px</code>和容器底部的<code>0px</code>。</p>
+<p>这是一个<code>background-position</code> <strong>四值</strong> 的例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#fourvalues</span> &#123;</div><div class="line">  <span class="attribute">background-position</span>: right <span class="number">45px</span> bottom <span class="number">20px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这将背景图片定位在右侧的<code>45px</code>和容器底部的<code>20px</code>。</p>
+<p>注意上面示例中值的顺序：关键字后跟长度单位。三或四个值<code>background-position</code>必须遵循该格式，关键字在长度或百分比单位之前。</p>
+<h1 id="演示-1"><a href="#演示-1" class="headerlink" title="演示"></a>演示</h1><p>此演示包括一个值，两个值，三个值和四个值的示例background-position。</p>
+<iframe height="265" scrolling="no" title="background-position 1, 2, 3, and 4 value syntax" src="//codepen.io/team/css-tricks/embed/yyKdPB/?height=265&theme-id=0&default-tab=result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen="true" style="width: 100%;">See the Pen <a href="https://codepen.io/team/css-tricks/pen/yyKdPB/" target="_blank" rel="external">background-position 1, 2, 3, and 4 value syntax</a> by CSS-Tricks (<a href="https://codepen.io/css-tricks" target="_blank" rel="external">@css-tricks</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.
+</iframe>
+
+<h1 id="更多参考"><a href="#更多参考" class="headerlink" title="更多参考"></a>更多参考</h1><ul>
+<li><a href="http://www.w3.org/TR/css3-background/#the-background-position" target="_blank" rel="external">background-position 在CSS3规范</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-position" target="_blank" rel="external">background-position 在MDN</a></li>
+<li><a href="http://css-tricks.com/positioning-offset-background-images/" target="_blank" rel="external">偏移背景图像</a></li>
+</ul>
+<h1 id="browser-support"><a href="#browser-support" class="headerlink" title="browser-support"></a>browser-support</h1><p>基本价值得到支持。四值语法具有此支持：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Chrome</th>
+<th style="text-align:center">Safari</th>
+<th style="text-align:center">Firefox</th>
+<th style="text-align:center">Opera</th>
+<th style="text-align:center">IE</th>
+<th style="text-align:center">Android</th>
+<th style="text-align:center">iOS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">25+</td>
+<td style="text-align:center">7+</td>
+<td style="text-align:center">13+</td>
+<td style="text-align:center">10.5+</td>
+<td style="text-align:center">9+</td>
+<td style="text-align:center">4+</td>
+<td style="text-align:center">7.1+</td>
+</tr>
+</tbody>
+</table>
+<p>【翻译原文：】<a href="https://css-tricks.com/almanac/properties/b/background-position/" target="_blank" rel="external">https://css-tricks.com/almanac/properties/b/background-position/</a></p>
 
       
     </div>
@@ -543,7 +584,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://robin-front.github.io/2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/" title="如何调试Node.js|使用谷歌chrome浏览器调试Node.js">http://robin-front.github.io/2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/</a>
+      <a href="http://robin-front.github.io/2017/07/04/background-position-of-css3-about-four-value-syntax/" title="css3中background-position的四值语法">http://robin-front.github.io/2017/07/04/background-position-of-css3-about-four-value-syntax/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -559,9 +600,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/debug/" rel="tag"># debug</a>
+            <a href="/tags/background/" rel="tag"># background</a>
           
-            <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+            <a href="/tags/css3/" rel="tag"># css3</a>
           
         </div>
       
@@ -574,8 +615,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/01/RXJS我该选用哪个操作符之-创建篇/" rel="next" title="RXJS我该选用哪个操作符之-创建篇">
-                <i class="fa fa-chevron-left"></i> RXJS我该选用哪个操作符之-创建篇
+              <a href="/2017/07/03/arr-of-indexOf-vs-includes-and-for-loop/" rel="next" title="Array数组的indexOf、includes vs for-loop性能比较">
+                <i class="fa fa-chevron-left"></i> Array数组的indexOf、includes vs for-loop性能比较
               </a>
             
           </div>
@@ -583,10 +624,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/05/使用RXJS组合、过滤和映射数据流的值/" rel="prev" title="使用RXJS组合、过滤和映射数据流的值">
-                使用RXJS组合、过滤和映射数据流的值 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -758,7 +795,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么console-log不是最好的选择？"><span class="nav-number">1.</span> <span class="nav-text">为什么console.log不是最好的选择？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试工具"><span class="nav-number">2.</span> <span class="nav-text">调试工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置Chrome-for-Node-js调试"><span class="nav-number">3.</span> <span class="nav-text">设置Chrome for Node.js调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chrome-DevTools的应用"><span class="nav-number">4.</span> <span class="nav-text">Chrome DevTools的应用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#演示"><span class="nav-number">2.</span> <span class="nav-text">演示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#声明值-Declaring-Values"><span class="nav-number">3.</span> <span class="nav-text">声明值(Declaring Values)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#演示-1"><span class="nav-number">4.</span> <span class="nav-text">演示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更多参考"><span class="nav-number">5.</span> <span class="nav-text">更多参考</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#browser-support"><span class="nav-number">6.</span> <span class="nav-text">browser-support</span></a></li></ol></div>
             
 
           </div>
@@ -914,9 +951,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://robin-front.github.io/2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/';
-          this.page.identifier = '2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/';
-          this.page.title = '如何调试Node.js|使用谷歌chrome浏览器调试Node.js';
+          this.page.url = 'http://robin-front.github.io/2017/07/04/background-position-of-css3-about-four-value-syntax/';
+          this.page.identifier = '2017/07/04/background-position-of-css3-about-four-value-syntax/';
+          this.page.title = 'css3中background-position的四值语法';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://robin-front-github-io.disqus.com/embed.js';

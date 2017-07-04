@@ -327,6 +327,207 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/06/21/webpack3官方正式发布-作用域提升，“魔法注释”，以及更多新特性！/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="robin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="三寸稚笔">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/21/webpack3官方正式发布-作用域提升，“魔法注释”，以及更多新特性！/" itemprop="url">webpack3官方正式发布,亮点:作用域提升，“魔法注释”，以及更多新特性！</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-21T15:35:55+08:00">
+                2017-06-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-22T15:35:55+08:00">
+                2017-06-22
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/21/webpack3官方正式发布-作用域提升，“魔法注释”，以及更多新特性！/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/21/webpack3官方正式发布-作用域提升，“魔法注释”，以及更多新特性！/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                  <span class="post-meta-divider">|</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,192
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  4 min
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="作用域提升，“魔法注释”，以及更多新特性！"><a href="#作用域提升，“魔法注释”，以及更多新特性！" class="headerlink" title="作用域提升，“魔法注释”，以及更多新特性！"></a>作用域提升，“魔法注释”，以及更多新特性！</h1><p><a href="https://medium.com/webpack/webpack-3-official-release-15fd2dd8f07b" target="_blank" rel="external">原文</a></p>
+<p>在我们发布了 webpack v2 之后，我们曾向社区做了一些承诺。 我们承诺，我们将提供用户投票的功能。 此外，我们承诺我们的发布周期会 <strong>更快，更稳定</strong>。</p>
+<p>这次没有 beta 版本，完全向下兼容。我们承诺让你们、让 webpack 成长的社区更轻松的使用。webpack 团队自豪地宣布，今天我们已经发布了 webpack 3.0.0！ 现在就可以下载或升级！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack@3.0.0 --save-dev</div></pre></td></tr></table></figure>
+<p>或者使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add webpack@3.0.0 --dev</div></pre></td></tr></table></figure>
+<p><em>从 webpack 2 迁移到 3，只需要执行升级命令，在使用上没有任何差别。我们将这次升级标记为版本的重大升级，是因为内部的突破性变化可能会影响某些插件的使用。</em></p>
+<p><strong>到目前为止，98%的升级的用户都没有遇到任何不兼容！</strong>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/21/webpack3官方正式发布-作用域提升，“魔法注释”，以及更多新特性！/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/06/14/Flow和TypeScript之间的区别和优劣/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2100,201 +2301,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/05/04/创建和订阅单一数据流/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="robin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三寸稚笔">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/04/创建和订阅单一数据流/" itemprop="url">使用RxJS创建和订阅单一数据流</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-04T18:06:14+08:00">
-                2017-05-04
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2017-05-04T18:06:14+08:00">
-                2017-05-04
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RxJS/" itemprop="url" rel="index">
-                    <span itemprop="name">RxJS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/04/创建和订阅单一数据流/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/05/04/创建和订阅单一数据流/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  3,012
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  13 min
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="https://robin-front.gitbooks.io/rxjs-doc-chinese/content/content/getting_started_with_rxjs/creating_and_querying_observable_sequences/creating_and_subscribing_to_simple_observable_sequences.html" target="_blank" rel="external">来自</a></p>
-<h1 id="创建和订阅单一可观察序列"><a href="#创建和订阅单一可观察序列" class="headerlink" title="创建和订阅单一可观察序列"></a>创建和订阅单一可观察序列</h1><p>你不需要去实现 <code>Observable</code> 类去创建一个可观察序列。 同样的，你也不需要去实现 <code>Observer</code> 去订阅数据流。通过安装 Rx 库，你可以利用 <code>Observable</code>类型，它提供了许多操作符来根据零个，一个或多个元素去创建一个数据流。另外， RxJS 还提供 <code>subscribe</code> 方法允许你使用 <code>onNext</code>, <code>onError</code> 和 <code>onCompleted</code> 函数。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/04/创建和订阅单一数据流/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2344,7 +2350,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2366,7 +2372,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -73,7 +73,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Javascript," />
+  <meta name="keywords" content="react," />
 
 
 
@@ -102,17 +102,19 @@
 
 
 
-<meta name="description" content="typeof对于任何变量来说，使用typeof 总是以字符串形式返回以下6种类型之一：  number string boolean object function undefined   要注意 null 使用 typeof 检测时返回的是 ‘object’ 对于 null 可以使用 123function type(o) &amp;#123;  return (o === null) ? &apos;null">
-<meta name="keywords" content="Javascript">
+<meta name="description" content="我们经常在快要完成一个react中型应用时，发现页面并没有想象中那么流畅。 react 理论性能是不错的，但是对开发者要求也很高，一些不易注意的点很容易造成性能问题。正所谓“烂泥扶不上墙”。 下面看看子组件的事件绑定写法对性能的影响。">
+<meta name="keywords" content="react">
 <meta property="og:type" content="article">
-<meta property="og:title" content="正确检测Javascript数据类型">
-<meta property="og:url" content="http://robin-front.github.io/2016/06/08/正确检测Javascript数据类型/index.html">
+<meta property="og:title" content="react性能优化：提取子组件中额外的事件绑定">
+<meta property="og:url" content="http://robin-front.github.io/2017/07/06/react-pattern-extract-child-components-to-avoid-binding/index.html">
 <meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="typeof对于任何变量来说，使用typeof 总是以字符串形式返回以下6种类型之一：  number string boolean object function undefined   要注意 null 使用 typeof 检测时返回的是 ‘object’ 对于 null 可以使用 123function type(o) &amp;#123;  return (o === null) ? &apos;null">
-<meta property="og:updated_time" content="2016-06-08T15:53:10.000Z">
+<meta property="og:description" content="我们经常在快要完成一个react中型应用时，发现页面并没有想象中那么流畅。 react 理论性能是不错的，但是对开发者要求也很高，一些不易注意的点很容易造成性能问题。正所谓“烂泥扶不上墙”。 下面看看子组件的事件绑定写法对性能的影响。">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/800/1*zISOb74W7PriWKX0y7biKg.jpeg">
+<meta property="og:updated_time" content="2017-07-06T08:24:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="正确检测Javascript数据类型">
-<meta name="twitter:description" content="typeof对于任何变量来说，使用typeof 总是以字符串形式返回以下6种类型之一：  number string boolean object function undefined   要注意 null 使用 typeof 检测时返回的是 ‘object’ 对于 null 可以使用 123function type(o) &amp;#123;  return (o === null) ? &apos;null">
+<meta name="twitter:title" content="react性能优化：提取子组件中额外的事件绑定">
+<meta name="twitter:description" content="我们经常在快要完成一个react中型应用时，发现页面并没有想象中那么流畅。 react 理论性能是不错的，但是对开发者要求也很高，一些不易注意的点很容易造成性能问题。正所谓“烂泥扶不上墙”。 下面看看子组件的事件绑定写法对性能的影响。">
+<meta name="twitter:image" content="https://cdn-images-1.medium.com/max/800/1*zISOb74W7PriWKX0y7biKg.jpeg">
 
 
 
@@ -140,13 +142,13 @@
 
 
 
-  <link rel="canonical" href="http://robin-front.github.io/2016/06/08/正确检测Javascript数据类型/"/>
+  <link rel="canonical" href="http://robin-front.github.io/2017/07/06/react-pattern-extract-child-components-to-avoid-binding/"/>
 
 
 
 
 
-  <title> 正确检测Javascript数据类型 | 三寸稚笔 </title>
+  <title> react性能优化：提取子组件中额外的事件绑定 | 三寸稚笔 </title>
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   <script>
   (adsbygoogle = window.adsbygoogle || []).push({
@@ -341,7 +343,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2016/06/08/正确检测Javascript数据类型/">
+    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/07/06/react-pattern-extract-child-components-to-avoid-binding/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="robin">
@@ -358,7 +360,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">正确检测Javascript数据类型</h2>
+          <h2 class="post-title" itemprop="name headline">react性能优化：提取子组件中额外的事件绑定</h2>
         
 
         <div class="post-meta">
@@ -370,8 +372,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-08T23:53:10+08:00">
-                2016-06-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-06T16:24:53+08:00">
+                2017-07-06
               </time>
             
 
@@ -386,8 +388,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2016-06-08T23:53:10+08:00">
-                2016-06-08
+              <time title="更新于" itemprop="dateModified" datetime="2017-07-06T16:24:53+08:00">
+                2017-07-06
               </time>
             
           </span>
@@ -405,8 +407,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
                   </a>
                 </span>
 
@@ -423,9 +425,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/06/08/正确检测Javascript数据类型/#comments" itemprop="discussionUrl">
+                <a href="/2017/07/06/react-pattern-extract-child-components-to-avoid-binding/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/06/08/正确检测Javascript数据类型/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/07/06/react-pattern-extract-child-components-to-avoid-binding/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -449,7 +451,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  393
+                  922
                 </span>
               
 
@@ -465,7 +467,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  2 min
+                  3 min
                 </span>
               
             </div>
@@ -494,36 +496,48 @@
           (adsbygoogle = window.adsbygoogle || []).push({});
           </script>
         </div>
-        <a id="more"></a>
-<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><p>对于任何变量来说，使用typeof 总是以字符串形式返回以下6种类型之一：</p>
+        <p><img src="https://cdn-images-1.medium.com/max/800/1*zISOb74W7PriWKX0y7biKg.jpeg" alt=""></p>
+<p>我们经常在快要完成一个<code>react</code>中型应用时，发现页面并没有想象中那么流畅。 react 理论性能是不错的，但是对开发者要求也很高，一些不易注意的点很容易造成性能问题。正所谓“烂泥扶不上墙”。</p>
+<p>下面看看子组件的事件绑定写法对性能的影响。
+<a id="more"></a></p>
+<p>这是React中的常见情况：您正在映射数组，您需要每个项目调用点击处理程序和一些相关数据。</p>
+<p>这是一个例子。我正在迭代一个用户列表，并将<code>userId</code>传递给第29行的<code>deleteUser</code>函数。</p>
+<script src="https://gist.github.com/coryhouse/01339ce21024cfd7f5cd4c64d1fd26c4.js"></script>
+
+<p>这是<a href="https://codesandbox.io/" target="_blank" rel="external">Codeandbox</a>上的一个<a href="https://codesandbox.io/s/0OP2Yq87" target="_blank" rel="external">工作示例</a>。（真棒）</p>
+<h1 id="所以-有什么问题？"><a href="#所以-有什么问题？" class="headerlink" title="所以, 有什么问题？"></a>所以, 有什么问题？</h1><p>我在点击处理程序中使用箭头函数。这意味着每次渲染运行时，都会分配一个新函数。在许多情况下，这不是一件多大的事。但是，如果您有子组件，即使数据没有更改，它们也将重新渲染，因为每个渲染分配一个新的函数。</p>
+<p>底线：避免在渲染中声明箭头函数或绑定以获得最佳性能。我的团队使用这个<a href="https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md" target="_blank" rel="external">ESLint规则</a>帮助提醒我们这个问题。</p>
+<h1 id="解决方案是什么？"><a href="#解决方案是什么？" class="headerlink" title="解决方案是什么？"></a>解决方案是什么？</h1><p>那么你如何在渲染中避免绑定和箭头函数呢？一个选项是提取一个子组件。在这里，我将列表项提取到<code>UserListItem.js</code>：</p>
+<script src="https://gist.github.com/coryhouse/a002111d01fb7ee1862af55d4a26abfa.js"></script>
+
+<p>然后，父组件的渲染变得更简单，不再需要包含箭头函数。它只是通过<code>props</code>传递每个列表项的相关上下文：</p>
+<script src="https://gist.github.com/coryhouse/f5758f5355da5280fc0e3350453fef31.js"></script>
+
+<p>这是一个<a href="https://codesandbox.io/s/Q1Jo3zB79" target="_blank" rel="external">重构的工作实例</a>。</p>
+<h1 id="Yay-or-Yuck"><a href="#Yay-or-Yuck" class="headerlink" title="Yay or Yuck?"></a>Yay or Yuck?</h1><p>此模式通过消除冗余的函数分配来提高性能。所以当这种情况适用于您的组件时，它是最有用的：</p>
 <ul>
-<li>number</li>
-<li>string</li>
-<li>boolean</li>
-<li>object</li>
-<li>function</li>
-<li>undefined</li>
+<li>渲染频繁被调用</li>
+<li>渲染子组件非常耗时</li>
 </ul>
-<blockquote>
-<p>要注意 null 使用 typeof 检测时返回的是 ‘object’
-对于 null 可以使用
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">type</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> (o === <span class="literal">null</span>) ? <span class="string">'null'</span> : <span class="keyword">typeof</span>(o)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-</blockquote>
-<h3 id="constructor-构造函数属性值"><a href="#constructor-构造函数属性值" class="headerlink" title="constructor(构造函数属性值)"></a>constructor(构造函数属性值)</h3><p>使用 constructor 属性可以判断绝大部分数据的类型。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>; a.constructor <span class="comment">// number</span></div><div class="line"><span class="keyword">var</span> a = &#123;&#125;; a.constructor <span class="comment">// object</span></div><div class="line"><span class="keyword">var</span> a = []; a.constructor <span class="comment">// array</span></div><div class="line"><span class="keyword">var</span> a = <span class="literal">true</span>; a.constructor <span class="comment">// boolean</span></div><div class="line"><span class="keyword">var</span> a = <span class="string">'true'</span>; a.constructor <span class="comment">// string</span></div><div class="line"><span class="keyword">var</span> a = <span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>)</span>&#123;&#125;; a.constructor <span class="comment">// function</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>但是对于 <code>undefined</code> 和 <code>null</code> 特殊值，不能能使用 constructor,会直接抛出异常。可以先转换布尔值，如果为 true，则说明不是 undefined 和null , 再调用 constructor属性</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">type</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> !o ? o : (o).constructor</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Object-prototype-toString"><a href="#Object-prototype-toString" class="headerlink" title="Object.prototype.toString"></a>Object.prototype.toString</h3><p>使用 toString() 方法检测对象类型是最安全、最准确的。它返回的字符串形式如下 [object class], 其中， object表示对象的通用类型，class表示对象的内部类型。</p>
-<blockquote>
-<p>但是，要获取对象class值的唯一方法是必须调用 Object 对象定义的默认 toString() 方法，因为不同对象都会预定义自己的 toString() 方法，所以不能直接调用对象的 toString() 方法。
-var a = new Date()
-a.toString() // 当前的UTC时间字符串</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">Date</span>()</div><div class="line"><span class="built_in">Object</span>.prototype.toString.apply(a)</div></pre></td></tr></table></figure>
-<p>完善的检测方法
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 返回值有： 'undefined', 'null', 'number', 'boolean', 'object', 'function', 'regexp', 'string', 'array', 'date', 'error'</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">typeOf</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> _toString =  <span class="built_in">Object</span>.prototype.toString;</div><div class="line">  <span class="keyword">var</span> _type = &#123;</div><div class="line">    <span class="string">'undefined'</span>: <span class="string">'undefined'</span>,</div><div class="line">    <span class="string">'number'</span>: <span class="string">'number'</span>,</div><div class="line">    <span class="string">'boolean'</span>: <span class="string">'boolean'</span>,</div><div class="line">    <span class="string">'string'</span>: <span class="string">'string'</span>,</div><div class="line">    <span class="string">'[object Function]'</span>: <span class="string">'function'</span>,</div><div class="line">    <span class="string">'[object RegExp]'</span>: <span class="string">'regexp'</span>,</div><div class="line">    <span class="string">'[object Array]'</span>: <span class="string">'array'</span>,</div><div class="line">    <span class="string">'[object Date]'</span>: <span class="string">'date'</span>,</div><div class="line">    <span class="string">'[object Error]'</span>: <span class="string">'error'</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> _type[<span class="keyword">typeof</span> o] || _type[_toString.call(o)] || (o ? <span class="string">'object'</span> : <span class="string">'null'</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>诚然，我提取子组件也是我提到的一个额外的工作。它需要更多的移动部件和更多的代码。所以如果你没有出现性能问题，可以说这是一个过早的优化。</p>
+<p>所以你有两个选择：允许箭头和绑定到任何地方（如果有性能问题再处理），或禁止他们获得最佳性能和一致性。</p>
+<p>底线：我建议禁止箭头函数并在<code>render</code>中绑定。下面就是为什么：</p>
+<ul>
+<li>你必须禁用我上面建议的有用的<a href="https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md" target="_blank" rel="external">ESLint规则</a>来允许它。</li>
+<li>禁用linting规则后，人们可能会复制此模式，并开始禁用其他linting规则。一个处例外可以很快成为规范…</li>
+</ul>
+<p><blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">General rule for code reviews:<br><br>Each line of code should be worthy of copying. <br><br>Because people will.<a href="https://twitter.com/hashtag/cleancode?src=hash" target="_blank" rel="external">#cleancode</a></p>&mdash; Cory House 🏠 (@housecor) <a href="https://twitter.com/housecor/status/839511073279598594" target="_blank" rel="external">March 8, 2017</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>所以我发现提取子组件是一个有用的模式，以避免在渲染中绑定。</p>
+<h1 id="其他的反例"><a href="#其他的反例" class="headerlink" title="其他的反例"></a>其他的反例</h1><p>还有些人会想要这样写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">deleteUser = id=<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line"> <span class="keyword">this</span>.setState(<span class="function"><span class="params">prevState</span> =&gt;</span> &#123;</div><div class="line"> <span class="keyword">return</span> &#123; <span class="attr">users</span>: prevState.users.filter( <span class="function"><span class="params">user</span> =&gt;</span> user.id !== id)&#125;</div><div class="line"> &#125;)</div><div class="line">&#125;</div><div class="line"><span class="comment">// …</span></div><div class="line">onClick=&#123;<span class="keyword">this</span>.deleteUser(user.id)&#125;</div></pre></td></tr></table></figure>
+<p>他们认为传递参数会比其他方式更加方便。但这和第一个糟糕的例子并无太大区别，子组件同样会再次渲染。</p>
+<p>如果有相当多类似的输入框，像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;form&gt;</div><div class="line">Render = <span class="function"><span class="params">()</span> =&gt;</span></div><div class="line">Input1 value=<span class="keyword">this</span>.state.input1 onChange= update state <span class="keyword">for</span> field1</div><div class="line">Input2….</div><div class="line">Input3….</div></pre></td></tr></table></figure>
+<p><a href="https://facebook.github.io/react/docs/forms.html#handling-multiple-inputs" target="_blank" rel="external">官方给出的方法</a>是给每个 input 添加 name 属性，进而获取参数。</p>
+<p>当然也有人会想要在 html 上动文章，比如添加自定义属性  <code>data-id=${userId}</code>。这当然也能实现，但是 html不应该是数据源，这应该避免。</p>
+<p>【翻译原文】:(有改动)<a href="https://medium.freecodecamp.org/react-pattern-extract-child-components-to-avoid-binding-e3ad8310725e" target="_blank" rel="external">https://medium.freecodecamp.org/react-pattern-extract-child-components-to-avoid-binding-e3ad8310725e</a></p>
 
       
     </div>
@@ -552,7 +566,7 @@ a.toString() // 当前的UTC时间字符串</p>
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://robin-front.github.io/2016/06/08/正确检测Javascript数据类型/" title="正确检测Javascript数据类型">http://robin-front.github.io/2016/06/08/正确检测Javascript数据类型/</a>
+      <a href="http://robin-front.github.io/2017/07/06/react-pattern-extract-child-components-to-avoid-binding/" title="react性能优化：提取子组件中额外的事件绑定">http://robin-front.github.io/2017/07/06/react-pattern-extract-child-components-to-avoid-binding/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -568,7 +582,7 @@ a.toString() // 当前的UTC时间字符串</p>
       
         <div class="post-tags">
           
-            <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+            <a href="/tags/react/" rel="tag"># react</a>
           
         </div>
       
@@ -581,8 +595,8 @@ a.toString() // 当前的UTC时间字符串</p>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/16/git小记/" rel="next" title="git小记">
-                <i class="fa fa-chevron-left"></i> git小记
+              <a href="/2017/07/04/understanding-memoize-in-javascript/" rel="next" title="如何使用Memoize来缓存JavaScript函数结果并加快代码的速度">
+                <i class="fa fa-chevron-left"></i> 如何使用Memoize来缓存JavaScript函数结果并加快代码的速度
               </a>
             
           </div>
@@ -590,10 +604,6 @@ a.toString() // 当前的UTC时间字符串</p>
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/30/使用ApplicationCache离线缓存做一个h5离线应用/" rel="prev" title="使用ApplicationCache离线缓存做一个h5离线应用">
-                使用ApplicationCache离线缓存做一个h5离线应用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -765,7 +775,7 @@ a.toString() // 当前的UTC时间字符串</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#typeof"><span class="nav-number">1.</span> <span class="nav-text">typeof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#constructor-构造函数属性值"><span class="nav-number">2.</span> <span class="nav-text">constructor(构造函数属性值)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-prototype-toString"><span class="nav-number">3.</span> <span class="nav-text">Object.prototype.toString</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#所以-有什么问题？"><span class="nav-number">1.</span> <span class="nav-text">所以, 有什么问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决方案是什么？"><span class="nav-number">2.</span> <span class="nav-text">解决方案是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Yay-or-Yuck"><span class="nav-number">3.</span> <span class="nav-text">Yay or Yuck?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他的反例"><span class="nav-number">4.</span> <span class="nav-text">其他的反例</span></a></li></ol></div>
             
 
           </div>
@@ -926,9 +936,9 @@ a.toString() // 当前的UTC时间字符串</p>
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://robin-front.github.io/2016/06/08/正确检测Javascript数据类型/';
-          this.page.identifier = '2016/06/08/正确检测Javascript数据类型/';
-          this.page.title = '正确检测Javascript数据类型';
+          this.page.url = 'http://robin-front.github.io/2017/07/06/react-pattern-extract-child-components-to-avoid-binding/';
+          this.page.identifier = '2017/07/06/react-pattern-extract-child-components-to-avoid-binding/';
+          this.page.title = 'react性能优化：提取子组件中额外的事件绑定';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://robin-front-github-io.disqus.com/embed.js';

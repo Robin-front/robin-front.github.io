@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-07-04T09:57:51.000Z</updated>
+  <updated>2017-07-06T08:24:53.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,72 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>react性能优化：提取子组件中额外的事件绑定</title>
+    <link href="http://robin-front.github.io/2017/07/06/react-pattern-extract-child-components-to-avoid-binding/"/>
+    <id>http://robin-front.github.io/2017/07/06/react-pattern-extract-child-components-to-avoid-binding/</id>
+    <published>2017-07-06T08:24:53.000Z</published>
+    <updated>2017-07-06T08:24:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://cdn-images-1.medium.com/max/800/1*zISOb74W7PriWKX0y7biKg.jpeg" alt=""></p>
+<p>我们经常在快要完成一个<code>react</code>中型应用时，发现页面并没有想象中那么流畅。 react 理论性能是不错的，但是对开发者要求也很高，一些不易注意的点很容易造成性能问题。正所谓“烂泥扶不上墙”。</p>
+<p>下面看看子组件的事件绑定写法对性能的影响。
+<a id="more"></a></p>
+<p>这是React中的常见情况：您正在映射数组，您需要每个项目调用点击处理程序和一些相关数据。</p>
+<p>这是一个例子。我正在迭代一个用户列表，并将<code>userId</code>传递给第29行的<code>deleteUser</code>函数。</p>
+<script src="https://gist.github.com/coryhouse/01339ce21024cfd7f5cd4c64d1fd26c4.js"></script>
+
+<p>这是<a href="https://codesandbox.io/" target="_blank" rel="external">Codeandbox</a>上的一个<a href="https://codesandbox.io/s/0OP2Yq87" target="_blank" rel="external">工作示例</a>。（真棒）</p>
+<h1 id="所以-有什么问题？"><a href="#所以-有什么问题？" class="headerlink" title="所以, 有什么问题？"></a>所以, 有什么问题？</h1><p>我在点击处理程序中使用箭头函数。这意味着每次渲染运行时，都会分配一个新函数。在许多情况下，这不是一件多大的事。但是，如果您有子组件，即使数据没有更改，它们也将重新渲染，因为每个渲染分配一个新的函数。</p>
+<p>底线：避免在渲染中声明箭头函数或绑定以获得最佳性能。我的团队使用这个<a href="https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md" target="_blank" rel="external">ESLint规则</a>帮助提醒我们这个问题。</p>
+<h1 id="解决方案是什么？"><a href="#解决方案是什么？" class="headerlink" title="解决方案是什么？"></a>解决方案是什么？</h1><p>那么你如何在渲染中避免绑定和箭头函数呢？一个选项是提取一个子组件。在这里，我将列表项提取到<code>UserListItem.js</code>：</p>
+<script src="https://gist.github.com/coryhouse/a002111d01fb7ee1862af55d4a26abfa.js"></script>
+
+<p>然后，父组件的渲染变得更简单，不再需要包含箭头函数。它只是通过<code>props</code>传递每个列表项的相关上下文：</p>
+<script src="https://gist.github.com/coryhouse/f5758f5355da5280fc0e3350453fef31.js"></script>
+
+<p>这是一个<a href="https://codesandbox.io/s/Q1Jo3zB79" target="_blank" rel="external">重构的工作实例</a>。</p>
+<h1 id="Yay-or-Yuck"><a href="#Yay-or-Yuck" class="headerlink" title="Yay or Yuck?"></a>Yay or Yuck?</h1><p>此模式通过消除冗余的函数分配来提高性能。所以当这种情况适用于您的组件时，它是最有用的：</p>
+<ul>
+<li>渲染频繁被调用</li>
+<li>渲染子组件非常耗时</li>
+</ul>
+<p>诚然，我提取子组件也是我提到的一个额外的工作。它需要更多的移动部件和更多的代码。所以如果你没有出现性能问题，可以说这是一个过早的优化。</p>
+<p>所以你有两个选择：允许箭头和绑定到任何地方（如果有性能问题再处理），或禁止他们获得最佳性能和一致性。</p>
+<p>底线：我建议禁止箭头函数并在<code>render</code>中绑定。下面就是为什么：</p>
+<ul>
+<li>你必须禁用我上面建议的有用的<a href="https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md" target="_blank" rel="external">ESLint规则</a>来允许它。</li>
+<li>禁用linting规则后，人们可能会复制此模式，并开始禁用其他linting规则。一个处例外可以很快成为规范…</li>
+</ul>
+<p><blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">General rule for code reviews:<br><br>Each line of code should be worthy of copying. <br><br>Because people will.<a href="https://twitter.com/hashtag/cleancode?src=hash" target="_blank" rel="external">#cleancode</a></p>&mdash; Cory House 🏠 (@housecor) <a href="https://twitter.com/housecor/status/839511073279598594" target="_blank" rel="external">March 8, 2017</a></blockquote></p>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>所以我发现提取子组件是一个有用的模式，以避免在渲染中绑定。</p>
+<h1 id="其他的反例"><a href="#其他的反例" class="headerlink" title="其他的反例"></a>其他的反例</h1><p>还有些人会想要这样写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">deleteUser = id=<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line"> <span class="keyword">this</span>.setState(<span class="function"><span class="params">prevState</span> =&gt;</span> &#123;</div><div class="line"> <span class="keyword">return</span> &#123; <span class="attr">users</span>: prevState.users.filter( <span class="function"><span class="params">user</span> =&gt;</span> user.id !== id)&#125;</div><div class="line"> &#125;)</div><div class="line">&#125;</div><div class="line"><span class="comment">// …</span></div><div class="line">onClick=&#123;<span class="keyword">this</span>.deleteUser(user.id)&#125;</div></pre></td></tr></table></figure>
+<p>他们认为传递参数会比其他方式更加方便。但这和第一个糟糕的例子并无太大区别，子组件同样会再次渲染。</p>
+<p>如果有相当多类似的输入框，像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;form&gt;</div><div class="line">Render = <span class="function"><span class="params">()</span> =&gt;</span></div><div class="line">Input1 value=<span class="keyword">this</span>.state.input1 onChange= update state <span class="keyword">for</span> field1</div><div class="line">Input2….</div><div class="line">Input3….</div></pre></td></tr></table></figure>
+<p><a href="https://facebook.github.io/react/docs/forms.html#handling-multiple-inputs" target="_blank" rel="external">官方给出的方法</a>是给每个 input 添加 name 属性，进而获取参数。</p>
+<p>当然也有人会想要在 html 上动文章，比如添加自定义属性  <code>data-id=${userId}</code>。这当然也能实现，但是 html不应该是数据源，这应该避免。</p>
+<p>【翻译原文】:(有改动)<a href="https://medium.freecodecamp.org/react-pattern-extract-child-components-to-avoid-binding-e3ad8310725e" target="_blank" rel="external">https://medium.freecodecamp.org/react-pattern-extract-child-components-to-avoid-binding-e3ad8310725e</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*zISOb74W7PriWKX0y7biKg.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;我们经常在快要完成一个&lt;code&gt;react&lt;/code&gt;中型应用时，发现页面并没有想象中那么流畅。 react 理论性能是不错的，但是对开发者要求也很高，一些不易注意的点很容易造成性能问题。正所谓“烂泥扶不上墙”。&lt;/p&gt;
+&lt;p&gt;下面看看子组件的事件绑定写法对性能的影响。
+    
+    </summary>
+    
+      <category term="react" scheme="http://robin-front.github.io/categories/react/"/>
+    
+    
+      <category term="react" scheme="http://robin-front.github.io/tags/react/"/>
+    
+  </entry>
   
   <entry>
     <title>如何使用Memoize来缓存JavaScript函数结果并加快代码的速度</title>
@@ -1880,97 +1946,6 @@
     
     
       <category term="npm" scheme="http://robin-front.github.io/tags/npm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JSX是什么鬼(WTF is JSX)</title>
-    <link href="http://robin-front.github.io/2017/05/30/JSX%E6%98%AF%E4%BB%80%E4%B9%88%E9%AC%BC/"/>
-    <id>http://robin-front.github.io/2017/05/30/JSX是什么鬼/</id>
-    <published>2017-05-30T01:52:45.000Z</published>
-    <updated>2017-05-30T01:52:45.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>JSX实际上很简单：只需要花1分钟阅读这个，你会明白有关这个有趣的替代模板的一切。
-<a id="more"></a></p>
-<p>替换标题：“融入JSX”</p>
-<h2 id="Pragma"><a href="#Pragma" class="headerlink" title="Pragma"></a>Pragma</h2><p>您可以声明每个文件或每个函数来告诉您的<code>transpiler</code>（例如：<code>Babel</code>）每个节点在运行时应调用的函数的名称（请参阅“<a href="https://jasonformat.com/wtf-is-jsx/#Transpilation" target="_blank" rel="external">Transpilation</a>”）。</p>
-<p>在下面的例子中，我们说的是“ <code>h()</code>为每个节点注入一个函数”：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** @jsx h */</span></div></pre></td></tr></table></figure>
-<h2 id="Transpilation"><a href="#Transpilation" class="headerlink" title="Transpilation"></a>Transpilation</h2><p>如果你还没有使用解析器，你应该是尝试一下。使用ES6 / ES2015 编写，调试，测试和运行JavaScript时更为高效。<code>Babel</code>是最受欢迎和推荐的透析器，所以我会假设你正在使用它。</p>
-<p>除了将ES6 / ES7 +语法转换为 ES5 以外，Babel还包括对JSX 开箱即用的转换支持。您不需要添加或更改任何内容以使用此功能。</p>
-<p>通过查看一个非常简单的例子来了解它的工作原理是最简单的：</p>
-<p><em>转换前</em> :( 你写的代码）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** @jsx h */</span></div><div class="line"><span class="keyword">let</span> foo = <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"foo"</span>&gt;</span>Hello!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div></pre></td></tr></table></figure>
-<p><em>转换后</em> :(你运行的代码）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = h(<span class="string">'div'</span>, &#123;<span class="attr">id</span>:<span class="string">"foo"</span>&#125;, <span class="string">'Hello!'</span>);</div></pre></td></tr></table></figure>
-<p>你可能看第二个代码片段的时候，认为使用函数构建UI不会那么糟糕</p>
-<p>这就是为什么我坐上了 <code>JSX</code> 的车：如果它从地球上消失了，用手写的输出依然会很舒服。</p>
-<blockquote>
-<p>JSX只是一种已经相当不错的语法的糖。</p>
-</blockquote>
-<p>人们甚至把它用于整个项目：<a href="https://github.com/dominictarr/hyperscript" target="_blank" rel="external">hyperscript</a></p>
-<h2 id="我们来构建一个JSX渲染器"><a href="#我们来构建一个JSX渲染器" class="headerlink" title="我们来构建一个JSX渲染器"></a>我们来构建一个JSX渲染器</h2><p>首先，我们需要定义转换代码后调用的 <code>h()</code> 函数。</p>
-<p>你调用任何你想要的，我使用<code>h()</code>，因为这种类型的“构建器”功能的原始想法被称为hyperscript (“hyper<del>text</del>“ + “<del>java</del>script”).。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">h</span>(<span class="params">nodeName, attributes, ...args</span>) </span>&#123;  </div><div class="line">      <span class="keyword">let</span> children = args.length ? [].concat(...args) : <span class="literal">null</span>;</div><div class="line">      <span class="keyword">return</span> &#123; nodeName, attributes, children &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>好的，这看起来很简单（ps: 只处理了 children）</p>
-<blockquote>
-<p>不熟悉ES6 / ES2015？</p>
-<ul>
-<li>这…在参数列表是一个rest param。它将“其余”的参数收集到数组中。</li>
-<li>该concat(…args)位是一个扩展运算符：它需要该数组并将其扩展为参数concat()。这里使用的concat()是将子节点推入数组。</li>
-</ul>
-</blockquote>
-<p>现在我们有这些嵌套的JSON对象我们的<code>h()</code>函数吐出来，所以我们最终得到一个这样的“树”：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">nodeName</span>: <span class="string">"div"</span>,</div><div class="line">  <span class="attr">attributes</span>: &#123;</div><div class="line">    <span class="string">"id"</span>: <span class="string">"foo"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">children</span>: [<span class="string">"Hello!"</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>所以我们只需要一个接受该格式并抛出实际DOM节点的函数：(即沉染vdom)</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">vnode</span>) </span>&#123;  </div><div class="line">    <span class="comment">// 字符串只转换成 文本节点：</span></div><div class="line">    <span class="keyword">if</span> (vnode.split) <span class="keyword">return</span> <span class="built_in">document</span>.createTextNode(vnode);</div><div class="line"></div><div class="line">    <span class="comment">// 使用 VDOM 的 nodeName 创建一个DOM 标签</span></div><div class="line">    <span class="keyword">let</span> n = <span class="built_in">document</span>.createElement(vnode.nodeName);</div><div class="line"></div><div class="line">    <span class="comment">// 拷贝所有属性到新节点上</span></div><div class="line">    <span class="keyword">let</span> a = vnode.attributes || &#123;&#125;;</div><div class="line">    <span class="built_in">Object</span>.keys(a).forEach( <span class="function"><span class="params">k</span> =&gt;</span> n.setAttribute(k, a[k]) );</div><div class="line"></div><div class="line">    <span class="comment">// 渲染并添加子节点</span></div><div class="line">    (vnode.children || []).forEach( <span class="function"><span class="params">c</span> =&gt;</span> n.appendChild(render(c)) );</div><div class="line"></div><div class="line">    <span class="keyword">return</span> n;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>：） 不难理解这是如何工作的。
-如果有帮助，您可以将“虚拟DOM”视为一个非常简单的配置，用于构建给定的DOM结构。</p>
-<blockquote>
-<p>虚拟DOM的好处是它非常轻巧。小对象引用其他小对象，一个由易于优化的应用程序逻辑构成的结构。</p>
-<p>这也意味着它不受任何渲染逻辑或缓慢的DOM方法的束缚。</p>
-</blockquote>
-<h2 id="使用JSX"><a href="#使用JSX" class="headerlink" title="使用JSX"></a>使用JSX</h2><p>我们知道<code>JSX</code>被转换成<code>h()</code>函数调用。
-那些函数调用创建一个简单的“虚拟”DOM树。
-我们可以使用该<code>render()</code>函数来制作一个匹配的“真实”DOM树。
-这就是这样的：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// JSX -&gt; VDOM:</span></div><div class="line"><span class="keyword">let</span> vdom = <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"foo"</span>&gt;</span>Hello!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// VDOM -&gt; DOM:</span></div><div class="line"><span class="keyword">let</span> dom = render(vdom);</div><div class="line"></div><div class="line"><span class="comment">// add the tree to &lt;body&gt;:</span></div><div class="line"><span class="built_in">document</span>.body.appendChild(dom);</div></pre></td></tr></table></figure>
-<h4 id="Partials，迭代与逻辑：没有新的语法"><a href="#Partials，迭代与逻辑：没有新的语法" class="headerlink" title="Partials，迭代与逻辑：没有新的语法"></a>Partials，迭代与逻辑：没有新的语法</h4><blockquote>
-<p>我们拥有所有的JavaScript语法，而不是模板语言引入的有限概念。（PS:这是JSX胜过模板语言的地方）</p>
-</blockquote>
-<p>“Partials”是由无逻辑/有限逻辑模板引擎引入的概念，用于在不同的上下文中重复使用视图块。</p>
-<p>迭代似乎是每个新的模板语言都重新发明的东西（我和任何人一样有罪）。使用JSX，没有新的语法来学习：迭代您在JavaScript程序中的其他任何地方。您选择最适合给定任务迭代式的：<code>[].forEach()</code>，<code>[].map()</code>，<code>for</code>和<code>while</code>循环等</p>
-<p>逻辑，像迭代，是模板语言喜欢重新发明的东西。一方面，无逻辑模板在将逻辑嵌入到视图方法非常弱：有限的结构，如<code>\{\{ \#if value}}</code>将逻辑推入控制器层，鼓励膨胀。这规避了构建语言来描述更复杂的逻辑，避免可预见性和安全隐患。</p>
-<p>在另一方面，使用代码生成（一种从粗略到不可原谅的技术）的引擎通常具有执行逻辑或甚至迭代任意JavaScript表达式的能力。这是一个很好的理由，不惜一切代价避免这种情况：您的代码被从原始位置（也许是一个模块，闭包或标记内）中剥离出来，并对“别的地方”评估。这对我来说是不可预测的或足够安全的。</p>
-<blockquote>
-<p>JSX允许所有 JavaScript的语言功能，而不依赖于在构建步骤中生成奇怪的代码，没有eval()和扩展。</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 将数组中的字符串以列表的形式展示</span></div><div class="line"><span class="keyword">let</span> items = [<span class="string">'foo'</span>, <span class="string">'bar'</span>, <span class="string">'baz'</span>];</div><div class="line"></div><div class="line"><span class="comment">// 创建列表li</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">item</span>(<span class="params">text</span>) </span>&#123;  </div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;text&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 一个使用迭代和复用的视图</span></div><div class="line"><span class="keyword">let</span> list = render(  </div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line">    &#123; items.map(item) &#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">);</div></pre></td></tr></table></figure>
-<p><code>render()</code>返回一个DOM节点（在上述情况下是返回<ul>列表），所以我们只需要把它放到DOM中：</ul></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.body.appendChild(list);</div></pre></td></tr></table></figure>
-<h2 id="把它放在一起"><a href="#把它放在一起" class="headerlink" title="把它放在一起"></a>把它放在一起</h2><p>以下是小型虚拟DOM渲染器和使用它的视图的完整源码。
-具有一些样式的CodePen可在下面获得。</p>
-<blockquote>
-<p>同样，我也写了一个例子：<a href="https://github.com/Robin-front/code-code-hut/tree/master/jsx" target="_blank" rel="external">在任何地方使用JSX渲染DOM</a></p>
-</blockquote>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">const ITEMS = 'hello there people'.split(' ');</div><div class="line"></div><div class="line">// turn an Array into list items:</div><div class="line">let list = items =&gt; items.map( p =&gt; &lt;li&gt; &#123;p&#125; &lt;/li&gt; );</div><div class="line"></div><div class="line">// view with a call out ("partial") to generate a list from an Array:</div><div class="line">let vdom = (  </div><div class="line">    &lt;div id="foo"&gt;</div><div class="line">        &lt;p&gt;Look, a simple JSX DOM renderer!&lt;/p&gt;</div><div class="line">        &lt;ul&gt;&#123; list(ITEMS) &#125;&lt;/ul&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">);</div><div class="line"></div><div class="line">// render() converts our "virtual DOM" (see below) to a real DOM tree:</div><div class="line">let dom = render(vdom);</div><div class="line"></div><div class="line">// append the new nodes somewhere:</div><div class="line">document.body.appendChild(dom);</div><div class="line"></div><div class="line">// Remember that "virtual DOM"? It's just JSON - each "VNode" is an object with 3 properties.</div><div class="line">let json = JSON.stringify(vdom, null, '  ');</div><div class="line"></div><div class="line">// The whole process (JSX -&gt; VDOM -&gt; DOM) in one step:</div><div class="line">document.body.appendChild(  </div><div class="line">    render( &lt;pre id="vdom"&gt;&#123; json &#125;&lt;/pre&gt; )</div><div class="line">);</div></pre></td></tr></table></figure>
-<h2 id="Codepen演示"><a href="#Codepen演示" class="headerlink" title="Codepen演示"></a><a href="https://codepen.io/developit/embed/aOYywe/" target="_blank" rel="external">Codepen演示</a></h2><iframe src="https://codepen.io/developit/embed/aOYywe/?height=600&theme-id=16424&default-tab=result" frameborder="no" crolling="no" width="100%" height="600"></iframe>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;JSX实际上很简单：只需要花1分钟阅读这个，你会明白有关这个有趣的替代模板的一切。
-    
-    </summary>
-    
-      <category term="JSX" scheme="http://robin-front.github.io/categories/JSX/"/>
-    
-      <category term="react" scheme="http://robin-front.github.io/categories/JSX/react/"/>
-    
-    
-      <category term="react" scheme="http://robin-front.github.io/tags/react/"/>
-    
-      <category term="JSX" scheme="http://robin-front.github.io/tags/JSX/"/>
     
   </entry>
   

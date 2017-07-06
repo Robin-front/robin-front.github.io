@@ -1968,9 +1968,9 @@
       <category term="react" scheme="http://robin-front.github.io/categories/JSX/react/"/>
     
     
-      <category term="JSX" scheme="http://robin-front.github.io/tags/JSX/"/>
-    
       <category term="react" scheme="http://robin-front.github.io/tags/react/"/>
+    
+      <category term="JSX" scheme="http://robin-front.github.io/tags/JSX/"/>
     
   </entry>
   

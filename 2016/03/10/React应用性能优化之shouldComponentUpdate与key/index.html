@@ -506,7 +506,7 @@
 并且，组件首次渲染时，shouldComponentUpdate 方法不会被调用</p>
 </blockquote>
 <p>shouldComponentUpdate 方法接受两个参数，新的 props 和新的 state：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">React.creatClass(&#123;</div><div class="line">    shouldComponentUpdate: <span class="function"><span class="keyword">function</span> <span class="params">(nextProps, nextState)</span> </span>&#123;</div><div class="line">      <span class="keyword">return</span> nextProps.id !== <span class="keyword">this</span>.props.id</div><div class="line">    &#125;</div><div class="line">  &#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">React.creatClass(&#123;</div><div class="line">    <span class="attr">shouldComponentUpdate</span>: <span class="function"><span class="keyword">function</span> (<span class="params">nextProps, nextState</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> nextProps.id !== <span class="keyword">this</span>.props.id</div><div class="line">    &#125;</div><div class="line">  &#125;)</div></pre></td></tr></table></figure>
 <p>另外，我们也可以添加 React.addons.PureRenderMixin 插件来处理 shouldComponentUpdate。 这个插件会重写 shouldComponentUpdate 方法，并在该方法内对新老 props 及 state 进行对比， 如果发现它们完全一致则返回 false, 就像上面的例子一样。官方文档里也有介绍： <a href="https://facebook.github.io/react/docs/pure-render-mixin.html" target="_blank" rel="external">PureRenderMixin</a></p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> <span class="type">PureRenderMixin</span> from <span class="symbol">'react</span>-addons-pure-render-mixin';</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FooComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  constructor(props) &#123;</div><div class="line">    <span class="keyword">super</span>(props);</div><div class="line">    <span class="keyword">this</span>.shouldComponentUpdate = <span class="type">PureRenderMixin</span>.shouldComponentUpdate.bind(<span class="keyword">this</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> &lt;div className=&#123;<span class="keyword">this</span>.props.className&#125;&gt;foo&lt;/div&gt;;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="key-键"><a href="#key-键" class="headerlink" title="key(键)"></a>key(键)</h3><p>在遍历列表的时候，没有组件添加 key 值会有 warnning 产生。那它是用来干嘛的呢？ 假设有一个 div 组件，它的 key 属性为 ‘foo’，之后又改为 ‘bar’， 那 React 就会跳过 DOM diff， 同时完会弃置 div 所有的子元素，并重新渲染。除了告诉 React 什么时候要抛弃一个节点之外，key 还可以在元素顺序改变时使用。</p>
@@ -766,6 +766,16 @@
       
 
       
+
+      <!-- sidebar -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-8386186071288063"
+           data-ad-slot="6065100430"
+           data-ad-format="auto"></ins>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
 
     </div>
 

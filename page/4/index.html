@@ -3,7 +3,7 @@
 
 
 
-<html class="theme-next muse" lang="zh-Hans">
+<html class="theme-next pisces" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -115,8 +115,8 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":true},
+    scheme: 'Pisces',
+    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":true},
     fancybox: true,
     motion: false,
     duoshuo: {
@@ -192,7 +192,7 @@
     
   
 
-  <div class="container sidebar-position-left 
+  <div class="container sidebar-position-right 
    page-home 
  ">
     <div class="headband"></div>
@@ -486,7 +486,7 @@
           <p>在javascript中，instanceof 和 isPrototypeOf 都可以判断一个原型是否在另一个实例的原型链中，那他们有什么区别呢，为什么说 isPrototypeOf 可以替代 instanceof 。
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/01/12/比较instanceof与isPrototypeof/#more" rel="contents">
+            <a class="btn" href="/2017/01/12/比较instanceof与isPrototypeof/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -691,7 +691,7 @@
           <p>目前大多数的移动设备均具备硬件能力支持振动，让软件代码通过使设备摇晃来向用户提供物理反馈。Vibration API 为 Web应用程序提供访问此硬件的能力。如果设备不支持，则不会产生任何效果。
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/01/10/javascript实现手机振动反馈提高用户体验/#more" rel="contents">
+            <a class="btn" href="/2017/01/10/javascript实现手机振动反馈提高用户体验/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -907,7 +907,7 @@
           <p><code>lodash</code> 源码中，发现数组截取操作并没有直接使用<code>array</code>的<code>slice</code>方法，而是写了个 <code>baseSlice</code> 方法，更重要的是 <code>baseSlice</code> 方法里，也并没有使用 <code>slice</code> 方法，而是使用循环索引的方式去实现。这让我陷入思考，难道原生Array的<code>slice</code>方法还不如循环快？</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/11/25/由lodash引出数组Array的slice方法性能探究/#more" rel="contents">
+            <a class="btn" href="/2016/11/25/由lodash引出数组Array的slice方法性能探究/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1101,7 +1101,7 @@
           <p>Debounce 和 Throttle是两个概念，我们可以在JavaScript中使用，以提高我们对执行功能的控制，在事件处理的时候特别有用。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/11/17/Debounce-and-Throttle-的可視化解釋/#more" rel="contents">
+            <a class="btn" href="/2016/11/17/Debounce-and-Throttle-的可視化解釋/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1302,7 +1302,7 @@
 <p>如果要控制上线的风险，我们就必需要解决这个问题，这时候，就需要使用 npm shrinkwrap 这个命令来解决问题。
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/10/20/使用-npm-shrinkwrap-来管理项目依赖/#more" rel="contents">
+            <a class="btn" href="/2016/10/20/使用-npm-shrinkwrap-来管理项目依赖/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1496,7 +1496,7 @@
           <p>之前了解的自动化部署都是<code>jekins</code>这样集成化的成熟的工具。最近因为有朋友提交代码时，不想登陆服务器拉取代码，才了解到 <code>git hooks</code>。看来还是git使用不到位。之前一直都是本地开发并提交代码，测试时，人工登陆测试服务器去拉取最新代码。
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/08/11/用Git-Hooks进行自动部署-让提交发布自动化/#more" rel="contents">
+            <a class="btn" href="/2016/08/11/用Git-Hooks进行自动部署-让提交发布自动化/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1690,7 +1690,7 @@
           <p>使用 webpack 也有一段时间了，但是每次看到别的项目配置，还是会去浏览一遍。这次刚好看到一个 <code>devtool: &#39;#eval-source-map&#39;</code>，就有些好奇，之前都是默认使用 <code>#source-map</code> 并没有过多去注意它。google一下，发现这个 devtool 选项还不少，那我们到底选哪个呢，它们有哪些区别。
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/08/08/webpack-sourcemap选项应该选哪个/#more" rel="contents">
+            <a class="btn" href="/2016/08/08/webpack-sourcemap选项应该选哪个/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1895,7 +1895,7 @@
           <p>原生app可以离线操作，在以前是相对web app的优势，web必须联网才能刷新使用。虽然所有浏览器都有缓存机制，但它们并不一定总能起到预期的作用。HTML5 使用 ApplicationCache 接口解决了由离线带来的部分难题。即使用户在离线状态下按了刷新按钮，您的应用也会正常加载和运行。
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/06/30/使用ApplicationCache离线缓存做一个h5离线应用/#more" rel="contents">
+            <a class="btn" href="/2016/06/30/使用ApplicationCache离线缓存做一个h5离线应用/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2308,7 +2308,7 @@ a.toString() // 当前的UTC时间字符串</p>
           <p>有一些不太常用的git命令记录下
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2016/05/16/git小记/#more" rel="contents">
+            <a class="btn" href="/2016/05/16/git小记/" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2358,7 +2358,16 @@ a.toString() // 当前的UTC时间字符串</p>
           
 
 
-          
+          <!-- bottom -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8386186071288063"
+     data-ad-slot="9018566839"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
 
         </div>
         
@@ -2439,27 +2448,27 @@ a.toString() // 当前的UTC时间字符串</p>
               <span class="links-of-author-item">
                 <a href="https://github.com/robin-front" target="_blank" title="github">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-github"></i>
                   
                   github
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/robin-front" target="_blank" title="zhihu">
+                <a href="https://twitter.com/lb_robin" target="_blank" title="twitter">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-twitter"></i>
                   
-                  zhihu
+                  twitter
                 </a>
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://www.segmentfault.com/u/robins" target="_blank" title="segmentfault">
+                <a href="https://stackoverflow.com/users/6053135/robin" target="_blank" title="stackoverflow">
                   
-                    <i class="fa fa-fw fa-globe"></i>
+                    <i class="fa fa-fw fa-stack-overflow"></i>
                   
-                  segmentfault
+                  stackoverflow
                 </a>
               </span>
             
@@ -2503,15 +2512,6 @@ a.toString() // 当前的UTC时间字符串</p>
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div align="center">
-<!-- bottom -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8386186071288063"
-     data-ad-slot="9018566839"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 </div>
 <div class="copyright" >
   
@@ -2531,7 +2531,7 @@ a.toString() // 当前的UTC时间字符串</p>
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -2606,6 +2606,13 @@ a.toString() // 当前的UTC时间字符串</p>
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
 
   
 

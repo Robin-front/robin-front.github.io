@@ -1,514 +1,31 @@
-<!doctype html>
-
-
-
-
-<html class="theme-next pisces" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-  <meta name="google-site-verification" content="ezF4b6TIq3nrF8BJmQrK_v9BmJnUQfVVPB4xBYo7AD8" />
-
-
-
-
-
-
-
-  <meta name="baidu-site-verification" content="T2V9h2EnoE" />
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="angularJS,指令," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="三寸稚笔" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
-
-
-
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="white">
-  <link rel="apple-touch-icon" href="/touch-icon.png?v=5.1.0">
-
-
-
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <link rel="apple-touch-startup-image" sizes="750x1294" href="/launch.png?v=5.1.0">
-
-
-
-
-
-
-<meta name="description" content="指令可以简单理解成特定DOM元素上执行的函数，它可以拓展元素的功能。 一个定义指令的基本格式如下： angular.module(&amp;apos;myApp&amp;apos;, [])     .direcitve(&amp;apos;myDirective&amp;apos;, function(){         return {         //指令的配置项         }     }); directiv">
-<meta name="keywords" content="angularJS,指令">
-<meta property="og:type" content="article">
-<meta property="og:title" content="angularJS自定义指令">
-<meta property="og:url" content="http://robin-front.github.io/2015/10/17/angular自定义指令/index.html">
-<meta property="og:site_name" content="三寸稚笔">
-<meta property="og:description" content="指令可以简单理解成特定DOM元素上执行的函数，它可以拓展元素的功能。 一个定义指令的基本格式如下： angular.module(&amp;apos;myApp&amp;apos;, [])     .direcitve(&amp;apos;myDirective&amp;apos;, function(){         return {         //指令的配置项         }     }); directiv">
-<meta property="og:updated_time" content="2016-10-20T08:02:47.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="angularJS自定义指令">
-<meta name="twitter:description" content="指令可以简单理解成特定DOM元素上执行的函数，它可以拓展元素的功能。 一个定义指令的基本格式如下： angular.module(&amp;apos;myApp&amp;apos;, [])     .direcitve(&amp;apos;myDirective&amp;apos;, function(){         return {         //指令的配置项         }     }); directiv">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"right","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":true},
-    fancybox: true,
-    motion: false,
-    duoshuo: {
-      userId: 'undefined',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://robin-front.github.io/2015/10/17/angular自定义指令/"/>
-
-
-
-
-
-  <title> angularJS自定义指令 | 三寸稚笔 </title>
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-8386186071288063",
-    enable_page_level_ads: true
-  });
-  </script>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-74634898-1', 'auto');
-  ga('send', 'pageview');
-</script>
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?51f2c21567935649debac704a10c43f1";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-right page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">三寸稚笔</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <h1 class="site-subtitle" itemprop="description"></h1>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-book">
-          <a href="/RxJS-doc-chinese/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
-            
-            RXJS中文文档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
-            
-            站点地图
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2015/10/17/angular自定义指令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="robin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="三寸稚笔">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">angularJS自定义指令</h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-17T00:31:51+08:00">
-                2015-10-17
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2016-10-20T16:02:47+08:00">
-                2016-10-20
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/angularJS/" itemprop="url" rel="index">
-                    <span itemprop="name">angularJS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/10/17/angular自定义指令/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/10/17/angular自定义指令/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                  <span class="post-meta-divider">|</span>
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  2,207
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长</span>
-                
-                <span title="阅读时长">
-                  9 min
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <div align="center">
-          <!-- top -->
-          <ins class="adsbygoogle"
-               style="display:block"
-               data-ad-client="ca-pub-8386186071288063"
-               data-ad-slot="5007169637"
-               data-ad-format="auto"></ins>
-          <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-        </div>
-        <h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><p>可以简单理解成特定DOM元素上执行的函数，它可以拓展元素的功能。</p>
-<p>一个定义指令的基本格式如下：</p>
-<pre><code>angular.module(&apos;myApp&apos;, [])
+<!doctype html><html class="theme-next pisces" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="google-site-verification" content="ezF4b6TIq3nrF8BJmQrK_v9BmJnUQfVVPB4xBYo7AD8"><meta name="baidu-site-verification" content="T2V9h2EnoE"><link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="https://cdn.staticfile.org/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css"><meta name="keywords" content="angularJS,指令,"><link rel="alternate" href="/atom.xml" title="三寸稚笔" type="application/atom+xml"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="white"><link rel="apple-touch-icon" href="/touch-icon.png?v=5.1.0"><meta name="apple-mobile-web-app-capable" content="yes"><link rel="apple-touch-startup-image" sizes="750x1294" href="/launch.png?v=5.1.0"><meta name="description" content="指令可以简单理解成特定DOM元素上执行的函数，它可以拓展元素的功能。一个定义指令的基本格式如下：angular.module(&amp;apos;myApp&amp;apos;, [])
+    .direcitve(&amp;apos;myDirective&amp;apos;, function(){
+        return {
+        //指令的配置项
+        }
+    });
+directive("><meta property="og:type" content="article"><meta property="og:title" content="angularJS自定义指令"><meta property="og:url" content="http://robin-front.github.io/2015/10/17/angular自定义指令/index.html"><meta property="og:site_name" content="三寸稚笔"><meta property="og:description" content="指令可以简单理解成特定DOM元素上执行的函数，它可以拓展元素的功能。一个定义指令的基本格式如下：angular.module(&amp;apos;myApp&amp;apos;, [])
+    .direcitve(&amp;apos;myDirective&amp;apos;, function(){
+        return {
+        //指令的配置项
+        }
+    });
+directive("><meta property="og:updated_time" content="2016-10-20T08:02:47.000Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="angularJS自定义指令"><meta name="twitter:description" content="指令可以简单理解成特定DOM元素上执行的函数，它可以拓展元素的功能。一个定义指令的基本格式如下：angular.module(&amp;apos;myApp&amp;apos;, [])
+    .direcitve(&amp;apos;myDirective&amp;apos;, function(){
+        return {
+        //指令的配置项
+        }
+    });
+directive("><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",sidebar:{position:"left",display:"always",offset:12,offset_float:0,b2t:!1,scrollpercent:!0},fancybox:!0,motion:!1,duoshuo:{userId:"undefined",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://robin-front.github.io/2015/10/17/angular自定义指令/"><title>angularJS自定义指令 | 三寸稚笔</title><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script>(adsbygoogle=window.adsbygoogle||[]).push({google_ad_client:"ca-pub-8386186071288063",enable_page_level_ads:!0})</script></head><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><script>!function(e,t,a,n,c,o,s){e.GoogleAnalyticsObject=c,e[c]=e[c]||function(){(e[c].q=e[c].q||[]).push(arguments)},e[c].l=1*new Date,o=t.createElement(a),s=t.getElementsByTagName(a)[0],o.async=1,o.src="https://www.google-analytics.com/analytics.js",s.parentNode.insertBefore(o,s)}(window,document,"script",0,"ga"),ga("create","UA-74634898-1","auto"),ga("send","pageview")</script><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?51f2c21567935649debac704a10c43f1";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">三寸稚笔</span> <span class="logo-line-after"><i></i></span></a></div><h1 class="site-subtitle" itemprop="description"></h1></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-book"><a href="/RxJS-doc-chinese/" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i><br>RXJS中文文档</a></li><li class="menu-item menu-item-categories"><a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-about"><a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li><li class="menu-item menu-item-archives"><a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i><br>站点地图</a></li><li class="menu-item menu-item-commonweal"><a href="/404.html" rel="section"><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li></ul></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2015/10/17/angular自定义指令/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="robin"><meta itemprop="description" content=""><meta itemprop="image" content="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="三寸稚笔"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">angularJS自定义指令</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-17T00:31:51+08:00">2015-10-17 </time><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-calendar-check-o"></i> </span><span class="post-meta-item-text">更新于</span> <time title="更新于" itemprop="dateModified" datetime="2016-10-20T16:02:47+08:00">2016-10-20 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/angularJS/" itemprop="url" rel="index"><span itemprop="name">angularJS</span> </a></span></span><span class="post-comments-count"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-comment-o"></i> </span><a href="/2015/10/17/angular自定义指令/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/17/angular自定义指令/" itemprop="commentCount"></span></a></span><div class="post-wordcount"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计</span> <span title="字数统计">2,207 </span><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长</span> <span title="阅读时长">9 min</span></div></div></header><div class="post-body" itemprop="articleBody"><div align="center"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8386186071288063" data-ad-slot="5007169637" data-ad-format="auto"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div><h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><p>可以简单理解成特定DOM元素上执行的函数，它可以拓展元素的功能。</p><p>一个定义指令的基本格式如下：</p><pre><code>angular.module(&apos;myApp&apos;, [])
     .direcitve(&apos;myDirective&apos;, function(){
         return {
         //指令的配置项
         }
     });
-</code></pre><p>directive() 方法可以接受两个参数：
-<a id="more"></a></p>
-<h3 id="name"><a href="#name" class="headerlink" title="name"></a>name</h3><pre><code>指令的名字，如： myDirective。在DOM中可以这样使用: `&lt;my-directive&gt;&lt;/my-directive&gt;`;或者 `&lt;div my-directive&gt;&lt;/div&gt;`; 
+</code></pre><p>directive() 方法可以接受两个参数：<a id="more"></a></p><h3 id="name"><a href="#name" class="headerlink" title="name"></a>name</h3><pre><code>指令的名字，如： myDirective。在DOM中可以这样使用: `&lt;my-directive&gt;&lt;/my-directive&gt;`;或者 `&lt;div my-directive&gt;&lt;/div&gt;`; 
 定义指令时的名称用驼峰命名，使用时用中划线方式。
 </code></pre><h3 id="function"><a href="#function" class="headerlink" title="function"></a>function</h3><pre><code>这个函数可以返回一个对象，如上面；或者直接返回一个函数，它会被接收成 postLink 函数。
-</code></pre><h2 id="指令的返回函数的所有配置项"><a href="#指令的返回函数的所有配置项" class="headerlink" title="指令的返回函数的所有配置项"></a>指令的返回函数的所有配置项</h2><p>先看看指令的所有参数配置：</p>
-<pre><code>angular.module(&apos;myApp&apos;, [])
+</code></pre><h2 id="指令的返回函数的所有配置项"><a href="#指令的返回函数的所有配置项" class="headerlink" title="指令的返回函数的所有配置项"></a>指令的返回函数的所有配置项</h2><p>先看看指令的所有参数配置：</p><pre><code>angular.module(&apos;myApp&apos;, [])
     .directive(&apos;myDirective&apos;, function(){
         return {
             restrict: string,//指令在DOM中的声明形式字符串，默认值是‘A’
@@ -532,34 +49,11 @@
             }
         }
     });
-</code></pre><h3 id="1-restrict"><a href="#1-restrict" class="headerlink" title="1. restrict"></a>1. restrict</h3><p>可选值：
-E(元素，用于独立的指令单元，意图表达更明确) </p>
-<pre><code>&lt;my-directive&gt;&lt;/my-directive&gt;
-</code></pre><p>A(属性，默认值, 最常用，兼容性最好) </p>
-<pre><code>&lt;div my-directive=&apos;expression&apos;&gt;&lt;/div&gt;
-</code></pre><p>C(类名) </p>
-<pre><code>&lt;div class=&quot;my-directive: expression&quot;&gt;&lt;/div&gt;
-</code></pre><p>M(注释，尽量避免使用) </p>
-<pre><code>&lt;-- directive: my-directive expression --&gt;
-</code></pre><h3 id="2-priority"><a href="#2-priority" class="headerlink" title="2. priority"></a>2. priority</h3><p>默认值是0；优先级高的指令总是优先执行。优先级相同的指令，先声明的先执行。</p>
-<h3 id="3-terminal"><a href="#3-terminal" class="headerlink" title="3. terminal"></a>3. terminal</h3><p>设置为true,则停止运行当前元素上比本指令优先级低的指令，但优先级相同的仍然会执行。</p>
-<h3 id="4-template"><a href="#4-template" class="headerlink" title="4. template"></a>4. template</h3><p>值可以是以下类型：</p>
-<p>a. 模板字符串
-b. 一个可以接受两个参数的函数，并返回一个代表模板的字符串</p>
-<h3 id="5-templateUrl"><a href="#5-templateUrl" class="headerlink" title="5. templateUrl"></a>5. templateUrl</h3><p>值可以是以下类型：</p>
-<p>a. 外部html文件路径的字符串
-b. 一个可以接受两个参数的函数，并返回一个外部HTML文件路径的字符串</p>
-<h3 id="6-replace"><a href="#6-replace" class="headerlink" title="6. replace"></a>6. replace</h3><p>默认值false. 值为 true 时，模板会被当作子元素插入到调用此指令的元素内部</p>
-<h3 id="7-scope"><a href="#7-scope" class="headerlink" title="7. scope"></a>7. scope</h3><p>可选值：
-    false: 默认值，直接调用相同的作用域对象；
-    true: 从当前作用域对象继承一个新的作用域对象；
-    {}[object]: 创建一个同当前作用域相隔离的作用域对象。</p>
-<h4 id="隔离作用域"><a href="#隔离作用域" class="headerlink" title="隔离作用域"></a>隔离作用域</h4><p>具有隔离作用域的指令最主要的使用场景是创建可复用的组件，组件可以在未知上下文中使用，并且可以避免污染所处的外部作用域或不经意地污染内部作用域。</p>
-<h4 id="绑定策略"><a href="#绑定策略" class="headerlink" title="绑定策略"></a>绑定策略</h4><p>使用了隔离作用域后，指令的模板就无法访问外部作用域了。但使用无数据的隔离作用域并不常见。AngularJS 有三种方法可以将指令内部的隔离作用域同外部作用域进行数据绑定。</p>
-<ol>
-<li><p>本地作用域属性：<code>@ (or @attr)</code> 使用@符号将本地作用域同DOM属性的值进行绑定。指令内部作用域可以使用外部作用域的变量。</p>
-<p> js</p>
-<pre><code>myApp.controller(&apos;myController&apos;, [&apos;$scope&apos;, function($scope){
+</code></pre><h3 id="1-restrict"><a href="#1-restrict" class="headerlink" title="1. restrict"></a>1. restrict</h3><p>可选值： E(元素，用于独立的指令单元，意图表达更明确)</p><pre><code>&lt;my-directive&gt;&lt;/my-directive&gt;
+</code></pre><p>A(属性，默认值, 最常用，兼容性最好)</p><pre><code>&lt;div my-directive=&apos;expression&apos;&gt;&lt;/div&gt;
+</code></pre><p>C(类名)</p><pre><code>&lt;div class=&quot;my-directive: expression&quot;&gt;&lt;/div&gt;
+</code></pre><p>M(注释，尽量避免使用)</p><pre><code>&lt;-- directive: my-directive expression --&gt;
+</code></pre><h3 id="2-priority"><a href="#2-priority" class="headerlink" title="2. priority"></a>2. priority</h3><p>默认值是0；优先级高的指令总是优先执行。优先级相同的指令，先声明的先执行。</p><h3 id="3-terminal"><a href="#3-terminal" class="headerlink" title="3. terminal"></a>3. terminal</h3><p>设置为true,则停止运行当前元素上比本指令优先级低的指令，但优先级相同的仍然会执行。</p><h3 id="4-template"><a href="#4-template" class="headerlink" title="4. template"></a>4. template</h3><p>值可以是以下类型：</p><p>a. 模板字符串 b. 一个可以接受两个参数的函数，并返回一个代表模板的字符串</p><h3 id="5-templateUrl"><a href="#5-templateUrl" class="headerlink" title="5. templateUrl"></a>5. templateUrl</h3><p>值可以是以下类型：</p><p>a. 外部html文件路径的字符串 b. 一个可以接受两个参数的函数，并返回一个外部HTML文件路径的字符串</p><h3 id="6-replace"><a href="#6-replace" class="headerlink" title="6. replace"></a>6. replace</h3><p>默认值false. 值为 true 时，模板会被当作子元素插入到调用此指令的元素内部</p><h3 id="7-scope"><a href="#7-scope" class="headerlink" title="7. scope"></a>7. scope</h3><p>可选值： false: 默认值，直接调用相同的作用域对象； true: 从当前作用域对象继承一个新的作用域对象； {}[object]: 创建一个同当前作用域相隔离的作用域对象。</p><h4 id="隔离作用域"><a href="#隔离作用域" class="headerlink" title="隔离作用域"></a>隔离作用域</h4><p>具有隔离作用域的指令最主要的使用场景是创建可复用的组件，组件可以在未知上下文中使用，并且可以避免污染所处的外部作用域或不经意地污染内部作用域。</p><h4 id="绑定策略"><a href="#绑定策略" class="headerlink" title="绑定策略"></a>绑定策略</h4><p>使用了隔离作用域后，指令的模板就无法访问外部作用域了。但使用无数据的隔离作用域并不常见。AngularJS 有三种方法可以将指令内部的隔离作用域同外部作用域进行数据绑定。</p><ol><li><p>本地作用域属性：<code>@ (or @attr)</code> 使用@符号将本地作用域同DOM属性的值进行绑定。指令内部作用域可以使用外部作用域的变量。</p><p>js</p><pre><code>myApp.controller(&apos;myController&apos;, [&apos;$scope&apos;, function($scope){
     $scope.btnText = &apos;按钮&apos;;
     $scope.validate= &apos;1234&apos;;
     $scope.submit = function(err){
@@ -577,16 +71,11 @@ myApp.directive(&apos;my-btn&apos;, function(){
         template: &apos;&lt;button&gt;{{text}}&lt;/button&gt;&apos;//这里的{{text}}正是scope的text.
     }
 });
-</code></pre><p> html</p>
-<pre><code>&lt;form action=&quot;/&quot;&gt;
+</code></pre><p>html</p><pre><code>&lt;form action=&quot;/&quot;&gt;
     &lt;input type=&quot;text&quot;&gt;
     &lt;my-btn btn-text=&quot;btnText&quot;&gt;&lt;/my-btn&gt;//这里的属性‘btn-text’正是指令的‘@btnText’,属性值‘btnText’正是父级作用域的‘$scope.btnText’
 &lt;/form&gt;
-</code></pre></li>
-<li><p>双向绑定： <code>= (or =attr)</code> 可以将本地作用域上的属性同父级作用域上的属性进行双向的数据绑定。</p>
-<p> 例：
- js,controller同上一例子,如果理解上面的例子，这里也是很好理解的，只是绑定的不是字符串，而是双向数据绑定。</p>
-<pre><code>myApp.directive(&apos;myInput&apos;, function(){
+</code></pre></li><li><p>双向绑定： <code>= (or =attr)</code> 可以将本地作用域上的属性同父级作用域上的属性进行双向的数据绑定。</p><p>例： js,controller同上一例子,如果理解上面的例子，这里也是很好理解的，只是绑定的不是字符串，而是双向数据绑定。</p><pre><code>myApp.directive(&apos;myInput&apos;, function(){
     return {
         restrict: &apos;A&apos;,
         scope:{
@@ -595,14 +84,10 @@ myApp.directive(&apos;my-btn&apos;, function(){
         template: &apos;&lt;input type=&quot;text&quot; ng-model=&quot;val&quot;&gt;&apos;
     }
 });
-</code></pre><p> html</p>
-<pre><code>&lt;form action=&quot;/&quot;&gt;
+</code></pre><p>html</p><pre><code>&lt;form action=&quot;/&quot;&gt;
     &lt;div my-input value=&quot;validate&quot;&gt;&lt;/div&gt;//本地作用域的属性val与父级作用域的属性validate进行双向数据绑定
 &lt;/form&gt;
-</code></pre></li>
-<li><p>父级作用域绑定： <code>&amp; (or &amp;attr)</code> 可以对父级作用域进行绑定，可以调用父方法。意味着对这个值进行设置时会生成一个指向父级作用域的包装函数。</p>
-<p> js</p>
-<pre><code>myApp.directive(&apos;myError&apos;, function(){
+</code></pre></li><li><p>父级作用域绑定： <code>&amp; (or &amp;attr)</code> 可以对父级作用域进行绑定，可以调用父方法。意味着对这个值进行设置时会生成一个指向父级作用域的包装函数。</p><p>js</p><pre><code>myApp.directive(&apos;myError&apos;, function(){
     return {
         restrict: &apos;A&apos;,
         scope: {
@@ -612,16 +97,11 @@ myApp.directive(&apos;my-btn&apos;, function(){
                 &apos;&lt;button ng-click=&apos;validate({name: text})&apos;&gt;&lt;/button&gt;&apos;//传递参数需要传递一个对象，name是参数名，text是参数值。
     }
 });
-</code></pre><p> html</p>
-<pre><code>&lt;div&gt;
+</code></pre><p>html</p><pre><code>&lt;div&gt;
     &lt;div my-error check=&quot;submit(name)&quot;&gt;&lt;/div&gt;
     &lt;div my-error check=&quot;submit(name)&quot;&gt;&lt;/div&gt;//因为是隔离作用域，他们之间的值是不会互相影响的，只是共用父方法。
 &lt;/div&gt;
-</code></pre><p> 要调用一个带有参数的父方法，需要传递一个对象，这个对象的key是参数名称，val是要传递给参数的内容</p>
-</li>
-</ol>
-<h3 id="8-transclude"><a href="#8-transclude" class="headerlink" title="8. transclude"></a>8. transclude</h3><p>transclude是一个可选参数，默认值是false, 当值为true时，angularJS会将从DOM元素中获取的内容放到它发现ng-transclude指令的地方，如：</p>
-<pre><code>&lt;ul sidebox&gt;
+</code></pre><p>要调用一个带有参数的父方法，需要传递一个对象，这个对象的key是参数名称，val是要传递给参数的内容</p></li></ol><h3 id="8-transclude"><a href="#8-transclude" class="headerlink" title="8. transclude"></a>8. transclude</h3><p>transclude是一个可选参数，默认值是false, 当值为true时，angularJS会将从DOM元素中获取的内容放到它发现ng-transclude指令的地方，如：</p><pre><code>&lt;ul sidebox&gt;
     &lt;li&gt;first&lt;/li&gt;
     &lt;li&gt;second&lt;/li&gt;
 &lt;/ul&gt;
@@ -637,12 +117,7 @@ angular.module(&apos;myApp&apos;, [])
                     &apos;&lt;div class=&quot;content&quot; ng-tranclude&gt;&lt;/div&gt;&apos;
         }
     });
-</code></pre><p>只有希望创建一个可以包含任意内容的指令时，才使用transclude: true。，典型的例子是模态框或导航栏。</p>
-<h3 id="9-controller"><a href="#9-controller" class="headerlink" title="9. controller"></a>9. controller</h3><p>值可以是一个字符串或一个函数。
-string: 当设置为字符中时，指令会查找注册在应用中的同名控制器。
-function: 直接通过匿名构造函数的方式来定义一个内联的控制器。</p>
-<p>控制器主要是用来提供可以指令间复用的行为。可以的将当前指令的API暴露给其他的指令使用。如：</p>
-<pre><code>angular.modue(&apos;myApp&apos;, [])
+</code></pre><p>只有希望创建一个可以包含任意内容的指令时，才使用transclude: true。，典型的例子是模态框或导航栏。</p><h3 id="9-controller"><a href="#9-controller" class="headerlink" title="9. controller"></a>9. controller</h3><p>值可以是一个字符串或一个函数。 string: 当设置为字符中时，指令会查找注册在应用中的同名控制器。 function: 直接通过匿名构造函数的方式来定义一个内联的控制器。</p><p>控制器主要是用来提供可以指令间复用的行为。可以的将当前指令的API暴露给其他的指令使用。如：</p><pre><code>angular.modue(&apos;myApp&apos;, [])
     .directive(&apos;inputForm&apos;, function(){
         return {
             restrict: &apos;EA&apos;,
@@ -655,15 +130,7 @@ function: 直接通过匿名构造函数的方式来定义一个内联的控制�
             }
         }
     });
-</code></pre><p>任意的服务同样可以被传递给controller。其中有一些特殊的服务：</p>
-<ul>
-<li>$scope 与指令元素相关联的当前作用域</li>
-<li>$element 当前指令对应的元素</li>
-<li>$attrs 当前元素的属性组成的对象</li>
-<li>$transclude transclude链接函数是实际被执行用来克隆元素和操作DOM的函数</li>
-</ul>
-<h3 id="10-controllerAs"><a href="#10-controllerAs" class="headerlink" title="10. controllerAs"></a>10. controllerAs</h3><p>controllerAs用来设置控制器别名，以此为名发布控制器，并且作用域可以访问controllerAs。这样可以在视图中引用控制器，甚至无需注入$scope。例：</p>
-<pre><code>angular.module(&apos;myApp&apos;, [])
+</code></pre><p>任意的服务同样可以被传递给controller。其中有一些特殊的服务：</p><ul><li>$scope 与指令元素相关联的当前作用域</li><li>$element 当前指令对应的元素</li><li>$attrs 当前元素的属性组成的对象</li><li>$transclude transclude链接函数是实际被执行用来克隆元素和操作DOM的函数</li></ul><h3 id="10-controllerAs"><a href="#10-controllerAs" class="headerlink" title="10. controllerAs"></a>10. controllerAs</h3><p>controllerAs用来设置控制器别名，以此为名发布控制器，并且作用域可以访问controllerAs。这样可以在视图中引用控制器，甚至无需注入$scope。例：</p><pre><code>angular.module(&apos;myApp&apos;, [])
     .directive(&apos;myDirective&apos;, function(){
         return {
             restrict: &apos;A&apos;,
@@ -675,15 +142,12 @@ function: 直接通过匿名构造函数的方式来定义一个内联的控制�
         }
     });
 &lt;div my-directive&gt;&lt;/div&gt;
-</code></pre><p>又例：</p>
-<pre><code>angular.module(&apos;myApp&apos;, [])
+</code></pre><p>又例：</p><pre><code>angular.module(&apos;myApp&apos;, [])
     .controller(&apos;myController&apos;, function(){
         this.msg = &apos;robin&apos;;
     });
 &lt;div ng-controller=&quot;myController as main&quot;&gt;{{main.robin}}&lt;/div&gt;
-</code></pre><h3 id="11-require"><a href="#11-require" class="headerlink" title="11. require"></a>11. require</h3><p>其值可以是字符串或数组，字符串或数组元素代表另个一个指令的名字。require 会将指令控制器注入到当前的指令中，并作为当前指令的链接函数的第四个参数。</p>
-<p>结合9.controller的例子，可以这样使用</p>
-<pre><code>angular.module(&apos;myApp&apos;, [])
+</code></pre><h3 id="11-require"><a href="#11-require" class="headerlink" title="11. require"></a>11. require</h3><p>其值可以是字符串或数组，字符串或数组元素代表另个一个指令的名字。require 会将指令控制器注入到当前的指令中，并作为当前指令的链接函数的第四个参数。</p><p>结合9.controller的例子，可以这样使用</p><pre><code>angular.module(&apos;myApp&apos;, [])
     .directive(&apos;otherForm&apos;, function(){
         return {
             restrict: &apos;A&apos;,
@@ -693,8 +157,7 @@ function: 直接通过匿名构造函数的方式来定义一个内联的控制�
             }
         }
     });
-</code></pre><p>如果是数组：</p>
-<pre><code>angular.module(&apos;myApp&apos;, [])
+</code></pre><p>如果是数组：</p><pre><code>angular.module(&apos;myApp&apos;, [])
     .directive(&apos;otherForm&apos;, function(){
         return {
             restrict: &apos;A&apos;,
@@ -705,22 +168,10 @@ function: 直接通过匿名构造函数的方式来定义一个内联的控制�
             }
         }
     });
-</code></pre><p>require前缀：</p>
-<ul>
-<li>‘?’    如果在当前指令中没有找到所面要的控制器，会将null作为link的第四个参数；</li>
-<li>‘^’    指令会在上游的指令链中查找require参数所指定的控制器；</li>
-<li>‘?^’    前两个选项的组合；</li>
-<li>没有前缀    指令将在同级作用域查找所需控制器，如果没有找到会抛出一个错误。</li>
-</ul>
-<h3 id="12-compile"><a href="#12-compile" class="headerlink" title="12. compile"></a>12. compile</h3><p>compile选项可以返回一个对象或函数。</p>
-<p>compile函数可以用来在指令和实时数据被放到DOM中之前进行DOM操作，在这里进行添加和删除节点等DOM操作是安全的。</p>
-<p>compile与link函数是互斥的。如果同时设置，compile的返回函数会被当作链接函数，link函数会被忽略。</p>
-<pre><code>compile: function(tEle, tAttrs, transcludeFn){
+</code></pre><p>require前缀：</p><ul><li>‘?’ 如果在当前指令中没有找到所面要的控制器，会将null作为link的第四个参数；</li><li>‘^’ 指令会在上游的指令链中查找require参数所指定的控制器；</li><li>‘?^’ 前两个选项的组合；</li><li>没有前缀 指令将在同级作用域查找所需控制器，如果没有找到会抛出一个错误。</li></ul><h3 id="12-compile"><a href="#12-compile" class="headerlink" title="12. compile"></a>12. compile</h3><p>compile选项可以返回一个对象或函数。</p><p>compile函数可以用来在指令和实时数据被放到DOM中之前进行DOM操作，在这里进行添加和删除节点等DOM操作是安全的。</p><p>compile与link函数是互斥的。如果同时设置，compile的返回函数会被当作链接函数，link函数会被忽略。</p><pre><code>compile: function(tEle, tAttrs, transcludeFn){
     //...tEle代表未绑定事件的DOM元素
 }
-</code></pre><h3 id="13-link"><a href="#13-link" class="headerlink" title="13. link"></a>13. link</h3><p>link函数会经常被使用。负责设置事件监听器、监听数据变化和实时的操作DOM。</p>
-<p>如果指令很简单，可以直接从工厂函数返回一个函数来代替。如：</p>
-<pre><code>angular.module(&apos;myApp&apos;, [])
+</code></pre><h3 id="13-link"><a href="#13-link" class="headerlink" title="13. link"></a>13. link</h3><p>link函数会经常被使用。负责设置事件监听器、监听数据变化和实时的操作DOM。</p><p>如果指令很简单，可以直接从工厂函数返回一个函数来代替。如：</p><pre><code>angular.module(&apos;myApp&apos;, [])
     .directive(&apos;myDirective&apos;, function(){
         return {
             pre: function(tElement, tAttrs, transclude){},
@@ -739,486 +190,4 @@ angular.module(&apos;myApp&apos;, [])
             }
         }
     });
-</code></pre>
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-  <ul class="post-copyright">
-    <li class="post-copyright-author">
-      <strong>本文作者：</strong>
-      robin
-    </li>
-    <li class="post-copyright-link">
-      <strong>本文链接：</strong>
-      <a href="http://robin-front.github.io/2015/10/17/angular自定义指令/" title="angularJS自定义指令">http://robin-front.github.io/2015/10/17/angular自定义指令/</a>
-    </li>
-    <li class="post-copyright-license">
-      <strong>版权声明： </strong>
-      本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
-    </li>
-  </ul>
-
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/angularJS/" rel="tag"># angularJS</a>
-          
-            <a href="/tags/指令/" rel="tag"># 指令</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/10/10/git分支/" rel="next" title="git分支">
-                <i class="fa fa-chevron-left"></i> git分支
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/10/30/javascript取本周和本月或任意月的时间段/" rel="prev" title="javascript获取本周和本月或任意月的时间段">
-                javascript获取本周和本月或任意月的时间段 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          <!-- bottom -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8386186071288063"
-     data-ad-slot="9018566839"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460"
-               alt="robin" />
-          <p class="site-author-name" itemprop="name">robin</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-           
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">65</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">40</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">63</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/robin-front" target="_blank" title="github">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/lb_robin" target="_blank" title="twitter">
-                  
-                    <i class="fa fa-fw fa-twitter"></i>
-                  
-                  twitter
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://stackoverflow.com/users/6053135/robin" target="_blank" title="stackoverflow">
-                  
-                    <i class="fa fa-fw fa-stack-overflow"></i>
-                  
-                  stackoverflow
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#指令"><span class="nav-number">1.</span> <span class="nav-text">指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#name"><span class="nav-number">1.1.</span> <span class="nav-text">name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#function"><span class="nav-number">1.2.</span> <span class="nav-text">function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令的返回函数的所有配置项"><span class="nav-number">2.</span> <span class="nav-text">指令的返回函数的所有配置项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-restrict"><span class="nav-number">2.1.</span> <span class="nav-text">1. restrict</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-priority"><span class="nav-number">2.2.</span> <span class="nav-text">2. priority</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-terminal"><span class="nav-number">2.3.</span> <span class="nav-text">3. terminal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-template"><span class="nav-number">2.4.</span> <span class="nav-text">4. template</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-templateUrl"><span class="nav-number">2.5.</span> <span class="nav-text">5. templateUrl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-replace"><span class="nav-number">2.6.</span> <span class="nav-text">6. replace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-scope"><span class="nav-number">2.7.</span> <span class="nav-text">7. scope</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#隔离作用域"><span class="nav-number">2.7.1.</span> <span class="nav-text">隔离作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绑定策略"><span class="nav-number">2.7.2.</span> <span class="nav-text">绑定策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-transclude"><span class="nav-number">2.8.</span> <span class="nav-text">8. transclude</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-controller"><span class="nav-number">2.9.</span> <span class="nav-text">9. controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-controllerAs"><span class="nav-number">2.10.</span> <span class="nav-text">10. controllerAs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-require"><span class="nav-number">2.11.</span> <span class="nav-text">11. require</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-compile"><span class="nav-number">2.12.</span> <span class="nav-text">12. compile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-link"><span class="nav-number">2.13.</span> <span class="nav-text">13. link</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-      <!-- sidebar -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-8386186071288063"
-           data-ad-slot="6065100430"
-           data-ad-format="auto"></ins>
-      <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-
-    </div>
-
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div align="center">
-</div>
-<div class="copyright" >
-  
-  &copy;  2014 - 
-  <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">robin</span>
-</div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-          <span id="scrollpercent"><span>0</span>%</span>
-        
-      </div>
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://robin-front-github-io.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://robin-front.github.io/2015/10/17/angular自定义指令/';
-          this.page.identifier = '2015/10/17/angular自定义指令/';
-          this.page.title = 'angularJS自定义指令';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://robin-front-github-io.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-
-  
-
-</body>
-</html>
+</code></pre></div><div></div><div></div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong> robin</li><li class="post-copyright-link"><strong>本文链接：</strong> <a href="http://robin-front.github.io/2015/10/17/angular自定义指令/" title="angularJS自定义指令">http://robin-front.github.io/2015/10/17/angular自定义指令/</a></li><li class="post-copyright-license"><strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！</li></ul></div><footer class="post-footer"><div class="post-tags"><a href="/tags/angularJS/" rel="tag"># angularJS</a> <a href="/tags/指令/" rel="tag"># 指令</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2015/10/10/git分支/" rel="next" title="git分支"><i class="fa fa-chevron-left"></i> git分支</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2015/10/30/javascript取本周和本月或任意月的时间段/" rel="prev" title="javascript获取本周和本月或任意月的时间段">javascript获取本周和本月或任意月的时间段 <i class="fa fa-chevron-right"></i></a></div></div></footer></article><div class="post-spread"></div></div></div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8386186071288063" data-ad-slot="9018566839" data-ad-format="auto"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script><div class="comments" id="comments"><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460" alt="robin"><p class="site-author-name" itemprop="name">robin</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives"><span class="site-state-item-count">65</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">40</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">63</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/robin-front" target="_blank" title="github"><i class="fa fa-fw fa-github"></i> github </a></span><span class="links-of-author-item"><a href="https://twitter.com/lb_robin" target="_blank" title="twitter"><i class="fa fa-fw fa-twitter"></i> twitter </a></span><span class="links-of-author-item"><a href="https://stackoverflow.com/users/6053135/robin" target="_blank" title="stackoverflow"><i class="fa fa-fw fa-stack-overflow"></i> stackoverflow</a></span></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#指令"><span class="nav-number">1.</span> <span class="nav-text">指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#name"><span class="nav-number">1.1.</span> <span class="nav-text">name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#function"><span class="nav-number">1.2.</span> <span class="nav-text">function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令的返回函数的所有配置项"><span class="nav-number">2.</span> <span class="nav-text">指令的返回函数的所有配置项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-restrict"><span class="nav-number">2.1.</span> <span class="nav-text">1. restrict</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-priority"><span class="nav-number">2.2.</span> <span class="nav-text">2. priority</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-terminal"><span class="nav-number">2.3.</span> <span class="nav-text">3. terminal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-template"><span class="nav-number">2.4.</span> <span class="nav-text">4. template</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-templateUrl"><span class="nav-number">2.5.</span> <span class="nav-text">5. templateUrl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-replace"><span class="nav-number">2.6.</span> <span class="nav-text">6. replace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-scope"><span class="nav-number">2.7.</span> <span class="nav-text">7. scope</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#隔离作用域"><span class="nav-number">2.7.1.</span> <span class="nav-text">隔离作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绑定策略"><span class="nav-number">2.7.2.</span> <span class="nav-text">绑定策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-transclude"><span class="nav-number">2.8.</span> <span class="nav-text">8. transclude</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-controller"><span class="nav-number">2.9.</span> <span class="nav-text">9. controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-controllerAs"><span class="nav-number">2.10.</span> <span class="nav-text">10. controllerAs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-require"><span class="nav-number">2.11.</span> <span class="nav-text">11. require</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-compile"><span class="nav-number">2.12.</span> <span class="nav-text">12. compile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-link"><span class="nav-number">2.13.</span> <span class="nav-text">13. link</span></a></li></ol></li></ol></div></div></section><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8386186071288063" data-ad-slot="6065100430" data-ad-format="auto"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div align="center"></div><div class="copyright">&copy; 2014 - <span itemprop="copyrightYear">2017</span> <span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">robin</span></div><div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div><div class="theme-info">主题 - <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span id="scrollpercent"><span>0</span>%</span></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script><script type="text/javascript" src="https://cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js"></script><script type="text/javascript" src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script><script type="text/javascript" src="https://cdn.staticfile.org/velocity/1.2.1/velocity.min.js"></script><script type="text/javascript" src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script><script type="text/javascript" src="https://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script><script id="dsq-count-scr" src="https://robin-front-github-io.disqus.com/count.js" async></script><script type="text/javascript">var disqus_config=function(){this.page.url="http://robin-front.github.io/2015/10/17/angular自定义指令/",this.page.identifier="2015/10/17/angular自定义指令/",this.page.title="angularJS自定义指令"},d=document,s=d.createElement("script");s.src="https://robin-front-github-io.disqus.com/embed.js",s.setAttribute("data-timestamp",""+ +new Date),(d.head||d.body).appendChild(s)</script><script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script></body></html>

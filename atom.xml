@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-07-06T08:24:53.000Z</updated>
+  <updated>2017-07-10T08:30:11.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>不要混用 import 和 require</title>
+    <link href="http://robin-front.github.io/2017/07/10/dont-mixin-import-and-require/"/>
+    <id>http://robin-front.github.io/2017/07/10/dont-mixin-import-and-require/</id>
+    <published>2017-07-10T08:30:11.000Z</published>
+    <updated>2017-07-10T08:30:11.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>import 是 ES6 规范语法之一。而 require 属于CommonJS规范的一部分。</p><p>目前来说，使用现代浏览器还无法支持 import，一般都会搭配 babel 使用，而 babel 会把 import 转换成 CommonJS 的 require.</p><p>但是，我们不能混用 import 和 require。有时候会看下如下代码：<a id="more"></a></p><p><img src="https://pbs.twimg.com/media/DESmTTXUMAAJcIW.jpg:large" alt="https://pbs.twimg.com/media/DESmTTXUMAAJcIW.jpg:large"></p><p>但实际执行顺序并不是你想象或看到的那样。import 具有声明提升效果，会首先执行。所以最好 <strong>不要混用</strong>。 import 是 ES6 标准，如果可能，首先使用 import, 如果不行，就用 require。</p><h2 id="ES6-import"><a href="#ES6-import" class="headerlink" title="ES6 import"></a>ES6 import</h2><ul><li>具有声明提升效果</li><li>您可以使用命名导入来选择性地加载所需的部分。这样可以节省内存， 如：<code>import { render } from react</code></li><li>导入可以是异步的</li><li>ES6 标准</li></ul><h2 id="require"><a href="#require" class="headerlink" title="require"></a>require</h2><ul><li>您可以在加载的模块名称不是预定义/静态的情况下进行动态加载，或者只有在真正需要的情况下才有条件地加载模块（取决于某些代码流）</li><li>CommonJS 规范加载是同步的。这意味着如果你有多个require，它们将逐个加载和处理（AMD规范是可以异步的）</li><li>只是约定的规范</li></ul><p>参考：<a href="https://twitter.com/dan_abramov/status/883375646357041152" target="_blank" rel="external">https://twitter.com/dan_abramov/status/883375646357041152</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;import 是 ES6 规范语法之一。而 require 属于CommonJS规范的一部分。&lt;/p&gt;&lt;p&gt;目前来说，使用现代浏览器还无法支持 import，一般都会搭配 babel 使用，而 babel 会把 import 转换成 CommonJS 的 require.&lt;/p&gt;&lt;p&gt;但是，我们不能混用 import 和 require。有时候会看下如下代码：
+    
+    </summary>
+    
+      <category term="es6" scheme="http://robin-front.github.io/categories/es6/"/>
+    
+    
+      <category term="import" scheme="http://robin-front.github.io/tags/import/"/>
+    
+      <category term="require" scheme="http://robin-front.github.io/tags/require/"/>
+    
+  </entry>
   
   <entry>
     <title>react性能优化：提取子组件中额外的事件绑定</title>
@@ -452,28 +476,6 @@
     
     
       <category term="Marko" scheme="http://robin-front.github.io/tags/Marko/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>npm@5发布有哪些改进</title>
-    <link href="http://robin-front.github.io/2017/06/01/npm-5%E5%8F%91%E5%B8%83%E6%9C%89%E5%93%AA%E4%BA%9B%E6%94%B9%E8%BF%9B/"/>
-    <id>http://robin-front.github.io/2017/06/01/npm-5发布有哪些改进/</id>
-    <published>2017-06-01T02:15:45.000Z</published>
-    <updated>2017-06-01T02:15:45.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://cdn-images-1.medium.com/max/800/1*9nI6dL1Z-8cqFpCX96zVFA.gif" alt="npm@5 is now latest"></p><p>从今天开始，如果您输入“<code>npm install npm@latest -g</code>”，那么您将被更新为npm版本5。另外，在所有<a href="https://medium.com/@nodejs/node-js-8-big-improvements-for-the-debugging-and-native-module-ecosystem-58454861f2fc" target="_blank" rel="external">Node.js 8</a>的新安装中都捆绑了<code>npm@5</code> ，它已经替代了<code>Node.js 7</code>在Node Project的当前版本中。</p><p>在过去一年半的时间里，我们一直在努力解决大量的痛点，其中有些是创建npm以来就已经存在的。今天的发布是对npm速度，一致性和用户体验的最大改进。</p><p>发布说明中有什么新内容和更改内容的明确列表，但这里有一些亮点：<a id="more"></a></p><h2 id="速度很快"><a href="#速度很快" class="headerlink" title="速度很快"></a>速度很快</h2><p>重新编排了包元数据，软件包下载和软件包缓存，这大大加快了工作。一般来说，期望性能提升20-100％; 我们还看到一些安装和版本冲突的运行速度提高了5倍。</p><p><img src="https://cdn-images-1.medium.com/max/800/0*K1Wb1ERhtAHLRG0m." alt="speed improvements in npm@5"></p><p>由于npm最初的设计，开发人员已经改变了他们如何使用npm。npm生态系统不仅呈指数级增长，而且从2014年起，平均npm软件包中的依赖关系数量增加了250％。现在，更多的开发人员现在可以在本地安装Babel，Webpack和Tap等有用工具，而不是全局。这是一个最佳实践，但这意味着“<code>npm install</code>”可以做更多的工作。</p><p>鉴于我们社区的规模，任何速度上升都会为数百万用户带来巨大的节省，更不用说我们的所有组织和npm企业客户。使npm @ 5变快成为一个很显然的目标。</p><h2 id="目标一致"><a href="#目标一致" class="headerlink" title="目标一致"></a>目标一致</h2><h3 id="默认锁文件"><a href="#默认锁文件" class="headerlink" title="默认锁文件"></a>默认锁文件</h3><p><code>Shrinkwrap</code>很早就已经是npm的一部分，但<code>npm@5</code>使<code>lockfiles</code>成为默认，所以所有的npm安装现在都是可重现的。在安装给定版本的软件包时，每次安装它您获得的文件将是相同的。</p><p>我们发现无数常见且耗时的问题可能与不同开发人员环境利用不同软件包版本时发生的“漂移”相关。使用默认锁文件，这不再是问题。你不会浪费时间，试图找出一个错误，只是为了了解它来自运行不同版本的图书馆的人。</p><h3 id="SHA-512哈希"><a href="#SHA-512哈希" class="headerlink" title="SHA-512哈希"></a>SHA-512哈希</h3><p><code>npm@5</code>增加了对<code>Node.js</code>支持的任何tarball Hash功能的支持，并以SHA-512 hash发布。通过检查所有下载的软件包，您可以防止数据损坏和恶意攻击，并且您可以相信您从npm下载的代码是一致和安全的。</p><h3 id="自愈缓存"><a href="#自愈缓存" class="headerlink" title="自愈缓存"></a>自愈缓存</h3><p>我们的新缓存很容易损坏，但也更具弹性。多个npm进程不会破坏共享缓存，<code>npm@5</code>将检查插入和提取的数据，以防止安装损坏的数据。如果缓存项失败完整性检查，<code>npm@5</code>将自动删除它并重新获取。</p><h3 id="更易使用"><a href="#更易使用" class="headerlink" title="更易使用"></a>更易使用</h3><p>根据您的反馈，我们通过<code>npm @ 5</code>中的优化改进了用户体验。其中很大一部分是输出更多的有用的提示信息。最好的例子是，npm不再显示<code>package</code>上的整个树; 相反，您将看到有关安装内容的摘要报告。由于平均每个<code>package</code>中的依赖关系较大，因此我们进行了此更改。逐个文件读出结果是超过一定数量就会显得非常笨重。</p><h2 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h2><p>有一个项目使用 <code>benchmark</code> 比较了 <code>yarn</code>, <code>pnpm</code>, <code>npm</code> 的效率, <a href="https://github.com/JamieMason/npm-cache-benchmark" target="_blank" rel="external">传送门</a></p><p>下面是比较结果：</p><table><thead><tr><th style="text-align:left">Installer</th><th style="text-align:right">Average over 5 runs</th></tr></thead><tbody><tr><td style="text-align:left">yarn –offline</td><td style="text-align:right">5.88</td></tr><tr><td style="text-align:left">pnpm –offline</td><td style="text-align:right">6.72</td></tr><tr><td style="text-align:left">pnpm (cached)</td><td style="text-align:right">6.86</td></tr><tr><td style="text-align:left">npm 5.x (shrinkpacked, compressed)</td><td style="text-align:right">8.35</td></tr><tr><td style="text-align:left">npm 5.x (shrinkpacked)</td><td style="text-align:right">8.94</td></tr><tr><td style="text-align:left">npm 5.x (cached)</td><td style="text-align:right">11.36</td></tr><tr><td style="text-align:left">npm 4.x (cached)</td><td style="text-align:right">13.47</td></tr><tr><td style="text-align:left">yarn</td><td style="text-align:right">13.71</td></tr><tr><td style="text-align:left">npm 5.x</td><td style="text-align:right">14.93</td></tr><tr><td style="text-align:left">pnpm</td><td style="text-align:right">17.57</td></tr><tr><td style="text-align:left">npm 4.x (shrinkpacked, compressed)</td><td style="text-align:right">18.73</td></tr><tr><td style="text-align:left">npm 4.x (shrinkpacked)</td><td style="text-align:right">18.78</td></tr><tr><td style="text-align:left">npm 4.x</td><td style="text-align:right">29.73</td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*9nI6dL1Z-8cqFpCX96zVFA.gif&quot; alt=&quot;npm@5 is now latest&quot;&gt;&lt;/p&gt;&lt;p&gt;从今天开始，如果您输入“&lt;code&gt;npm install npm@latest -g&lt;/code&gt;”，那么您将被更新为npm版本5。另外，在所有&lt;a href=&quot;https://medium.com/@nodejs/node-js-8-big-improvements-for-the-debugging-and-native-module-ecosystem-58454861f2fc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Node.js 8&lt;/a&gt;的新安装中都捆绑了&lt;code&gt;npm@5&lt;/code&gt; ，它已经替代了&lt;code&gt;Node.js 7&lt;/code&gt;在Node Project的当前版本中。&lt;/p&gt;&lt;p&gt;在过去一年半的时间里，我们一直在努力解决大量的痛点，其中有些是创建npm以来就已经存在的。今天的发布是对npm速度，一致性和用户体验的最大改进。&lt;/p&gt;&lt;p&gt;发布说明中有什么新内容和更改内容的明确列表，但这里有一些亮点：
-    
-    </summary>
-    
-      <category term="npm" scheme="http://robin-front.github.io/categories/npm/"/>
-    
-    
-      <category term="npm" scheme="http://robin-front.github.io/tags/npm/"/>
     
   </entry>
   

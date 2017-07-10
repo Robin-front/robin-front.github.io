@@ -1,0 +1,25 @@
+CACHE MANIFEST
+#version 1.0
+
+CACHE:
+# 缓存的离线文件
+/
+https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js
+https://cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js
+https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js
+https://cdn.staticfile.org/velocity/1.2.1/velocity.min.js
+https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js
+https://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js
+/js/src/utils.js
+/js/src/affix.js
+/js/src/post-details.js
+https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css
+https://cdn.staticfile.org/font-awesome/4.6.2/css/font-awesome.min.css
+https://cdn.staticfile.org/font-awesome/4.6.2/fonts/fontawesome-webfont.woff2
+/css/main.css
+
+# NETWORK:
+# 必须请求的文件
+
+# FALLBACK:
+# 备用的URI

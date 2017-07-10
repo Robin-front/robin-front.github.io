@@ -77,9 +77,9 @@
       <category term="css3" scheme="http://robin-front.github.io/categories/css3/"/>
     
     
-      <category term="background" scheme="http://robin-front.github.io/tags/background/"/>
-    
       <category term="css3" scheme="http://robin-front.github.io/tags/css3/"/>
+    
+      <category term="background" scheme="http://robin-front.github.io/tags/background/"/>
     
   </entry>
   
@@ -94,7 +94,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;最近遇到一道算法题，然后有些人会使用 &lt;code&gt;includes&lt;/code&gt;、&lt;code&gt;indexOf&lt;/code&gt; 去判断是否存在另一个数。这让我不禁思考，这和 &lt;code&gt;for loop&lt;/code&gt;有什么区别，能减少时间复杂度吗？我一开始也不是很清楚，但我可以找文档，找标准。我的第一判断是 &lt;code&gt;includes&lt;/code&gt; 完全和 &lt;code&gt;for loop&lt;/code&gt;没有区别的，只是es6 标准规范提供的语法糖，而 &lt;code&gt;indexOf&lt;/code&gt; 还是有一定效率的。带着疑惑，查看 MDN 和 &lt;a href=&quot;http://www.ecma-international.org/ecma-262&quot;&gt;ecma-262&lt;/a&gt;
+      &lt;p&gt;最近遇到一道算法题，然后有些人会使用 &lt;code&gt;includes&lt;/code&gt;、&lt;code&gt;indexOf&lt;/code&gt; 去判断是否存在另一个数。这让我不禁思考，这和 &lt;code&gt;for loop&lt;/code&gt;有什么区别，能减少时间复杂度吗？我一开始也不是很清楚，但我可以找文档，找标准。我的第一判断是 &lt;code&gt;includes&lt;/code&gt; 完全和 &lt;code&gt;for loop&lt;/code&gt;没有区别的，只是es6 标准规范提供的语法糖，而 &lt;code&gt;indexOf&lt;/code&gt; 还是有一定效率的。带着疑惑，查看 MDN 和 &lt;a href=&quot;http://www.ecma-international.org/ecma-262&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ecma-262&lt;/a&gt;
     
     </summary>
     
@@ -122,7 +122,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;这是 Web Animations API 入门教程系列的总结部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;&lt;p&gt;我们已经涵盖了相当多的知识面，希望能够解决有关Web Animations API是什么（而不是什么）的问题。要总结这个系列，我们将回顾一下我们已经讨论过的内容，并看看尚未实现的内容。
+      &lt;p&gt;这是 Web Animations API 入门教程系列的总结部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;&lt;p&gt;我们已经涵盖了相当多的知识面，希望能够解决有关Web Animations API是什么（而不是什么）的问题。要总结这个系列，我们将回顾一下我们已经讨论过的内容，并看看尚未实现的内容。
     
     </summary>
     
@@ -144,7 +144,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;这是 Web Animations API 入门教程系列的第5部分。&lt;/p&gt;&lt;p&gt;重要信息：自撰写本文以来，运动路径的规范（和Chromium实现）已经发生了重大变化。以下在概念上仍然有效，但是属性名称和更多内容已经改变。截至2016年10月，请查看&lt;a href=&quot;https://codepen.io/danwilson/post/css-motion-paths-2016&quot;&gt;CSS运动路径&lt;/a&gt;。&lt;/p&gt;&lt;p&gt;最后，沿着路径动画…不再仅仅是SVG的领域。
+      &lt;p&gt;这是 Web Animations API 入门教程系列的第5部分。&lt;/p&gt;&lt;p&gt;重要信息：自撰写本文以来，运动路径的规范（和Chromium实现）已经发生了重大变化。以下在概念上仍然有效，但是属性名称和更多内容已经改变。截至2016年10月，请查看&lt;a href=&quot;https://codepen.io/danwilson/post/css-motion-paths-2016&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CSS运动路径&lt;/a&gt;。&lt;/p&gt;&lt;p&gt;最后，沿着路径动画…不再仅仅是SVG的领域。
     
     </summary>
     
@@ -166,7 +166,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;这是 Web Animations API 入门教程系列的第4部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;&lt;p&gt;让我们继续讨论Web动画API中的多个动画，通过讨论今天在polyfill中提供的几个部分来提供分组和排序。
+      &lt;p&gt;这是 Web Animations API 入门教程系列的第4部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;&lt;p&gt;让我们继续讨论Web动画API中的多个动画，通过讨论今天在polyfill中提供的几个部分来提供分组和排序。
     
     </summary>
     
@@ -188,7 +188,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;这是 Web Animations API 入门教程系列的第3部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;&lt;p&gt;在我们讨论&lt;a href=&quot;http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation/&quot;&gt;动画和时间线控制&lt;/a&gt;之后，让我们来讨论多个动画。
+      &lt;p&gt;这是 Web Animations API 入门教程系列的第3部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;&lt;p&gt;在我们讨论&lt;a href=&quot;http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation/&quot;&gt;动画和时间线控制&lt;/a&gt;之后，让我们来讨论多个动画。
     
     </summary>
     
@@ -210,7 +210,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;这是 Web Animations API 入门教程系列的第2部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;&lt;p&gt;现在我们了解如何使用Web Animations API &lt;a href=&quot;https://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-1-Creating-a-Basic-Animation/&quot;&gt;创建基本动画&lt;/a&gt;，让我们来谈谈状态（states），控制(controls)，回调(callback)和时间轴(timelines)。
+      &lt;p&gt;这是 Web Animations API 入门教程系列的第2部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;&lt;p&gt;现在我们了解如何使用Web Animations API &lt;a href=&quot;https://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-1-Creating-a-Basic-Animation/&quot;&gt;创建基本动画&lt;/a&gt;，让我们来谈谈状态（states），控制(controls)，回调(callback)和时间轴(timelines)。
     
     </summary>
     
@@ -232,7 +232,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;这是 Web Animations API 入门教程系列的第1部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;&lt;p&gt;我们之前初步看了下 Web Animations API，但是我们没有得到任何真正的细节，所以现在我们来看看。&lt;/p&gt;&lt;p&gt;WAAPI（Web Animations API, 以下均简称WAAPI）为您提供更多的控制比您可能已经习惯使用的CSS动画，但在我们进入这些演示之前，我们需要设置基本目标：如何通过此API创建基本动画？
+      &lt;p&gt;这是 Web Animations API 入门教程系列的第1部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;&lt;p&gt;我们之前初步看了下 Web Animations API，但是我们没有得到任何真正的细节，所以现在我们来看看。&lt;/p&gt;&lt;p&gt;WAAPI（Web Animations API, 以下均简称WAAPI）为您提供更多的控制比您可能已经习惯使用的CSS动画，但在我们进入这些演示之前，我们需要设置基本目标：如何通过此API创建基本动画？
     
     </summary>
     
@@ -254,7 +254,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;这是 Web Animations API 入门教程系列的总结部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;&lt;p&gt;2014年夏天，Google宣布通过&lt;a href=&quot;https://www.polymer-project.org/0.5/platform/web-animations.html&quot;&gt;Polymer&lt;/a&gt;在网页中展示Material设计…使用polyfill技术支持即将推出的标准Web Animations API。&lt;/p&gt;&lt;p&gt;我没有听说过这个API，但是我很感兴趣，特别是因为它谈到了&lt;code&gt;MotionPath&lt;/code&gt;(运动路径)效果。这还没有实现（你会在&lt;a href=&quot;https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/&quot;&gt;第5部分&lt;/a&gt;发现这是什么），但是它的目标是提供一种组合CSS，JS和SVG的动画方式，让我感兴趣。一年以后，Chrome和Firefox开始实施，polyfill的进步是稳定的，现在是认真看待它的时候了。&lt;/p&gt;&lt;p&gt;但是很少有人在谈论WAAPI！我希望开始一系列突出浏览器（和polyfill）功能的帖子，探索为什么我们想要这个API，并找出细微差别。希望我们也能让更多的人讨论和使用这个API。
+      &lt;p&gt;这是 Web Animations API 入门教程系列的总结部分。我在2016年6月更新了系列内容，因为Chrome和Firefox都推出了主要更新（以及一些小规格更改）。如果您有想法或问题，或看到我已经误解了该规范，请在Twitter上与&lt;a href=&quot;https://twitter.com/dancwilson&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;@dancwilson&lt;/a&gt;联系。&lt;/p&gt;&lt;p&gt;2014年夏天，Google宣布通过&lt;a href=&quot;https://www.polymer-project.org/0.5/platform/web-animations.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Polymer&lt;/a&gt;在网页中展示Material设计…使用polyfill技术支持即将推出的标准Web Animations API。&lt;/p&gt;&lt;p&gt;我没有听说过这个API，但是我很感兴趣，特别是因为它谈到了&lt;code&gt;MotionPath&lt;/code&gt;(运动路径)效果。这还没有实现（你会在&lt;a href=&quot;https://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path/&quot;&gt;第5部分&lt;/a&gt;发现这是什么），但是它的目标是提供一种组合CSS，JS和SVG的动画方式，让我感兴趣。一年以后，Chrome和Firefox开始实施，polyfill的进步是稳定的，现在是认真看待它的时候了。&lt;/p&gt;&lt;p&gt;但是很少有人在谈论WAAPI！我希望开始一系列突出浏览器（和polyfill）功能的帖子，探索为什么我们想要这个API，并找出细微差别。希望我们也能让更多的人讨论和使用这个API。
     
     </summary>
     
@@ -276,7 +276,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;有一个JavaScript的动画原生API，称为&lt;code&gt;Web Animation API&lt;/code&gt;。我们在这篇文章中称之为&lt;code&gt;WAAPI&lt;/code&gt;。MDN有很好的&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API&quot;&gt;文档&lt;/a&gt;，Dan Wilson 有一个伟大的&lt;a href=&quot;http://danielcwilson.com/blog/2015/07/animations-part-1/&quot;&gt;系列文章&lt;/a&gt;。&lt;/p&gt;&lt;p&gt;在本文中，我们将比较WAAPI和CSS中完成的动画。
+      &lt;p&gt;有一个JavaScript的动画原生API，称为&lt;code&gt;Web Animation API&lt;/code&gt;。我们在这篇文章中称之为&lt;code&gt;WAAPI&lt;/code&gt;。MDN有很好的&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;文档&lt;/a&gt;，Dan Wilson 有一个伟大的&lt;a href=&quot;http://danielcwilson.com/blog/2015/07/animations-part-1/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;系列文章&lt;/a&gt;。&lt;/p&gt;&lt;p&gt;在本文中，我们将比较WAAPI和CSS中完成的动画。
     
     </summary>
     
@@ -306,7 +306,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;作用域提升，“魔法注释”，以及更多新特性！&quot;&gt;&lt;a href=&quot;#作用域提升，“魔法注释”，以及更多新特性！&quot; class=&quot;headerlink&quot; title=&quot;作用域提升，“魔法注释”，以及更多新特性！&quot;&gt;&lt;/a&gt;作用域提升，“魔法注释”，以及更多新特性！&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://medium.com/webpack/webpack-3-official-release-15fd2dd8f07b&quot;&gt;原文&lt;/a&gt;&lt;/p&gt;&lt;p&gt;在我们发布了 webpack v2 之后，我们曾向社区做了一些承诺。 我们承诺，我们将提供用户投票的功能。 此外，我们承诺我们的发布周期会 &lt;strong&gt;更快，更稳定&lt;/strong&gt;。&lt;/p&gt;&lt;p&gt;这次没有 beta 版本，完全向下兼容。我们承诺让你们、让 webpack 成长的社区更轻松的使用。webpack 团队自豪地宣布，今天我们已经发布了 webpack 3.0.0！ 现在就可以下载或升级！&lt;/p&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;npm install webpack@3.0.0 --save-dev&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;或者使用&lt;/p&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;yarn add webpack@3.0.0 --dev&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;em&gt;从 webpack 2 迁移到 3，只需要执行升级命令，在使用上没有任何差别。我们将这次升级标记为版本的重大升级，是因为内部的突破性变化可能会影响某些插件的使用。&lt;/em&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;到目前为止，98%的升级的用户都没有遇到任何不兼容！&lt;/strong&gt;
+      &lt;h1 id=&quot;作用域提升，“魔法注释”，以及更多新特性！&quot;&gt;&lt;a href=&quot;#作用域提升，“魔法注释”，以及更多新特性！&quot; class=&quot;headerlink&quot; title=&quot;作用域提升，“魔法注释”，以及更多新特性！&quot;&gt;&lt;/a&gt;作用域提升，“魔法注释”，以及更多新特性！&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://medium.com/webpack/webpack-3-official-release-15fd2dd8f07b&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文&lt;/a&gt;&lt;/p&gt;&lt;p&gt;在我们发布了 webpack v2 之后，我们曾向社区做了一些承诺。 我们承诺，我们将提供用户投票的功能。 此外，我们承诺我们的发布周期会 &lt;strong&gt;更快，更稳定&lt;/strong&gt;。&lt;/p&gt;&lt;p&gt;这次没有 beta 版本，完全向下兼容。我们承诺让你们、让 webpack 成长的社区更轻松的使用。webpack 团队自豪地宣布，今天我们已经发布了 webpack 3.0.0！ 现在就可以下载或升级！&lt;/p&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;npm install webpack@3.0.0 --save-dev&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;或者使用&lt;/p&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;yarn add webpack@3.0.0 --dev&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;em&gt;从 webpack 2 迁移到 3，只需要执行升级命令，在使用上没有任何差别。我们将这次升级标记为版本的重大升级，是因为内部的突破性变化可能会影响某些插件的使用。&lt;/em&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;到目前为止，98%的升级的用户都没有遇到任何不兼容！&lt;/strong&gt;
     
     </summary>
     
@@ -328,7 +328,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;采用Flow＆TypeScript, 两者上手流程之间的比较。&lt;/p&gt;&lt;p&gt;让我们想象一下我们想要采用一种类型检查器的场景…&lt;/p&gt;&lt;p&gt;本文译自： &lt;a href=&quot;http://thejameskyle.com/adopting-flow-and-typescript.html&quot;&gt;adopting flow and typescript&lt;/a&gt;
+      &lt;p&gt;采用Flow＆TypeScript, 两者上手流程之间的比较。&lt;/p&gt;&lt;p&gt;让我们想象一下我们想要采用一种类型检查器的场景…&lt;/p&gt;&lt;p&gt;本文译自： &lt;a href=&quot;http://thejameskyle.com/adopting-flow-and-typescript.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;adopting flow and typescript&lt;/a&gt;
     
     </summary>
     
@@ -422,7 +422,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;RXJS比较强大，操作符众多，想熟悉需要比较长时间的运用，所以大部分新手都比较疑惑应该使用哪些操作符去实现自己的数据流的操作。&lt;/p&gt;&lt;p&gt;更多详情请翻阅 &lt;a href=&quot;https://robin-front.github.io/RxJS-doc-chinese&quot;&gt;RXJS中文翻译文档&lt;/a&gt;&lt;/p&gt;&lt;h1 id=&quot;我该选用哪个操作符-实例操作符&quot;&gt;&lt;a href=&quot;#我该选用哪个操作符-实例操作符&quot; class=&quot;headerlink&quot; title=&quot;我该选用哪个操作符? - 实例操作符&quot;&gt;&lt;/a&gt;我该选用哪个操作符? - 实例操作符&lt;/h1&gt;&lt;p&gt;使用此页面通过类型查找&lt;a href=&quot;https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md&quot;&gt;&lt;code&gt;Observable&lt;/code&gt;&lt;/a&gt; 适合您需要的实例运算符：
+      &lt;p&gt;RXJS比较强大，操作符众多，想熟悉需要比较长时间的运用，所以大部分新手都比较疑惑应该使用哪些操作符去实现自己的数据流的操作。&lt;/p&gt;&lt;p&gt;更多详情请翻阅 &lt;a href=&quot;https://robin-front.github.io/RxJS-doc-chinese&quot;&gt;RXJS中文翻译文档&lt;/a&gt;&lt;/p&gt;&lt;h1 id=&quot;我该选用哪个操作符-实例操作符&quot;&gt;&lt;a href=&quot;#我该选用哪个操作符-实例操作符&quot; class=&quot;headerlink&quot; title=&quot;我该选用哪个操作符? - 实例操作符&quot;&gt;&lt;/a&gt;我该选用哪个操作符? - 实例操作符&lt;/h1&gt;&lt;p&gt;使用此页面通过类型查找&lt;a href=&quot;https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;code&gt;Observable&lt;/code&gt;&lt;/a&gt; 适合您需要的实例运算符：
     
     </summary>
     
@@ -444,7 +444,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;a href=&quot;https://hackernoon.com/why-is-marko-fast-a20796cb8ae3&quot;&gt;译文：why-is-marko-fast&lt;/a&gt;&lt;/p&gt;&lt;p&gt;在eBay，我们正在使用&lt;code&gt;[Marko](http://markojs.com/)&lt;/code&gt;每天处理超过十亿的请求，这就要求我们精简我们的开源UI库Marko。我们大大优化了Marko ，以实现快速渲染，&lt;a href=&quot;http://www.ebaytechblog.com/2014/12/08/async-fragments-rediscovering-progressive-html-rendering-with-marko/&quot;&gt;高级性能技术&lt;/a&gt;，并实现了最小的页面重量（〜10kb gzipped）。性能只是一个方面，因为我们还必须扩展Marko以支持数百个团队的开发，从而允许开发人员有效地创建可维护和强大的Web应用程序。&lt;/p&gt;&lt;p&gt;我们已经创建了我们自己的&lt;a href=&quot;https://github.com/marko-js/isomorphic-ui-benchmarks&quot;&gt;benchMarks&lt;/a&gt;进行比较，也已经将Marko添加到&lt;a href=&quot;https://github.com/raxjs/server-side-rendering-comparison/pull/11&quot;&gt;其他基准测试&lt;/a&gt;中，但是基准测试并不总是值得信赖的。尽管我们尽可能公平地对待我们的基准，但最重要的是在现实世界的应用中的表现，而不是专注于微观基准。这就是V8团队转而采用新的方法来衡量和理解现实JavaScript性能的一个原因。&lt;/p&gt;&lt;p&gt;同样，我们已经观察过我们的开发人员实际开发中如何编写他们的Marko组件，并且发现了可以进一步优化的模式。而不是关注本文中的基准测试，我想关注我们应用于Marko的优化细节。
+      &lt;p&gt;&lt;a href=&quot;https://hackernoon.com/why-is-marko-fast-a20796cb8ae3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;译文：why-is-marko-fast&lt;/a&gt;&lt;/p&gt;&lt;p&gt;在eBay，我们正在使用&lt;code&gt;[Marko](http://markojs.com/)&lt;/code&gt;每天处理超过十亿的请求，这就要求我们精简我们的开源UI库Marko。我们大大优化了Marko ，以实现快速渲染，&lt;a href=&quot;http://www.ebaytechblog.com/2014/12/08/async-fragments-rediscovering-progressive-html-rendering-with-marko/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;高级性能技术&lt;/a&gt;，并实现了最小的页面重量（〜10kb gzipped）。性能只是一个方面，因为我们还必须扩展Marko以支持数百个团队的开发，从而允许开发人员有效地创建可维护和强大的Web应用程序。&lt;/p&gt;&lt;p&gt;我们已经创建了我们自己的&lt;a href=&quot;https://github.com/marko-js/isomorphic-ui-benchmarks&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;benchMarks&lt;/a&gt;进行比较，也已经将Marko添加到&lt;a href=&quot;https://github.com/raxjs/server-side-rendering-comparison/pull/11&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;其他基准测试&lt;/a&gt;中，但是基准测试并不总是值得信赖的。尽管我们尽可能公平地对待我们的基准，但最重要的是在现实世界的应用中的表现，而不是专注于微观基准。这就是V8团队转而采用新的方法来衡量和理解现实JavaScript性能的一个原因。&lt;/p&gt;&lt;p&gt;同样，我们已经观察过我们的开发人员实际开发中如何编写他们的Marko组件，并且发现了可以进一步优化的模式。而不是关注本文中的基准测试，我想关注我们应用于Marko的优化细节。
     
     </summary>
     
@@ -466,7 +466,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*9nI6dL1Z-8cqFpCX96zVFA.gif&quot; alt=&quot;npm@5 is now latest&quot;&gt;&lt;/p&gt;&lt;p&gt;从今天开始，如果您输入“&lt;code&gt;npm install npm@latest -g&lt;/code&gt;”，那么您将被更新为npm版本5。另外，在所有&lt;a href=&quot;https://medium.com/@nodejs/node-js-8-big-improvements-for-the-debugging-and-native-module-ecosystem-58454861f2fc&quot;&gt;Node.js 8&lt;/a&gt;的新安装中都捆绑了&lt;code&gt;npm@5&lt;/code&gt; ，它已经替代了&lt;code&gt;Node.js 7&lt;/code&gt;在Node Project的当前版本中。&lt;/p&gt;&lt;p&gt;在过去一年半的时间里，我们一直在努力解决大量的痛点，其中有些是创建npm以来就已经存在的。今天的发布是对npm速度，一致性和用户体验的最大改进。&lt;/p&gt;&lt;p&gt;发布说明中有什么新内容和更改内容的明确列表，但这里有一些亮点：
+      &lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/800/1*9nI6dL1Z-8cqFpCX96zVFA.gif&quot; alt=&quot;npm@5 is now latest&quot;&gt;&lt;/p&gt;&lt;p&gt;从今天开始，如果您输入“&lt;code&gt;npm install npm@latest -g&lt;/code&gt;”，那么您将被更新为npm版本5。另外，在所有&lt;a href=&quot;https://medium.com/@nodejs/node-js-8-big-improvements-for-the-debugging-and-native-module-ecosystem-58454861f2fc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Node.js 8&lt;/a&gt;的新安装中都捆绑了&lt;code&gt;npm@5&lt;/code&gt; ，它已经替代了&lt;code&gt;Node.js 7&lt;/code&gt;在Node Project的当前版本中。&lt;/p&gt;&lt;p&gt;在过去一年半的时间里，我们一直在努力解决大量的痛点，其中有些是创建npm以来就已经存在的。今天的发布是对npm速度，一致性和用户体验的最大改进。&lt;/p&gt;&lt;p&gt;发布说明中有什么新内容和更改内容的明确列表，但这里有一些亮点：
     
     </summary>
     

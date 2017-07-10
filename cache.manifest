@@ -12,9 +12,8 @@ https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js
 https://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js
 https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css
 https://cdn.staticfile.org/font-awesome/4.6.2/css/font-awesome.min.css
-https://cdn.staticfile.org/font-awesome/4.6.2/fonts/fontawesome-webfont.woff2
+https://cdn.staticfile.org/font-awesome/4.6.2/fonts/fontawesome-webfont.woff2?v=4.6.2
 https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext
-https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js
 https://avatars2.githubusercontent.com/u/6723674?v=3&s=460
 /js/src/utils.js?v=5.1.0
 /js/src/affix.js?v=5.1.0
@@ -23,10 +22,13 @@ https://avatars2.githubusercontent.com/u/6723674?v=3&s=460
 
 # NETWORK:
 # 必须请求的文件
-https://robin-front-github-io.disqus.com/count.js
-https://hm.baidu.com/hm.js?51f2c21567935649debac704a10c43f1
-https://zz.bdstatic.com/linksubmit/push.js
-https://www.google-analytics.com/analytics.js
+# https://robin-front-github-io.disqus.com/count.js
+# https://robin-front-github-io.disqus.com/count-data.js?
+# https://hm.baidu.com/hm.js?51f2c21567935649debac704a10c43f1
+# https://zz.bdstatic.com/linksubmit/push.js
+# http://push.zhanzhang.baidu.com/push.js
+# https://www.google-analytics.com/analytics.js
+# https://hm.baidu.com/hm.gif?cc=0
 
 # FALLBACK:
 # 备用的URI

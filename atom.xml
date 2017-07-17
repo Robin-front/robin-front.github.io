@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-07-14T09:31:57.000Z</updated>
+  <updated>2017-07-17T07:23:17.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -16,13 +16,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>优化 react 让它快如闪电——你是电，你是光，你是唯一的神话</title>
+    <link href="http://robin-front.github.io/2017/07/17/react-at-light-speed/"/>
+    <id>http://robin-front.github.io/2017/07/17/react-at-light-speed/</id>
+    <published>2017-07-17T07:23:17.000Z</published>
+    <updated>2017-07-17T07:23:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="光速-React"><a href="#光速-React" class="headerlink" title="光速 React"></a>光速 React</h1><h2 id="Vixlet-团队优化性能的经验教训"><a href="#Vixlet-团队优化性能的经验教训" class="headerlink" title="Vixlet 团队优化性能的经验教训"></a>Vixlet 团队优化性能的经验教训</h2><p><img src="https://cdn-images-1.medium.com/max/1000/1*SJzLm3SW2IegLw0GzlaG-w.jpeg" alt=""></p><p>在过去一年多，我们 <a href="http://www.vixlet.com" target="_blank" rel="external">Vixlet</a> 的 web 团队已经着手于一个激动人心的项目：将我们的整个 web 应用迁移到 <code>React</code> + <code>Redux</code> 架构。对于整个团队来说，这是不断成长中的机会，在整个过程中，我们在这方面面临一些挑战。</p><p>因为我们的 web-app 可能有非常大的 feed 视图，包括成百上千的媒体、文本、视频、链接元素，我们花了相当多的时间寻找能充分利用 <code>React</code> 性能的方法。在这里，我们将分享我们这一路学到的一些经验教训。</p><p><strong>声明</strong>：<strong>下面讲的做法和方法更适用于我们具体应用的性能需求。然而，像所有的开发者建议的那样，最重要的是要考虑到你的应用程序和团队的实际需求。React 是一个开箱即用的框架，所以你可能不需要像我们一样细致地优化性能。话虽如此，我们还是希望你能在这篇文章里找到一些有用的信息。</strong><a id="more"></a></p><h3 id="基本优化"><a href="#基本优化" class="headerlink" title="基本优化"></a>基本优化</h3><p><img src="https://cdn-images-1.medium.com/max/800/1*UOGdUM1V_rGUbxLS-eaWdQ.gif" alt=""></p><p>向更大的世界迈出第一步。</p><h4 id="render-函数"><a href="#render-函数" class="headerlink" title="render() 函数"></a>render() 函数</h4><p>一般来说，要尽可能少地在 <code>render</code> 函数中做操作。如果非要做一些复杂操作或者计算，也许你可以考虑使用一个 <a href="https://en.wikipedia.org/wiki/Memoization" target="_blank" rel="external">memoized</a> 函数以便于缓存那些重复的结果。可以看看 <a href="https://lodash.com/docs#memoize" target="_blank" rel="external">Lodash.memoize</a>，这是一个开箱即用的记忆函数。</p><p>反过来讲，避免在组件的 <code>state</code> 上存储一些容易计算的值也很重要。举个例子，如果 <code>props</code> 同时包含 <code>firstName</code> 和 <code>lastName</code>，没必要在 <code>state</code> 上存一个 <code>fullName</code>，因为它可以很容易通过提供的 <code>props</code> 来获取。如果一个值可以通过简单的字符串拼接或基本的算数运算从 <code>props</code> 派生出来，那么没理由将这些值包含在组件的 <code>state</code> 上。</p><h4 id="Prop-和-Reconciliation"><a href="#Prop-和-Reconciliation" class="headerlink" title="Prop 和 Reconciliation"></a>Prop 和 Reconciliation</h4><p>重要的是要记住，只要 <code>props</code>（或 <code>state</code>）的值不等于之前的值，<code>React</code> 就会触发重新渲染。如果 <code>props</code> 或者 <code>state</code> 包含一个对象或者数组，嵌套值中的任何改变也会触发重新渲染。考虑到这一点，你需要注意在每次渲染的生命周期中，创建一个新的 <code>props</code> 或者 <code>state</code> 都可能无意中导致了性能下降。</p><p><strong>例子: 函数绑定的问题</strong></p><script src="https://gist.github.com/jacob-beltran/638dcc9978b498c82d68a19593266999.js"></script><p><strong>例子:</strong> <strong>对象或数组字面量</strong></p><script src="https://gist.github.com/jacob-beltran/7777a477942cbb2c9db65a1e3c312e88.js"></script><p><strong>例子</strong> <strong>: 注意字面量的回退值</strong></p><script src="https://gist.github.com/jacob-beltran/ae63069d95831fb49e59e74eb7ddbd11.js"></script><h4 id="尽可能的保持-Props（和-State）简单和精简"><a href="#尽可能的保持-Props（和-State）简单和精简" class="headerlink" title="尽可能的保持 Props（和 State）简单和精简"></a>尽可能的保持 Props（和 State）简单和精简</h4><p>理想情况下，传递给组件的 <code>props</code> 应该是它直接需要的。为了将值传给子组件而将一个大的、复杂的对象或者很多独立的 <code>props</code> 传递给一个组件会导致很多不必要的组件渲染（并且会增加开发复杂性）。</p><p>在 Vixlet，我们使用 Redux 作为状态容器，所以在我们看来，最理想的是方案在组件层次结构的每一个层级中使用 <a href="https://www.npmjs.com/package/react-redux" target="_blank" rel="external">react-redux</a> 的 <a href="https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options" target="_blank" rel="external">connect()</a> 函数直接从 <code>store</code> 上获取数据。<code>connect</code> 函数的性能很好，并且使用它的开销也非常小。</p><h4 id="组件方法"><a href="#组件方法" class="headerlink" title="组件方法"></a>组件方法</h4><p>由于组件方法是为组件的每个实例创建的，如果可能的话，使用 <code>helper/util</code> 模块的纯函数或者<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes" target="_blank" rel="external">静态类方法</a>。尤其在渲染大量组件的应用中会有明显的区别。</p><h3 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h3><p><img src="https://cdn-images-1.medium.com/max/800/1*9n2fdJB1gPYLFJAj5D5RqA.gif" alt=""></p><p>在我看来视图的变化是邪恶的！</p><h4 id="shouldComponentUpdate"><a href="#shouldComponentUpdate" class="headerlink" title="shouldComponentUpdate()"></a>shouldComponentUpdate()</h4><p>React 有一个生命周期函数 <a href="https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate" target="_blank" rel="external">shouldComponentUpdate()</a>。这个方法可以根据当前的和下一次的 <code>props</code> 和 <code>state</code> 来通知这个 React 组件是否应该被重新渲染。</p><p>然而使用这个方法有一个问题，开发者必须考虑到需要触发重新渲染的每一种情况。这会导致逻辑复杂，一般来说，会非常痛苦。如果非常需要，你可以使用一个自定义的 <code>shouldComponentUpdate()</code> 方法，但是很多情况下有更好的选择。</p><h4 id="React-PureComponent"><a href="#React-PureComponent" class="headerlink" title="React.PureComponent"></a>React.PureComponent</h4><p>React 从 <code>v15</code> 开始会包含一个 <code>PureComponent</code> 类，它可以被用来构建组件。<code>React.PureComponent</code> 声明了它自己的 <code>shouldComponentUpdate()</code> 方法，它自动对当前的和下一次的 <code>props</code> 和 <code>state</code> 做一次浅对比。有关浅对比的更多信息，请参考这个 Stack Overflow：</p><p><a href="http://stackoverflow.com/questions/36084515/how-does-shallow-compare-work-in-react" target="_blank" rel="external">http://stackoverflow.com/questions/36084515/how-does-shallow-compare-work-in-react</a></p><p>在大多数情况下，<code>React.PureComponent</code> 是比 <code>React.Component</code> 更好的选择。在创建新组件时，首先尝试将其构建为纯组件，只有组件需要更多功能时才使用 <code>React.Component</code>。</p><p>更多信息，请查阅相关文档 <a href="https://facebook.github.io/react/docs/react-api.html#react.purecomponent" target="_blank" rel="external">React.PureComponent</a>。</p><h4 id="组件性能分析（在-Chrome-里）"><a href="#组件性能分析（在-Chrome-里）" class="headerlink" title="组件性能分析（在 Chrome 里）"></a>组件性能分析（在 Chrome 里）</h4><p>在新版本的 Chrome <code>里，timeline</code> 工具里有一个额外的内置功能可以显示哪些 React 组件正在渲染以及他们花费的时间。要启用此功能，将 <code>?react_perf</code> 作为要测试的 URL 的查询字符串。React 渲染时间轴数据将位于 User Timing 部分。</p><p>更多相关信息，请查阅官方文档：<a href="https://facebook.github.io/react/docs/optimizing-performance.html#profiling-components-with-chrome-timeline" target="_blank" rel="external">Profiling Components with Chrome Timeline</a> 。</p><h4 id="有用的工具-why-did-you-update"><a href="#有用的工具-why-did-you-update" class="headerlink" title="有用的工具: why-did-you-update"></a>有用的工具: <a href="https://www.npmjs.com/package/why-did-you-update" target="_blank" rel="external">why-did-you-update</a></h4><p>这是一个很棒的 NPM 包，他们给 React 添加补丁，当一个组件触发了不必要的重新渲染时，它会在控制台输出一个 <code>console</code> 提示。</p><p><strong>注意</strong>: 这个模块在初始化时可以通过一个过滤器匹配特定的想要优化的组件，否则你的命令行可能会被垃圾信息填满，并且可能你的浏览器会因此而挂起或者崩溃，查阅 <a href="https://www.npmjs.com/package/why-did-you-update" target="_blank" rel="external">why-did-you-update 文档</a> 获取更多详细信息。</p><h3 id="常见性能陷阱"><a href="#常见性能陷阱" class="headerlink" title="常见性能陷阱"></a>常见性能陷阱</h3><p><img src="https://cdn-images-1.medium.com/max/800/1*GVteDSQnhXZCSui8JRp10A.gif" alt=""></p><h4 id="setTimeout-和-setInterval"><a href="#setTimeout-和-setInterval" class="headerlink" title="setTimeout() 和 setInterval()"></a>setTimeout() 和 setInterval()</h4><p>在 React 组件中使用 <code>setTimeout()</code> 或者 <code>setInterval()</code> 要十分小心。几乎总是有更好的选择，例如 ‘resize’ 和 ‘scroll’ 事件（注意：有关注意事项请参阅下一节）。</p><p>如果你需要使用 <code>setTimeout()</code> 和 <code>setInterval()</code>，你必须 <strong>遵守下面两条建议</strong></p><blockquote><p>不要设置过短的时间间隔。</p></blockquote><p>当心那些小于 100 ms 的定时器，他们很可能是没意义的。如果确实需要一个更短的时间，可以使用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame" target="_blank" rel="external">window.requestAnimationFrame()</a> 替代。</p><blockquote><p>保留对这些函数的引用，并且在 unmount 时取消或者销毁他们。</p></blockquote><p><code>setTimeout()</code> 和 <code>setInterval()</code> 都返回一个延迟函数的引用，并且需要的时候可以取消它们。由于这些函数是在全局作用域执行的，他们不在乎你的组件是否存在，这会导致报错甚至程序卡死。</p><p><strong>注意</strong>: 对 <code>window.requestAnimationFrame()</code> 来说也是如此</p><p>解决这个问题最简答的方法是使用 <a href="https://www.npmjs.com/package/react-timeout" target="_blank" rel="external">react-timeout</a> 这个 NPM 包，它提供了一个可以自动处理上述内容的高阶组件。它将 setTimeout/setInterval 等功能添加到包装组建的 <code>props</code> 上。(<strong>特别感谢 Vixlet 的开发人员 <a href="https://twitter.com/@carlpillot" target="_blank" rel="external"><em>Carl Pillot</em></a> 提供这个方法</strong>)</p><p>如果你不想引入这个依赖，并且希望自行解决此问题，你可以使用以下的方法：</p><script src="https://gist.github.com/jacob-beltran/910bd1d7ede863cd8178c0ecb40a075f.js"></script><p>如果你使用 requestAnimationFrame() 执行的一个动画循环，可以使用一个非常相似的解决方案，当前代码要有一点小的修改：</p><script src="https://gist.github.com/jacob-beltran/aa114af1b6fd5de866aa365e3763a90b.js"></script><h4 id="未-去抖-频繁触发的事件"><a href="#未-去抖-频繁触发的事件" class="headerlink" title="未 去抖 频繁触发的事件"></a>未 去抖 频繁触发的事件</h4><p>某些常见的事件可能会非常频繁的触发，例如 <code>scroll</code>，<code>resize</code>。去抖这些事件是明智的，特别是如果事件处理程序执行的不仅仅是基本功能。</p><p><code>Lodash</code> 有 <a href="https://lodash.com/docs/#debounce" target="_blank" rel="external">_.debounce</a> 方法。在 NPM 上还有一个独立的 <a href="https://www.npmjs.com/package/debounce" target="_blank" rel="external">debounce</a> 包.</p><blockquote><p>“但是我真的需要立即反馈 scroll/resize 或者别的事件”</p></blockquote><p>我发现一种可以处理这些事件并且以高性能的方式进行响应的方法，那就是在第一次事件触发时启动 <code>requestAnimationFrame()</code> 循环。然后可以使用 <code>[debounce()](https://lodash.com/docs#debounce)</code> 方法并且将 <code>trailing</code> 这个配置项设为 <code>true</code>（<strong>这意味着该功能只在频繁触发的事件流结束后触发</strong>）来取消对值的监听，看看下面这个例子。</p><script src="https://gist.github.com/jacob-beltran/84bd0aea2c1023743dda09172d30bc16.js"></script><h4 id="密集CPU任务线程阻塞"><a href="#密集CPU任务线程阻塞" class="headerlink" title="密集CPU任务线程阻塞"></a>密集CPU任务线程阻塞</h4><p>某些任务一直是 CPU 密集型的，因此可能会导致主渲染线程的阻塞。举几个例子，比如非常复杂的数学计算，迭代非常大的数组，使用 <code>File</code> api 进行文件读写，利用 <code>&lt;canvas&gt;</code> 对图片进行编码解码。</p><p>在这些情况下，如果有可能最好使用 <code>Web Worker</code> 将这些功能移到另一个线程上，这样我们的主渲染线程可以保持顺滑。</p><p><strong>相关阅读</strong></p><p>MDN 文章: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers" target="_blank" rel="external">Using Web Workers</a></p><p>MDN 文档: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Worker" target="_blank" rel="external">Worker API</a></p><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>我们希望上述建议对您能有所帮助。如果没有 Vixlet 团队的伟大工作和研究，上述的提示和编程技巧是不可能产出的。他们真的是我曾经合作过的最棒的团队之一。</p><p>在你的 React 的征途中保持学习和练习，愿原力与你同在！</p><blockquote><p>原文地址：<a href="https://blog.vixlet.com/react-at-light-speed-78cd172a6411" target="_blank" rel="external">React at Light Speed</a> <a href="https://blog.vixlet.com/@jacob_beltran" target="_blank" rel="external">@Jacob Beltran</a></p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;光速-React&quot;&gt;&lt;a href=&quot;#光速-React&quot; class=&quot;headerlink&quot; title=&quot;光速 React&quot;&gt;&lt;/a&gt;光速 React&lt;/h1&gt;&lt;h2 id=&quot;Vixlet-团队优化性能的经验教训&quot;&gt;&lt;a href=&quot;#Vixlet-团队优化性能的经验教训&quot; class=&quot;headerlink&quot; title=&quot;Vixlet 团队优化性能的经验教训&quot;&gt;&lt;/a&gt;Vixlet 团队优化性能的经验教训&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/1000/1*SJzLm3SW2IegLw0GzlaG-w.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;&lt;p&gt;在过去一年多，我们 &lt;a href=&quot;http://www.vixlet.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Vixlet&lt;/a&gt; 的 web 团队已经着手于一个激动人心的项目：将我们的整个 web 应用迁移到 &lt;code&gt;React&lt;/code&gt; + &lt;code&gt;Redux&lt;/code&gt; 架构。对于整个团队来说，这是不断成长中的机会，在整个过程中，我们在这方面面临一些挑战。&lt;/p&gt;&lt;p&gt;因为我们的 web-app 可能有非常大的 feed 视图，包括成百上千的媒体、文本、视频、链接元素，我们花了相当多的时间寻找能充分利用 &lt;code&gt;React&lt;/code&gt; 性能的方法。在这里，我们将分享我们这一路学到的一些经验教训。&lt;/p&gt;&lt;p&gt;&lt;strong&gt;声明&lt;/strong&gt;：&lt;strong&gt;下面讲的做法和方法更适用于我们具体应用的性能需求。然而，像所有的开发者建议的那样，最重要的是要考虑到你的应用程序和团队的实际需求。React 是一个开箱即用的框架，所以你可能不需要像我们一样细致地优化性能。话虽如此，我们还是希望你能在这篇文章里找到一些有用的信息。&lt;/strong&gt;
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
+    
+    
+      <category term="react" scheme="http://robin-front.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
     <title>npx是什么，为什么需要npx?</title>
     <link href="http://robin-front.github.io/2017/07/14/introducing-npx-an-npm-package-runner/"/>
     <id>http://robin-front.github.io/2017/07/14/introducing-npx-an-npm-package-runner/</id>
     <published>2017-07-14T09:31:57.000Z</published>
     <updated>2017-07-14T09:31:57.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="介绍npx：一个npm包运行"><a href="#介绍npx：一个npm包运行" class="headerlink" title="介绍npx：一个npm包运行"></a>介绍npx：一个npm包运行</h1><p>NPM升级到最新版本，<a href="https://github.com/npm/npm/releases/tag/v5.2.0" target="_blank" rel="external">npm@5.2.0</a>，你可能会发现，它会安装一个新的二进制包跟着 <code>npm</code>：<a href="https://npm.im/npx" target="_blank" rel="external">npx</a>。</p><p><code>npx</code> 是一个工具，旨在帮助整理从npm注册软件包的体验 - 和 使得npm非常容易地安装和管理托管在注册表上的依赖关系是 同样的方式，<code>npx</code>使 npm 很方便使用CLI工具和其他被托管的可执行文件。它大大简化了一些事情，到目前为止，需要一些与普通的npm有关的步骤：</p><a id="more"></a><h1 id="使用本地化的安装工具而不用-npm-run-script"><a href="#使用本地化的安装工具而不用-npm-run-script" class="headerlink" title="使用本地化的安装工具而不用 npm run-script"></a>使用本地化的安装工具而不用 npm run-script</h1><p><img src="https://cdn-images-1.medium.com/max/800/1*A4HJT1FHQA_1_z3aMBc5mg.gif" alt="https://cdn-images-1.medium.com/max/800/1*A4HJT1FHQA_1_z3aMBc5mg.gif"></p><center><small>将cowsay作为本地devDependency进行安装，并以“$ npx cowsay”运行</small></center><p>在过去几年中，npm生态系统越来越多地将安装工具作为项目本地化<code>devDependencies</code>，而不是要求用户在全局安装。这意味着，像工具<code>mocha</code>，<code>grunt</code>和<code>bower</code>，曾经被要求安装在系统的全局目录上，现在可以在每个项目的基础上管理自己的版本。这也意味着，所有你需要做的就是基于NPM的项目运行起来，以确保您有<code>node + NPM</code>您的系统上，克隆github项目，并运行<code>npm it</code>去运行<code>install</code>和<code>test</code>。由于<code>npm run-script</code>添加本地二进制文件到路径，这个工作很好！</p><p>不利之处在于，它不会快速/方便地以交互方式调用本地二进制文件。有几种方法可以做到这一点，他们都对他们有一些烦恼：你可以添加这些工具到你<code>scripts</code>，但是你需要记住通过使用传递参数<code>--</code>，你可以通过<code>shell</code>技巧<code>alias npmx=PATH=$(npm bin):$PATH</code> 做到，或者你可以手动路径他们，使用 <code>./node_modules/.bin/mocha</code>。这些都是工作，但没有一个是非常理想的。</p><p><code>npx</code>给你我认为是最好的解决方案：您需要做的是使用<code>$ npx mocha</code>进行本地安装。如果你再进行一个额外的步骤并<a href="https://www.npmjs.com/package/npx#shell-auto-fallback" target="_blank" rel="external">配置shell自动回退</a>（更多内容在下面会提到），那么在一个项目目录中运行<code>$ mocha</code>将会成为你的技巧！</p><p>作为彩蛋，如果调用已经安装的二进制文件，<a href="https://twitter.com/maybekatz/status/877444832494596096" target="_blank" rel="external">npx基本上没有开销</a> - 这足以将该工具的代码直接加载到当前运行的node进程中！这种事情就像读取文件一样快，并且使它成为一个完全可以接受的脚本编写工具。</p><h1 id="执行一次性命令"><a href="#执行一次性命令" class="headerlink" title="执行一次性命令"></a>执行一次性命令</h1><p><img src="https://cdn-images-1.medium.com/max/800/1*OlIRsvVO5aK7ja9HmwXz_Q.gif" alt="https://cdn-images-1.medium.com/max/800/1*OlIRsvVO5aK7ja9HmwXz_Q.gif"></p><center><small><code>$ npx create-react-app my-cool-new-app</code>安装一个临时的创建应答程序并调用它，而不会污染全局安装或需要多个步骤！</small></center><p>你有没有遇到过 想要尝试一些CLI工具的情况，但是要安装一个全局只是为了运行一次，这很烦人？<code>npx</code>对这种情况也是很有用。调用的<code>npx &lt;command&gt;</code>当<code>&lt;command&gt;</code>不在你的<code>$PATH</code>意愿列表中，会自动从你的npm注册表中安装一个包含该名称的包，然后调用它。完成后，安装的软件包将不会储存在全球范围内任何地方，所以您不用担心长期的污染。</p><p>此功能也适用于<code>generators</code>等。像<code>yeoman</code>或<code>create-react-app</code>这样的工具只被调用一次。<strong>当你再次运行它们时，他们已经过时了，所以你最终不得不在每次想要使用它们时再次安装更新</strong>。</p><p>作为一种工具的维护者，我很喜欢这个功能，因为这意味着我可以把<code>$ npx my-tool</code>写进<code>README.md</code>的指令，而不是试图让人们在实际安装它的障碍。坦白说，说“哦，只需复制粘贴这一个命令，这是零成本的”更贴切，对于不确定是否使用这个工具的用户来说。</p><p>这里，你可能想用尝试一些其他有趣的包<code>npx</code>：<a href="https://npm.im/happy-birthday" target="_blank" rel="external">happy-birthday</a>，<a href="https://npm.im/benny-hill" target="_blank" rel="external">benny-hill</a>，<a href="https://npm.im/workin-hard" target="_blank" rel="external">workin-hard</a>，<a href="https://npm.im/cowsay" target="_blank" rel="external">cowsay</a>，<a href="https://npm.im/yo" target="_blank" rel="external">yo</a>，<a href="https://npm.im/create-react-app" target="_blank" rel="external">create-react-app</a>，<a href="https://npm.im/npm-check" target="_blank" rel="external">npm-check</a>。甚至有一个完整的<a href="https://github.com/js-n/awesome-npx" target="_blank" rel="external">awesome-npx</a><a href="https://github.com/js-n/awesome-npx" target="_blank" rel="external">入门</a>项目！来吧！获取一个<a href="https://twitter.com/maybekatz/status/878926190064668672" target="_blank" rel="external">足够小的完整的本地REST服务器运行的命令</a>以适应一个推文。</p><h1 id="使用不同Node-js版本运行命令"><a href="#使用不同Node-js版本运行命令" class="headerlink" title="使用不同Node.js版本运行命令"></a>使用不同Node.js版本运行命令</h1><p><img src="https://cdn-images-1.medium.com/max/800/1*cfjXl2hTKW7czetTfNGYbA.png" alt="https://cdn-images-1.medium.com/max/800/1*cfjXl2hTKW7czetTfNGYbA.png"></p><center><small><code>npx -p node-bin @ &lt;version&gt; node -v</code>可用于执行节点版本的一次性运行。</small></center><p>事实证明，在npm注册表中有一个很酷的包叫 <code>node-bin</code>。这意味着你可以使用不同的<code>node</code>版本，而不必使用node版本管理器,像<code>nvm</code>，<code>nave</code>或<code>n</code>。所有你需要的只是安装<code>npm@5.2.0</code>！</p><p><code>-pnpx</code> 选项允许您指定要安装并添加到正在运行的软件包<code>$PATH</code>，这意味着您可以进行有趣的操作，例如：<code>$ npx -p node-bin@6 npm it</code>安装并测试当前的npm软件包，就像在<code>node@6</code>全局运行一样。我一直使用这个 - 我甚至最近不得不在一个项目中经常使用它，由于我的一个测试库在<code>node@8</code>环境下无法运行。这是一个真正的救世主，我发现使用这种类型的用例比版本管理器更容易，我总是以某种方式找到<code>break</code>或错误配置的方法。</p><p>注意：<code>node-bin</code>仅适用于<code>* nix</code>平台。这是<a href="https://medium.com/@aredridel" target="_blank" rel="external">Aria Stewart</a>的出色工作。在将来，同样的软件包将可以简单地使用<code>node</code>，所以您可以<code>$ npx node@6 ...</code>直接执行，包括在Windows上。</p><h1 id="与-npm-run-script-互动发展"><a href="#与-npm-run-script-互动发展" class="headerlink" title="与 npm run-script 互动发展"></a>与 npm run-script 互动发展</h1><p><img src="https://cdn-images-1.medium.com/max/800/1*JqCC1irC-XxXAWiThpOUiw.gif" alt="https://cdn-images-1.medium.com/max/800/1*JqCC1irC-XxXAWiThpOUiw.gif"></p><center><small><code>$ npx -p cowsay -p lolcatjs -c&#39;echo“$ npm_package_name @ $ npm_package_version”| cowsay | lolcatjs&#39;s</code>将安装cowsay和lolcatjs，并使脚本从运行脚本访问一堆“$ npm_”变量。</small></center><p>很多<code>npm</code>的用户现在可以利用这个非常酷的<code>run-script</code>功能。他们不仅让您的<code>$PATH</code>本地二进制文件可访问，而且还添加了一大堆环境变量，您可以在这些脚本中访问。你可以看到这些额外的变量是什么<code>$ npm run env | grep npm_</code>。</p><p>这可以使开发和测试运行脚本变得棘手 - 这意味着即使使用诸如此类的技巧<code>$(npm bin)/some-bin</code>，在交互式工作的同时仍然无法访问这些神奇的<code>env var</code>。</p><p>可是等等！<code>npx</code>还有一个技巧：当你使用这个<code>-c</code>选项时，写入<code>string</code>参数内的脚本将能够像普通的运行脚本一样完全访问相同的<code>env</code>变量！您甚至可以使用管道和多个命令进行单次<code>npx</code>调用！</p><h1 id="与朋友以及你想要的任何人分享基于gist的脚本！"><a href="#与朋友以及你想要的任何人分享基于gist的脚本！" class="headerlink" title="与朋友以及你想要的任何人分享基于gist的脚本！"></a>与朋友以及你想要的任何人分享基于gist的脚本！</h1><p><img src="https://cdn-images-1.medium.com/max/800/1*Hdk5w080acQjABK3CQWh4Q.gif" alt="https://cdn-images-1.medium.com/max/800/1*Hdk5w080acQjABK3CQWh4Q.gif"></p><p>使用<code>gist.github.com</code>分享各种实用程序脚本变得很常见，而不是设置整个<code>git repos</code>，发布新工具等。</p><p>使用<code>npx</code>，您可以进一步：因为<code>npx</code>接受<code>npm</code>本身所做的任何说明符，您可以创建一个人们可以直接使用单个命令调用的要点！</p><p>尝试使用<a href="https://gist.github.com/zkat/4bc19503fe9e9309e2bfaa2c58074d32" target="_blank" rel="external">https://gist.github.com/zkat/4bc19503fe9e9309e2bfaa2c58074d32</a>！</p><p>注意：保持安全！在执行这些时，始终确保通过 <code>gists</code> 读取这些图标，就像运行<code>.sh</code>脚本时一样！</p><h1 id="彩蛋：shell自动回退"><a href="#彩蛋：shell自动回退" class="headerlink" title="彩蛋：shell自动回退"></a>彩蛋：shell自动回退</h1><p><img src="https://cdn-images-1.medium.com/max/600/1*MXY3EyWrnjdrv6gjDLgznw.png" alt="https://cdn-images-1.medium.com/max/600/1*MXY3EyWrnjdrv6gjDLgznw.png"></p><center><small>将.zshrc中的npx自动回退意味着你可以在没有引用npx的情况下执行<code>$ ember-cli @ latest ...</code></small></center><p><code>FélixSaparelli</code>补充说，这个令人敬畏的功能意味着对于许多这些用例，您甚至不需要直接调用<code>npx</code>！常规的<code>npx</code>使用和回退之间的主要区别是，回退不会安装新软件包，除非您使用<code>pkg@version</code>语法：安全网来防止潜在的危险排序。</p><p>设置自动回退是很简单的：在<code>npx</code>文档中查看用于当前<code>shell</code>的命令，将其添加到 <code>.bashrc</code> / <code>.zshrc</code> / <code>.fishrc</code>，然后重新启动<code>shell</code>（或使用<code>source</code>或其他机制来刷新<code>shell</code>）。</p><p>现在，您可以做一些<code>$ standard@8 --version</code>尝试不同版本的东西，如果您在一个<code>npm</code>项目中，<code>$ mocha</code>则会自动回到本地安装的<code>mocha</code>版本，前提是它尚未在全局安装。</p><h1 id="现在就试试吧"><a href="#现在就试试吧" class="headerlink" title="现在就试试吧"></a>现在就试试吧</h1><p>你现在可以通过安装<code>npm@5.2.0</code>或更新来获得<code>npx</code> ，或者如果你不想使用<code>npm</code>，你可以安装独立版本的<code>npx</code>！它与其他软件包管理器完全兼容，因为任何<code>npm</code>使用仅适用于内部操作。哦，它有10种不同的语言，感谢来自世界各地的一大批早期采用者的贡献，<code>--help</code>以及所有的系统消息翻译，并可以根据系统区域设置自动提供！还有一个<code>awesome-npx</code><a href="https://github.com/js-n/awesome-npx" target="_blank" rel="external">repo</a>与<code>npx</code>工作地很好的例子！</p><p>你有最喜欢的功能吗？你有没有使用过？如果你有一些很酷炫的事，我没有在这里列出，请在评论中分享！我很想听听别人的意见！</p><p>PS人们不断地问这个，所以我只是会弹出它在这里：在这些GIF文件，我使用<a href="https://www.npmjs.com/package/hyperterm-monokai" target="_blank" rel="external">monokai</a>主题的<a href="https://hyper.is/" target="_blank" rel="external">Hyper</a>运行 <code>oh-my-zsh</code>中的<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes#spaceship" target="_blank" rel="external">spaceship主题</a>，再加上<a href="https://github.com/tonsky/FiraCode" target="_blank" rel="external">FiraCode</a>字体。</p><p>【翻译原文】: <a href="https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b" target="_blank" rel="external">https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="介绍npx：一个npm包运行"><a href="#介绍npx：一个npm包运行" class="headerlink" title="介绍npx：一个npm包运行"></a>介绍npx：一个npm包运行</h1><p>NPM升级到最新版本，<a href="https://github.com/npm/npm/releases/tag/v5.2.0" target="_blank" rel="external">npm@5.2.0</a>，你可能会发现，它会安装一个新的二进制包跟着 <code>npm</code>：<a href="https://npm.im/npx" target="_blank" rel="external">npx</a>。</p><p><code>npx</code> 是一个工具，旨在帮助整理从npm注册软件包的体验 - 和 使得npm非常容易地安装和管理托管在注册表上的依赖关系是 同样的方式，<code>npx</code>使 npm 很方便使用CLI工具和其他被托管的可执行文件。它大大简化了一些事情，到目前为止，需要一些与普通的npm有关的步骤：</p><a id="more"></a><h1 id="使用本地化的安装工具而不用-npm-run-script"><a href="#使用本地化的安装工具而不用-npm-run-script" class="headerlink" title="使用本地化的安装工具而不用 npm run-script"></a>使用本地化的安装工具而不用 npm run-script</h1><p><img src="https://cdn-images-1.medium.com/max/800/1*A4HJT1FHQA_1_z3aMBc5mg.gif" alt="https://cdn-images-1.medium.com/max/800/1*A4HJT1FHQA_1_z3aMBc5mg.gif"></p><center><small>将cowsay作为本地devDependency进行安装，并以“$ npx cowsay”运行</small></center><p>在过去几年中，npm生态系统越来越多地将安装工具作为项目本地化<code>devDependencies</code>，而不是要求用户在全局安装。这意味着，像工具<code>mocha</code>，<code>grunt</code>和<code>bower</code>，曾经被要求安装在系统的全局目录上，现在可以在每个项目的基础上管理自己的版本。这也意味着，所有你需要做的就是基于NPM的项目运行起来，以确保您有<code>node + NPM</code>您的系统上，克隆github项目，并运行<code>npm it</code>去运行<code>install</code>和<code>test</code>。由于<code>npm run-script</code>添加本地二进制文件到路径，这个工作很好！</p><p>不利之处在于，它不会快速/方便地以交互方式调用本地二进制文件。有几种方法可以做到这一点，他们都对他们有一些烦恼：你可以添加这些工具到你<code>scripts</code>，但是你需要记住通过使用传递参数<code>--</code>，你可以通过<code>shell</code>技巧<code>alias npmx=PATH=$(npm bin):$PATH</code> 做到，或者你可以手动路径他们，使用 <code>./node_modules/.bin/mocha</code>。这些都是工作，但没有一个是非常理想的。</p><p><code>npx</code>给你我认为是最好的解决方案：您需要做的是使用<code>$ npx mocha</code>进行本地安装。如果你再进行一个额外的步骤并<a href="https://www.npmjs.com/package/npx#shell-auto-fallback" target="_blank" rel="external">配置shell自动回退</a>（更多内容在下面会提到），那么在一个项目目录中运行<code>$ mocha</code>将会成为你的技巧！</p><p>作为彩蛋，如果调用已经安装的二进制文件，<a href="https://twitter.com/maybekatz/status/877444832494596096" target="_blank" rel="external">npx基本上没有开销</a> - 这足以将该工具的代码直接加载到当前运行的node进程中！这种事情就像读取文件一样快，并且使它成为一个完全可以接受的脚本编写工具。</p><h1 id="执行一次性命令"><a href="#执行一次性命令" class="headerlink" title="执行一次性命令"></a>执行一次性命令</h1><p><img src="https://cdn-images-1.medium.com/max/800/1*OlIRsvVO5aK7ja9HmwXz_Q.gif" alt="https://cdn-images-1.medium.com/max/800/1*OlIRsvVO5aK7ja9HmwXz_Q.gif"></p><center><small><code>$ npx create-react-app my-cool-new-app</code>安装一个临时的创建应答程序并调用它，而不会污染全局安装或需要多个步骤！</small></center><p>你有没有遇到过 想要尝试一些CLI工具的情况，但是要安装一个全局只是为了运行一次，这很烦人？<code>npx</code>对这种情况也是很有用。调用的<code>npx &lt;command&gt;</code>当<code>&lt;command&gt;</code>不在你的<code>$PATH</code>意愿列表中，会自动从你的npm注册表中安装一个包含该名称的包，然后调用它。完成后，安装的软件包将不会储存在全球范围内任何地方，所以您不用担心长期的污染。</p><p>此功能也适用于<code>generators</code>等。像<code>yeoman</code>或<code>create-react-app</code>这样的工具只被调用一次。<strong>当你再次运行它们时，他们已经过时了，所以你最终不得不在每次想要使用它们时再次安装更新</strong>。</p><p>作为一种工具的维护者，我很喜欢这个功能，因为这意味着我可以把<code>$ npx my-tool</code>写进<code>README.md</code>的指令，而不是试图让人们在实际安装它的障碍。坦白说，说“哦，只需复制粘贴这一个命令，这是零成本的”更贴切，对于不确定是否使用这个工具的用户来说。</p><p>这里，你可能想用尝试一些其他有趣的包<code>npx</code>：<a href="https://npm.im/happy-birthday" target="_blank" rel="external">happy-birthday</a>，<a href="https://npm.im/benny-hill" target="_blank" rel="external">benny-hill</a>，<a href="https://npm.im/workin-hard" target="_blank" rel="external">workin-hard</a>，<a href="https://npm.im/cowsay" target="_blank" rel="external">cowsay</a>，<a href="https://npm.im/yo" target="_blank" rel="external">yo</a>，<a href="https://npm.im/create-react-app" target="_blank" rel="external">create-react-app</a>，<a href="https://npm.im/npm-check" target="_blank" rel="external">npm-check</a>。甚至有一个完整的<a href="https://github.com/js-n/awesome-npx" target="_blank" rel="external">awesome-npx</a><a href="https://github.com/js-n/awesome-npx" target="_blank" rel="external">入门</a>项目！来吧！获取一个<a href="https://twitter.com/maybekatz/status/878926190064668672" target="_blank" rel="external">足够小的完整的本地REST服务器运行的命令</a>以适应一个推文。</p><h1 id="使用不同Node-js版本运行命令"><a href="#使用不同Node-js版本运行命令" class="headerlink" title="使用不同Node.js版本运行命令"></a>使用不同Node.js版本运行命令</h1><p><img src="https://cdn-images-1.medium.com/max/800/1*cfjXl2hTKW7czetTfNGYbA.png" alt="https://cdn-images-1.medium.com/max/800/1*cfjXl2hTKW7czetTfNGYbA.png"></p><center><small><code>npx -p node-bin @ &lt;version&gt; node -v</code>可用于执行节点版本的一次性运行。</small></center><p>事实证明，在npm注册表中有一个很酷的包叫 <code>node-bin</code>。这意味着你可以使用不同的<code>node</code>版本，而不必使用node版本管理器,像<code>nvm</code>，<code>nave</code>或<code>n</code>。所有你需要的只是安装<code>npm@5.2.0</code>！</p><p><code>-pnpx</code> 选项允许您指定要安装并添加到正在运行的软件包<code>$PATH</code>，这意味着您可以进行有趣的操作，例如：<code>$ npx -p node-bin@6 npm it</code>安装并测试当前的npm软件包，就像在<code>node@6</code>全局运行一样。我一直使用这个 - 我甚至最近不得不在一个项目中经常使用它，由于我的一个测试库在<code>node@8</code>环境下无法运行。这是一个真正的救世主，我发现使用这种类型的用例比版本管理器更容易，我总是以某种方式找到<code>break</code>或错误配置的方法。</p><p>注意：<code>node-bin</code>仅适用于<code>* nix</code>平台。这是<a href="https://medium.com/@aredridel" target="_blank" rel="external">Aria Stewart</a>的出色工作。在将来，同样的软件包将可以简单地使用<code>node</code>，所以您可以<code>$ npx node@6 ...</code>直接执行，包括在Windows上。</p><h1 id="与-npm-run-script-互动发展"><a href="#与-npm-run-script-互动发展" class="headerlink" title="与 npm run-script 互动发展"></a>与 npm run-script 互动发展</h1><p><img src="https://cdn-images-1.medium.com/max/800/1*JqCC1irC-XxXAWiThpOUiw.gif" alt="https://cdn-images-1.medium.com/max/800/1*JqCC1irC-XxXAWiThpOUiw.gif"></p><center><small><code>$ npx -p cowsay -p lolcatjs -c&#39;echo“$ npm_package_name @ $ npm_package_version”| cowsay | lolcatjs&#39;s</code>将安装cowsay和lolcatjs，并使脚本从运行脚本访问一堆“$ npm_”变量。</small></center><p>很多<code>npm</code>的用户现在可以利用这个非常酷的<code>run-script</code>功能。他们不仅让您的<code>$PATH</code>本地二进制文件可访问，而且还添加了一大堆环境变量，您可以在这些脚本中访问。你可以看到这些额外的变量是什么<code>$ npm run env | grep npm_</code>。</p><p>这可以使开发和测试运行脚本变得棘手 - 这意味着即使使用诸如此类的技巧<code>$(npm bin)/some-bin</code>，在交互式工作的同时仍然无法访问这些神奇的<code>env var</code>。</p><p>可是等等！<code>npx</code>还有一个技巧：当你使用这个<code>-c</code>选项时，写入<code>string</code>参数内的脚本将能够像普通的运行脚本一样完全访问相同的<code>env</code>变量！您甚至可以使用管道和多个命令进行单次<code>npx</code>调用！</p><h1 id="与朋友以及你想要的任何人分享基于gist的脚本！"><a href="#与朋友以及你想要的任何人分享基于gist的脚本！" class="headerlink" title="与朋友以及你想要的任何人分享基于gist的脚本！"></a>与朋友以及你想要的任何人分享基于gist的脚本！</h1><p><img src="https://cdn-images-1.medium.com/max/800/1*Hdk5w080acQjABK3CQWh4Q.gif" alt="https://cdn-images-1.medium.com/max/800/1*Hdk5w080acQjABK3CQWh4Q.gif"></p><p>使用<code>gist.github.com</code>分享各种实用程序脚本变得很常见，而不是设置整个<code>git repos</code>，发布新工具等。</p><p>使用<code>npx</code>，您可以进一步：因为<code>npx</code>接受<code>npm</code>本身所做的任何说明符，您可以创建一个人们可以直接使用单个命令调用的要点！</p><p>尝试使用<a href="https://gist.github.com/zkat/4bc19503fe9e9309e2bfaa2c58074d32" target="_blank" rel="external">https://gist.github.com/zkat/4bc19503fe9e9309e2bfaa2c58074d32</a>！</p><blockquote><p>注意：保持安全！在执行这些时，始终确保通过 <code>gists</code> 网站读取和执行代码，就像运行 <code>.sh</code> 脚本时一样谨慎！</p></blockquote><h1 id="彩蛋：shell自动回退"><a href="#彩蛋：shell自动回退" class="headerlink" title="彩蛋：shell自动回退"></a>彩蛋：shell自动回退</h1><p><img src="https://cdn-images-1.medium.com/max/600/1*MXY3EyWrnjdrv6gjDLgznw.png" alt="https://cdn-images-1.medium.com/max/600/1*MXY3EyWrnjdrv6gjDLgznw.png"></p><center><small>将.zshrc中的npx自动回退意味着你可以在没有引用npx的情况下执行<code>$ ember-cli @ latest ...</code></small></center><p><code>FélixSaparelli</code>补充说，这个令人敬畏的功能意味着对于许多这些用例，您甚至不需要直接调用<code>npx</code>！常规的<code>npx</code>使用和回退之间的主要区别是，回退不会安装新软件包，除非您使用<code>pkg@version</code>语法：安全网来防止潜在的危险排序。</p><p>设置自动回退是很简单的：在<code>npx</code>文档中查看用于当前<code>shell</code>的命令，将其添加到 <code>.bashrc</code> / <code>.zshrc</code> / <code>.fishrc</code>，然后重新启动<code>shell</code>（或使用<code>source</code>或其他机制来刷新<code>shell</code>）。</p><p>现在，您可以做一些<code>$ standard@8 --version</code>尝试不同版本的东西，如果您在一个<code>npm</code>项目中，<code>$ mocha</code>则会自动回到本地安装的<code>mocha</code>版本，前提是它尚未在全局安装。</p><h1 id="现在就试试吧"><a href="#现在就试试吧" class="headerlink" title="现在就试试吧"></a>现在就试试吧</h1><p>你现在可以通过安装<code>npm@5.2.0</code>或更新来获得<code>npx</code> ，或者如果你不想使用<code>npm</code>，你可以安装独立版本的<code>npx</code>！它与其他软件包管理器完全兼容，因为任何<code>npm</code>使用仅适用于内部操作。哦，它有10种不同的语言，感谢来自世界各地的一大批早期采用者的贡献，<code>--help</code>以及所有的系统消息翻译，并可以根据系统区域设置自动提供！还有一个<code>awesome-npx</code><a href="https://github.com/js-n/awesome-npx" target="_blank" rel="external">repo</a>与<code>npx</code>工作地很好的例子！</p><p>你有最喜欢的功能吗？你有没有使用过？如果你有一些很酷炫的事，我没有在这里列出，请在评论中分享！我很想听听别人的意见！</p><p>PS人们不断地问这个，所以我只是会弹出它在这里：在这些GIF文件，我使用<a href="https://www.npmjs.com/package/hyperterm-monokai" target="_blank" rel="external">monokai</a>主题的<a href="https://hyper.is/" target="_blank" rel="external">Hyper</a>运行 <code>oh-my-zsh</code>中的<a href="https://github.com/robbyrussell/oh-my-zsh/wiki/External-themes#spaceship" target="_blank" rel="external">spaceship主题</a>，再加上<a href="https://github.com/tonsky/FiraCode" target="_blank" rel="external">FiraCode</a>字体。</p><p>【翻译原文】: <a href="https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b" target="_blank" rel="external">https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b</a></p>]]></content>
     
     <summary type="html">
     
@@ -30,7 +52,7 @@
     
     </summary>
     
-      <category term="npm" scheme="http://robin-front.github.io/categories/npm/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
       <category term="npm" scheme="http://robin-front.github.io/tags/npm/"/>
@@ -54,7 +76,7 @@
     
     </summary>
     
-      <category term="performance" scheme="http://robin-front.github.io/categories/performance/"/>
+      <category term="workflow" scheme="http://robin-front.github.io/categories/workflow/"/>
     
     
       <category term="performance" scheme="http://robin-front.github.io/tags/performance/"/>
@@ -76,7 +98,7 @@
     
     </summary>
     
-      <category term="es6" scheme="http://robin-front.github.io/categories/es6/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
       <category term="import" scheme="http://robin-front.github.io/tags/import/"/>
@@ -122,7 +144,7 @@
     
     </summary>
     
-      <category term="javaScript" scheme="http://robin-front.github.io/categories/javaScript/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
       <category term="Memoize" scheme="http://robin-front.github.io/tags/Memoize/"/>
@@ -144,12 +166,12 @@
     
     </summary>
     
-      <category term="css3" scheme="http://robin-front.github.io/categories/css3/"/>
+      <category term="css" scheme="http://robin-front.github.io/categories/css/"/>
     
-    
-      <category term="css3" scheme="http://robin-front.github.io/tags/css3/"/>
     
       <category term="background" scheme="http://robin-front.github.io/tags/background/"/>
+    
+      <category term="css3" scheme="http://robin-front.github.io/tags/css3/"/>
     
   </entry>
   
@@ -168,7 +190,7 @@
     
     </summary>
     
-      <category term="Array" scheme="http://robin-front.github.io/categories/Array/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
       <category term="Array" scheme="http://robin-front.github.io/tags/Array/"/>
@@ -196,7 +218,7 @@
     
     </summary>
     
-      <category term="Web Animations" scheme="http://robin-front.github.io/categories/Web-Animations/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
       <category term="Web Animations" scheme="http://robin-front.github.io/tags/Web-Animations/"/>
@@ -218,7 +240,7 @@
     
     </summary>
     
-      <category term="Web Animations" scheme="http://robin-front.github.io/categories/Web-Animations/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
       <category term="Web Animations" scheme="http://robin-front.github.io/tags/Web-Animations/"/>
@@ -240,7 +262,7 @@
     
     </summary>
     
-      <category term="Web Animations" scheme="http://robin-front.github.io/categories/Web-Animations/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
       <category term="Web Animations" scheme="http://robin-front.github.io/tags/Web-Animations/"/>
@@ -262,7 +284,7 @@
     
     </summary>
     
-      <category term="Web Animations" scheme="http://robin-front.github.io/categories/Web-Animations/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
       <category term="Web Animations" scheme="http://robin-front.github.io/tags/Web-Animations/"/>
@@ -284,7 +306,7 @@
     
     </summary>
     
-      <category term="Web Animations" scheme="http://robin-front.github.io/categories/Web-Animations/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
       <category term="Web Animations" scheme="http://robin-front.github.io/tags/Web-Animations/"/>
@@ -306,7 +328,7 @@
     
     </summary>
     
-      <category term="Web Animations" scheme="http://robin-front.github.io/categories/Web-Animations/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
       <category term="Web Animations" scheme="http://robin-front.github.io/tags/Web-Animations/"/>
@@ -328,7 +350,7 @@
     
     </summary>
     
-      <category term="Web Animations" scheme="http://robin-front.github.io/categories/Web-Animations/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
       <category term="Web Animations" scheme="http://robin-front.github.io/tags/Web-Animations/"/>
@@ -350,21 +372,19 @@
     
     </summary>
     
-      <category term="css3" scheme="http://robin-front.github.io/categories/css3/"/>
+      <category term="css" scheme="http://robin-front.github.io/categories/css/"/>
     
-      <category term="Animation" scheme="http://robin-front.github.io/categories/css3/Animation/"/>
     
+      <category term="Web Animations" scheme="http://robin-front.github.io/tags/Web-Animations/"/>
     
       <category term="css3" scheme="http://robin-front.github.io/tags/css3/"/>
-    
-      <category term="Animation" scheme="http://robin-front.github.io/tags/Animation/"/>
     
   </entry>
   
   <entry>
     <title>webpack3官方正式发布,亮点:作用域提升，“魔法注释”，以及更多新特性！</title>
-    <link href="http://robin-front.github.io/2017/06/21/webpack3%E5%AE%98%E6%96%B9%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83-%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%90%E5%8D%87%EF%BC%8C%E2%80%9C%E9%AD%94%E6%B3%95%E6%B3%A8%E9%87%8A%E2%80%9D%EF%BC%8C%E4%BB%A5%E5%8F%8A%E6%9B%B4%E5%A4%9A%E6%96%B0%E7%89%B9%E6%80%A7%EF%BC%81/"/>
-    <id>http://robin-front.github.io/2017/06/21/webpack3官方正式发布-作用域提升，“魔法注释”，以及更多新特性！/</id>
+    <link href="http://robin-front.github.io/2017/06/21/webpack3-publish-scope-hoisting-magic-comments-and-more/"/>
+    <id>http://robin-front.github.io/2017/06/21/webpack3-publish-scope-hoisting-magic-comments-and-more/</id>
     <published>2017-06-21T07:35:55.000Z</published>
     <updated>2017-06-22T07:35:55.000Z</updated>
     
@@ -376,17 +396,19 @@
     
     </summary>
     
-      <category term="webpack" scheme="http://robin-front.github.io/categories/webpack/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
       <category term="webpack" scheme="http://robin-front.github.io/tags/webpack/"/>
+    
+      <category term="前端构建" scheme="http://robin-front.github.io/tags/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
     
   </entry>
   
   <entry>
     <title>Flow和TypeScript之间的区别和优劣</title>
-    <link href="http://robin-front.github.io/2017/06/14/Flow%E5%92%8CTypeScript%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E4%BC%98%E5%8A%A3/"/>
-    <id>http://robin-front.github.io/2017/06/14/Flow和TypeScript之间的区别和优劣/</id>
+    <link href="http://robin-front.github.io/2017/06/14/compare-with-Flow-and-TypeScript/"/>
+    <id>http://robin-front.github.io/2017/06/14/compare-with-Flow-and-TypeScript/</id>
     <published>2017-06-14T15:28:54.000Z</published>
     <updated>2017-06-14T15:28:54.000Z</updated>
     
@@ -398,9 +420,7 @@
     
     </summary>
     
-      <category term="Flow" scheme="http://robin-front.github.io/categories/Flow/"/>
-    
-      <category term="TypeScript" scheme="http://robin-front.github.io/categories/Flow/TypeScript/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
       <category term="Flow" scheme="http://robin-front.github.io/tags/Flow/"/>
@@ -424,17 +444,17 @@
     
     </summary>
     
-      <category term="RXJS" scheme="http://robin-front.github.io/categories/RXJS/"/>
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
-      <category term="RXJS" scheme="http://robin-front.github.io/tags/RXJS/"/>
+      <category term="RxJS" scheme="http://robin-front.github.io/tags/RxJS/"/>
     
   </entry>
   
   <entry>
     <title>如何调试Node.js|使用谷歌chrome浏览器调试Node.js</title>
-    <link href="http://robin-front.github.io/2017/06/02/%E5%A6%82%E4%BD%95%E8%B0%83%E8%AF%95Node-js%E4%BD%BF%E7%94%A8%E8%B0%B7%E6%AD%8Cchrome%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B0%83%E8%AF%95Node-js/"/>
-    <id>http://robin-front.github.io/2017/06/02/如何调试Node-js使用谷歌chrome浏览器调试Node-js/</id>
+    <link href="http://robin-front.github.io/2017/06/02/debugging-Node-js-with-google-chrome/"/>
+    <id>http://robin-front.github.io/2017/06/02/debugging-Node-js-with-google-chrome/</id>
     <published>2017-06-02T09:46:03.000Z</published>
     <updated>2017-06-02T09:46:03.000Z</updated>
     
@@ -446,34 +466,14 @@
     
     </summary>
     
-      <category term="Node.js" scheme="http://robin-front.github.io/categories/Node-js/"/>
+      <category term="Node" scheme="http://robin-front.github.io/categories/Node/"/>
     
+    
+      <category term="Node" scheme="http://robin-front.github.io/tags/Node/"/>
     
       <category term="debug" scheme="http://robin-front.github.io/tags/debug/"/>
     
-      <category term="Node.js" scheme="http://robin-front.github.io/tags/Node-js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RXJS我该选用哪个操作符之-创建篇</title>
-    <link href="http://robin-front.github.io/2017/06/01/RXJS%E6%88%91%E8%AF%A5%E9%80%89%E7%94%A8%E5%93%AA%E4%B8%AA%E6%93%8D%E4%BD%9C%E7%AC%A6%E4%B9%8B-%E5%88%9B%E5%BB%BA%E7%AF%87/"/>
-    <id>http://robin-front.github.io/2017/06/01/RXJS我该选用哪个操作符之-创建篇/</id>
-    <published>2017-06-01T10:16:43.000Z</published>
-    <updated>2017-06-01T10:16:43.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>RXJS该怎么上手？这么多操作符该用哪个？RXJS比较强大，操作符众多，想熟悉需要比较长时间的运用，所以大部分新手都比较疑惑应该使用哪些操作符去实现自己的数据流的操作。</p><p>更多详情请翻阅 <a href="https://robin-front.github.io/RxJS-doc-chinese">RXJS中文翻译文档</a></p><h1 id="我该选用哪个操作符-创建操作符"><a href="#我该选用哪个操作符-创建操作符" class="headerlink" title="我该选用哪个操作符? - 创建操作符"></a>我该选用哪个操作符? - 创建操作符</h1><p>使用此页面查找<a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/index.html"><code>Observable</code></a>符合您需求的类型创建操作：<a id="more"></a></p><table style="display:table"><thead>静态方法</thead><tbody><tr><td rowspan="26">我想创建一个新的序列</td><td rowspan="4">使用自定义逻辑</td><td colspan="2"></td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/create.html">Observable.create</a></td></tr><tr><td rowspan="3">像一个for循环</td><td></td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/generate.html">Observable.generate</a></td></tr><tr><td rowspan="2">并随时间发射值</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/generatewithrelativetime.html">Observable.generateWithRelativeTime</a></td></tr><tr><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/generatewithabsolutetime.html">Observable.generateWithAbsoluteTime</a></td></tr><tr><td rowspan="2">它返回一个值</td><td colspan="2"></td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/return.html">Observable.return/just</a></td></tr><tr><td colspan="2">多次</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/repeat.html">Observable.repeat</a></td></tr><tr><td colspan="3">这会抛出错误</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/throw.html">Observable.throw</a></td></tr><tr><td colspan="3">完成了</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/empty.html">Observable.empty</a></td></tr><tr><td colspan="3">从来没有做任何事情</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/never.html">Observable.never</a></td></tr><tr><td rowspan="2">从事件</td><td colspan="2"></td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/fromevent.html">Observable.fromEvent</a></td></tr><tr><td colspan="2">它使用自定义函数来添加和删除事件处理程序</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/fromeventpattern.html">Observable.fromEventPattern</a></td></tr><tr><td colspan="3">来自一个<a title="ES6 Promise" href="https://www.promisejs.org" target="_blank" rel="external">ES6 Promise</a></td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/frompromise.html">Observable.fromPromise</a></td></tr><tr><td rowspan="6">它可迭代</td><td rowspan="2">覆盖到数组中的值</td><td></td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/fromarray.html">Observable.fromArray</a><br></td></tr><tr><td>对象键/值对</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/pairs.html">Observable.pairs</a></td></tr><tr><td colspan="2">异步元素</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/for.html">Observable.for</a></td></tr><tr><td colspan="2">数值范围内的值</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/range.html">Observable.range</a></td></tr><tr><td colspan="2">来自一个可迭代的数组或类似数组的对象的值</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/from.html">Observable.from</a></td></tr><tr><td colspan="2">来自参数</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/of.html">Observable.of</a></td></tr><tr><td rowspan="2">根据定时器发出值</td><td colspan="2"></td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/interval.html">Observable.interval</a></td></tr><tr><td colspan="2">具有可选的初始延迟</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/timer.html">Observable.timer</a></td></tr><tr><td rowspan="2" colspan="2">不传参调用函数</td><td>在特定的调度程序</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/start.html">Observable.start</a></td></tr><tr><td>异步</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/startasync.html">Observable.startAsync</a></td></tr><tr><td rowspan="4">取决于订阅时</td><td colspan="2">基于布尔条件</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/if.html">Observable.if</a></td></tr><tr><td colspan="2">f从一组预先设定的序列</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/case.html">Observable.case</a></td></tr><tr><td colspan="1" rowspan="2">使用自定义逻辑</td><td></td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/defer.html">Observable.defer</a></td></tr><tr><td>它取决于资源</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/using.html">Observable.using</a></td></tr><tr><td rowspan="3">我想包装一个函数</td><td colspan="2"></td><td rowspan="3">并产生一个序列的结果</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/toasync.html">Observable.toAsync</a></td></tr><td colspan="2">它接受回调</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/fromcallback.html">Observable.fromCallback</a></td><tr><td colspan="2">它接受Node.js回调</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/fromnodecallback.html">Observable.fromNodeCallback</a></td></tr><tr><td rowspan="30">我想结合多个序列</td><td colspan="3">并且仅从产生值的序列中接收值</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/amb.html">Observable.amb</a></td></tr><tr><td colspan="3">所有人都已经完成通知</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/forkjoin.html">Observable.forkJoin</a></td></tr><tr><td colspan="3">并输出所有这些值</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/merge.html">Observable.merge</a></td></tr><tr><td rowspan="2">为了</td><td colspan="2">不改变时重复使用最新值</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/operators/combinelatest.html">Observable.combineLatest</a></td></tr><tr><td colspan="2">每个值只使用一次</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/zip.html">Observable.zip</a></td></tr><tr><td rowspan="3">通过订阅每个序列为了</td><td colspan="2">当前一个序列完成时</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/concat.html">Observable.concat</a></td></tr><tr><td colspan="2">当另一个序列抛出错误时</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/catch.html">Observable.catch</a></td></tr><tr><td colspan="2">不管先前的序列是完成还是抛出错误</td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/onerrorresumenext.html">Observable.onErrorResumeNext</a></td></tr><tr><td colspan="3">通过响应不同的值组合<a href="http://en.wikipedia.org/wiki/Join-calculus" target="_blank" rel="external">（连接微积分）</a></td><td><a href="https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/when.html">Observable.when</a></td></tr></tbody></table>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;RXJS该怎么上手？这么多操作符该用哪个？RXJS比较强大，操作符众多，想熟悉需要比较长时间的运用，所以大部分新手都比较疑惑应该使用哪些操作符去实现自己的数据流的操作。&lt;/p&gt;&lt;p&gt;更多详情请翻阅 &lt;a href=&quot;https://robin-front.github.io/RxJS-doc-chinese&quot;&gt;RXJS中文翻译文档&lt;/a&gt;&lt;/p&gt;&lt;h1 id=&quot;我该选用哪个操作符-创建操作符&quot;&gt;&lt;a href=&quot;#我该选用哪个操作符-创建操作符&quot; class=&quot;headerlink&quot; title=&quot;我该选用哪个操作符? - 创建操作符&quot;&gt;&lt;/a&gt;我该选用哪个操作符? - 创建操作符&lt;/h1&gt;&lt;p&gt;使用此页面查找&lt;a href=&quot;https://robin-front.github.io/RxJS-doc-chinese/content/observable/observable_methods/index.html&quot;&gt;&lt;code&gt;Observable&lt;/code&gt;&lt;/a&gt;符合您需求的类型创建操作：
-    
-    </summary>
-    
-      <category term="RXJS" scheme="http://robin-front.github.io/categories/RXJS/"/>
-    
-    
-      <category term="RXJS" scheme="http://robin-front.github.io/tags/RXJS/"/>
+      <category term="chrome" scheme="http://robin-front.github.io/tags/chrome/"/>
     
   </entry>
   

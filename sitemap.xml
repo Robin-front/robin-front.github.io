@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://robin-front.github.io/2017/07/18/make-react-fast-again-tools-and-techniques-for-speeding-up-your-react-app/</loc>
+    
+    <lastmod>2017-07-18T07:25:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://robin-front.github.io/2017/07/17/react-redux-optimization/</loc>
     
     <lastmod>2017-07-17T09:12:02.000Z</lastmod>
@@ -324,7 +331,7 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/tags/index.html</loc>
+    <loc>http://robin-front.github.io/categories/index.html</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     
@@ -338,7 +345,7 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/categories/index.html</loc>
+    <loc>http://robin-front.github.io/tags/index.html</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     

@@ -359,21 +359,14 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2015/09/30/git-ssh-key-and-multiple-accounts-configs/</loc>
-    
-    <lastmod>2016-10-20T08:02:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://robin-front.github.io/categories/index.html</loc>
-    
-    <lastmod>2016-10-20T08:02:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://robin-front.github.io/2015/10/10/git-branch/</loc>
+    
+    <lastmod>2016-10-20T08:02:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/tags/index.html</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     
@@ -387,7 +380,14 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/tags/index.html</loc>
+    <loc>http://robin-front.github.io/2015/09/30/git-ssh-key-and-multiple-accounts-configs/</loc>
+    
+    <lastmod>2016-10-20T08:02:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/categories/index.html</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     

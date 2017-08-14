@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://robin-front.github.io/2017/03/13/an-animated-guide-to-flexbox-1/</loc>
+    
+    <lastmod>2017-08-11T09:57:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://robin-front.github.io/2017/07/28/you-may-dont-know-JSON/</loc>
     
     <lastmod>2017-07-28T01:17:36.000Z</lastmod>
@@ -310,7 +317,7 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2017/03/13/%E9%80%9A%E8%BF%87%E5%8A%A8%E5%9B%BE%E7%AE%80%E5%8D%95%E9%80%9A%E4%BF%97%E5%9C%B0%E4%BA%86%E8%A7%A3Flexbox%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/</loc>
+    <loc>http://robin-front.github.io/2017/03/13/an-animated-guide-to-flexbox-2/</loc>
     
     <lastmod>2017-03-13T03:31:42.000Z</lastmod>
     
@@ -359,7 +366,21 @@
   </url>
   
   <url>
+    <loc>http://robin-front.github.io/2015/10/30/javascript%E5%8F%96%E6%9C%AC%E5%91%A8%E5%92%8C%E6%9C%AC%E6%9C%88%E6%88%96%E4%BB%BB%E6%84%8F%E6%9C%88%E7%9A%84%E6%97%B6%E9%97%B4%E6%AE%B5/</loc>
+    
+    <lastmod>2016-10-20T08:02:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://robin-front.github.io/categories/index.html</loc>
+    
+    <lastmod>2016-10-20T08:02:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2015/10/10/git-branch/</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     
@@ -374,20 +395,6 @@
   
   <url>
     <loc>http://robin-front.github.io/2015/09/30/git-ssh-key-and-multiple-accounts-configs/</loc>
-    
-    <lastmod>2016-10-20T08:02:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://robin-front.github.io/2015/10/30/javascript%E5%8F%96%E6%9C%AC%E5%91%A8%E5%92%8C%E6%9C%AC%E6%9C%88%E6%88%96%E4%BB%BB%E6%84%8F%E6%9C%88%E7%9A%84%E6%97%B6%E9%97%B4%E6%AE%B5/</loc>
-    
-    <lastmod>2016-10-20T08:02:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://robin-front.github.io/2015/10/10/git-branch/</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     

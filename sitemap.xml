@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://robin-front.github.io/2017/09/21/Understanding-the-WebView-Viewport-in-iOS-11/</loc>
+    
+    <lastmod>2017-09-21T03:34:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://robin-front.github.io/2017/09/21/the-notch-and-css/</loc>
     
     <lastmod>2017-09-21T02:23:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/09/19/how-to-handle-4-common-memory-leaks/</loc>
+    
+    <lastmod>2017-09-19T01:38:51.000Z</lastmod>
     
   </url>
   
@@ -37,7 +51,7 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2015/10/17/angular-comorized-directive/</loc>
+    <loc>http://robin-front.github.io/2015/10/30/javascript-get-the-time-period-of-the-week-and-this-month-or-any-month/</loc>
     
     <lastmod>2017-08-22T01:18:43.000Z</lastmod>
     
@@ -51,7 +65,14 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2015/10/09/gulp-4.0/</loc>
+    <loc>http://robin-front.github.io/2015/09/30/git-ssh-key-and-multiple-accounts-configs/</loc>
+    
+    <lastmod>2017-08-22T01:18:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2015/10/17/angular-comorized-directive/</loc>
     
     <lastmod>2017-08-22T01:18:43.000Z</lastmod>
     
@@ -65,14 +86,7 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2015/10/30/javascript-get-the-time-period-of-the-week-and-this-month-or-any-month/</loc>
-    
-    <lastmod>2017-08-22T01:18:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://robin-front.github.io/2015/09/30/git-ssh-key-and-multiple-accounts-configs/</loc>
+    <loc>http://robin-front.github.io/2015/10/09/gulp-4.0/</loc>
     
     <lastmod>2017-08-22T01:18:43.000Z</lastmod>
     
@@ -422,14 +436,14 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/categories/index.html</loc>
+    <loc>http://robin-front.github.io/tags/index.html</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/tags/index.html</loc>
+    <loc>http://robin-front.github.io/categories/index.html</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     

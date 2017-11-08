@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://robin-front.github.io/2017/11/06/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-async-and-await/</loc>
+    
+    <lastmod>2017-11-06T02:40:21.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/10/25/you-might-not-need-redux/</loc>
+    
+    <lastmod>2017-10-25T09:04:54.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://robin-front.github.io/2017/09/21/Understanding-the-WebView-Viewport-in-iOS-11/</loc>
     
     <lastmod>2017-09-21T03:34:30.000Z</lastmod>
@@ -51,14 +65,14 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2015/10/08/optimize-images-with-font-end/</loc>
+    <loc>http://robin-front.github.io/2015/10/30/javascript-get-the-time-period-of-the-week-and-this-month-or-any-month/</loc>
     
     <lastmod>2017-08-22T01:18:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2015/10/30/javascript-get-the-time-period-of-the-week-and-this-month-or-any-month/</loc>
+    <loc>http://robin-front.github.io/2015/10/09/gulp-4.0/</loc>
     
     <lastmod>2017-08-22T01:18:43.000Z</lastmod>
     
@@ -72,13 +86,6 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2015/10/10/git-branch/</loc>
-    
-    <lastmod>2017-08-22T01:18:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://robin-front.github.io/2015/10/17/angular-comorized-directive/</loc>
     
     <lastmod>2017-08-22T01:18:43.000Z</lastmod>
@@ -86,7 +93,14 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2015/10/09/gulp-4.0/</loc>
+    <loc>http://robin-front.github.io/2015/10/10/git-branch/</loc>
+    
+    <lastmod>2017-08-22T01:18:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2015/10/08/optimize-images-with-font-end/</loc>
     
     <lastmod>2017-08-22T01:18:43.000Z</lastmod>
     

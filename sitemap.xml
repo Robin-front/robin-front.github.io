@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://robin-front.github.io/2017/11/16/using-a-react-16-portal-to-do-something-cool/</loc>
+    
+    <lastmod>2017-11-15T23:31:59.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/11/09/react-component-patterns/</loc>
+    
+    <lastmod>2017-11-09T15:10:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://robin-front.github.io/2017/11/06/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-async-and-await/</loc>
     
     <lastmod>2017-11-06T02:40:21.000Z</lastmod>
@@ -72,6 +86,13 @@
   </url>
   
   <url>
+    <loc>http://robin-front.github.io/2015/10/10/git-branch/</loc>
+    
+    <lastmod>2017-08-22T01:18:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://robin-front.github.io/2015/10/09/gulp-4.0/</loc>
     
     <lastmod>2017-08-22T01:18:43.000Z</lastmod>
@@ -86,21 +107,14 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2015/10/17/angular-comorized-directive/</loc>
-    
-    <lastmod>2017-08-22T01:18:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://robin-front.github.io/2015/10/10/git-branch/</loc>
-    
-    <lastmod>2017-08-22T01:18:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://robin-front.github.io/2015/10/08/optimize-images-with-font-end/</loc>
+    
+    <lastmod>2017-08-22T01:18:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2015/10/17/angular-comorized-directive/</loc>
     
     <lastmod>2017-08-22T01:18:43.000Z</lastmod>
     

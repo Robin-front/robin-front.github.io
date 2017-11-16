@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://robin-front.github.io/"/>
-  <updated>2017-11-06T02:40:21.000Z</updated>
+  <updated>2017-11-15T23:31:59.000Z</updated>
   <id>http://robin-front.github.io/</id>
   
   <author>
@@ -14,6 +14,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 react 16 portal 做一些很酷的事情</title>
+    <link href="http://robin-front.github.io/2017/11/16/using-a-react-16-portal-to-do-something-cool/"/>
+    <id>http://robin-front.github.io/2017/11/16/using-a-react-16-portal-to-do-something-cool/</id>
+    <published>2017-11-15T23:31:59.000Z</published>
+    <updated>2017-11-15T23:31:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>React 16 已经发布了，其中一个很有趣的是添加了 “Portals”。</p><p>Portals 可以让你在父组件外渲染 react 受控 DOM 节点。<a href="https://reactjs.org/docs/portals.html" target="_blank" rel="external">react doc</a> 也使用了一个模态框的例子很好地解释了它。用也做 tooltips 也很合适（这是我<a href="https://codepen.io/davidgilbertson/pen/ooXVyw" target="_blank" rel="external">早前做的一个例子</a>）。</p><p>但这些都并不是很有趣，让我们做一些更不可思议的事情…<a id="more"></a></p><p>因为所有 portal 做的，都是将一个元素放到其他元素上，你并没有被限制放在 <em>当前</em> document 的任何地方。你可以添加到另一个 document 的 body 中，可能是完全不同浏览器窗口的一个 document。</p><p>下面我有一个基本的页面（左边），包含一个计数器及深红色按钮。另一个窗口（右边）同样是 react app 的一部分。</p><p>右边的窗口是属于 <em>同一个 React app</em> 这个事实应该让你感到惊讶。</p><p><img src="/js/lazyload-plugin/loading.svg" alt="https://cdn-images-1.medium.com/max/2000/1*ogsV-9IGNtaVjne2fb_oEA.png" data-original="https://cdn-images-1.medium.com/max/2000/1*ogsV-9IGNtaVjne2fb_oEA.png"></p><p>上面图片中能看到的所有东西（除了树）都是在下面代码展示的同一个组件中：</p><script src="https://gist.github.com/davidgilbertson/69a8c158ca9b5e202d083408dbabdf49.js"></script><p>你已经成功了，<code>&lt;MyWindowPortal&gt;</code> 有一点特殊，里面的所有东西都会被渲染到另一个 window 下。</p><p>尤其是，<code>&lt;MyWindowPortal&gt;</code> 做了两件事。</p><ul><li>1、 当组件渲染时打开一个浏览器窗口。</li><li>2、 创建一个 <code>portal</code> 并将 <code>props.children</code> 添加到新窗口的 body。</li></ul><p>这不是最酷的事情吗？</p><p>我是多么兴奋，必须得冷静一下。</p><p>…</p><p>I saw a duck!</p><p>…</p><p>上面提到的 body中的组件就是下面这样。 React 16 新增的部分 <code>ReactDOM.createPortal</code> 在 11 行 —— 那就是黑魔法。</p><script src="https://gist.github.com/davidgilbertson/de5e5b84373ee60d91525ab37278913e.js"></script><p>那有意义吗？组件并没有返回什么，只是做了一些其他事情。</p><p>换一个角度来想可能是这样的：按理来说，一个父组件对子组件说：“嘿，渲染 DOM， 然后把结果添加到我这里。”，然后子组件照做了。但是这次，任性的子组件说，“不！我要将东东渲染到另一个窗口，然后写一篇关于它的博客。”</p><p>现在，我知道你在想什么。</p><p>你有点渴，并且想知道你是否该喝点水了。是的，去吧。</p><p>另一件你可能在想的事情是：将一些 DOM 注入到无样式的空白窗口有什么好处？可能 Craigslist 或 Wikipedia 也不知道。但你的网站很美，任何时候都不能弹出小窗口。</p><p>好吧，好消息来了，大家注意了！</p><p><img src="/js/lazyload-plugin/loading.svg" alt="https://cdn-images-1.medium.com/max/1000/1*eU-7ArIucnG5OreaPIJlEg.png" data-original="https://cdn-images-1.medium.com/max/1000/1*eU-7ArIucnG5OreaPIJlEg.png"></p><p>起初，我还在想是否有一个简单的方式将样式复制到新窗口。然后我想起我的生活只是被一些毫无意义的事件填充，它们唯一的目的只是让我分心，阻止我内心的空虚寂寞冷。</p><p>所以亲自写这个函数就是乐趣！</p><p>看下面：</p><script src="https://gist.github.com/davidgilbertson/ed3c8bb8569bc64b094b87aa88bed5fa.js"></script><p>事实上，我并不是很了解 <code>styleSheet</code>。我期待从评论中得知有什么奇技淫巧。</p><p>现在我可以在打开新窗口的时候很简单地复制样式，像这样：</p><script src="https://gist.github.com/davidgilbertson/4937ac726094735ab44e295f3113df53.js"></script><iframe height="265" scrolling="no" title="React Portal Chat Window" src="//codepen.io/davidgilbertson/embed/xPVMqp/?height=265&theme-id=0&default-tab=js,result&embed-version=2" frameborder="no" allowtransparency="true" allowfullscreen style="width:100%">See the Pen <a href="https://codepen.io/davidgilbertson/pen/xPVMqp/" target="_blank" rel="external">React Portal Chat Window</a> by David Gilbertson (<a href="https://codepen.io/davidgilbertson" target="_blank" rel="external">@davidgilbertson</a>) on <a href="https://codepen.io" target="_blank" rel="external">CodePen</a>.</iframe><p>我不认为这能在 Medium app 的 iOS/Android 平台上运行，所以请在浏览器打开。</p><p>好了，我认为这篇文章该结束了。</p><p>Bye!</p><script src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;React 16 已经发布了，其中一个很有趣的是添加了 “Portals”。&lt;/p&gt;&lt;p&gt;Portals 可以让你在父组件外渲染 react 受控 DOM 节点。&lt;a href=&quot;https://reactjs.org/docs/portals.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;react doc&lt;/a&gt; 也使用了一个模态框的例子很好地解释了它。用也做 tooltips 也很合适（这是我&lt;a href=&quot;https://codepen.io/davidgilbertson/pen/ooXVyw&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;早前做的一个例子&lt;/a&gt;）。&lt;/p&gt;&lt;p&gt;但这些都并不是很有趣，让我们做一些更不可思议的事情…
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
+    
+    
+      <category term="react" scheme="http://robin-front.github.io/tags/react/"/>
+    
+      <category term="portal" scheme="http://robin-front.github.io/tags/portal/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>react 组件设计模式</title>
+    <link href="http://robin-front.github.io/2017/11/09/react-component-patterns/"/>
+    <id>http://robin-front.github.io/2017/11/09/react-component-patterns/</id>
+    <published>2017-11-09T15:10:26.000Z</published>
+    <updated>2017-11-09T15:10:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="react-component-模式"><a href="#react-component-模式" class="headerlink" title="react component 模式"></a>react component 模式</h1><blockquote><p>有状态组件（Stateful）和无状态组件（Stateless）、容器组件（Container）与展示组件（Presentational）、高阶组件（HOC）、渲染回调（Render Callbacks）等</p></blockquote><p>我在工作中使用 React 有一段时间了——一个 facebook 使用 js 渲染用户界面的框架——刚开始的时候我想知道一些概念。这些文字是尝试总结我实践这么久以来学到的一些模式——可能对于刚开始进入组件世界的开发者有用。<a id="more"></a></p><h2 id="有状态-Stateful-与-无状态-Stateless-组件"><a href="#有状态-Stateful-与-无状态-Stateless-组件" class="headerlink" title="有状态(Stateful) 与 无状态(Stateless) 组件"></a>有状态(Stateful) 与 无状态(Stateless) 组件</h2><p>就像有状态和无状态的 web 服务一样， React 组件也能在用户使用时保存和操作状态（有状态）。或只是一个简单的组件，按受 props 并返回需要显示的内容（无状态）。</p><p>一个简单的 <em>无状态</em> 按钮组件只接受 props:</p><p><img src="/js/lazyload-plugin/loading.svg" alt="https://cdn-images-1.medium.com/max/1600/1*fgZOSwpdU7MMNxltRcXAcQ.png" data-original="https://cdn-images-1.medium.com/max/1600/1*fgZOSwpdU7MMNxltRcXAcQ.png"></p><p>而下面是一个 <strong>有状态</strong> 的计数组件（使用了 <code>Button</code> 组件）：</p><p><img src="/js/lazyload-plugin/loading.svg" alt="https://cdn-images-1.medium.com/max/1600/1*TYPgsZUZMoo7lW7xv4gxYw.png" data-original="https://cdn-images-1.medium.com/max/1600/1*TYPgsZUZMoo7lW7xv4gxYw.png"></p><p>就像你所看到的，最后一个组件的 constructor 保持了一个组件的 state, 而第一个组件则是一个简单组件，只通过 props 渲染了文字。这个关注分离可能非常简单，但是让 <code>Button</code> 组件高度复用。</p><h2 id="容器-Container-与-展示-Presentational-组件"><a href="#容器-Container-与-展示-Presentational-组件" class="headerlink" title="容器(Container) 与 展示(Presentational) 组件"></a>容器(Container) 与 展示(Presentational) 组件</h2><p>当使用外部数据运行时，我们可以把这个组件分成这两个新类别。<strong>容器组件</strong> 负责获取数据，存在在 react 作用域外部，就像连接 <em>Redux</em> 或 <em>Relay</em> ———— 而 <strong>展示组件</strong> 则不依赖 react 应用的其他部分，仅仅取决于它自身的 state 和接收的 props。让我们拿用户列表作为展示组件的例子：</p><p><img src="/js/lazyload-plugin/loading.svg" alt="https://cdn-images-1.medium.com/max/1600/1*wbih6jbxJiIgNOXgRpcROA.png" data-original="https://cdn-images-1.medium.com/max/1600/1*wbih6jbxJiIgNOXgRpcROA.png"></p><p>这个列表可以使用我们的 <strong>容器组件</strong> 更新：</p><p><img src="/js/lazyload-plugin/loading.svg" alt="https://cdn-images-1.medium.com/max/1600/1*TJxCVhawM2e99dZsxu11oA.png" data-original="https://cdn-images-1.medium.com/max/1600/1*TJxCVhawM2e99dZsxu11oA.png"></p><p>这种方法将数据获取与渲染分离，同时让 <code>UserList</code> 高度复用。如果你想进一步学习这种模式，这里有<a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0" target="_blank" rel="external">一篇文章</a>解释地很好。</p><h2 id="高阶组件"><a href="#高阶组件" class="headerlink" title="高阶组件"></a>高阶组件</h2><p>高阶组件————或叫 HOC。当你想要重用逻辑的时候非常感兴趣。他们是 javascript 函数，将一个组件作为参数，并返回新组件。</p><p>假设你需要做一个可伸缩的的菜单组件，当用户点的时候，展示它里面的内容。所以，为了替代在父级组件上控制 state，你可以简单地创建一个通用的 <strong>高阶组件</strong> 来处理它：</p><p><img src="/js/lazyload-plugin/loading.svg" alt="https://cdn-images-1.medium.com/max/1600/1*qchJXtrHlR46phKFDDJeeQ.png" data-original="https://cdn-images-1.medium.com/max/1600/1*qchJXtrHlR46phKFDDJeeQ.png"></p><p>这种方式允许我们将逻辑应用通过装饰模式（decorator）应用在 <code>ToggleableMenu</code> 组件上。</p><p><img src="/js/lazyload-plugin/loading.svg" alt="https://cdn-images-1.medium.com/max/1600/1*RQuGzKKbT7R9OIDBzhO8gg.png" data-original="https://cdn-images-1.medium.com/max/1600/1*RQuGzKKbT7R9OIDBzhO8gg.png"></p><p>现在我们可以任意传递子级到 <code>ToggleableMenu</code> 组件了：</p><p><img src="/js/lazyload-plugin/loading.svg" alt="https://cdn-images-1.medium.com/max/1600/1*rWCZQqL0Rbizbrw_yjgxgA.png" data-original="https://cdn-images-1.medium.com/max/1600/1*rWCZQqL0Rbizbrw_yjgxgA.png"></p><p>如果你熟悉使用 <code>redux</code> 的 <code>connect</code> 或 react router 的 <code>withRouter</code> 函数，那你已经在用 <strong>HOCs</strong> 了。</p><h2 id="渲染回调（Render-Callbacks）"><a href="#渲染回调（Render-Callbacks）" class="headerlink" title="渲染回调（Render Callbacks）"></a>渲染回调（Render Callbacks）</h2><p>另一种让组件逻辑复用的很棒的方法是 将组件子级转换成函数。这也是为什么 <strong>渲染回调（Render Callbacks）</strong> 也叫作 <strong>Function as Child Components</strong>。我们可以拿可伸展的菜单高阶组件作为例子，并使用 <strong>渲染回调</strong> 重写它。</p><p><img src="/js/lazyload-plugin/loading.svg" alt="https://cdn-images-1.medium.com/max/1600/1*Ul-ubPnaOFtY4mTeM5PW3A.png" data-original="https://cdn-images-1.medium.com/max/1600/1*Ul-ubPnaOFtY4mTeM5PW3A.png"></p><p>现在我们可以传递一个函数作为 <code>Toggleable</code> 的子组件：</p><p><img src="/js/lazyload-plugin/loading.svg" alt="https://cdn-images-1.medium.com/max/1600/1*cwoZiIT3Gcau5lDwyCQzQw.png" data-original="https://cdn-images-1.medium.com/max/1600/1*cwoZiIT3Gcau5lDwyCQzQw.png"></p><p>上面的代码已经使用函数作为子级，但，如果我们想要像高阶组件的例子那样复用它（多个菜单），我们可以简单地使用 <code>Toggleable</code> 逻辑创建一个新组件：</p><p><img src="/js/lazyload-plugin/loading.svg" alt="https://cdn-images-1.medium.com/max/1600/1*DVfPDwHw_eH9dUeX9w5GEg.png" data-original="https://cdn-images-1.medium.com/max/1600/1*DVfPDwHw_eH9dUeX9w5GEg.png"></p><p>我们的新产品 <code>ToggleableMenu</code> 组件已经准备好了：</p><p><img src="/js/lazyload-plugin/loading.svg" alt="https://cdn-images-1.medium.com/max/1600/1*hzpuJMAMTRQZK_vKCK_jhQ.png" data-original="https://cdn-images-1.medium.com/max/1600/1*hzpuJMAMTRQZK_vKCK_jhQ.png"></p><p>这种方式真的非常有用，当我们需要更改渲染内容而不用管 state 操作时：就像你所看到的，我们可以将渲染逻辑移动到 <code>ToggleableMenu</code> 的子级函数中，但却保持我们 <code>Toggleable</code> 组件的 state 逻辑！</p><h2 id="进一步阅读"><a href="#进一步阅读" class="headerlink" title="进一步阅读"></a>进一步阅读</h2><p>上面的例子只是一些可以用在 react 编程中的基础模式，如果你真的想深入这个主题，我建议你看看这些了不起的文章：</p><ul><li><a href="https://www.youtube.com/watch?v=YaZg8wg39QQ" target="_blank" rel="external">React Component Patterns by Michael Chan</a></li><li><a href="https://github.com/chantastic/reactpatterns.com" target="_blank" rel="external">React Patterns</a></li><li><a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0" target="_blank" rel="external">Presentational and Container Components</a></li><li><a href="https://medium.com/@franleplant/react-higher-order-components-in-depth-cf9032ee6c3e" target="_blank" rel="external">React Higher Order Components in depth</a></li><li><a href="https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9" target="_blank" rel="external">Function as Child Components</a></li><li><a href="https://github.com/acdlite/recompose" target="_blank" rel="external">Recompose</a></li><li><a href="https://github.com/paypal/downshift" target="_blank" rel="external">Downshift</a></li></ul><script src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;react-component-模式&quot;&gt;&lt;a href=&quot;#react-component-模式&quot; class=&quot;headerlink&quot; title=&quot;react component 模式&quot;&gt;&lt;/a&gt;react component 模式&lt;/h1&gt;&lt;blockquote&gt;&lt;p&gt;有状态组件（Stateful）和无状态组件（Stateless）、容器组件（Container）与展示组件（Presentational）、高阶组件（HOC）、渲染回调（Render Callbacks）等&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;我在工作中使用 React 有一段时间了——一个 facebook 使用 js 渲染用户界面的框架——刚开始的时候我想知道一些概念。这些文字是尝试总结我实践这么久以来学到的一些模式——可能对于刚开始进入组件世界的开发者有用。
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
+    
+    
+      <category term="React" scheme="http://robin-front.github.io/tags/React/"/>
+    
+      <category term="Components" scheme="http://robin-front.github.io/tags/Components/"/>
+    
+      <category term="Higher Order ComponentsRender" scheme="http://robin-front.github.io/tags/Higher-Order-ComponentsRender/"/>
+    
+      <category term="Callback" scheme="http://robin-front.github.io/tags/Callback/"/>
+    
+      <category term="patterns" scheme="http://robin-front.github.io/tags/patterns/"/>
+    
+      <category term="设计模式" scheme="http://robin-front.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>javascript 事件循环是如何工作的以及使用async／await提升异步编程的5种方式</title>
@@ -33,13 +89,19 @@
       <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
     
     
-      <category term="Tutorial" scheme="http://robin-front.github.io/tags/Tutorial/"/>
+      <category term="tutorial" scheme="http://robin-front.github.io/tags/tutorial/"/>
     
-      <category term="Web Development" scheme="http://robin-front.github.io/tags/Web-Development/"/>
+      <category term="web development" scheme="http://robin-front.github.io/tags/web-development/"/>
     
-      <category term="Programming" scheme="http://robin-front.github.io/tags/Programming/"/>
+      <category term="programming" scheme="http://robin-front.github.io/tags/programming/"/>
     
-      <category term="Asynchronous" scheme="http://robin-front.github.io/tags/Asynchronous/"/>
+      <category term="asynchronous" scheme="http://robin-front.github.io/tags/asynchronous/"/>
+    
+      <category term="events loop" scheme="http://robin-front.github.io/tags/events-loop/"/>
+    
+      <category term="promise" scheme="http://robin-front.github.io/tags/promise/"/>
+    
+      <category term="async await" scheme="http://robin-front.github.io/tags/async-await/"/>
     
   </entry>
   
@@ -462,52 +524,6 @@
       <category term="npm" scheme="http://robin-front.github.io/tags/npm/"/>
     
       <category term="npx" scheme="http://robin-front.github.io/tags/npx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>为什么我停止使用多个显示器</title>
-    <link href="http://robin-front.github.io/2017/07/11/why-should-stopped-using-multiple-monitors/"/>
-    <id>http://robin-front.github.io/2017/07/11/why-should-stopped-using-multiple-monitors/</id>
-    <published>2017-07-11T08:02:47.000Z</published>
-    <updated>2017-07-11T08:02:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>许多开发人员认为多个显示器可以提高生产力。研究证明是这样，对吧？那么，请记住，许多这些研究是由戴尔和NEC等监控制造商委托进行的。🤔</p><p>尽管多个显示器使您看起来像一个重度的计算机使用者，但我在几年前卖了我的多显示器，并切换到一个监视器。而且我并不是一个人。</p><p>下面就是为什么。<a id="more"></a></p><h1 id="专注"><a href="#专注" class="headerlink" title="专注"></a>专注</h1><p>人类一次只能关注一件事情。那么为什么我们花钱来同时显示多个东西呢？如果我的电子邮件或社交媒体资讯提供一目了然，我会经常检查。这不仅不是不必要的，反而是有效的。在一个无休止的分心的世界中，能够长期专注于单一任务是一项非常有价值的技能。</p><blockquote><p>深刻的工作在我们分心充实的经济中变得越来越困难，但也变得越来越重要和罕见。少数能够在深度工作上度过的日子将变得非常市场化和成功。</p><ul><li>Cal Newport在“ 深加工 ”</li></ul></blockquote><p>一个监视器意味着我的工作 - 只有我的工作 - 显示在前面和中央。分心停留在视线之外，所以眼不见，心不烦。</p><p><img src="/js/lazyload-plugin/loading.svg" alt="&#x8FD9;&#x770B;&#x8D77;&#x6765;&#x50CF;&#x662F;&#x4E13;&#x6CE8;&#x4E00;&#x9879;&#x4EFB;&#x52A1;&#x5417;" data-original="https://cdn-images-1.medium.com/max/800/1*gRNCnSRrV5JUxbMagFV0CA.jpeg"></p><center>这看起来像是专注一项任务吗</center><p>我们每天做的最有价值的工作之一就是要长期专注于一个单一的应用程序：<strong>阅读和写作</strong>。阅读和写作都受益于来自于屏幕上唯一的重点。一本带有移动微博的小本本在旁边将是一场灾难。但是很多人都愿意做这个。额外的显示经常导致潜在的持续分心。如果您的电子邮件，社交媒体等不可见，您更有可能继续工作。</p><p>作为开发人员，我每天都在编写代码。所以我经常阅读文档。但是我很少需要在读文档的 <strong>同时</strong> 编写代码。我读完相关的文档，然后再编码。我的工作流是模态的。</p><h1 id="减少窗口管理"><a href="#减少窗口管理" class="headerlink" title="减少窗口管理"></a>减少窗口管理</h1><p>我使用一个月的 34“LG超宽屏显示器，起初，我喜欢它。</p><p>不过，过了几天，我很惊讶地发现我出了个馊主意。我的桌面最大化，太宽了，所以我发现自己花了太多的时间摆弄桌面。“今天应该放在左边呢？”“现在有什么重要的事情呢？”</p><p>当然，屏幕足够宽，可以并排显示多个窗口，但是它非常宽，边缘感到不舒服。所以，我发现自己不断把我的工作转移到屏幕的中心，从而违背了买一个巨大的显示器的整个目的！Jeff Atwood很久以前在“<a href="https://blog.codinghorror.com/the-large-display-paradox/" target="_blank" rel="external">大型显示悖论</a>”中讨论了这个问题。他的解决方案，使用软件移动和调整大小的窗口更容易。我的解决方案，<strong>只需使用一个合理尺寸的显示器</strong>。</p><p>即使使用方便的窗口管理软件，多个显示器也会出现问题：如果我有两个显示器，内容不会直接在我的前面。我必须向右或向左转动我的头（特别烦在跑步机上行走的人，就像我经常看到的那样）。我可以把一个监视器直接放在我面前，但是第二个监视器甚至更远一些，这使得它显然是一个二等公民。这再次导致我从正在工作的中间屏幕移动。</p><p>正如巴里·施瓦茨（Barry Schwartz）在“<a href="https://www.amazon.com/Paradox-Choice-Why-More-Less/dp/0060005696" target="_blank" rel="external">选择的悖论</a>”中所探讨的那样，决策疲劳是一个真正的问题。有时候，少即是多。</p><iframe src="https://cdn.embedly.com/widgets/media.html?src=https%3A%2F%2Fembed.ted.com%2Ftalks%2Fbarry_schwartz_on_the_paradox_of_choice&amp;url=https%3A%2F%2Fwww.ted.com%2Ftalks%2Fbarry_schwartz_on_the_paradox_of_choice&amp;image=https%3A%2F%2Fpe.tedcdn.com%2Fimages%2Fted%2F8bdfbadbf8c620bfe3c5209c223a0f7b4316092a_240x180.jpg%3Flang%3Den&amp;key=a19fcc184b9711e1b4764040d3dc5c07&amp;type=text%2Fhtml&amp;schema=ted" allowfullscreen frameborder="0" scrolling="no"></iframe><blockquote><p>“选择使我们不是更自由，更瘫痪，不快乐，但更不满意。”</p></blockquote><p>只通过一个屏幕，我决定。我不会浪费时间决定在哪里拖曳窗口或摆放在给定窗口的位置。我最大化我正在使用的应用程序，以阻止所有其他分心…在上班的时候。</p><h1 id="虚拟桌面为赢"><a href="#虚拟桌面为赢" class="headerlink" title="虚拟桌面为赢"></a>虚拟桌面为赢</h1><p>Mac和Windows现在都支持虚拟桌面。在我的Mac上，我可以通过3个手指快速切换多个虚拟桌面。这需要不到一秒钟的时间，它不需要我转过头来重新聚焦我的眼睛在不同的地方的内容。我也不用浪费时间安排。最左边的虚拟桌面总是我的浏览器，右边是我的编辑器。<strong>所以我将虚拟桌面视为可靠呈现相同内容的物理屏幕</strong>。</p><p><img src="/js/lazyload-plugin/loading.svg" alt="&#x9876;&#x90E8;&#x7684;&#x4E09;&#x4E2A;&#x6846;&#x67B6;&#x8868;&#x793A;&#x4E09;&#x4E2A;&#x865A;&#x62DF;&#x684C;&#x9762;&#x3002;&#x4E09;&#x624B;&#x6307;&#x6ED1;&#x52A8;&#x53EF;&#x7ACB;&#x5373;&#x5728;&#x5B83;&#x4EEC;&#x4E4B;&#x95F4;&#x5207;&#x6362; - &#x65E0;&#x9700;&#x518D;&#x82B1;&#x65F6;&#x95F4;&#x65CB;&#x8F6C;&#x6211;&#x7684;&#x5934;&#xFF0C;&#x770B;&#x4E00;&#x4E2A;&#x5355;&#x72EC;&#x7684;&#x663E;&#x793A;&#x5668;&#x3002;" data-original="https://cdn-images-1.medium.com/max/800/1*BLoFtdzKsyuBaysiMNMaBA.png"></p><center>顶部的三个框架表示三个虚拟桌面。三手指滑动可立即在它们之间切换 - 无需再花时间旋转我的头，看一个单独的显示器。</center><h1 id="我用于完成工作的首选监视器"><a href="#我用于完成工作的首选监视器" class="headerlink" title="我用于完成工作的首选监视器"></a>我用于完成工作的首选监视器</h1><p>我更喜欢使用一个24“4K，为什么24”？因为如果你想完成实际的工作，更大的不一定更好。24“足够大，可以全屏显示单个应用程序，它足够大，可以在罕见的情况下并排显示两个应用程序，我真的需要同时看到两件事情（我在Mac上使用BetterTouchTool，只需击中Win +箭头在Windows），但是24“足够小，您可以最大限度地利用所有应用程序，而无需移动您的头部或眼睛很多看到屏幕边缘。记住，最大化所有的事情。最大化=集中。</p><p>为什么是4K？高DPI降低疲劳。文字更加清晰。价格也慢慢合理了，所以如果你还没有高DPI显示器，买一个。而24“4K每4K英寸的点数要大于4K屏幕，所以它更加清晰。过去几年内建成的任何MacBook Pro都可以在DisplayPort上以60hz的速度推出4K显示器，许多最近的Windows笔记本电脑也可以这样做。</p><p>那么为什么这么多工作者需要多台显示器呢？我相信这是极端不合逻辑的诱惑。</p><blockquote><p>太多的东西变得相反。 - 蒂姆·弗里斯</p></blockquote><p>显示器太多会变得分心。所以说到监视器，我拥抱这些想法：</p><ul><li>少即是多</li><li>质量而不是数量</li><li>定力，定力，定力（Location, Location, Location）</li></ul><p>【翻译原文】:（有删减） <a href="https://hackernoon.com/why-i-stopped-using-multiple-monitors-bfd87efa2e5b" target="_blank" rel="external">https://hackernoon.com/why-i-stopped-using-multiple-monitors-bfd87efa2e5b</a></p><script src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;许多开发人员认为多个显示器可以提高生产力。研究证明是这样，对吧？那么，请记住，许多这些研究是由戴尔和NEC等监控制造商委托进行的。🤔&lt;/p&gt;&lt;p&gt;尽管多个显示器使您看起来像一个重度的计算机使用者，但我在几年前卖了我的多显示器，并切换到一个监视器。而且我并不是一个人。&lt;/p&gt;&lt;p&gt;下面就是为什么。
-    
-    </summary>
-    
-      <category term="workflow" scheme="http://robin-front.github.io/categories/workflow/"/>
-    
-    
-      <category term="performance" scheme="http://robin-front.github.io/tags/performance/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>不要混用 import 和 require</title>
-    <link href="http://robin-front.github.io/2017/07/10/dont-mixin-import-and-require/"/>
-    <id>http://robin-front.github.io/2017/07/10/dont-mixin-import-and-require/</id>
-    <published>2017-07-10T08:30:11.000Z</published>
-    <updated>2017-07-10T08:30:11.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>import 是 ES6 规范语法之一。而 require 属于CommonJS规范的一部分。</p><p>目前来说，使用现代浏览器还无法支持 import，一般都会搭配 babel 使用，而 babel 会把 import 转换成 CommonJS 的 require.</p><p>但是，我们不能混用 import 和 require。有时候会看下如下代码：<a id="more"></a></p><p><img src="/js/lazyload-plugin/loading.svg" alt="https://pbs.twimg.com/media/DESmTTXUMAAJcIW.jpg:large" data-original="https://pbs.twimg.com/media/DESmTTXUMAAJcIW.jpg:large"></p><p>但实际执行顺序并不是你想象或看到的那样。import 具有声明提升效果，会首先执行。所以最好 <strong>不要混用</strong>。 import 是 ES6 标准，如果可能，首先使用 import, 如果不行，就用 require。</p><h2 id="ES6-import"><a href="#ES6-import" class="headerlink" title="ES6 import"></a>ES6 import</h2><ul><li>具有声明提升效果</li><li>您可以使用命名导入来选择性地加载所需的部分。这样可以节省内存， 如：<code>import { render } from react</code></li><li>导入可以是异步的</li><li>ES6 标准</li></ul><h2 id="require"><a href="#require" class="headerlink" title="require"></a>require</h2><ul><li>您可以在加载的模块名称不是预定义/静态的情况下进行动态加载，或者只有在真正需要的情况下才有条件地加载模块（取决于某些代码流）</li><li>CommonJS 规范加载是同步的。这意味着如果你有多个require，它们将逐个加载和处理（AMD规范是可以异步的）</li><li>只是约定的规范</li></ul><p>参考：<a href="https://twitter.com/dan_abramov/status/883375646357041152" target="_blank" rel="external">https://twitter.com/dan_abramov/status/883375646357041152</a></p><script src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;import 是 ES6 规范语法之一。而 require 属于CommonJS规范的一部分。&lt;/p&gt;&lt;p&gt;目前来说，使用现代浏览器还无法支持 import，一般都会搭配 babel 使用，而 babel 会把 import 转换成 CommonJS 的 require.&lt;/p&gt;&lt;p&gt;但是，我们不能混用 import 和 require。有时候会看下如下代码：
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://robin-front.github.io/categories/javascript/"/>
-    
-    
-      <category term="import" scheme="http://robin-front.github.io/tags/import/"/>
-    
-      <category term="require" scheme="http://robin-front.github.io/tags/require/"/>
     
   </entry>
   

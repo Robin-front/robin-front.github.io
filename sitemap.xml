@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://robin-front.github.io/2017/11/27/dynamic-import/</loc>
+    
+    <lastmod>2017-11-27T02:56:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://robin-front.github.io/2017/11/16/using-a-react-16-portal-to-do-something-cool/</loc>
     
     <lastmod>2017-11-15T23:31:59.000Z</lastmod>
@@ -79,28 +86,7 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2015/10/30/javascript-get-the-time-period-of-the-week-and-this-month-or-any-month/</loc>
-    
-    <lastmod>2017-08-22T01:18:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://robin-front.github.io/2015/10/10/git-branch/</loc>
-    
-    <lastmod>2017-08-22T01:18:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://robin-front.github.io/2015/10/09/gulp-4.0/</loc>
-    
-    <lastmod>2017-08-22T01:18:43.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://robin-front.github.io/2015/09/30/git-ssh-key-and-multiple-accounts-configs/</loc>
     
     <lastmod>2017-08-22T01:18:43.000Z</lastmod>
     
@@ -115,6 +101,27 @@
   
   <url>
     <loc>http://robin-front.github.io/2015/10/17/angular-comorized-directive/</loc>
+    
+    <lastmod>2017-08-22T01:18:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2015/09/30/git-ssh-key-and-multiple-accounts-configs/</loc>
+    
+    <lastmod>2017-08-22T01:18:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2015/10/30/javascript-get-the-time-period-of-the-week-and-this-month-or-any-month/</loc>
+    
+    <lastmod>2017-08-22T01:18:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2015/10/09/gulp-4.0/</loc>
     
     <lastmod>2017-08-22T01:18:43.000Z</lastmod>
     
@@ -464,14 +471,14 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/tags/index.html</loc>
+    <loc>http://robin-front.github.io/categories/index.html</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/categories/index.html</loc>
+    <loc>http://robin-front.github.io/tags/index.html</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://robin-front.github.io/2017/11/29/clean-code-dirty-code/</loc>
+    
+    <lastmod>2017-11-29T01:49:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://robin-front.github.io/2017/11/27/dynamic-import/</loc>
     
     <lastmod>2017-11-27T02:56:29.000Z</lastmod>
@@ -93,14 +100,14 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2015/10/10/git-branch/</loc>
+    <loc>http://robin-front.github.io/2015/10/08/optimize-images-with-font-end/</loc>
     
     <lastmod>2017-08-22T01:18:43.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/2015/10/08/optimize-images-with-font-end/</loc>
+    <loc>http://robin-front.github.io/2015/10/10/git-branch/</loc>
     
     <lastmod>2017-08-22T01:18:43.000Z</lastmod>
     
@@ -471,14 +478,14 @@
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/tags/index.html</loc>
+    <loc>http://robin-front.github.io/categories/index.html</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://robin-front.github.io/categories/index.html</loc>
+    <loc>http://robin-front.github.io/tags/index.html</loc>
     
     <lastmod>2016-10-20T08:02:47.000Z</lastmod>
     

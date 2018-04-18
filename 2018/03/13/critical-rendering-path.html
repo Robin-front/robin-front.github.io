@@ -1,0 +1,1046 @@
+<!DOCTYPE html><html class="theme-next muse use-motion" lang="zh-Hans"><head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="ezF4b6TIq3nrF8BJmQrK_v9BmJnUQfVVPB4xBYo7AD8">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="T2V9h2EnoE">
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+  
+  
+    
+  
+  <link href="https://unpkg.com/gitalk/dist/gitalk.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.staticfile.org/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-16.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/touch-icon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="css,html,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知更鸟" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="优化关键渲染路径网页优化涉及到浏览器输入网址后的每一步，这里取关注相对少的浏览器渲染这一步来看看。 浏览器渲染页面有以下五个步骤：  处理 HTML 标记并构建 DOM 树。 处理 CSS 标记并构建 CSSOM 树。 将 DOM 与 CSSOM 合并成一个渲染树。 根据渲染树来布局，以计算每个节点的几何信息。 将各个节点绘制到屏幕上。  优化关键渲染路径 就是指最大限度缩短执行上述第 1 步至第">
+<meta name="keywords" content="css,html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优化关键渲染路径">
+<meta property="og:url" content="http://robin-front.github.io/2018/03/13/critical-rendering-path.html">
+<meta property="og:site_name" content="知更鸟">
+<meta property="og:description" content="优化关键渲染路径网页优化涉及到浏览器输入网址后的每一步，这里取关注相对少的浏览器渲染这一步来看看。 浏览器渲染页面有以下五个步骤：  处理 HTML 标记并构建 DOM 树。 处理 CSS 标记并构建 CSSOM 树。 将 DOM 与 CSSOM 合并成一个渲染树。 根据渲染树来布局，以计算每个节点的几何信息。 将各个节点绘制到屏幕上。  优化关键渲染路径 就是指最大限度缩短执行上述第 1 步至第">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/images/progressive-rendering.png">
+<meta property="og:image" content="http://robin-front.github.io/js/lazyload-plugin/loading.svg">
+<meta property="og:image" content="https://developers.google.com/web/fundamentals/performance/rendering/images/intro/frame-no-layout.jpg">
+<meta property="og:image" content="http://robin-front.github.io/js/lazyload-plugin/loading.svg">
+<meta property="og:updated_time" content="2018-03-13T09:50:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="优化关键渲染路径">
+<meta name="twitter:description" content="优化关键渲染路径网页优化涉及到浏览器输入网址后的每一步，这里取关注相对少的浏览器渲染这一步来看看。 浏览器渲染页面有以下五个步骤：  处理 HTML 标记并构建 DOM 树。 处理 CSS 标记并构建 CSSOM 树。 将 DOM 与 CSSOM 合并成一个渲染树。 根据渲染树来布局，以计算每个节点的几何信息。 将各个节点绘制到屏幕上。  优化关键渲染路径 就是指最大限度缩短执行上述第 1 步至第">
+<meta name="twitter:image" content="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/images/progressive-rendering.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://robin-front.github.io/2018/03/13/critical-rendering-path.html">
+
+
+
+
+
+  <title>优化关键渲染路径 | 知更鸟</title>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-8386186071288063",
+    enable_page_level_ads: true
+  });
+  </script>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-74634898-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?51f2c21567935649debac704a10c43f1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">知更鸟</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">robin</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-travel">
+          <a href="/tags/travel/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-plane"></i> <br>
+            
+            旅行
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2018/03/13/critical-rendering-path.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="robin.law">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知更鸟">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">优化关键渲染路径</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T09:50:49+00:00">
+                2018-03-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于:</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-13T09:50:49+00:00">
+                2018-03-13
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计:</span>
+                
+                <span title="字数统计">
+                  1,362
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 ≈</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="优化关键渲染路径"><a href="#优化关键渲染路径" class="headerlink" title="优化关键渲染路径"></a>优化关键渲染路径</h1><p>网页优化涉及到浏览器输入网址后的每一步，这里取关注相对少的浏览器渲染这一步来看看。</p>
+<p>浏览器渲染页面有以下五个步骤：</p>
+<ol>
+<li>处理 HTML 标记并构建 DOM 树。</li>
+<li>处理 CSS 标记并构建 CSSOM 树。</li>
+<li>将 DOM 与 CSSOM 合并成一个渲染树。</li>
+<li>根据渲染树来布局，以计算每个节点的几何信息。</li>
+<li>将各个节点绘制到屏幕上。</li>
+</ol>
+<p><em>优化关键渲染路径</em> 就是指最大限度缩短执行上述第 1 步至第 5 步耗费的总时间.</p>
+<p>优化关键渲染路径不仅对首屏呈现有重大意义，对于渲染页面帧率，流畅用户体验很关键。
+<a id="more"></a></p>
+<h2 id="HTML-的简化处理"><a href="#HTML-的简化处理" class="headerlink" title="HTML 的简化处理"></a>HTML 的简化处理</h2><p>HTML 在 SPA 盛行的情况下想要简化越来越困难，特别是复杂的大型应用，依赖于一些质量不一的 UI 组件库。随便写几个业务功能，就会生成一大堆的 div 嵌套。</p>
+<p>首先，源头能控制当然最好，精简结构，html 语义化。</p>
+<p>其次，我们可以将首屏定义的范围再缩小，比如PC、移动端屏幕大小的第一部分。对于 SPA，前端的首屏 html 要么是同构输出，要么是 js 生成。其实这两种情况都是可以定制的，第一时间只输出“首屏” 元素，剩下的内容延迟载入。不过，对于这样的控制比较繁琐和细节，需要针对性优化，哪些部分需要先输出，哪些部分可以延后。</p>
+<p>再就是异步和碎片化的概念，或者叫 fiber。像 react 搞 fiber，目前是为了能及时响应用户，将 react 执行纤维化，异步化。我觉得 html 也同样可以做，一个组件一个组件地展现页面，将繁重的浏览器渲染切成一个个小块。也可以说是 PWA(Progressive Web App)。通常我们的选择是输出 loading，等一切就绪后再展示，这往往让我们肆无忌惮地在首页加载一切资源，然后让用户对着 loading 发呆。如果能正确地，分步地展现内容，相信用户能更好地接受这个过程。在 Facebook APP也能看到这种思路的实现，打开 APP 可以先看到灰色的占位符，然后由顶部开始分步加载内容，在这个过程中，仍然可以响应页面上已加载完成的组件的用户操作。</p>
+<p><img src="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/images/progressive-rendering.png" alt=""></p>
+<h2 id="css-的简化处理"><a href="#css-的简化处理" class="headerlink" title="css 的简化处理"></a>css 的简化处理</h2><p><em>CSS 是阻塞渲染的资源。需要将它尽早、尽快地下载到客户端，以便缩短首次渲染的时间。</em></p>
+<p>一般来说，css 都不是首屏的性能瓶颈，但它是高帧率动画的瓶颈。通过 timeline 可以观察 css 样式计算、布局、绘制、合成的性能。</p>
+<p>css 的性能问题包括：</p>
+<ol>
+<li>CSS 选择器的嵌套，多层嵌套严重影响 CSS 性能，因为浏览器需要合成CSSOM，进而合成渲染树。</li>
+<li>文档（HTML， CSS）越大，浏览器需要完成的工作就越多。</li>
+<li>样式越复杂，绘制需要的时间就越长（例如，单色的绘制开销“较小”，而阴影的计算和渲染开销则要“大得多”）</li>
+</ol>
+<p>针对优化的手段：</p>
+<ol>
+<li>使用 BEM CSS 规范进行编写CSS</li>
+<li>简化 css, 或异步 css，将不必要的、非当前页的css 按需加载</li>
+<li>可以尝试将开销大的 css 属性自动提取，打包到另一个文件，延迟加载。比如非常炫的动画、阴影、渐变等。当然只是一个想法，需要进行权衡，一般没有那么大的影响，相比多一个请求代价</li>
+<li><code>display: none;</code> 的应用，浏览器不会渲染带有些属性的 DOM 节点。可以利用它先隐藏不必要的内容，延迟展现</li>
+</ol>
+<h2 id="Layout-布局简化与固定"><a href="#Layout-布局简化与固定" class="headerlink" title="Layout 布局简化与固定"></a>Layout 布局简化与固定</h2><p>视觉变化时，管道对指定帧的运行通常是： </p>
+<p>样式计算、布局、绘制、合成</p>
+<p></p><div class="progress-images" style="width:1093px"><div class="progress-images--placeholder" style="padding-bottom: 15.279048490393413%;"></div><img src="/js/lazyload-plugin/loading.svg" alt="" class="progress-images--original" data-original="https://developers.google.com/web/fundamentals/performance/rendering/images/intro/frame-full.jpg" data-thumb="/images/thumb/983172dcd72c8a0accf2e2bc47b8da4d.jpg"></div><p></p>
+<p>但这个过程是可以简化的，也是实现高帧率动画的基础。</p>
+<p>当不改变元素的几何属性（例如宽度、高度、左侧或顶部位置等），只修改“paint only”属性（例如背景图片、文字颜色或阴影等），即不会影响页面布局的属性，则浏览器会跳过布局，但仍将执行绘制。</p>
+<p><img src="https://developers.google.com/web/fundamentals/performance/rendering/images/intro/frame-no-layout.jpg" alt=""></p>
+<p>如果您更改一个既不要布局也不要绘制的属性，则浏览器将跳到只执行合成:</p>
+<p></p><div class="progress-images" style="width:1093px"><div class="progress-images--placeholder" style="padding-bottom: 15.279048490393413%;"></div><img src="/js/lazyload-plugin/loading.svg" alt="" class="progress-images--original" data-original="https://developers.google.com/web/fundamentals/performance/rendering/images/intro/frame-no-layout-paint.jpg" data-thumb="/images/thumb/63874f4abb39ad88b85311c3bc1c2a74.jpg"></div><p></p>
+<p>可以通过 <a href="https://csstriggers.com/" target="_blank" rel="noopener">css trigger</a> 来查询 css 属性所触发的对应的渲染过程。</p>
+<p>使用一些 3d 属性（比如 <code>translateZ(0)</code>）可以提升层的独立渲染，一定程度上可以提高绘制性能，但会增加内存和GPU的使用，<strong>如无必要，请勿提升元素</strong></p>
+<p>综上，如果频繁改变布局，会造成回流和重绘，对 css 的性能是影响最大的，继而造成卡顿。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>html, css 的优化不像其他方面的优化，它们和业务结合比较紧密，对业务开发的意识和要求比较高，如果源头没控制好，后面工程构建上的优化也是有限的。</p>
+<p>参考： </p>
+<ul>
+<li><a href="https://developers.google.com/web/fundamentals/performance/rendering/" target="_blank" rel="noopener">渲染性能</a> By <a href="https://developers.google.com/web/resources/contributors/paullewis" target="_blank" rel="noopener">Paul Lewis</a></li>
+<li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/" target="_blank" rel="noopener">关键渲染路径</a> By <a href="https://developers.google.com/web/resources/contributors/ilyagrigorik" target="_blank" rel="noopener">Ilya Grigorik</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>作者：</strong>
+    robin.law
+  </li>
+  
+  
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://robin-front.github.io/2018/03/13/critical-rendering-path.html" title="优化关键渲染路径">http://robin-front.github.io/2018/03/13/critical-rendering-path.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+            <a href="/tags/html/" rel="tag"># html</a>
+          
+        </div>
+      
+
+      
+        <h3>相关文章</h3>
+        <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-date">2018-03-11</div><div class="popular-posts-title"><h3><a href="/2018/03/11/constructing-the-DOM-and-CSSDOM-object-model-before-browser-rendering.html" title="构建 DOM 对象模型和 CSSDOM 对象模型" rel="bookmark">构建 DOM 对象模型和 CSSDOM 对象模型</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2017-08-30</div><div class="popular-posts-title"><h3><a href="/2017/08/30/avoid-large-complex-layouts-and-layout-thrashing.html" title="避免大型，复杂的布局和布局颠覆" rel="bookmark">避免大型，复杂的布局和布局颠覆</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2017-07-24</div><div class="popular-posts-title"><h3><a href="/2017/07/24/reducing-css-bundle-size-by-cutting-the-class-names-and-using-scope-isolation.html" title="像 google 一样通过缩短 css 类名和作用域隔离来压缩优化 css 包的大小" rel="bookmark">像 google 一样通过缩短 css 类名和作用域隔离来压缩优化 css 包的大小</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2017-09-21</div><div class="popular-posts-title"><h3><a href="/2017/09/21/the-notch-and-css.html" title="IphoneX 的缺口（小刘海）及其css样式解决方案" rel="bookmark">IphoneX 的缺口（小刘海）及其css样式解决方案</a></h3></div></li></ul>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/11/constructing-the-DOM-and-CSSDOM-object-model-before-browser-rendering.html" rel="next" title="构建 DOM 对象模型和 CSSDOM 对象模型">
+                <i class="fa fa-chevron-left"></i> 构建 DOM 对象模型和 CSSDOM 对象模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/04/update-on-async-rendering.html" rel="prev" title="react 异步渲染的最新进展">
+                react 异步渲染的最新进展 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460" alt="robin.law">
+            
+              <p class="site-author-name" itemprop="name">robin.law</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/robin-front" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lb.robin1991@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/lb_robin" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#优化关键渲染路径"><span class="nav-number">1.</span> <span class="nav-text">优化关键渲染路径</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-的简化处理"><span class="nav-number">1.1.</span> <span class="nav-text">HTML 的简化处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css-的简化处理"><span class="nav-number">1.2.</span> <span class="nav-text">css 的简化处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Layout-布局简化与固定"><span class="nav-number">1.3.</span> <span class="nav-text">Layout 布局简化与固定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">© 2014 — <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">robin.law</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count:</span>
+    
+    <span title="Site words total count">119.0k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 — <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+  
+    
+      <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '470b9e9d99d37489877f',
+          clientSecret: 'c319e368fd485f89601b4c2c0cee649bd9cf97cd',
+          repo: 'robin-front.github.io',
+          owner: 'Robin-front',
+          admin: ['Robin-front'],
+          id: '优化关键渲染路径',
+          distractionFreeMode: true,
+        });
+        gitalk.render('gitalk-container');
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

@@ -1,0 +1,1085 @@
+<!DOCTYPE html><html class="theme-next muse use-motion" lang="zh-Hans"><head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="ezF4b6TIq3nrF8BJmQrK_v9BmJnUQfVVPB4xBYo7AD8">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="T2V9h2EnoE">
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+  
+  
+    
+  
+  <link href="https://unpkg.com/gitalk/dist/gitalk.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.staticfile.org/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-16.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/touch-icon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Flow,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知更鸟" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="快速上手 Flow 静态类型检查器why Flowjavascript是一个弱类型语言，变量类型不需要声明，运算过程中会根据需要自动转换类型，这个是js的优点，够灵活，编码简单，但是同时也是软肋。有时候，有些类型转换的bug无从查起，特别是在复杂的应用中。 Flow为Javascript添加了静态类型检查，以提高开发效率和代码质量。更明确的说，静态类型检查提供的好处像早期错误检查，帮助你发现一些只">
+<meta name="keywords" content="Flow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="快速上手 Flow 静态类型检查器">
+<meta property="og:url" content="http://robin-front.github.io/2016/03/16/Flow-the-type-checker.html">
+<meta property="og:site_name" content="知更鸟">
+<meta property="og:description" content="快速上手 Flow 静态类型检查器why Flowjavascript是一个弱类型语言，变量类型不需要声明，运算过程中会根据需要自动转换类型，这个是js的优点，够灵活，编码简单，但是同时也是软肋。有时候，有些类型转换的bug无从查起，特别是在复杂的应用中。 Flow为Javascript添加了静态类型检查，以提高开发效率和代码质量。更明确的说，静态类型检查提供的好处像早期错误检查，帮助你发现一些只">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-03-16T16:09:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="快速上手 Flow 静态类型检查器">
+<meta name="twitter:description" content="快速上手 Flow 静态类型检查器why Flowjavascript是一个弱类型语言，变量类型不需要声明，运算过程中会根据需要自动转换类型，这个是js的优点，够灵活，编码简单，但是同时也是软肋。有时候，有些类型转换的bug无从查起，特别是在复杂的应用中。 Flow为Javascript添加了静态类型检查，以提高开发效率和代码质量。更明确的说，静态类型检查提供的好处像早期错误检查，帮助你发现一些只">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://robin-front.github.io/2016/03/16/Flow-the-type-checker.html">
+
+
+
+
+
+  <title>快速上手 Flow 静态类型检查器 | 知更鸟</title>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-8386186071288063",
+    enable_page_level_ads: true
+  });
+  </script>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-74634898-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?51f2c21567935649debac704a10c43f1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">知更鸟</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">robin</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-travel">
+          <a href="/tags/travel/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-plane"></i> <br>
+            
+            旅行
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2016/03/16/Flow-the-type-checker.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="robin.law">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知更鸟">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">快速上手 Flow 静态类型检查器</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-16T16:09:49+00:00">
+                2016-03-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于:</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2016-03-16T16:09:49+00:00">
+                2016-03-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计:</span>
+                
+                <span title="字数统计">
+                  1,063
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 ≈</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="快速上手-Flow-静态类型检查器"><a href="#快速上手-Flow-静态类型检查器" class="headerlink" title="快速上手 Flow 静态类型检查器"></a>快速上手 Flow 静态类型检查器</h1><h2 id="why-Flow"><a href="#why-Flow" class="headerlink" title="why Flow"></a>why Flow</h2><p>javascript是一个弱类型语言，变量类型不需要声明，运算过程中会根据需要自动转换类型，这个是js的优点，够灵活，编码简单，但是同时也是软肋。有时候，有些类型转换的bug无从查起，特别是在复杂的应用中。</p>
+<p>Flow为Javascript添加了静态类型检查，以提高开发效率和代码质量。更明确的说，静态类型检查提供的好处像早期错误检查，帮助你发现一些只有在运行时才能发现的错误。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>由于flow是用OCaml语言写的，npm上只有对应的二进制包。</p>
+<pre><code>npm install flow-bin
+</code></pre><p>可者使用 Homebrew 安装</p>
+<pre><code>brew install flow
+</code></pre><h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><p>在项目目录下执行 <code>flow init</code>，会生成一个 <code>.flowconfig</code> 文件
+只需要在待检查的js文件头部添加一行注释</p>
+<pre><code>/* @flow */
+</code></pre><p>然后在同一目录下运行<code>flow check</code>即可。</p>
+<h2 id="flow-server"><a href="#flow-server" class="headerlink" title="flow server"></a>flow server</h2><p>flow server是为了提高检测效率的后台程序，支持在后台运行，并且只监测有修改的文件。</p>
+<p>方法很简单，一条 flow 命令就能完成 Flow 服务器启动，文件检测，被更改文件的检测，即第一次使用 flow 命令会启动 Flow 服务器并且首次检测文件，再次使用 flow 命令会连接 Flow 服务器并且检测文件，之后使用 flow 命令时将会连接 Flow 服务器并且对修改过的文件进行检测。</p>
+<ul>
+<li>flow check:检测所有声明了 @flow 的文件</li>
+<li>flow check –all:可以让Flow检测所有文件，包括没有声明 @flow 的文件</li>
+<li>flow stop:项目开发完成停止服务</li>
+</ul>
+<h2 id="flowconfig"><a href="#flowconfig" class="headerlink" title="flowconfig"></a>flowconfig</h2><ul>
+<li>[ignore]忽略的文件，路径的匹配规则是正则表达式</li>
+<li>[include]需要检测的其他目录的文件</li>
+<li>[libs]当文件中有第三方库引用或者require全局的module时，需要在一个单独的文件里declare这个对象，这个的值是所有declare路径的集合</li>
+<li>[options]包含若干key-value的配置</li>
+</ul>
+<h2 id="flow的两种模式"><a href="#flow的两种模式" class="headerlink" title="flow的两种模式"></a>flow的两种模式</h2><pre><code>/* @flow */ 只要带有这个注释，都会进行类型检测
+/* @flow weak */ 只对有加类型声明的变量进行类型检测
+</code></pre><h2 id="类型声明-标注"><a href="#类型声明-标注" class="headerlink" title="类型声明/标注"></a>类型声明/标注</h2><blockquote>
+<p>不声明变量类型的时候，Flow 也会自动检查隐性存在的类型转换。但更为严谨的方式是显式声明变量的类型。</p>
+</blockquote>
+<p>可以在代码里写上类型:</p>
+<pre><code>/* @flow */
+
+// Changing the return type to number fixes the error
+function foo(x: string, y: number): number {
+  return x.length * y;
+}
+
+foo('Hello', 42);
+</code></pre><p>也可以这样：</p>
+<pre><code>/* @flow */
+type T = number;
+var x: T = 0;
+</code></pre><p>下面是一个更详细的例子：</p>
+<pre><code>class People {
+    name: string;
+    constructor(name:string){
+        this.name = name
+    }
+    getAge():number{
+        return 18;
+    }
+}
+
+function getLength(param?:string):number {
+    /*param?:string传参类型什么，?表示此处可不传值；*/
+    /*\:number为函数返回值类型,如果没有return可不写或写void*/
+    var s:string = 'string';/*字符*/
+    var ss:String = new String('string');/*字符对象*/
+
+    /* s = ss*///类型不同，flow会报错
+
+    var n:number = 12;/*数字*/
+    var nn:Number = new Number(12);/*数字对象*/
+
+    var b:boolean = true;/*bool值，仅能为true/false*/
+    var bb:Boolean = new Boolean(true);/*bool值对象*/
+
+    var o:{prop1:number,prop2:string} = {
+        /*对象熟悉声明*/
+        prop1: 12,
+        prop2: '21123'
+    }
+
+    var v:void = undefined;/*undefined*/
+    var a:any = 'aa';/*任意类型，除undefined*/
+    var m:mixed = '1';/*任意类型+undefined*/
+    var mm:mixed = undefined;/*任意类型+undefined*/
+
+    var aa:Array<number> = [1,2,3,4];/*数组内值类型声明*/
+
+    var P:Class<people> = People;/*自定义类型声明*/
+    var p:People = new People('pt');/*自定义People类型*/
+
+    if (param) {
+        return param.length;
+    } else {
+        return 0;
+    }
+}
+</people></number></code></pre><h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2><p>Flow致力于支持最新的JavaScript标准。目前已经支持各种ES6特性如destructuring, classes, extended objects, optional function parameters，以及核心API扩展（比如Map, Set, Promise, 和 new methods on Object, Array, 和 Math)。其它特性（尤其是模块）正在开发中。Flow支持CommonJS / Node.js 规范的模块。</p>
+<p>Flow 也已经支持 React。</p>
+<h2 id="代码编译"><a href="#代码编译" class="headerlink" title="代码编译"></a>代码编译</h2><p>在构建工具中添加flow检查的步骤。webpack和gulp都有对应的flow插件。</p>
+<p>我们在项目中用到的插件： <code>eslint-plugin-flow-vars</code></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>Flow官网最近访问不了，可以看这里：<a href="https://github.com/facebook/flow/tree/master/website/docs" target="_blank" rel="noopener">https://github.com/facebook/flow/tree/master/website/docs</a>
+<a href="https://github.com/amfe/article/issues/32" target="_blank" rel="noopener">flow——A static type checker for javascript #32</a>
+<a href="http://www.alloyteam.com/2015/07/flow-a-static-type-checker-for-javascript-from-facebook/" target="_blank" rel="noopener">flow–facebook出品的javascript静态类型检查器</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>作者：</strong>
+    robin.law
+  </li>
+  
+  
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://robin-front.github.io/2016/03/16/Flow-the-type-checker.html" title="快速上手 Flow 静态类型检查器">http://robin-front.github.io/2016/03/16/Flow-the-type-checker.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Flow/" rel="tag"># Flow</a>
+          
+        </div>
+      
+
+      
+        <h3>相关文章</h3>
+        <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-date">2017-06-14</div><div class="popular-posts-title"><h3><a href="/2017/06/14/compare-with-Flow-and-TypeScript.html" title="Flow和TypeScript之间的区别和优劣" rel="bookmark">Flow和TypeScript之间的区别和优劣</a></h3></div></li></ul>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/14/React-optimize-with-Immutable-js.html" rel="next" title="React应用性能优化之IMMUTABLE.JS">
+                <i class="fa fa-chevron-left"></i> React应用性能优化之IMMUTABLE.JS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/02/make-fast-forwarding-be-off-by-default-in-git.html" rel="prev" title="采用非直进式合并（git-merge-no-ff）">
+                采用非直进式合并（git-merge-no-ff） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460" alt="robin.law">
+            
+              <p class="site-author-name" itemprop="name">robin.law</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/robin-front" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lb.robin1991@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/lb_robin" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#快速上手-Flow-静态类型检查器"><span class="nav-number">1.</span> <span class="nav-text">快速上手 Flow 静态类型检查器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#why-Flow"><span class="nav-number">1.1.</span> <span class="nav-text">why Flow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速上手"><span class="nav-number">1.3.</span> <span class="nav-text">快速上手</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flow-server"><span class="nav-number">1.4.</span> <span class="nav-text">flow server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flowconfig"><span class="nav-number">1.5.</span> <span class="nav-text">flowconfig</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flow的两种模式"><span class="nav-number">1.6.</span> <span class="nav-text">flow的两种模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型声明-标注"><span class="nav-number">1.7.</span> <span class="nav-text">类型声明/标注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#兼容性"><span class="nav-number">1.8.</span> <span class="nav-text">兼容性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码编译"><span class="nav-number">1.9.</span> <span class="nav-text">代码编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.10.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">© 2014 — <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">robin.law</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count:</span>
+    
+    <span title="Site words total count">119.0k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 — <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+  
+    
+      <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '470b9e9d99d37489877f',
+          clientSecret: 'c319e368fd485f89601b4c2c0cee649bd9cf97cd',
+          repo: 'robin-front.github.io',
+          owner: 'Robin-front',
+          admin: ['Robin-front'],
+          id: '快速上手 Flow 静态类型检查器',
+          distractionFreeMode: true,
+        });
+        gitalk.render('gitalk-container');
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

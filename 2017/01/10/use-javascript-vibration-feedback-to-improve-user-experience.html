@@ -1,0 +1,1032 @@
+<!DOCTYPE html><html class="theme-next muse use-motion" lang="zh-Hans"><head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="ezF4b6TIq3nrF8BJmQrK_v9BmJnUQfVVPB4xBYo7AD8">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="T2V9h2EnoE">
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+  
+  
+    
+  
+  <link href="https://unpkg.com/gitalk/dist/gitalk.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.staticfile.org/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-16.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/touch-icon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="html5,Vibration,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知更鸟" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="javascript通过Vibration API实现手机振动反馈提高用户体验目前大多数的移动设备均具备硬件能力支持振动，让软件代码通过使设备摇晃来向用户提供物理反馈。Vibration API 为 Web应用程序提供访问此硬件的能力。如果设备不支持，则不会产生任何效果。">
+<meta name="keywords" content="html5,Vibration">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript通过Vibration API实现手机振动反馈提高用户体验">
+<meta property="og:url" content="http://robin-front.github.io/2017/01/10/use-javascript-vibration-feedback-to-improve-user-experience.html">
+<meta property="og:site_name" content="知更鸟">
+<meta property="og:description" content="javascript通过Vibration API实现手机振动反馈提高用户体验目前大多数的移动设备均具备硬件能力支持振动，让软件代码通过使设备摇晃来向用户提供物理反馈。Vibration API 为 Web应用程序提供访问此硬件的能力。如果设备不支持，则不会产生任何效果。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-01-11T09:13:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript通过Vibration API实现手机振动反馈提高用户体验">
+<meta name="twitter:description" content="javascript通过Vibration API实现手机振动反馈提高用户体验目前大多数的移动设备均具备硬件能力支持振动，让软件代码通过使设备摇晃来向用户提供物理反馈。Vibration API 为 Web应用程序提供访问此硬件的能力。如果设备不支持，则不会产生任何效果。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://robin-front.github.io/2017/01/10/use-javascript-vibration-feedback-to-improve-user-experience.html">
+
+
+
+
+
+  <title>javascript通过Vibration API实现手机振动反馈提高用户体验 | 知更鸟</title>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-8386186071288063",
+    enable_page_level_ads: true
+  });
+  </script>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-74634898-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?51f2c21567935649debac704a10c43f1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">知更鸟</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">robin</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-travel">
+          <a href="/tags/travel/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-plane"></i> <br>
+            
+            旅行
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/01/10/use-javascript-vibration-feedback-to-improve-user-experience.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="robin.law">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知更鸟">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">javascript通过Vibration API实现手机振动反馈提高用户体验</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-10T13:35:00+00:00">
+                2017-01-10
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于:</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-01-11T09:13:00+00:00">
+                2017-01-11
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计:</span>
+                
+                <span title="字数统计">
+                  657
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 ≈</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="javascript通过Vibration-API实现手机振动反馈提高用户体验"><a href="#javascript通过Vibration-API实现手机振动反馈提高用户体验" class="headerlink" title="javascript通过Vibration API实现手机振动反馈提高用户体验"></a>javascript通过Vibration API实现手机振动反馈提高用户体验</h1><p>目前大多数的移动设备均具备硬件能力支持振动，让软件代码通过使设备摇晃来向用户提供物理反馈。Vibration API 为 Web应用程序提供访问此硬件的能力。如果设备不支持，则不会产生任何效果。
+<a id="more"></a></p>
+<h2 id="振动描述"><a href="#振动描述" class="headerlink" title="振动描述"></a>振动描述</h2><p>振动被抽象成【开-关】脉冲的模式，且可以具有变化的长度。参数可以是单个整数，表示持续振动的毫秒数 (ms)；或可由多个整数组成的数组，达到振动和暂停循环的效果。只要单一 window.navigator.vibrate() 函式即可控制振动。</p>
+<h2 id="单次振动"><a href="#单次振动" class="headerlink" title="单次振动"></a>单次振动</h2><p>你可指定单一数值，或用只有一个数值成员的数组，让设备振动 1 次：</p>
+<pre><code>window.navigator.vibrate(200);
+window.navigator.vibrate([200]);
+</code></pre><p>以上两个例子都可以使设备振动 200 ms.</p>
+<h2 id="多次振动"><a href="#多次振动" class="headerlink" title="多次振动"></a>多次振动</h2><p>一个数组的值描述了装置振动与不振动的交替时间段。数组中的每个值都转换为整数，然后交替解释为设备应该振动的毫秒数和不振动的毫秒数。例如:</p>
+<pre><code>window.navigator.vibrate([200, 100, 200]);
+</code></pre><p>这会使设备振动200 ms，然后暂停100 ms，然后再次振动设备200 ms。</p>
+<p>您可以根据需要设定多个振动/暂停对，数组的值可以是偶数或奇数个； 值得注意的是，由于振动在每个振动周期结束时自动停止，因此您不必提供最后一个值去暂停，换句话说，数组长度只需要设置奇数个。</p>
+<h2 id="停止振动"><a href="#停止振动" class="headerlink" title="停止振动"></a>停止振动</h2><p>当调用 window.navigator.vibrate() 的参数为「0」、空白数组，或数组全为「0」时，即可取消目前进行中的振动。</p>
+<h2 id="持续振动"><a href="#持续振动" class="headerlink" title="持续振动"></a>持续振动</h2><p>一些基于setInterval和clearInterval操作将允许您创建持续的振动：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> vibrateInterval<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Starts vibration at passed in level</span>
+<span class="token keyword">function</span> <span class="token function">startVibrate</span><span class="token punctuation">(</span>duration<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    navigator<span class="token punctuation">.</span><span class="token function">vibrate</span><span class="token punctuation">(</span>duration<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// Stops vibration</span>
+<span class="token keyword">function</span> <span class="token function">stopVibrate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// Clear interval and stop persistent vibrating</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>vibrateInterval<span class="token punctuation">)</span> <span class="token function">clearInterval</span><span class="token punctuation">(</span>vibrateInterval<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    navigator<span class="token punctuation">.</span><span class="token function">vibrate</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// Start persistent vibration at given duration and interval</span>
+<span class="token comment" spellcheck="true">// Assumes a number value is given</span>
+<span class="token keyword">function</span> <span class="token function">startPeristentVibrate</span><span class="token punctuation">(</span>duration<span class="token punctuation">,</span> interval<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    vibrateInterval <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">startVibrate</span><span class="token punctuation">(</span>duration<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> interval<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>当然上面的代码片段没有考虑到振动参数为数组情况; 基于阵列的持久性振动将需要计算数组项的和，并基于该数量创建周期（可能具有额外的延迟）。</p>
+<h2 id="生成振动节奏"><a href="#生成振动节奏" class="headerlink" title="生成振动节奏"></a>生成振动节奏</h2><p>可以通过<a href="https://naschq.github.io/vibe.js/" target="_blank" rel="noopener">vibe.js tool</a>这个工具来生成你需要的振动频率，然后复制它到你的代码里。</p>
+<h2 id="lib"><a href="#lib" class="headerlink" title="lib"></a>lib</h2><p>我写了一个小lib，方便使用<a href="https://github.com/Robin-front/vibrate.js" target="_blank" rel="noopener">vibrate.js</a></p>
+<p>demo: <a href="https://robin-front.github.io/vibrate.js/example/demo.html">DEMO</a></p>
+<p>译自： <a href="https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API" target="_blank" rel="noopener">MDN Vibration API</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>作者：</strong>
+    robin.law
+  </li>
+  
+  
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://robin-front.github.io/2017/01/10/use-javascript-vibration-feedback-to-improve-user-experience.html" title="javascript通过Vibration API实现手机振动反馈提高用户体验">http://robin-front.github.io/2017/01/10/use-javascript-vibration-feedback-to-improve-user-experience.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/html5/" rel="tag"># html5</a>
+          
+            <a href="/tags/Vibration/" rel="tag"># Vibration</a>
+          
+        </div>
+      
+
+      
+        <h3>相关文章</h3>
+        <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-date">2016-06-30</div><div class="popular-posts-title"><h3><a href="/2016/06/30/use-ApplicationCache-to-build-html5-offline-web-app.html" title="使用ApplicationCache离线缓存做一个h5离线应用" rel="bookmark">使用ApplicationCache离线缓存做一个h5离线应用</a></h3></div></li></ul>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/25/explore-lodash-and-slice-of-Array-slice-peformance.html" rel="next" title="由lodash引出数组Array的slice方法性能探究">
+                <i class="fa fa-chevron-left"></i> 由lodash引出数组Array的slice方法性能探究
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/12/compare-instanceof-with-isPrototypeof.html" rel="prev" title="比较instanceof与isPrototypeOf">
+                比较instanceof与isPrototypeOf <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460" alt="robin.law">
+            
+              <p class="site-author-name" itemprop="name">robin.law</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/robin-front" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lb.robin1991@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/lb_robin" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#javascript通过Vibration-API实现手机振动反馈提高用户体验"><span class="nav-number">1.</span> <span class="nav-text">javascript通过Vibration API实现手机振动反馈提高用户体验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#振动描述"><span class="nav-number">1.1.</span> <span class="nav-text">振动描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单次振动"><span class="nav-number">1.2.</span> <span class="nav-text">单次振动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多次振动"><span class="nav-number">1.3.</span> <span class="nav-text">多次振动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#停止振动"><span class="nav-number">1.4.</span> <span class="nav-text">停止振动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持续振动"><span class="nav-number">1.5.</span> <span class="nav-text">持续振动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成振动节奏"><span class="nav-number">1.6.</span> <span class="nav-text">生成振动节奏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lib"><span class="nav-number">1.7.</span> <span class="nav-text">lib</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">© 2014 — <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">robin.law</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count:</span>
+    
+    <span title="Site words total count">119.0k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 — <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+  
+    
+      <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '470b9e9d99d37489877f',
+          clientSecret: 'c319e368fd485f89601b4c2c0cee649bd9cf97cd',
+          repo: 'robin-front.github.io',
+          owner: 'Robin-front',
+          admin: ['Robin-front'],
+          id: 'javascript通过Vibration API实现手机振动反馈提高用户体验',
+          distractionFreeMode: true,
+        });
+        gitalk.render('gitalk-container');
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

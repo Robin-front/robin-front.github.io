@@ -1,0 +1,1143 @@
+<!DOCTYPE html><html class="theme-next muse use-motion" lang="zh-Hans"><head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="ezF4b6TIq3nrF8BJmQrK_v9BmJnUQfVVPB4xBYo7AD8">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="T2V9h2EnoE">
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+  
+  
+    
+  
+  <link href="https://unpkg.com/gitalk/dist/gitalk.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.staticfile.org/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-16.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/touch-icon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="RxJS,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知更鸟" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="使用RXJS组合、过滤和映射数据流的值查询可观测序列在事件桥接 一文中，我们将现有的DOM和Node.js事件转换成可观察的序列以订阅它们。在本主题中，我们将把可观察序列的父级class视为IObservable对象，其中Rx组件提供通用LINQ操作符来操作这些对象。大多数操作符获取可观察的序列并对其执行一些逻辑并输出另一个可观测序列。另外，从代码示例可以看出，甚至可以在源序列上使用多个运算符，最">
+<meta name="keywords" content="RxJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用RXJS组合、过滤和映射数据流的值">
+<meta property="og:url" content="http://robin-front.github.io/2017/06/05/use-RXJS-compose-filter-and-map-stream.html">
+<meta property="og:site_name" content="知更鸟">
+<meta property="og:description" content="使用RXJS组合、过滤和映射数据流的值查询可观测序列在事件桥接 一文中，我们将现有的DOM和Node.js事件转换成可观察的序列以订阅它们。在本主题中，我们将把可观察序列的父级class视为IObservable对象，其中Rx组件提供通用LINQ操作符来操作这些对象。大多数操作符获取可观察的序列并对其执行一些逻辑并输出另一个可观测序列。另外，从代码示例可以看出，甚至可以在源序列上使用多个运算符，最">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-06-05T16:24:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用RXJS组合、过滤和映射数据流的值">
+<meta name="twitter:description" content="使用RXJS组合、过滤和映射数据流的值查询可观测序列在事件桥接 一文中，我们将现有的DOM和Node.js事件转换成可观察的序列以订阅它们。在本主题中，我们将把可观察序列的父级class视为IObservable对象，其中Rx组件提供通用LINQ操作符来操作这些对象。大多数操作符获取可观察的序列并对其执行一些逻辑并输出另一个可观测序列。另外，从代码示例可以看出，甚至可以在源序列上使用多个运算符，最">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://robin-front.github.io/2017/06/05/use-RXJS-compose-filter-and-map-stream.html">
+
+
+
+
+
+  <title>使用RXJS组合、过滤和映射数据流的值 | 知更鸟</title>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-8386186071288063",
+    enable_page_level_ads: true
+  });
+  </script>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-74634898-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?51f2c21567935649debac704a10c43f1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">知更鸟</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">robin</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-travel">
+          <a href="/tags/travel/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-plane"></i> <br>
+            
+            旅行
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/06/05/use-RXJS-compose-filter-and-map-stream.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="robin.law">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知更鸟">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">使用RXJS组合、过滤和映射数据流的值</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-05T16:24:16+00:00">
+                2017-06-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于:</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-06-05T16:24:16+00:00">
+                2017-06-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计:</span>
+                
+                <span title="字数统计">
+                  2,312
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 ≈</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="使用RXJS组合、过滤和映射数据流的值"><a href="#使用RXJS组合、过滤和映射数据流的值" class="headerlink" title="使用RXJS组合、过滤和映射数据流的值"></a>使用RXJS组合、过滤和映射数据流的值</h1><h2 id="查询可观测序列"><a href="#查询可观测序列" class="headerlink" title="查询可观测序列"></a>查询可观测序列</h2><p>在<a href="https://robin-front.github.io/RxJS-doc-chinese/content/getting_started_with_rxjs/creating_and_querying_observable_sequences/bridging_to_events.md">事件桥接</a> 一文中，我们将现有的DOM和Node.js事件转换成可观察的序列以订阅它们。在本主题中，我们将把可观察序列的父级class视为IObservable对象，其中Rx组件提供通用LINQ操作符来操作这些对象。大多数操作符获取可观察的序列并对其执行一些逻辑并输出另一个可观测序列。另外，从代码示例可以看出，甚至可以在源序列上使用多个运算符，最终将结果序列调整到您的确切需求。
+<a id="more"></a></p>
+<p>本文翻译在： <a href="https://robin-front.github.io/RxJS-doc-chinese/content/getting_started_with_rxjs/creating_and_querying_observable_sequences/querying_observable_sequences.html">RXJS中文文档</a></p>
+<h2 id="使用不同的运算符"><a href="#使用不同的运算符" class="headerlink" title="使用不同的运算符"></a>使用不同的运算符</h2><p>我们已经在以前的主题中使用<a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservablecreatesubscribe" target="_blank" rel="noopener"><code>create</code></a>和<a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservablerangestart-count-scheduler" target="_blank" rel="noopener"><code>range</code></a>运算符来创建和返回简单的序列。我们还使用<a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservablefromeventelement-eventname" target="_blank" rel="noopener"><code>fromEvent</code></a>和<a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservablefromeventpatternaddhandler-removehandler" target="_blank" rel="noopener"><code>fromEventPattern</code></a>运算符将现有事件转换成可观察的序列。在本主题中，我们将使用其他<code>Observable</code>类型的运算符，以便可以过滤，分组和转换数据。这些运算符将可观察到的序列作为输入，并生成输出另一个可观察序列。</p>
+<h2 id="组合不同序列"><a href="#组合不同序列" class="headerlink" title="组合不同序列"></a>组合不同序列</h2><p>在本节中，我们会研究将各种可观察序列组合成单个可观察序列的操作符。请注意，当我们组合序列时，数据不会被转换。在以下示例中，我们使用Concat运算符将两个序列组合成一个序列并订阅它。为了说明的目的，我们将使用非常简单的<code>range(x, y)</code>运算符创建一个从x开始的整数序列，然后产生y个序列数字。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> source1 <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> source2 <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+source1<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>source2<span class="token punctuation">)</span>
+   <span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>console<span class="token punctuation">.</span>log<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>console<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// => 1</span>
+<span class="token comment" spellcheck="true">// => 2</span>
+<span class="token comment" spellcheck="true">// => 3</span>
+<span class="token comment" spellcheck="true">// => 1</span>
+<span class="token comment" spellcheck="true">// => 2</span>
+<span class="token comment" spellcheck="true">// => 3</span>
+</code></pre>
+<p>注意，结果序列是1,2,3,1,2,3。这是因为当您使用<a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeconcatargs" target="_blank" rel="noopener"><code>concat</code></a>运算符时，第二个序列（source2）将在第一个序列（source1）完成推送其所有值之后才会激活。只有在source1完成之后，source2才会将值推送到最后的序列。然后，订阅者将从得到的序列中获取所有值。</p>
+<p>与<a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypemergemaxconcurrent--other" target="_blank" rel="noopener"><code>merge</code></a> 操作符进行比较。如果运行以下示例代码，您将获得1,1,2,2,3,3。这是因为两个序列同时处于活动状态，并且值在数据源中发生时被推出。结果序列仅在最后一个数据源完成推送值时完成。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> source1 <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> source2 <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+source1<span class="token punctuation">.</span><span class="token function">merge</span><span class="token punctuation">(</span>source2<span class="token punctuation">)</span>
+   <span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>console<span class="token punctuation">.</span>log<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>console<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// => 1</span>
+<span class="token comment" spellcheck="true">// => 1</span>
+<span class="token comment" spellcheck="true">// => 2</span>
+<span class="token comment" spellcheck="true">// => 2</span>
+<span class="token comment" spellcheck="true">// => 3</span>
+<span class="token comment" spellcheck="true">// => 3</span>
+</code></pre>
+<p><a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypecatchsecond--handler" target="_blank" rel="noopener"><code>catch</code></a> 操作符可以进行另一个比较。在这种情况下，如果source1完成没有任何错误，那么source2将不会启动。因此，如果运行以下示例代码，则获得1,2,3因为source2（产生4,5,6））被忽略。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> source1 <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> source2 <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">range</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+source1<span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span>source2<span class="token punctuation">)</span>
+   <span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>console<span class="token punctuation">.</span>log<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>console<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// => 1</span>
+<span class="token comment" spellcheck="true">// => 2</span>
+<span class="token comment" spellcheck="true">// => 3</span>
+</code></pre>
+<p>最后，我们来看看<a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeonerrorresumenextsecond" target="_blank" rel="noopener"><code>onErrorResumeNext</code></a>。即使由于错误导致source1无法完成，该操作符也将移动到source2。在以下示例中，即使source1表示通过使用<a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservablethrowexception-scheduler" target="_blank" rel="noopener"><code>throw</code></a>运算符终止异常的序列，用户将接收source2发布的值（1,2,3）。因此，如果您预期到任何一个源序列产生任何错误，那么使用它<code>onErrorResumeNext</code>来保证用户仍然会收到一些值是更安全的。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> source1 <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token keyword">throw</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'An error has occurred.'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> source2 <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+source1<span class="token punctuation">.</span><span class="token function">onErrorResumeNext</span><span class="token punctuation">(</span>source2<span class="token punctuation">)</span>
+   <span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>console<span class="token punctuation">.</span>log<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>console<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// => 1</span>
+<span class="token comment" spellcheck="true">// => 2</span>
+<span class="token comment" spellcheck="true">// => 3</span>
+</code></pre>
+<h2 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h2><p><a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeselectselector-thisarg" target="_blank" rel="noopener"><code>select</code></a>或 <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypemapselector-thisarg" target="_blank" rel="noopener"><code>map</code></a> 操作符将可观察到的一个序列的每个元素转换成另一种形式。</p>
+<p>在下面的示例中，我们将一系列字符串映射到一系列表示长度的整数中。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> array <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Reactive'</span><span class="token punctuation">,</span> <span class="token string">'Extensions'</span><span class="token punctuation">,</span> <span class="token string">'RxJS'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> seqString <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token keyword">from</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> seqNum <span class="token operator">=</span> seqString<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>x <span class="token operator">=</span><span class="token operator">></span> x<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+seqNum
+   <span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>console<span class="token punctuation">.</span>log<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>console<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// => 8</span>
+<span class="token comment" spellcheck="true">// => 10</span>
+<span class="token comment" spellcheck="true">// => 4</span>
+</code></pre>
+<p>在以下示例中，我们在“<a href="https://robin-front.github.io/RxJS-doc-chinese/content/getting_started_with_rxjs/creating_and_querying_observable_sequences/bridging_to_events.md">桥接现有事件</a>”主题中看到的事件转换示例的扩展，我们使用<code>select</code>或<code>map</code>运算符将事件参数投影到x和y点。这样，我们将鼠标移动事件序列转换为可以进一步解析和操作的数据类型，如下一个“过滤”部分所示。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> move <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">fromEvent</span><span class="token punctuation">(</span>document<span class="token punctuation">,</span> <span class="token string">'mousemove'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> points <span class="token operator">=</span> move<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>e <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>x<span class="token punctuation">:</span> e<span class="token punctuation">.</span>clientX<span class="token punctuation">,</span> y<span class="token punctuation">:</span> e<span class="token punctuation">.</span>clientY <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+points<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>
+    pos <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Mouse at point '</span> <span class="token operator">+</span> pos<span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token string">', '</span> <span class="token operator">+</span> pos<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>最后，我们来看看<a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeselectmanyselector-resultselector" target="_blank" rel="noopener"><code>selectMany</code></a> or <a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypeflatmapselector-resultselector" target="_blank" rel="noopener"><code>flatMap</code></a>运算符。<code>selectMany</code>或<code>flatMap</code>操作符具有许多重载，其中一个就是需要选择器函数作为参数。这个选择器函数是由数据源推出的每个值去调用的。对于每一个值，选择器将其映射成一个迷你的可观察序列。最后，<code>selectMany</code>或者<code>flatMap</code>操作符将所有这些迷你序列扁平化成单个结果序列，然后将其推送到用户。</p>
+<p>在数据源和由选择器函数产生的所有迷你可观察序列都已经完成之后，源序列返回<code>selectMany</code>或<code>flatMap</code>发布的<code>onCompleted</code>。当发生源数据流中的错误时触发<code>onError</code>，当一个异常被选择函数抛出，或者当在任何迷你观察序列的发生了错误。</p>
+<p>在下面的例子中，我们首先创建一个数据源序列，每5秒产生一个整数，并决定使用生成的前两个值（使用<code>take</code>运算符）。然后，我们使用<code>selectMany</code>或者<code>flatMap</code>对另一个序列{100,101,102}这些整数进行映射。通过这样做，产生两个迷你观察序列{100,101,102}和{100,101,102}。它们最终平坦化成{100,101,102,100,101,102}的单个整数流，并被推送到观察者。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> source1 <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">take</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> proj <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">range</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> resultSeq <span class="token operator">=</span> source1<span class="token punctuation">.</span><span class="token function">flatMap</span><span class="token punctuation">(</span>proj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> subscription <span class="token operator">=</span> resultSeq<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>
+  x <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'onNext: %s'</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  e <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'onError: %s'</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'onCompleted'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// => onNext: 100</span>
+<span class="token comment" spellcheck="true">// => onNext: 101</span>
+<span class="token comment" spellcheck="true">// => onNext: 102</span>
+<span class="token comment" spellcheck="true">// => onNext: 100</span>
+<span class="token comment" spellcheck="true">// => onNext: 101</span>
+<span class="token comment" spellcheck="true">// => onNext: 102</span>
+<span class="token comment" spellcheck="true">// => onCompleted</span>
+</code></pre>
+<h2 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h2><p>在下面的例子中，我们使用<a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservablegenerateinitialstate-condition-iterate-resultselector-scheduler" target="_blank" rel="noopener"><code>generate</code></a> 运算符创建一个简单的可观察数字序列。该<code>generate</code>操作符有几个版本，包括有相对和绝对时间调度。在我们的示例中，它需要初始状态（在我们的示例中为0），一个条件函数终止（少于10次），迭代器（+1），结果选择器（当前值的平方函数））和打印只使用小于5的那些使用<a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypefilterpredicate-thisarg" target="_blank" rel="noopener"><code>filter</code></a>或<a href="https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/observable.md#rxobservableprototypewherepredicate-thisarg" target="_blank" rel="noopener"><code>where</code></a>运算符。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> seq <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">generate</span><span class="token punctuation">(</span>
+    <span class="token number">0</span><span class="token punctuation">,</span>
+    i <span class="token operator">=</span><span class="token operator">></span> i <span class="token operator"><</span> <span class="token number">10</span><span class="token punctuation">,</span>
+    i <span class="token operator">=</span><span class="token operator">></span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    i <span class="token operator">=</span><span class="token operator">></span> i <span class="token operator">*</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> source <span class="token operator">=</span> seq<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>n <span class="token operator">=</span><span class="token operator">></span> n <span class="token operator"><</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> subscription <span class="token operator">=</span> source<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>
+  x <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'onNext: %s'</span><span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  e <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'onError: %s'</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'onCompleted'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// => onNext: 0</span>
+<span class="token comment" spellcheck="true">// => onNext: 1</span>
+<span class="token comment" spellcheck="true">// => onNext: 4</span>
+<span class="token comment" spellcheck="true">// => onCompleted</span>
+</code></pre>
+<p>以下示例是本主题前面已经看到的映射示例的扩展。在该示例中，我们使用<code>select</code>或<code>map</code>运算符将事件参数投影到具有x和y的点。在下面的例子中，我们使用<code>filter</code>或<code>where</code>和<code>select</code>或<code>map</code>操作符只挑选那些鼠标移动，我们感兴趣的是，在这种情况下，我们鼠标移动过滤，以找出在第一平分线（其中x和y坐标是相等的）。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> move <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">fromEvent</span><span class="token punctuation">(</span>document<span class="token punctuation">,</span> <span class="token string">'mousemove'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> points <span class="token operator">=</span> move<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>e <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">{</span> x<span class="token punctuation">:</span> e<span class="token punctuation">.</span>clientX<span class="token punctuation">,</span> y<span class="token punctuation">:</span> e<span class="token punctuation">.</span>clientY <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> overfirstbisector <span class="token operator">=</span> points<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>pos <span class="token operator">=</span><span class="token operator">></span> pos<span class="token punctuation">.</span>x <span class="token operator">===</span> pos<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> movesub <span class="token operator">=</span> overfirstbisector<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>pos <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'mouse at '</span> <span class="token operator">+</span> pos<span class="token punctuation">.</span>x <span class="token operator">+</span> <span class="token string">', '</span> pos<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="基于时间的操作"><a href="#基于时间的操作" class="headerlink" title="基于时间的操作"></a>基于时间的操作</h2><p>您可以使用缓冲区运算符执行基于时间的操作。</p>
+<p>缓冲可观察序列意味着可观测序列的值基于指定的时间段或计数阈值被放入缓冲区。这在您预期有大量数据被序列推出的情况下特别有用，并且订阅者没有资源来处理这些值。通过基于时间或计数缓冲结果，并且只有在超过条件时才返回值序列（或者源序列完成时），用户可以按照自己的速度处理<code>OnNext</code>调用。</p>
+<p>在下面的例子中，我们首先创建一个以每秒为时间单位的简单的整数序列。然后我们使用<code>bufferWithCount</code>运算符，并指定每个缓冲区将保存序列中的5个项目。在<code>onNext</code>当缓冲区已满被调用。然后我们使用缓冲区的总和<code>Array.reduce</code>。缓冲区自动刷新，另一个循环开始。打印输出将为10,35,60 …，其中10 = 0 + 1 + 2 + 3 + 4,35 = 5 + 6 + 7 + 8 + 9等。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> seq <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> bufSeq <span class="token operator">=</span> seq<span class="token punctuation">.</span><span class="token function">bufferWithCount</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+bufSeq
+    <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>arr <span class="token operator">=</span><span class="token operator">></span> arr<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span>acc<span class="token punctuation">,</span> x<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> acc <span class="token operator">+</span> x<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>console<span class="token punctuation">.</span>log<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>console<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// => 10</span>
+<span class="token comment" spellcheck="true">// => 35</span>
+<span class="token comment" spellcheck="true">// => 60</span>
+<span class="token operator">...</span>
+</code></pre>
+<p>我们还可以创建一个指定时间跨度（以毫秒为单位）的缓冲区。在以下示例中，缓冲区将保存累积3秒钟的项目。打印输出将为3,12,21 …其中3 = 0 + 1 + 2,12 = 3 + 4 + 5，依此类推。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> seq <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> bufSeq <span class="token operator">=</span> seq<span class="token punctuation">.</span><span class="token function">bufferWithTime</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+bufSeq
+    <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>arr <span class="token operator">=</span><span class="token operator">></span> arr<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span>acc<span class="token punctuation">,</span> x<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> acc <span class="token operator">+</span> x<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>console<span class="token punctuation">.</span>log<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>console<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>请注意，如果您使用任何一个<code>buffer*</code>或<code>window*</code>运算符，则必须确保序列不为空，然后再过滤。</p>
+<h2 id="按类别操作"><a href="#按类别操作" class="headerlink" title="按类别操作"></a>按类别操作</h2><p>按<a href="https://robin-front.github.io/RxJS-doc-chinese/content/getting_started_with_rxjs/creating_and_querying_observable_sequences/operators_by_category.md">类别划分的操作符</a>主题列出了按类别实施的<code>Observable</code>的所有主要操作符; 具体来说：创建，转换，合并，功能，数学，时间，异常，杂项，选择和原值。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>作者：</strong>
+    robin.law
+  </li>
+  
+  
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://robin-front.github.io/2017/06/05/use-RXJS-compose-filter-and-map-stream.html" title="使用RXJS组合、过滤和映射数据流的值">http://robin-front.github.io/2017/06/05/use-RXJS-compose-filter-and-map-stream.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RxJS/" rel="tag"># RxJS</a>
+          
+        </div>
+      
+
+      
+        <h3>相关文章</h3>
+        <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-date">2017-06-01</div><div class="popular-posts-title"><h3><a href="/2017/06/01/RXJS-should-i-choose-operator-of-creating.html" title="RXJS我该选用哪个操作符之-创建篇" rel="bookmark">RXJS我该选用哪个操作符之-创建篇</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2017-06-01</div><div class="popular-posts-title"><h3><a href="/2017/06/01/RXJS-should-i-choose-operator-of-instance.html" title="RXJS我该选用哪个操作符之-实例操作符篇" rel="bookmark">RXJS我该选用哪个操作符之-实例操作符篇</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2017-05-05</div><div class="popular-posts-title"><h3><a href="/2017/05/05/RxJS-events-binding.html" title="RxJS事件桥接" rel="bookmark">RxJS事件桥接</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2017-03-19</div><div class="popular-posts-title"><h3><a href="/2017/03/19/animated-intro-rxjs.html" title="RxJS的动画简介" rel="bookmark">RxJS的动画简介</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2017-05-04</div><div class="popular-posts-title"><h3><a href="/2017/05/04/creating_and_subscribing_to_simple_observable_sequences.html" title="使用RxJS创建和订阅单一数据流" rel="bookmark">使用RxJS创建和订阅单一数据流</a></h3></div></li></ul>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/02/debugging-Node-js-with-google-chrome.html" rel="next" title="如何调试Node.js|使用谷歌chrome浏览器调试Node.js">
+                <i class="fa fa-chevron-left"></i> 如何调试Node.js|使用谷歌chrome浏览器调试Node.js
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/14/compare-with-Flow-and-TypeScript.html" rel="prev" title="Flow和TypeScript之间的区别和优劣">
+                Flow和TypeScript之间的区别和优劣 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460" alt="robin.law">
+            
+              <p class="site-author-name" itemprop="name">robin.law</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/robin-front" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lb.robin1991@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/lb_robin" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用RXJS组合、过滤和映射数据流的值"><span class="nav-number">1.</span> <span class="nav-text">使用RXJS组合、过滤和映射数据流的值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#查询可观测序列"><span class="nav-number">1.1.</span> <span class="nav-text">查询可观测序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用不同的运算符"><span class="nav-number">1.2.</span> <span class="nav-text">使用不同的运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合不同序列"><span class="nav-number">1.3.</span> <span class="nav-text">组合不同序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#映射"><span class="nav-number">1.4.</span> <span class="nav-text">映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤"><span class="nav-number">1.5.</span> <span class="nav-text">过滤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于时间的操作"><span class="nav-number">1.6.</span> <span class="nav-text">基于时间的操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按类别操作"><span class="nav-number">1.7.</span> <span class="nav-text">按类别操作</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">© 2014 — <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">robin.law</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count:</span>
+    
+    <span title="Site words total count">119.0k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 — <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+  
+    
+      <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '470b9e9d99d37489877f',
+          clientSecret: 'c319e368fd485f89601b4c2c0cee649bd9cf97cd',
+          repo: 'robin-front.github.io',
+          owner: 'Robin-front',
+          admin: ['Robin-front'],
+          id: '使用RXJS组合、过滤和映射数据流的值',
+          distractionFreeMode: true,
+        });
+        gitalk.render('gitalk-container');
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

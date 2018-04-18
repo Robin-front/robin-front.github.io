@@ -1,0 +1,1164 @@
+<!DOCTYPE html><html class="theme-next muse use-motion" lang="zh-Hans"><head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="ezF4b6TIq3nrF8BJmQrK_v9BmJnUQfVVPB4xBYo7AD8">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="T2V9h2EnoE">
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+  
+  
+    
+  
+  <link href="https://unpkg.com/gitalk/dist/gitalk.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.staticfile.org/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-16.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/touch-icon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="RxJS,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知更鸟" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="本文译自 An Animated Intro to RxJS 你可能听说过RxJS，ReactiveX，或反应式编程，或者甚至只听过函数式编程。这些术语在谈论最新和最前沿的前端技术时变得越来越突出。如果你像我一样，当你第一次尝试学习它时，你感到很困惑。">
+<meta name="keywords" content="RxJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxJS的动画简介">
+<meta property="og:url" content="http://robin-front.github.io/2017/03/19/animated-intro-rxjs.html">
+<meta property="og:site_name" content="知更鸟">
+<meta property="og:description" content="本文译自 An Animated Intro to RxJS 你可能听说过RxJS，ReactiveX，或反应式编程，或者甚至只听过函数式编程。这些术语在谈论最新和最前沿的前端技术时变得越来越突出。如果你像我一样，当你第一次尝试学习它时，你感到很困惑。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://cdn.css-tricks.com/wp-content/uploads/2017/02/rx-article-1.svg">
+<meta property="og:image" content="http://robin-front.github.io/js/lazyload-plugin/loading.svg">
+<meta property="og:image" content="http://robin-front.github.io/js/lazyload-plugin/loading.svg">
+<meta property="og:image" content="http://robin-front.github.io/js/lazyload-plugin/loading.svg">
+<meta property="og:updated_time" content="2017-03-19T14:40:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RxJS的动画简介">
+<meta name="twitter:description" content="本文译自 An Animated Intro to RxJS 你可能听说过RxJS，ReactiveX，或反应式编程，或者甚至只听过函数式编程。这些术语在谈论最新和最前沿的前端技术时变得越来越突出。如果你像我一样，当你第一次尝试学习它时，你感到很困惑。">
+<meta name="twitter:image" content="https://cdn.css-tricks.com/wp-content/uploads/2017/02/rx-article-1.svg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://robin-front.github.io/2017/03/19/animated-intro-rxjs.html">
+
+
+
+
+
+  <title>RxJS的动画简介 | 知更鸟</title>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-8386186071288063",
+    enable_page_level_ads: true
+  });
+  </script>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-74634898-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?51f2c21567935649debac704a10c43f1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">知更鸟</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">robin</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-travel">
+          <a href="/tags/travel/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-plane"></i> <br>
+            
+            旅行
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/03/19/animated-intro-rxjs.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="robin.law">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知更鸟">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">RxJS的动画简介</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-19T14:40:21+00:00">
+                2017-03-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于:</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-19T14:40:21+00:00">
+                2017-03-19
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计:</span>
+                
+                <span title="字数统计">
+                  2,366
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 ≈</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文译自 <a href="https://css-tricks.com/animated-intro-rxjs/" target="_blank" rel="noopener">An Animated Intro to RxJS</a></p>
+<p>你可能听说过RxJS，ReactiveX，或反应式编程，或者甚至只听过函数式编程。这些术语在谈论最新和最前沿的前端技术时变得越来越突出。如果你像我一样，当你第一次尝试学习它时，你感到很困惑。
+<a id="more"></a></p>
+<p>根据<a href="http://reactivex.io/" target="_blank" rel="noopener">ReactiveX.io</a>：</p>
+<blockquote>
+<p>ReactiveX是一个库，用于通过使用可观察序列来组成异步和基于事件的程序。</p>
+</blockquote>
+<p>这句话包含了很多要消化的内容。在本文中，我们将采用一种不同的方法来学习RxJS（ReactiveX的JavaScript实现）和<code>Observables</code>，通过创建反应式动画。</p>
+<h1 id="理解Observable"><a href="#理解Observable" class="headerlink" title="理解Observable"></a>理解Observable</h1><p>数组是元素的集合，例如[1, 2, 3, 4, 5]。你可以立即得到所有的元素，你可以做的事情像<code>map</code>，<code>filter</code>和映射他们。这允许你以任何你想要的方式转换元素的集合。</p>
+<p>现在假设阵列中的每个元素随时间发生; 也就是说，你不是立即得到所有的元素，而是一次一个。你可能得到第一个元素在第1秒，下一个在第3秒，依此类推。以下是如何表示：</p>
+<p><img src="https://cdn.css-tricks.com/wp-content/uploads/2017/02/rx-article-1.svg" alt="a steam of values"></p>
+<p>这可以被描述为值的流，或事件序列，或更确切地，称为<code>observable</code>。</p>
+<blockquote>
+<p><code>observable</code>是随时间的值的集合。</p>
+</blockquote>
+<p>就像使用数组一样，您可以对这些值进行映射，过滤等操作，以创建和组合新的<code>observable</code>。最后，你可以订阅这些<code>observable</code>，并在<code>steam</code>的值之后执行你想要做的事。这是RxJS的源。</p>
+<h1 id="RxJS起步"><a href="#RxJS起步" class="headerlink" title="RxJS起步"></a>RxJS起步</h1><p>开始使用RxJS的最简单的方法是使用CDN，虽然有<a href="http://reactivex.io/rxjs/manual/installation.html" target="_blank" rel="noopener">很多方法可以安装</a>，这取决于项目的需要。</p>
+<pre class=" language-html"><code class="language-html"><span class="token comment" spellcheck="true"><!-- the latest, minified version of RxJS --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation"><</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>https://unpkg.com/@reactivex/rxjs@latest/dist/global/Rx.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation"></</span>script</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>一旦你的项目中有RxJS，你可以从任何东西中创建一个observable ：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> aboutAnything <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 从变量创建</span>
+<span class="token comment" spellcheck="true">// The observable emits that value, then completes.</span>
+<span class="token keyword">const</span> meaningOfLife$ <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">just</span><span class="token punctuation">(</span>aboutAnything<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 从数组或可遍历的结构中创建</span>
+<span class="token comment" spellcheck="true">// The observable emits each item from the array, then completes.</span>
+<span class="token keyword">const</span> myNumber$ <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token keyword">from</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// From a promise.</span>
+<span class="token comment" spellcheck="true">// The observable emits the result eventually, then completes (or errors).</span>
+<span class="token keyword">const</span> myData$ <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">fromPromise</span><span class="token punctuation">(</span><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'http://example.com/users'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// 从事件中创建</span>
+<span class="token comment" spellcheck="true">// The observable continuously emits events from the event listener.</span>
+<span class="token keyword">const</span> mouseMove$ <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable
+  <span class="token punctuation">.</span><span class="token function">fromEvent</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>documentElement<span class="token punctuation">,</span> <span class="token string">'mousemove'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<blockquote>
+<p>注意：变量末尾的美元符号<code>$</code>是一个约定，表示该变量是一个可观察者。<code>Observable</code>可以用来对任何可以表示为随时间变化的值的流进行建模，例如事件，Promises，计时器，间隔和动画。</p>
+</blockquote>
+<p>因为，这些可观察的东西不做任何事情，至少直到你实际观察他们。一个简单的订阅将做到这一点，使用创建<code>.subscribe()</code>：</p>
+<pre class=" language-javascript"><code class="language-javascript">myNumber$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>number <span class="token operator">=</span><span class="token operator">></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// Result:</span>
+<span class="token comment" spellcheck="true">// > 1</span>
+<span class="token comment" spellcheck="true">// > 2</span>
+<span class="token comment" spellcheck="true">// > 3</span>
+<span class="token comment" spellcheck="true">// > 4</span>
+<span class="token comment" spellcheck="true">// > 5</span>
+</code></pre>
+<p>让我们实践看看：</p>
+<iframe height="400" width="100%" src="//codepen.io/davidkpiano/embed/d6f5fa72a9b7b6c2c9141de6fa1ab93f?height=400&theme-id=1&slug-hash=d6f5fa72a9b7b6c2c9141de6fa1ab93f&default-tab=js%2Cresult&user=davidkpiano&embed-version=2&pen-title="></iframe>
+
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> docElm <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">;</span>
+<span class="token keyword">const</span> cardElm <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#card'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> titleElm <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#title'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> mouseMove$ <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable
+  <span class="token punctuation">.</span><span class="token function">fromEvent</span><span class="token punctuation">(</span>docElm<span class="token punctuation">,</span> <span class="token string">'mousemove'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+mouseMove$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>event <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  titleElm<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token template-string"><span class="token string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>event<span class="token punctuation">.</span>clientX<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>event<span class="token punctuation">.</span>clientY<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>从<code>mouseMove$</code>观察到的，每次<code>mousemove</code>事件发生时，订阅改变<code>titleElm</code>的<code>.innerHTML</code>的鼠标的位置。该<a href="http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-map" target="_blank" rel="noopener"><code>.map</code></a>操作（据工作原理类似<code>Array.prototype.map</code>方法）可帮助简化事情：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// Produces e.g., {x: 42, y: 100} instead of the entire event</span>
+<span class="token keyword">const</span> mouseMove$ <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable
+  <span class="token punctuation">.</span><span class="token function">fromEvent</span><span class="token punctuation">(</span>docElm<span class="token punctuation">,</span> <span class="token string">'mousemove'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>event <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">{</span> x<span class="token punctuation">:</span> event<span class="token punctuation">.</span>clientX<span class="token punctuation">,</span> y<span class="token punctuation">:</span> event<span class="token punctuation">.</span>clientY <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>使用一些数学和内联样式，您可以使卡片朝向鼠标旋转。<code>pos.y / clientHeight</code>和<code>pos.x / clientWidth</code>计算为0和1之间的值，所以乘以由50减去一半（25）产生的值从-25到25，这正是我们需要为我们的旋转值：</p>
+<iframe width="100%" height="500" src="//codepen.io/davidkpiano/embed/55cb38a26b9166c41017c6512ea00209?height=500&theme-id=1&slug-hash=55cb38a26b9166c41017c6512ea00209&default-tab=js%2Cresult&user=davidkpiano&embed-version=2&pen-title="></iframe>
+
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> docElm <span class="token operator">=</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">;</span>
+<span class="token keyword">const</span> cardElm <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#card'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> titleElm <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#title'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token punctuation">{</span> clientWidth<span class="token punctuation">,</span> clientHeight <span class="token punctuation">}</span> <span class="token operator">=</span> docElm<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> mouseMove$ <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable
+  <span class="token punctuation">.</span><span class="token function">fromEvent</span><span class="token punctuation">(</span>docElm<span class="token punctuation">,</span> <span class="token string">'mousemove'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>event <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">{</span> x<span class="token punctuation">:</span> event<span class="token punctuation">.</span>clientX<span class="token punctuation">,</span> y<span class="token punctuation">:</span> event<span class="token punctuation">.</span>clientY <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+mouseMove$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>pos <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> rotX <span class="token operator">=</span> <span class="token punctuation">(</span>pos<span class="token punctuation">.</span>y <span class="token operator">/</span> clientHeight <span class="token operator">*</span> <span class="token operator">-</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">25</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> rotY <span class="token operator">=</span> <span class="token punctuation">(</span>pos<span class="token punctuation">.</span>x <span class="token operator">/</span> clientWidth <span class="token operator">*</span> <span class="token number">50</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">25</span><span class="token punctuation">;</span>
+
+  cardElm<span class="token punctuation">.</span>style <span class="token operator">=</span> <span class="token template-string"><span class="token string">`
+    transform: rotateX(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>rotX<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">deg) rotateY(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>rotY<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">deg);
+  `</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h1 id="使用-merge-合并"><a href="#使用-merge-合并" class="headerlink" title="使用 .merge 合并"></a>使用 <code>.merge</code> 合并</h1><p>现在让我们假设你想让这个适应触摸设备，不管是鼠标事件或是触摸动作。没有任何混乱的回调，你可以通过RxJS使用很多方法来结合<code>Observable</code>。在这个例子中，可以使用<code>.merge</code>实现。就像交通多条车道合并成一个单一的车道，这将返回一个包含所有数据的<code>Observable</code>通过合并多个<code>Observable</code>.</p>
+<p></p><div class="progress-images" style="width:1468px"><div class="progress-images--placeholder" style="padding-bottom: 49.7275204359673%;"></div><img src="/js/lazyload-plugin/loading.svg" alt="来源：http://rxmarbles.com/#merge" class="progress-images--original" data-original="https://cdn.css-tricks.com/wp-content/uploads/2017/02/merge.png" data-thumb="/images/thumb/20177bfc8faefff0433226cb7cd6795d.png"></div><p></p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> touchMove$ <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable
+  <span class="token punctuation">.</span><span class="token function">fromEvent</span><span class="token punctuation">(</span>docElm<span class="token punctuation">,</span> <span class="token string">'touchmove'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>event <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+    x<span class="token punctuation">:</span> event<span class="token punctuation">.</span>touches<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clientX<span class="token punctuation">,</span>
+    y<span class="token punctuation">:</span> event<span class="token punctuation">.</span>touches<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clientY
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> move$ <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">merge</span><span class="token punctuation">(</span>mouseMove$<span class="token punctuation">,</span> touchMove$<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+move$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>pos <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>继续，尝试在触摸屏设备上平移左右：</p>
+<iframe width="100%" height="500" src="//codepen.io/davidkpiano/embed/4a430c13f4faae099e5a34cb2a82ce6d?height=500&theme-id=1&slug-hash=4a430c13f4faae099e5a34cb2a82ce6d&default-tab=js%2Cresult&user=davidkpiano&embed-version=2&pen-title="></iframe>
+
+<p>还有很多其他有用的<code>Observable</code><a href="http://reactivex.io/documentation/operators.html#combining" target="_blank" rel="noopener">合并方法</a>，如<code>.switch()</code>，<code>.combineLatest()</code>和<code>.withLatestFrom()</code>，我们继续关注下一个点。</p>
+<h1 id="添加平滑的运动"><a href="#添加平滑的运动" class="headerlink" title="添加平滑的运动"></a>添加平滑的运动</h1><p>旋转卡动作有点太死板。只要鼠标（或手指）停止，旋转即刻停止。为了解决这个问题，线性内插（线性插值）都可以使用。一般技术中描述这个<a href="https://codepen.io/rachsmith/post/animation-tip-lerp" target="_blank" rel="noopener">伟大的教程由雷切尔·史密斯</a>。本质上，而不是从A点跳到B，线性插值会在每一个动画运行一小部分。这将产生一个平滑的过渡，甚至当鼠标/触摸移动已停止。</p>
+<p>让我们创建一个函数实现这个功能：计算给定初始值和终值下一个值，采用线性插值：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">lerp</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span> end<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> dx <span class="token operator">=</span> end<span class="token punctuation">.</span>x <span class="token operator">-</span> start<span class="token punctuation">.</span>x<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> dy <span class="token operator">=</span> end<span class="token punctuation">.</span>y <span class="token operator">-</span> start<span class="token punctuation">.</span>y<span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    x<span class="token punctuation">:</span> start<span class="token punctuation">.</span>x <span class="token operator">+</span> dx <span class="token operator">*</span> <span class="token number">0.1</span><span class="token punctuation">,</span>
+    y<span class="token punctuation">:</span> start<span class="token punctuation">.</span>y <span class="token operator">+</span> dy <span class="token operator">*</span> <span class="token number">0.1</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>非常简约。我们有一个纯函数每次返回一个新的，线性内插的位置值，通过移动当前的（开始）接近每个动画帧上的下一个（完）位置10％的位置。</p>
+<h1 id="调度和-interval"><a href="#调度和-interval" class="headerlink" title="调度和.interval"></a>调度和.interval</h1><p>问题是，我们如何在RxJS中表示动画帧？原来，RxJS有一个叫做<code>Schedulers</code>的东西，它控制什么时候从一个<code>observable</code>发出数据，当订阅都开始接收值。</p>
+<p>使用<a href="http://reactivex.io/documentation/operators/interval.html" target="_blank" rel="noopener"><code>Rx.Observable.interval()</code></a>，您可以创建一个<code>observable</code>，它在固定的时间间隔发出值，例如每隔一秒（Rx.Observable.interval(1000)）。如果创建一个非常微小的时间间隔，例如<code>Rx.Observable.interval(0)</code>，并希望它只在每个动画帧上发出值，那么在动画帧内<code>Rx.Scheduler.animationFrame</code>每隔16到17ms就会发出一个值，如下所示：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> animationFrame$ <span class="token operator">=</span> Rx<span class="token punctuation">.</span>Observable<span class="token punctuation">.</span><span class="token function">interval</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> Rx<span class="token punctuation">.</span>Scheduler<span class="token punctuation">.</span>animationFrame<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h1 id="结合-withLatestFrom"><a href="#结合-withLatestFrom" class="headerlink" title="结合.withLatestFrom"></a>结合<code>.withLatestFrom</code></h1><p>要创建平滑线性插值，您只需要关心每个动画帧的最新鼠标或触摸位置。要做到这一点，有一个操作符叫<code>.withLatestFrom()</code>：</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> smoothMove$ <span class="token operator">=</span> animationFrame$
+  <span class="token punctuation">.</span><span class="token function">withLatestFrom</span><span class="token punctuation">(</span>move$<span class="token punctuation">,</span> <span class="token punctuation">(</span>frame<span class="token punctuation">,</span> move<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> move<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>现在，<code>smoothMove$</code>是一个新的<code>observable</code>，<code>move$</code> 只有当<code>animationFrame$</code>发出一个值时，才会发出最新的值。这是必须的 - 你并不想要的动画帧外发出的值（除非你真的喜欢jank）。第二个参数是描述当组合来自每个可观察的最新值时要做什么的函数。在这种情况下，唯一重要的值是<code>move</code>值，这是所有返回的值。</p>
+<p></p><div class="progress-images" style="width:1602px"><div class="progress-images--placeholder" style="padding-bottom: 43.82022471910113%;"></div><img src="/js/lazyload-plugin/loading.svg" alt="withLatestFrom" class="progress-images--original" data-original="https://cdn.css-tricks.com/wp-content/uploads/2017/02/with-latest-from.png" data-thumb="/images/thumb/d8546c7070e9bf0afb0be0258e3c2980.png"></div><p></p>
+<h1 id="与过渡-scan"><a href="#与过渡-scan" class="headerlink" title="与过渡.scan"></a>与过渡<code>.scan</code></h1><p>现在你有一个<code>observable</code>从<code>move$</code>每个动画帧发出最新的值，是时候添加线性插值了。<a href="http://reactivex.io/documentation/operators/scan.html" target="_blank" rel="noopener"><code>.scan()</code></a>运算符“积累”从可观察到的当前值和下一个值，提供给需要这些值的函数。</p>
+<p></p><div class="progress-images" style="width:1604px"><div class="progress-images--placeholder" style="padding-bottom: 33.416458852867834%;"></div><img src="/js/lazyload-plugin/loading.svg" alt="#scan" class="progress-images--original" data-original="https://cdn.css-tricks.com/wp-content/uploads/2017/02/scan.png" data-thumb="/images/thumb/78db295188c27f420b4b422f47d5677e.png"></div><p></p>
+<p>这对于我们的线性插值用例是完美的。记住，我们的<code>lerp(start, end)</code>函数有两个参数：<code>start（current）</code>值和<code>end（next）</code>值。</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">const</span> smoothMove$ <span class="token operator">=</span> animationFrame$
+  <span class="token punctuation">.</span><span class="token function">withLatestFrom</span><span class="token punctuation">(</span>move$<span class="token punctuation">,</span> <span class="token punctuation">(</span>frame<span class="token punctuation">,</span> move<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> move<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">scan</span><span class="token punctuation">(</span><span class="token punctuation">(</span>current<span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token function">lerp</span><span class="token punctuation">(</span>current<span class="token punctuation">,</span> next<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// or simplified: .scan(lerp)</span>
+</code></pre>
+<p>现在，您可以订阅<code>smoothMove$</code>代替<code>move$</code>在操作中查看线性插值：</p>
+<iframe width="100%" height="500" src="//codepen.io/davidkpiano/embed/127ee82ad742b4dddd657703e2259852?height=500&theme-id=1&slug-hash=127ee82ad742b4dddd657703e2259852&default-tab=js%2Cresult&user=davidkpiano&embed-version=2&pen-title="></iframe>
+
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p><code>RxJS</code> 不是一个动画库，当然，但对于处理随时间变化的值，它的可组合以及声明性的方式是<code>ReactiveX</code>演示动画的核心概念。反应式编程是考虑编程的另类方式，具有许多优点：</p>
+<ul>
+<li>它是声明性的，可组合的和不可变的，避免回调地狱，并使你的代码更简洁，可重用和模块化。</li>
+<li>它在处理所有类型的异步数据时非常有用，无论是获取数据，通过<code>WebSockets</code>进行通信，监听来自多个源的外部事件，甚至是动画。</li>
+<li>“关注的分离” - 您使用<code>Observable</code>和运算符声明性地表示您期望的数据，然后在一个单独的上下文环境中处理<code>.subscribe()</code>，而不会在您的原代码上产生副作用。</li>
+<li>有这么多语言的实现了它 - <code>Java</code>，<code>PHP</code>，<code>Python</code>，<code>Ruby</code>，<code>C＃</code>，<code>Swift</code>和其他你可能没有听说过的。</li>
+<li>它不是一个框架，它与许多流行的框架（如React，Angular和Vue）可以非常好地融合在一起。</li>
+<li>你可以得到行家指点，如果你想要，但<code>ReactiveX</code>从被提出到现在实施了近十年前（2009年），由创意所产生的<a href="http://conal.net/papers/icfp97/" target="_blank" rel="noopener"><code>Conal Elliott</code>和保罗·胡达克</a> 2年前（1997年），在描述功能性反应的动画（惊喜惊喜）。不用说，它经过了足够的测试。</li>
+</ul>
+<p>本文探讨了一些有用的部分和<code>RxJS</code>的概念-创建与订阅<code>.fromEvent()</code>和<code>.interval()</code>，对订阅操作<code>.map()</code>和<code>.scan()</code>，多个订阅相结合<code>.merge()</code>和<code>.withLatestFrom()</code>，并与引入调度<code>Rx.Scheduler.animationFrame</code>。有很多其他有用的资源学习RxJS：</p>
+<ul>
+<li><a href="http://reactivex.io/rxjs/" target="_blank" rel="noopener">ReactiveX：RxJS</a> - 官方文档</li>
+<li><a href="http://rxmarbles.com/" target="_blank" rel="noopener">RxMarbles</a> - 用于可视化观察</li>
+<li><a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754" target="_blank" rel="noopener">Reactive编程的介绍</a></li>
+</ul>
+<p>如果你想进一步深入<code>RxJS动画</code>（和使用更多的CSS变量），请查看<a href="http://slides.com/davidkhourshid/reactanim#/" target="_blank" rel="noopener">我的幻灯片从<code>CSS Dev Conf 2016</code></a>和<a href="https://www.youtube.com/watch?v=lTCukb6Zn3g" target="_blank" rel="noopener">我2016年的演讲从JSConf冰岛</a>关于反应式动画与CSS变量。这里有一些使用RxJS创建的动画可能对触发灵感有帮助：</p>
+<ul>
+<li><a href="http://codepen.io/davidkpiano/pen/Vmyyzd" target="_blank" rel="noopener">3D数字时钟</a></li>
+<li><a href="http://codepen.io/davidkpiano/pen/mAoaxP" target="_blank" rel="noopener">心脏app概念</a></li>
+<li><a href="http://codepen.io/Enki/pen/eBwKgO" target="_blank" rel="noopener">透视使用RxJS拖动</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>作者：</strong>
+    robin.law
+  </li>
+  
+  
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://robin-front.github.io/2017/03/19/animated-intro-rxjs.html" title="RxJS的动画简介">http://robin-front.github.io/2017/03/19/animated-intro-rxjs.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RxJS/" rel="tag"># RxJS</a>
+          
+        </div>
+      
+
+      
+        <h3>相关文章</h3>
+        <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-date">2017-06-01</div><div class="popular-posts-title"><h3><a href="/2017/06/01/RXJS-should-i-choose-operator-of-creating.html" title="RXJS我该选用哪个操作符之-创建篇" rel="bookmark">RXJS我该选用哪个操作符之-创建篇</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2017-06-01</div><div class="popular-posts-title"><h3><a href="/2017/06/01/RXJS-should-i-choose-operator-of-instance.html" title="RXJS我该选用哪个操作符之-实例操作符篇" rel="bookmark">RXJS我该选用哪个操作符之-实例操作符篇</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2017-05-05</div><div class="popular-posts-title"><h3><a href="/2017/05/05/RxJS-events-binding.html" title="RxJS事件桥接" rel="bookmark">RxJS事件桥接</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2017-05-04</div><div class="popular-posts-title"><h3><a href="/2017/05/04/creating_and_subscribing_to_simple_observable_sequences.html" title="使用RxJS创建和订阅单一数据流" rel="bookmark">使用RxJS创建和订阅单一数据流</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2017-06-05</div><div class="popular-posts-title"><h3><a href="/2017/06/05/use-RXJS-compose-filter-and-map-stream.html" title="使用RXJS组合、过滤和映射数据流的值" rel="bookmark">使用RXJS组合、过滤和映射数据流的值</a></h3></div></li></ul>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/13/an-animated-guide-to-flexbox-2.html" rel="next" title="通过动图简单通俗地了解Flexbox的工作原理（二）">
+                <i class="fa fa-chevron-left"></i> 通过动图简单通俗地了解Flexbox的工作原理（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/20/lerp-application-uses-simple-linear-interpolation-to-smooth-animation-effects.html" rel="prev" title="Lerp的应用-利用简单线性插值来平滑动画效果">
+                Lerp的应用-利用简单线性插值来平滑动画效果 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460" alt="robin.law">
+            
+              <p class="site-author-name" itemprop="name">robin.law</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/robin-front" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lb.robin1991@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/lb_robin" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#理解Observable"><span class="nav-number">1.</span> <span class="nav-text">理解Observable</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RxJS起步"><span class="nav-number">2.</span> <span class="nav-text">RxJS起步</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-merge-合并"><span class="nav-number">3.</span> <span class="nav-text">使用 .merge 合并</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加平滑的运动"><span class="nav-number">4.</span> <span class="nav-text">添加平滑的运动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调度和-interval"><span class="nav-number">5.</span> <span class="nav-text">调度和.interval</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结合-withLatestFrom"><span class="nav-number">6.</span> <span class="nav-text">结合.withLatestFrom</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#与过渡-scan"><span class="nav-number">7.</span> <span class="nav-text">与过渡.scan</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结论"><span class="nav-number">8.</span> <span class="nav-text">结论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">© 2014 — <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">robin.law</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count:</span>
+    
+    <span title="Site words total count">119.0k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 — <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+  
+    
+      <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '470b9e9d99d37489877f',
+          clientSecret: 'c319e368fd485f89601b4c2c0cee649bd9cf97cd',
+          repo: 'robin-front.github.io',
+          owner: 'Robin-front',
+          admin: ['Robin-front'],
+          id: 'RxJS的动画简介',
+          distractionFreeMode: true,
+        });
+        gitalk.render('gitalk-container');
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

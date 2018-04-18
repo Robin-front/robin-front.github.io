@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://robin-front.github.io/tags/index.html</loc>
+    
+    <lastmod>2018-04-18T16:11:19.235Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2015/10/08/optimize-images-with-font-end.html</loc>
+    
+    <lastmod>2018-04-18T16:11:18.867Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/categories/index.html</loc>
+    
+    <lastmod>2018-04-18T16:11:18.867Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2015/10/30/javascript-get-the-time-period-of-the-week-and-this-month-or-any-month.html</loc>
+    
+    <lastmod>2018-04-18T16:11:18.867Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2015/10/10/git-branch.html</loc>
+    
+    <lastmod>2018-04-18T16:11:18.867Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2015/09/30/git-ssh-key-and-multiple-accounts-configs.html</loc>
+    
+    <lastmod>2018-04-18T16:11:18.867Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/about/index.html</loc>
+    
+    <lastmod>2018-04-18T16:11:18.867Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2015/10/09/gulp-4.0.html</loc>
+    
+    <lastmod>2018-04-18T16:11:18.867Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2015/10/17/angular-comorized-directive.html</loc>
+    
+    <lastmod>2018-04-18T16:11:18.863Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/404.html</loc>
+    
+    <lastmod>2018-04-18T16:11:18.863Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2018/04/10/keep-alive-vs-http2.html</loc>
+    
+    <lastmod>2018-04-10T12:32:20.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2018/04/04/update-on-async-rendering.html</loc>
+    
+    <lastmod>2018-04-04T00:31:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2018/03/13/critical-rendering-path.html</loc>
+    
+    <lastmod>2018-03-13T09:50:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2018/03/11/constructing-the-DOM-and-CSSDOM-object-model-before-browser-rendering.html</loc>
+    
+    <lastmod>2018-03-11T10:16:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2018/02/12/reacts-new-context-api.html</loc>
+    
+    <lastmod>2018-02-12T16:27:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2018/01/14/judge-positive-and-negative-0.html</loc>
+    
+    <lastmod>2018-01-14T00:47:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2018/01/03/through-wechat-t1t-think-about-crypto.html</loc>
+    
+    <lastmod>2018-01-04T15:02:18.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/12/21/using-css-counters.html</loc>
+    
+    <lastmod>2017-12-21T16:43:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/11/29/clean-code-dirty-code.html</loc>
+    
+    <lastmod>2017-11-29T09:49:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/11/27/dynamic-import.html</loc>
+    
+    <lastmod>2017-11-27T10:56:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/11/16/using-a-react-16-portal-to-do-something-cool.html</loc>
+    
+    <lastmod>2017-11-16T07:31:59.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/11/09/react-component-patterns.html</loc>
+    
+    <lastmod>2017-11-09T23:10:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/11/06/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-async-and-await.html</loc>
+    
+    <lastmod>2017-11-06T10:40:21.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/10/25/you-might-not-need-redux.html</loc>
+    
+    <lastmod>2017-10-25T17:04:54.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/09/21/Understanding-the-WebView-Viewport-in-iOS-11.html</loc>
+    
+    <lastmod>2017-09-21T11:34:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/09/21/the-notch-and-css.html</loc>
+    
+    <lastmod>2017-09-21T10:23:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/09/19/how-to-handle-4-common-memory-leaks.html</loc>
+    
+    <lastmod>2017-09-19T09:38:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/08/30/avoid-large-complex-layouts-and-layout-thrashing.html</loc>
+    
+    <lastmod>2017-08-30T10:11:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/08/25/using-requestIdleCallback.html</loc>
+    
+    <lastmod>2017-08-25T15:40:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/08/24/intersectionobserver.html</loc>
+    
+    <lastmod>2017-08-24T09:59:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/08/18/lazy-loading-images-using-intersection-observer.html</loc>
+    
+    <lastmod>2017-08-18T10:14:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/03/13/an-animated-guide-to-flexbox-1.html</loc>
+    
+    <lastmod>2017-08-11T17:57:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/07/28/you-may-dont-know-JSON.html</loc>
+    
+    <lastmod>2017-07-28T09:17:36.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/07/24/reducing-css-bundle-size-by-cutting-the-class-names-and-using-scope-isolation.html</loc>
+    
+    <lastmod>2017-07-24T17:05:01.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/07/23/Daxu-village-Huixian-wetland-Putao-Xingping-of-Guilin.html</loc>
+    
+    <lastmod>2017-07-23T10:42:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/07/22/masasa-beach-travel-guide.html</loc>
+    
+    <lastmod>2017-07-22T11:29:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/07/22/borawan-island-Pagbilao-beach-and-Dampalitan-island.html</loc>
+    
+    <lastmod>2017-07-22T08:30:22.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/07/18/make-react-fast-again-tools-and-techniques-for-speeding-up-your-react-app.html</loc>
+    
+    <lastmod>2017-07-18T15:25:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/07/17/react-redux-optimization.html</loc>
+    
+    <lastmod>2017-07-17T17:12:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/07/17/react-at-light-speed.html</loc>
+    
+    <lastmod>2017-07-17T15:23:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/07/14/introducing-npx-an-npm-package-runner.html</loc>
+    
+    <lastmod>2017-07-14T17:31:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/07/11/why-should-stopped-using-multiple-monitors.html</loc>
+    
+    <lastmod>2017-07-11T16:02:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/07/10/dont-mixin-import-and-require.html</loc>
+    
+    <lastmod>2017-07-10T16:30:11.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/07/06/react-pattern-extract-child-components-to-avoid-binding.html</loc>
+    
+    <lastmod>2017-07-06T16:24:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/07/04/understanding-memoize-in-javascript.html</loc>
+    
+    <lastmod>2017-07-04T17:57:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/07/04/background-position-of-css3-about-four-value-syntax.html</loc>
+    
+    <lastmod>2017-07-04T11:27:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/07/03/arr-of-indexOf-vs-includes-and-for-loop.html</loc>
+    
+    <lastmod>2017-07-03T11:02:06.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Conclusion.html</loc>
+    
+    <lastmod>2017-06-28T11:11:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/28/Web-Animations-API-Tutorial-Part-5-The-Loveable-Motion-Path.html</loc>
+    
+    <lastmod>2017-06-28T09:59:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-4-GroupEffects-and-SequenceEffects.html</loc>
+    
+    <lastmod>2017-06-27T11:24:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/27/Web-Animations-API-Tutorial-Part-3-Multiple-Animations.html</loc>
+    
+    <lastmod>2017-06-27T10:17:19.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-2-The-Animation.html</loc>
+    
+    <lastmod>2017-06-26T17:51:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/26/Web-Animations-API-Tutorial-Part-1-Creating-a-Basic-Animation.html</loc>
+    
+    <lastmod>2017-06-26T11:25:31.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/25/animations-intro.html</loc>
+    
+    <lastmod>2017-06-25T11:53:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/22/css-animations-vs-web-animations-api.html</loc>
+    
+    <lastmod>2017-06-22T17:48:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/21/webpack3-publish-scope-hoisting-magic-comments-and-more.html</loc>
+    
+    <lastmod>2017-06-22T15:35:55.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/14/compare-with-Flow-and-TypeScript.html</loc>
+    
+    <lastmod>2017-06-14T23:28:54.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/05/use-RXJS-compose-filter-and-map-stream.html</loc>
+    
+    <lastmod>2017-06-05T16:24:16.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/02/debugging-Node-js-with-google-chrome.html</loc>
+    
+    <lastmod>2017-06-02T17:46:03.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/01/RXJS-should-i-choose-operator-of-creating.html</loc>
+    
+    <lastmod>2017-06-01T18:16:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/01/RXJS-should-i-choose-operator-of-instance.html</loc>
+    
+    <lastmod>2017-06-01T17:54:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/01/why-Marko-faster-than-react-preact-vue.html</loc>
+    
+    <lastmod>2017-06-01T10:48:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/06/01/npm-5-published.html</loc>
+    
+    <lastmod>2017-06-01T10:15:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/05/30/WTF-JSX.html</loc>
+    
+    <lastmod>2017-05-30T09:52:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/05/05/RxJS-events-binding.html</loc>
+    
+    <lastmod>2017-05-05T16:51:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/05/04/creating_and_subscribing_to_simple_observable_sequences.html</loc>
+    
+    <lastmod>2017-05-04T18:06:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/04/06/check-coverage-of-js-and-css-used-in-Chrome-devtools.html</loc>
+    
+    <lastmod>2017-04-06T11:21:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/04/05/what-you-need-to-know-about-RxJS.html</loc>
+    
+    <lastmod>2017-04-05T17:06:03.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/04/04/why-rxjs.html</loc>
+    
+    <lastmod>2017-04-04T17:48:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/03/20/lerp-application-uses-simple-linear-interpolation-to-smooth-animation-effects.html</loc>
+    
+    <lastmod>2017-03-20T11:04:39.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/03/19/animated-intro-rxjs.html</loc>
+    
+    <lastmod>2017-03-19T14:40:21.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/03/13/an-animated-guide-to-flexbox-2.html</loc>
+    
+    <lastmod>2017-03-13T11:31:42.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/01/13/how-to-enumerate-object-properties.html</loc>
+    
+    <lastmod>2017-01-13T10:19:27.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/01/12/compare-instanceof-with-isPrototypeof.html</loc>
+    
+    <lastmod>2017-01-12T17:49:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2017/01/10/use-javascript-vibration-feedback-to-improve-user-experience.html</loc>
+    
+    <lastmod>2017-01-11T09:13:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/11/25/explore-lodash-and-slice-of-Array-slice-peformance.html</loc>
+    
+    <lastmod>2016-11-25T11:05:19.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/11/17/Debounce-and-Throttle-explain-visualizatly.html</loc>
+    
+    <lastmod>2016-11-21T11:19:22.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/10/20/use-npm-shrinkwrap-to-manage-reference-projects.html</loc>
+    
+    <lastmod>2016-10-20T17:35:22.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/08/11/Git-Hooks.html</loc>
+    
+    <lastmod>2016-08-11T19:51:56.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/08/08/webpack-sourcemap-options.html</loc>
+    
+    <lastmod>2016-08-08T17:08:53.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/06/30/use-ApplicationCache-to-build-html5-offline-web-app.html</loc>
+    
+    <lastmod>2016-06-30T22:41:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/06/08/how-to-get-Javascript-type-of-variables-correctly.html</loc>
+    
+    <lastmod>2016-06-08T23:53:10.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/05/16/git-mardown.html</loc>
+    
+    <lastmod>2016-05-16T20:57:45.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/05/04/pm2-Node-process-manager.html</loc>
+    
+    <lastmod>2016-05-04T22:04:27.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/04/22/child-process-make-Node-js-have-bash-feature.html</loc>
+    
+    <lastmod>2016-04-22T00:02:56.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/04/19/React-v15-0-upgrade-guide.html</loc>
+    
+    <lastmod>2016-04-19T22:38:50.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/04/18/react-router-and-Webpack-thunks.html</loc>
+    
+    <lastmod>2016-04-18T22:16:27.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/04/14/Node-global-object-global-process-and-Buffer.html</loc>
+    
+    <lastmod>2016-04-14T23:39:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/04/13/REPL-of-node.html</loc>
+    
+    <lastmod>2016-04-13T23:15:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/04/10/postCSS-plugins.html</loc>
+    
+    <lastmod>2016-04-10T00:43:12.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/04/09/postCSS-loader-configs.html</loc>
+    
+    <lastmod>2016-04-09T22:47:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/04/08/babel-loader-configure.html</loc>
+    
+    <lastmod>2016-04-08T08:36:38.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/04/07/Webpack-config.html</loc>
+    
+    <lastmod>2016-04-07T01:03:50.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/04/02/make-fast-forwarding-be-off-by-default-in-git.html</loc>
+    
+    <lastmod>2016-04-02T15:44:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/03/16/Flow-the-type-checker.html</loc>
+    
+    <lastmod>2016-03-16T16:09:49.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/03/14/React-optimize-with-Immutable-js.html</loc>
+    
+    <lastmod>2016-03-14T00:15:07.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/03/10/React-optimize-with-shouldComponentUpdate-and-key.html</loc>
+    
+    <lastmod>2016-03-10T22:32:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/03/07/search-command-locate-whereis-which-find-grep.html</loc>
+    
+    <lastmod>2016-03-07T00:58:03.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/03/05/resolve-fetch-post-no-response.html</loc>
+    
+    <lastmod>2016-03-05T10:18:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://robin-front.github.io/2016/03/04/share-from-mr.ai.html</loc>
+    
+    <lastmod>2016-03-04T22:47:41.000Z</lastmod>
+    
+  </url>
+  
+</urlset>

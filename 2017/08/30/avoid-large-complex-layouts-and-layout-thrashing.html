@@ -1,0 +1,1097 @@
+<!DOCTYPE html><html class="theme-next muse use-motion" lang="zh-Hans"><head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="ezF4b6TIq3nrF8BJmQrK_v9BmJnUQfVVPB4xBYo7AD8">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="T2V9h2EnoE">
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+  
+  
+    
+  
+  <link href="https://unpkg.com/gitalk/dist/gitalk.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.staticfile.org/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-16.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/touch-icon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="layout,css,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知更鸟" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="避免大型，复杂的布局和布局颠覆布局是浏览器查找元素的几何信息：其大小和页面中的位置。每个元素将基于所使用的CSS，元素的内容或父元素显示或隐式的大小调整信息。该过程在 Chrome，Opera，Safari 和 Internet Explorer中称为“布局”。在 Firefox 中，它被称为 Reflow （回流），但是这个过程的作用是相同的。 类似于 style 计算，布局成本的直接相关是：">
+<meta name="keywords" content="layout,css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="避免大型，复杂的布局和布局颠覆">
+<meta property="og:url" content="http://robin-front.github.io/2017/08/30/avoid-large-complex-layouts-and-layout-thrashing.html">
+<meta property="og:site_name" content="知更鸟">
+<meta property="og:description" content="避免大型，复杂的布局和布局颠覆布局是浏览器查找元素的几何信息：其大小和页面中的位置。每个元素将基于所使用的CSS，元素的内容或父元素显示或隐式的大小调整信息。该过程在 Chrome，Opera，Safari 和 Internet Explorer中称为“布局”。在 Firefox 中，它被称为 Reflow （回流），但是这个过程的作用是相同的。 类似于 style 计算，布局成本的直接相关是：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://robin-front.github.io/js/lazyload-plugin/loading.svg">
+<meta property="og:image" content="http://robin-front.github.io/js/lazyload-plugin/loading.svg">
+<meta property="og:image" content="http://robin-front.github.io/js/lazyload-plugin/loading.svg">
+<meta property="og:image" content="http://robin-front.github.io/js/lazyload-plugin/loading.svg">
+<meta property="og:updated_time" content="2017-08-30T10:11:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="避免大型，复杂的布局和布局颠覆">
+<meta name="twitter:description" content="避免大型，复杂的布局和布局颠覆布局是浏览器查找元素的几何信息：其大小和页面中的位置。每个元素将基于所使用的CSS，元素的内容或父元素显示或隐式的大小调整信息。该过程在 Chrome，Opera，Safari 和 Internet Explorer中称为“布局”。在 Firefox 中，它被称为 Reflow （回流），但是这个过程的作用是相同的。 类似于 style 计算，布局成本的直接相关是：">
+<meta name="twitter:image" content="http://robin-front.github.io/js/lazyload-plugin/loading.svg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://robin-front.github.io/2017/08/30/avoid-large-complex-layouts-and-layout-thrashing.html">
+
+
+
+
+
+  <title>避免大型，复杂的布局和布局颠覆 | 知更鸟</title>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-8386186071288063",
+    enable_page_level_ads: true
+  });
+  </script>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-74634898-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?51f2c21567935649debac704a10c43f1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">知更鸟</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">robin</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-travel">
+          <a href="/tags/travel/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-plane"></i> <br>
+            
+            旅行
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2017/08/30/avoid-large-complex-layouts-and-layout-thrashing.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="robin.law">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知更鸟">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">避免大型，复杂的布局和布局颠覆</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-30T10:11:00+00:00">
+                2017-08-30
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于:</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-08-30T10:11:00+00:00">
+                2017-08-30
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计:</span>
+                
+                <span title="字数统计">
+                  1,625
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 ≈</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="避免大型，复杂的布局和布局颠覆"><a href="#避免大型，复杂的布局和布局颠覆" class="headerlink" title="避免大型，复杂的布局和布局颠覆"></a>避免大型，复杂的布局和布局颠覆</h1><p>布局是浏览器查找元素的几何信息：其大小和页面中的位置。每个元素将基于所使用的CSS，元素的内容或父元素显示或隐式的大小调整信息。该过程在 Chrome，Opera，Safari 和 Internet Explorer中称为“布局”。在 Firefox 中，它被称为 Reflow （回流），但是这个过程的作用是相同的。</p>
+<p>类似于 style 计算，布局成本的直接相关是：</p>
+<ul>
+<li>需要布局的元素数量。</li>
+<li>这些布局的复杂性。<a id="more"></a>
+</li>
+</ul>
+<p>TL; DR</p>
+<ul>
+<li>布局通常作用于整个文档。</li>
+<li>DOM 元素的数量将影响性能; 您应尽可能避免触发布局。</li>
+<li>评估布局模型性能; 新的Flexbox通常比旧版Flexbox或基于浮动的布局模型更快。</li>
+<li>避免强制同步布局和布局颠覆; 先读取样式值，然后再进行样式更改。</li>
+</ul>
+<h2 id="尽可能避免布局"><a href="#尽可能避免布局" class="headerlink" title="尽可能避免布局"></a>尽可能避免布局</h2><p>当您更改样式时，浏览器将检查以查看是否有任何更改需要计算布局，并为该渲染树进行更新。对“几何属性”的更改，如宽度，高度，左侧或顶部都需要布局。</p>
+<pre class=" language-css"><code class="language-css"><span class="token selector"><span class="token class">.box</span> </span><span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">20</span>px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">20</span>px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/**
+ * 改变宽高
+ * 触发 layout.
+ */</span>
+<span class="token selector"><span class="token class">.box--expanded</span> </span><span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> <span class="token number">200</span>px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> <span class="token number">350</span>px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>布局几乎总是作用于整个文档</strong>。如果你有很多元素，那么需要很长时间来确定它们的位置和尺寸。</p>
+<p>如果不可能避免布局，那么关键是再次使用 Chrome DevTools 来查看花费多长时间，并确定布局是否是瓶颈的原因。首先，打开 DevTools，转到“时间轴”选项卡，点击记录并与您的网站进行交互。当您停止录制时，您会看到您的网站执行的细目：</p>
+<p></p><div class="progress-images" style="width:1202px"><div class="progress-images--placeholder" style="padding-bottom: 69.80033277870216%;"></div><img src="/js/lazyload-plugin/loading.svg" alt="" class="progress-images--original" data-original="https://developers.google.com/web/fundamentals/performance/rendering/images/avoid-large-complex-layouts-and-layout-thrashing/big-layout.jpg" data-thumb="/images/thumb/619ac561ceef622993b071cefc8d19e1.jpg"></div><p></p>
+<p>当在上面的例子中挖掘每一帧时，我们看到在布局中花费了超过20毫秒，当我们的屏幕在动画中有16ms时，这太高了。您还可以看到，DevTools 会告诉您 DOM 树的大小（在这种情况下为1,618个元素），以及需要多少个节点进行布局。</p>
+<blockquote>
+<p>注意：想要明确列出哪些 CSS 属性触发布局(layout)，绘画(paint)或复合(composite)？查看<a href="https://csstriggers.com/" target="_blank" rel="noopener">CSS触发器</a>。</p>
+</blockquote>
+<h2 id="在旧的布局模型上使用-flexbox"><a href="#在旧的布局模型上使用-flexbox" class="headerlink" title="在旧的布局模型上使用 flexbox"></a>在旧的布局模型上使用 flexbox</h2><p>网络上有一系列的布局模式，其中一些比其他模型更受广泛支持。最旧的 CSS 布局模型允许我们在屏幕上进行相对，绝对地定位元素和浮动元素。</p>
+<p>下面的截图显示了在1,300个盒子上使用浮点数时的布局成本。诚然，这是一个例证，因为大多数应用程序将使用各种方法来定位元素。</p>
+<p></p><div class="progress-images" style="width:1394px"><div class="progress-images--placeholder" style="padding-bottom: 68.00573888091822%;"></div><img src="/js/lazyload-plugin/loading.svg" alt="" class="progress-images--original" data-original="https://developers.google.com/web/fundamentals/performance/rendering/images/avoid-large-complex-layouts-and-layout-thrashing/layout-float.jpg" data-thumb="/images/thumb/6862e2bf9999c25216d4c8dad8aa46e9.jpg"></div><p></p>
+<p>如果我们更新样本以使用 Flexbox，这是Web平台上最近的一个补充，我们得到了一个不同的图片：</p>
+<p></p><div class="progress-images" style="width:1394px"><div class="progress-images--placeholder" style="padding-bottom: 64.8493543758967%;"></div><img src="/js/lazyload-plugin/loading.svg" alt="" class="progress-images--original" data-original="https://developers.google.com/web/fundamentals/performance/rendering/images/avoid-large-complex-layouts-and-layout-thrashing/layout-flex.jpg" data-thumb="/images/thumb/c4364bf86313b1b18dfcec2457b32029.jpg"></div><p></p>
+<p>现在，在相同数量的元素和相同的视觉外观的布局中，我们花费更少的时间（在这种情况下，3.5ms对14ms）。重要的是要记住，对于某些浏览器环境，您可能无法选择 Flexbox，因为它比<a href="http://caniuse.com/#search=flexbox" target="_blank" rel="noopener">浮动布局更不受支持</a>，但您应该至少应该调查布局模型对您的性能的影响，并将其最小化执行成本</p>
+<p>无论您是否选择Flexbox，您仍然应该 <strong>尝试避免</strong> 在应用程序的高压点 <strong>完全触发布局</strong>！</p>
+<h2 id="避免强制同步布局"><a href="#避免强制同步布局" class="headerlink" title="避免强制同步布局"></a>避免强制同步布局</h2><p>运送一个框架到屏幕有这样的顺序：</p>
+<p></p><div class="progress-images" style="width:1093px"><div class="progress-images--placeholder" style="padding-bottom: 15.279048490393413%;"></div><img src="/js/lazyload-plugin/loading.svg" alt="" class="progress-images--original" data-original="https://developers.google.com/web/fundamentals/performance/rendering/images/avoid-large-complex-layouts-and-layout-thrashing/frame.jpg" data-thumb="/images/thumb/5201bbdcfdf03442dbe3c590bb8d9550.jpg"></div><p></p>
+<p>首先 JavaScript 运行，然后进行风格计算，然后进行布局。然而，可以强制浏览器使用 JavaScript 更早地执行布局。它被称为 <strong>强制同步布局</strong>。</p>
+<p>要记住的第一件事是，由于 JavaScript 运行，所有旧的布局值都是已知的，可供您查询。所以如果你想在下一帧之前写出一个元素的高度（我们称之为“box”），你可以编写一些这样的代码：</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// Schedule our function to run at the start of the frame.</span>
+<span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>logBoxHeight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">logBoxHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// Gets the height of the box in pixels and logs it out.</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>box<span class="token punctuation">.</span>offsetHeight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>如果您在要求其高度之前更改了 box 的样式，那么事情会变得有问题：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">logBoxHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  box<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'super-big'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment" spellcheck="true">// Gets the height of the box in pixels</span>
+  <span class="token comment" spellcheck="true">// and logs it out.</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>box<span class="token punctuation">.</span>offsetHeight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>现在，为了回答高度问题，浏览器必须首先应用样式更改（因为添加了 <code>super-big</code> 类），然后运行布局。只有这样才能恢复正确的高度。这是不必要的和潜在的昂贵的工作。</p>
+<p>因此，您应该始终批评这类的样式读取，并首先执行（浏览器可以使用上一帧的布局值），然后执行任何写操作：</p>
+<p>完成上述功能将是：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">logBoxHeight</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// Gets the height of the box in pixels</span>
+  <span class="token comment" spellcheck="true">// and logs it out.</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>box<span class="token punctuation">.</span>offsetHeight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  box<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'super-big'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>在大多数情况下，您不应该需要应用样式，然后查询值; 使用最后一帧的值应该是足够的。过早地运行 style 计算和布局是浏览器同步和布局潜在的瓶颈，这不是您通常想要做的事情。</p>
+<h2 id="避免布局颠覆"><a href="#避免布局颠覆" class="headerlink" title="避免布局颠覆"></a>避免布局颠覆</h2><p>有一种方法可以使强制同步布局更加糟糕：<em>快速连续地做很多事情</em>。看看这段代码：</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">resizeAllParagraphsToMatchBlockWidth</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment" spellcheck="true">// Puts the browser into a read-write-read-write cycle.</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator"><</span> paragraphs<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    paragraphs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>width <span class="token operator">=</span> box<span class="token punctuation">.</span>offsetWidth <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>此代码循环遍历一组段落，并设置每个段落的宽度以匹配名为“box”的元素的宽度。它看起来很无害，但问题是循环的每次迭代读取一个样式值（<code>box.offsetWidth</code>），然后立即使用它来更新一个paragraph（<code>paragraphs[i].style.width</code>）的宽度。在循环的下一个迭代中，浏览器必须考虑到 <code>offsetWidth</code> 上一次请求（在上一次迭代中）样式已经改变的事实，因此它必须应用样式更改并运行布局。这将在每一次迭代中发生！</p>
+<p>此示例的解决方法是缓存读取值，然后写值：</p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// Read.</span>
+<span class="token keyword">var</span> width <span class="token operator">=</span> box<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">resizeAllParagraphsToMatchBlockWidth</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator"><</span> paragraphs<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// Now write.</span>
+    paragraphs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>width <span class="token operator">=</span> width <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>如果您想保证安全性，您应该检查<a href="https://github.com/wilsonpage/fastdom" target="_blank" rel="noopener">FastDOM</a>，这将自动为您分配读取和写入数据，并且应防止您意外触发强制同步布局或布局颠覆。</p>
+<p>【翻译原文】:<a href="https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing?hl=en" target="_blank" rel="noopener">Avoid Large, Complex Layouts and Layout Thrashing</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>作者：</strong>
+    robin.law
+  </li>
+  
+  
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://robin-front.github.io/2017/08/30/avoid-large-complex-layouts-and-layout-thrashing.html" title="避免大型，复杂的布局和布局颠覆">http://robin-front.github.io/2017/08/30/avoid-large-complex-layouts-and-layout-thrashing.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/layout/" rel="tag"># layout</a>
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+        </div>
+      
+
+      
+        <h3>相关文章</h3>
+        <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-date">2018-03-11</div><div class="popular-posts-title"><h3><a href="/2018/03/11/constructing-the-DOM-and-CSSDOM-object-model-before-browser-rendering.html" title="构建 DOM 对象模型和 CSSDOM 对象模型" rel="bookmark">构建 DOM 对象模型和 CSSDOM 对象模型</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2018-03-13</div><div class="popular-posts-title"><h3><a href="/2018/03/13/critical-rendering-path.html" title="优化关键渲染路径" rel="bookmark">优化关键渲染路径</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2017-07-24</div><div class="popular-posts-title"><h3><a href="/2017/07/24/reducing-css-bundle-size-by-cutting-the-class-names-and-using-scope-isolation.html" title="像 google 一样通过缩短 css 类名和作用域隔离来压缩优化 css 包的大小" rel="bookmark">像 google 一样通过缩短 css 类名和作用域隔离来压缩优化 css 包的大小</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2017-09-21</div><div class="popular-posts-title"><h3><a href="/2017/09/21/the-notch-and-css.html" title="IphoneX 的缺口（小刘海）及其css样式解决方案" rel="bookmark">IphoneX 的缺口（小刘海）及其css样式解决方案</a></h3></div></li></ul>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/25/using-requestIdleCallback.html" rel="next" title="使用 requestIdleCallback">
+                <i class="fa fa-chevron-left"></i> 使用 requestIdleCallback
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/19/how-to-handle-4-common-memory-leaks.html" rel="prev" title="如何处理4种常见的内存泄露">
+                如何处理4种常见的内存泄露 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460" alt="robin.law">
+            
+              <p class="site-author-name" itemprop="name">robin.law</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/robin-front" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lb.robin1991@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/lb_robin" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#避免大型，复杂的布局和布局颠覆"><span class="nav-number">1.</span> <span class="nav-text">避免大型，复杂的布局和布局颠覆</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#尽可能避免布局"><span class="nav-number">1.1.</span> <span class="nav-text">尽可能避免布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在旧的布局模型上使用-flexbox"><span class="nav-number">1.2.</span> <span class="nav-text">在旧的布局模型上使用 flexbox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#避免强制同步布局"><span class="nav-number">1.3.</span> <span class="nav-text">避免强制同步布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#避免布局颠覆"><span class="nav-number">1.4.</span> <span class="nav-text">避免布局颠覆</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">© 2014 — <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">robin.law</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count:</span>
+    
+    <span title="Site words total count">119.0k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 — <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+  
+    
+      <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '470b9e9d99d37489877f',
+          clientSecret: 'c319e368fd485f89601b4c2c0cee649bd9cf97cd',
+          repo: 'robin-front.github.io',
+          owner: 'Robin-front',
+          admin: ['Robin-front'],
+          id: '避免大型，复杂的布局和布局颠覆',
+          distractionFreeMode: true,
+        });
+        gitalk.render('gitalk-container');
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>

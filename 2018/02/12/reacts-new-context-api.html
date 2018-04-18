@@ -1,0 +1,1090 @@
+<!DOCTYPE html><html class="theme-next muse use-motion" lang="zh-Hans"><head>
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+  <meta name="google-site-verification" content="ezF4b6TIq3nrF8BJmQrK_v9BmJnUQfVVPB4xBYo7AD8">
+
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="T2V9h2EnoE">
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+  
+  
+    
+  
+  <link href="https://unpkg.com/gitalk/dist/gitalk.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+  
+
+<link href="https://cdn.staticfile.org/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-16.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-32.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/touch-icon.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="react,context,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="知更鸟" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="React’s ⚛️ new Context API这是一种更人性化的方式，不再是“实验性功能”，并且现在它是一级API。并且使用了 render prop!">
+<meta name="keywords" content="react,context">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react新API——context上下文">
+<meta property="og:url" content="http://robin-front.github.io/2018/02/12/reacts-new-context-api.html">
+<meta property="og:site_name" content="知更鸟">
+<meta property="og:description" content="React’s ⚛️ new Context API这是一种更人性化的方式，不再是“实验性功能”，并且现在它是一级API。并且使用了 render prop!">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://robin-front.github.io/js/lazyload-plugin/loading.svg">
+<meta property="og:updated_time" content="2018-02-12T16:27:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react新API——context上下文">
+<meta name="twitter:description" content="React’s ⚛️ new Context API这是一种更人性化的方式，不再是“实验性功能”，并且现在它是一级API。并且使用了 render prop!">
+<meta name="twitter:image" content="http://robin-front.github.io/js/lazyload-plugin/loading.svg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://robin-front.github.io/2018/02/12/reacts-new-context-api.html">
+
+
+
+
+
+  <title>react新API——context上下文 | 知更鸟</title>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-8386186071288063",
+    enable_page_level_ads: true
+  });
+  </script>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-74634898-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?51f2c21567935649debac704a10c43f1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<link rel="stylesheet" href="/css/prism.css" type="text/css"></head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">知更鸟</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">robin</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-travel">
+          <a href="/tags/travel/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-plane"></i> <br>
+            
+            旅行
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br>
+            
+            公益404
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://robin-front.github.io/2018/02/12/reacts-new-context-api.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="robin.law">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="知更鸟">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">react新API——context上下文</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-12T16:27:34+00:00">
+                2018-02-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于:</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-12T16:27:34+00:00">
+                2018-02-12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计:</span>
+                
+                <span title="字数统计">
+                  1,480
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 ≈</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="React’s-⚛️-new-Context-API"><a href="#React’s-⚛️-new-Context-API" class="headerlink" title="React’s ⚛️ new Context API"></a>React’s ⚛️ new Context API</h1><p>这是一种更人性化的方式，不再是“实验性功能”，并且现在它是一级API。并且使用了 <code>render prop</code>!
+<a id="more"></a></p>
+<p>你之前听说过 react 的 context API 吗？如果你听说过，你是否和其他用户一样犹豫是否直接使用它，因为你会在官方文档看到如下内容：</p>
+<p></p><div class="progress-images" style="width:748px"><div class="progress-images--placeholder" style="padding-bottom: 80.61497326203208%;"></div><img src="/js/lazyload-plugin/loading.svg" alt="" class="progress-images--original" data-original="https://cdn-images-1.medium.com/max/800/0*QFLH_BvdzY7RD6sC.png" data-thumb="/images/thumb/775edd79472e5cc06803c99f820a5ed3.png"></div><p></p>
+<p>搜索的第一个内容就是“<a href="https://reactjs.org/docs/context.html#why-not-to-use-context" target="_blank" rel="noopener">为什么不要去使用 context</a>”。这不能激发使用 context API 的信心。为了考虑风险，部分提到：</p>
+<blockquote>
+<p>如果想让你的应用更稳定，那不要使用 context。这是一个实验性的 API，在未来发布的 react 版本中可能会被移除。</p>
+</blockquote>
+<h2 id="所以，为什么会想要使用-context-呢？"><a href="#所以，为什么会想要使用-context-呢？" class="headerlink" title="所以，为什么会想要使用 context 呢？"></a>所以，为什么会想要使用 context 呢？</h2><p>你是否经历过将 state 从 react 树的根组件一直传递至叶节点的痛苦呢？这种痛苦被称为“<strong>prop drilling</strong>”，并且非常烦人。你必须让不关心该状态的组件传递 props 给关心该数据的子组件。特别是当你移动组件时，这种痛苦感更强烈了。</p>
+<p>你当然可以使用标准 javascript 模块来避免这个问题。只需要将数据放到一个单例模块中，它可以在任何地方被访问或导入。但你可能在更新数据的时候遇到一些问题（你必须实现一个事件广播让订阅者知道何时更新了数据），并且<a href="https://stackoverflow.com/a/40974748/971592" target="_blank" rel="noopener">服务端渲染也会对单例造成困扰</a>。</p>
+<p>所以，像 redux 这类的状态管理库就应运而生了。它允许你在 react 树的任何地方获取数据。你所要做的事只是使用一个叫 <code><provider></provider></code> 的东西，然后你的组件就可以通过 <code>connected</code> 神奇般地访问你的 store 数据。</p>
+<p>如果我告诉你 <code><provider></provider></code> 使用了 <code>context</code>这个实验性功能会怎么样？😱 这是真的！<code>provider</code> 组件将数据放在 context ，然后 <code>connect</code> 高阶组件从 context 读取数据。所以实际上， redux 并没有实现在任何地方访问数据… 是 context 做了这件事！</p>
+<p>那么，现在知道为什么要使用 context 了吗？好吧。你可能已经知道并爱上它了！就算你没有直接使用 context, 你也可能通过 <a href="https://github.com/reactjs/react-redux/blob/76dd7faa90981dd2f9efa76f3e2f26ecf2c12cf7/src/components/connectAdvanced.js#L136-L143" target="_blank" rel="noopener">react-redux</a>, <a href="https://github.com/mobxjs/mobx-react/blob/dc249910c74c1b2e988a879be07f10aeaea90936/src/Provider.js#L19-L34" target="_blank" rel="noopener">MobX-react</a>, <a href="https://github.com/ReactTraining/react-router/blob/e6f9017c947b3ae49affa24cc320d0a86f765b55/packages/react-router/modules/Router.js#L23-L34" target="_blank" rel="noopener">react-router</a>, <a href="https://github.com/paypal/glamorous/blob/7468bfc76f46783cac841e20973ed119c771f3b7/src/theme-provider.js#L33-L37" target="_blank" rel="noopener">glamorous</a> 等间接地使用了它！</p>
+<h2 id="Context-重生"><a href="#Context-重生" class="headerlink" title="Context 重生"></a>Context 重生</h2><p>尽管我们现在很喜欢 <code>context</code>, 但还记得那句“它很可能在将来的 react 版本中被移除”这句话吗？来吧，你会爱上它的！</p>
+<p>一个多月以前， react 团队受到 <code>yarn</code>, <code>Rust</code>, <code>Ember</code> 的启发创建了 <a href="https://github.com/reactjs/rfcs" target="_blank" rel="noopener">RFCs 项目</a>。这个项目的第一个 PR 来自 Andrew Clark（react 核心团队成员）并称之为“<a href="https://github.com/reactjs/rfcs/pull/2" target="_blank" rel="noopener">新版 context</a>”。在这个提交中，Andrew 列出了新版 context 要实现的功能。这里面有一些有趣的讨论。几天后，Andrew 开了一个新 PR “新 context API”。</p>
+<p>所以，它看起来像什么？它比旧的 context API 要直观一百万倍。这是我想到的最简单有用的例子：</p>
+<iframe src="https://codesandbox.io/embed/n4r0qq898j" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+<p>这是最简单的版本：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> ThemeContext <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">createContext</span><span class="token punctuation">(</span><span class="token string">'light'</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">ThemeProvider</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  state <span class="token operator">=</span> <span class="token punctuation">{</span>theme<span class="token punctuation">:</span> <span class="token string">'light'</span><span class="token punctuation">}</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation"><</span>ThemeContext.Provider</span> <span class="token attr-name">value</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>theme<span class="token punctuation">}</span></span><span class="token punctuation">></span></span>
+        <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>children<span class="token punctuation">}</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation"></</span>ThemeContext.Provider</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation"><</span>ThemeProvider</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation"><</span>ThemeContext.Consumer</span><span class="token punctuation">></span></span>
+        <span class="token punctuation">{</span>val <span class="token operator">=</span><span class="token operator">></span> <span class="token tag"><span class="token tag"><span class="token punctuation"><</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>val<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation"></</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">}</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation"></</span>ThemeContext.Consumer</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation"></</span>ThemeProvider</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>你可能注意到我在消费组件中使用了 <code>render props</code>（最佳实践！），但如果这不是你的菜，你也可以很容易地使用高阶组件或用了 context API 的其他方法去实现（这就是为什么它是最佳的）。</p>
+<p>新的 context API 由以下几部分组件：</p>
+<ul>
+<li><code>React.createContext</code> 传递初始值（可选的使用位掩码功能）。这返回了一个包含 <code>Provider</code> 和 <code>Consumer</code> 的对象。</li>
+<li><code>Provider</code> 在组件树中使用频率更高，并且接受一个 value 属性（可以是任何值）。</li>
+<li><code>Consumer</code> 组件可以在 Provider 组件树下的任何地方使用，并接受一个“children”属性， children 必须是一个接受 value 值并返回 react 元素（JSX）的函数。</li>
+</ul>
+<p>看到这个API 我异常地兴奋。react 团队将会移除 context 是一个实验性功能的警告，因为它现在是这个框架的<a href="https://twitter.com/acdlite/status/957445801302618112" target="_blank" rel="noopener">一等功能</a>。这意味着开发者有希望使用 context 简单地解决 prop-drilling 问题，而不必借助 redux 这类工具来解决这个痛点，也能更好更自由地使用简单的 react 。（又或者， James Kyle<a href="https://github.com/thejameskyle/unstated" target="_blank" rel="noopener">未发布的</a>的解决方案是我们所期待的）</p>
+<h2 id="Context-实践"><a href="#Context-实践" class="headerlink" title="Context 实践"></a>Context 实践</h2><p>关于这个新的 context API，我遇到的比较多的问题是（或者其他的 props render模式），如何组合 providers 和 consumers 组件。当你将一堆的 render prop 组件放在一起时，就会变成 <a href="https://twitter.com/acdlite/status/955955121979969537" target="_blank" rel="noopener">嵌套</a>:</p>
+<p></p><blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="en" dir="ltr">I mean come on (screen shot of actual code I’m playing with right now) <a href="https://t.co/Ucc8gaxPMp" target="_blank" rel="noopener">pic.twitter.com/Ucc8gaxPMp</a></p>— Andrew Clark (@acdlite) <a href="https://twitter.com/acdlite/status/955955121979969537?ref_src=twsrc%5Etfw" target="_blank" rel="noopener">January 24, 2018</a></blockquote><p></p>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>那我们如何避免这个问题？如果这让你很烦恼，那你可以像解决常规的 javascript 问题一样：使用实用函数/组件。这有个例子：</p>
+<pre class=" language-jsx"><code class="language-jsx"><span class="token keyword">const</span> ThemeContext <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">createContext</span><span class="token punctuation">(</span><span class="token string">'light'</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">ThemeProvider</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">/* code */</span><span class="token punctuation">}</span>
+<span class="token keyword">const</span> ThemeConsumer <span class="token operator">=</span> ThemeContext<span class="token punctuation">.</span>Consumer
+<span class="token keyword">const</span> LanguageContext <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">createContext</span><span class="token punctuation">(</span><span class="token string">'en'</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">LanguageProvider</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">/* code */</span><span class="token punctuation">}</span>
+<span class="token keyword">const</span> LanguageConsumer <span class="token operator">=</span> LanguageContext<span class="token punctuation">.</span>Consumer
+<span class="token keyword">function</span> <span class="token function">AppProviders</span><span class="token punctuation">(</span><span class="token punctuation">{</span>children<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation"><</span>LanguageProvider</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation"><</span>ThemeProvider</span><span class="token punctuation">></span></span>
+        <span class="token punctuation">{</span>children<span class="token punctuation">}</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation"></</span>ThemeProvider</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation"></</span>LanguageProvider</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">ThemeAndLanguageConsumer</span><span class="token punctuation">(</span><span class="token punctuation">{</span>children<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation"><</span>LanguageConsumer</span><span class="token punctuation">></span></span>
+      <span class="token punctuation">{</span>language <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation"><</span>ThemeConsumer</span><span class="token punctuation">></span></span>
+          <span class="token punctuation">{</span>theme <span class="token operator">=</span><span class="token operator">></span> <span class="token function">children</span><span class="token punctuation">(</span><span class="token punctuation">{</span>language<span class="token punctuation">,</span> theme<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation"></</span>ThemeConsumer</span><span class="token punctuation">></span></span>
+      <span class="token punctuation">)</span><span class="token punctuation">}</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation"></</span>LanguageConsumer</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation"><</span>AppProviders</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation"><</span>ThemeAndLanguageConsumer</span><span class="token punctuation">></span></span>
+        <span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">{</span>theme<span class="token punctuation">,</span> language<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token tag"><span class="token tag"><span class="token punctuation"><</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>theme<span class="token punctuation">}</span> and <span class="token punctuation">{</span>language<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation"></</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">}</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation"></</span>ThemeAndLanguageConsumer</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation"></</span>AppProviders</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>上面举例了一个常见的案例，并使用特殊的函数或组件去让这些案例更人性化。就像你平时处理问题一样，举对例子了吗？我希望有用 😅 </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>就像我上面说的，我对这个 API 非常感兴趣。它现在还未发布，但将发布在下一个版本的 react。不要担心，旧的 context API 将支持到下一个主版本号发布。所以每个人都会有足够的时间迁移。不要忘了，react 团队有超过 50,000 react 组件，很可能会发布一个 codemod 来自动升级大家的代码。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>作者：</strong>
+    robin.law
+  </li>
+  
+  
+  <li class="post-copyright-link">
+    <strong>本文翻译自：</strong>
+    <a href="https://medium.com/dailyjs/reacts-%EF%B8%8F-new-context-api-70c9fe01596b" title="react新API——context上下文">https://medium.com/dailyjs/reacts-%EF%B8%8F-new-context-api-70c9fe01596b</a>
+  </li>
+  
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://robin-front.github.io/2018/02/12/reacts-new-context-api.html" title="react新API——context上下文">http://robin-front.github.io/2018/02/12/reacts-new-context-api.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+            <a href="/tags/context/" rel="tag"># context</a>
+          
+        </div>
+      
+
+      
+        <h3>相关文章</h3>
+        <ul class="popular-posts"><li class="popular-posts-item"><div class="popular-posts-date">2017-07-06</div><div class="popular-posts-title"><h3><a href="/2017/07/06/react-pattern-extract-child-components-to-avoid-binding.html" title="react性能优化：提取子组件中额外的事件绑定" rel="bookmark">react性能优化：提取子组件中额外的事件绑定</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2016-03-14</div><div class="popular-posts-title"><h3><a href="/2016/03/14/React-optimize-with-Immutable-js.html" title="React应用性能优化之IMMUTABLE.JS" rel="bookmark">React应用性能优化之IMMUTABLE.JS</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2016-04-19</div><div class="popular-posts-title"><h3><a href="/2016/04/19/React-v15-0-upgrade-guide.html" title="React-v15.0升级指南" rel="bookmark">React-v15.0升级指南</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2017-05-30</div><div class="popular-posts-title"><h3><a href="/2017/05/30/WTF-JSX.html" title="JSX是什么鬼(WTF-is-JSX)" rel="bookmark">JSX是什么鬼(WTF-is-JSX)</a></h3></div></li><li class="popular-posts-item"><div class="popular-posts-date">2017-11-29</div><div class="popular-posts-title"><h3><a href="/2017/11/29/clean-code-dirty-code.html" title="简洁代码与冗余代码" rel="bookmark">简洁代码与冗余代码</a></h3></div></li></ul>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/14/judge-positive-and-negative-0.html" rel="next" title="javascript 判断正负0">
+                <i class="fa fa-chevron-left"></i> javascript 判断正负0
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/11/constructing-the-DOM-and-CSSDOM-object-model-before-browser-rendering.html" rel="prev" title="构建 DOM 对象模型和 CSSDOM 对象模型">
+                构建 DOM 对象模型和 CSSDOM 对象模型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars2.githubusercontent.com/u/6723674?v=3&s=460" alt="robin.law">
+            
+              <p class="site-author-name" itemprop="name">robin.law</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">96</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">119</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/robin-front" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lb.robin1991@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/lb_robin" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React’s-⚛️-new-Context-API"><span class="nav-number">1.</span> <span class="nav-text">React’s ⚛️ new Context API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#所以，为什么会想要使用-context-呢？"><span class="nav-number">1.1.</span> <span class="nav-text">所以，为什么会想要使用 context 呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Context-重生"><span class="nav-number">1.2.</span> <span class="nav-text">Context 重生</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Context-实践"><span class="nav-number">1.3.</span> <span class="nav-text">Context 实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">© 2014 — <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">robin.law</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count:</span>
+    
+    <span title="Site words total count">119.0k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 — <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+  
+    
+      <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '470b9e9d99d37489877f',
+          clientSecret: 'c319e368fd485f89601b4c2c0cee649bd9cf97cd',
+          repo: 'robin-front.github.io',
+          owner: 'Robin-front',
+          admin: ['Robin-front'],
+          id: 'react新API——context上下文',
+          distractionFreeMode: true,
+        });
+        gitalk.render('gitalk-container');
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+
+
+<script type="text/javascript" charset="utf-8" src="/js/lazyload-plugin/lazyload.intersectionObserver.min.js"></script></body></html>
